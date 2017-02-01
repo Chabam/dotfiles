@@ -1,0 +1,61 @@
+##### THIS FILE IS BEING CURRENTLY MANAGED BY URXVTCONFIG #####
+##### CHANGES DONE TO THIS FILE MANUALLY MAY AFFECT THE FUNCTIONALITY ######
+##### PROCEED WITH CAUTION! #####
+
+#define base00 #ff4800
+#define base01 #00bcd4
+#define base02 #3e4a50
+
+! special colors
+*.foreground:  #00bcd4
+*.background:  #3e4a50
+*.cursorColor  #00bcd4
+! black
+*.color0:      #3e4a50
+*.color8:      #657b83
+! red
+*.color1:      #dc322f
+*.color9:      #dc322f
+! green
+*.color2:      #859900
+*.color10:     #859900
+! yellow
+*.color3:      #b58900
+*.color11:     #b58900
+! blue
+*.color4:      #268bd2
+*.color12:     #268bd2
+! magenta
+*.color5:      #6c71c4
+*.color13:     #6c71c4
+! cyan
+*.color6:      #2aa198
+*.color14:     #2aa198
+! white
+*.color7:      #93a1a1
+*.color15:     #fdf6e3
+
+URxvt*scrollBar:     false
+
+URxvt*scrollBar_right:   false
+
+URxvt*transparent:   false
+
+URxvt.font: xft:Roboto Mono for Powerline:pixelsize=13
+
+URxvt.letterSpace: 0
+*antialias:  true
+*autohint:  true
+URxvt.perl-ext-common: default,matcher
+URxvt.url-launcher: google-chrome-stable
+
+URxvt.matcher.button: 1
+
+! ------------------------------------------------------------------------------
+! ROFI Color theme
+! ------------------------------------------------------------------------------
+rofi.color-enabled: true
+rofi.color-window: base02, base01, base02
+rofi.color-normal: base02, base01, base02, base01, base02
+rofi.color-active: base02, #FFFFFF, base02, base01, #FFFFFF
+rofi.color-urgent: base02, base00, base02, base00, base02
