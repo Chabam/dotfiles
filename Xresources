@@ -42,6 +42,10 @@ URxvt*scrollBar_right:   false
 URxvt*transparent:   false
 
 URxvt.font: xft:Roboto Mono for Powerline:pixelsize=13
+URxvt.imFont: xft:Roboto Mono Medium for Powerline:pixelsize=13
+URxvt.boldFont: xft:Roboto Mono Bold for Powerline:pixelsize=13
+URxvt.italicFont: xft:Roboto Mono Italic for Powerline:pixelsize=13
+URxvt.boldItalicFont: xft:Roboto Mono Bold Italic for Powerline:pixelsize=13
 
 URxvt.letterSpace: 0
 *antialias:  true
