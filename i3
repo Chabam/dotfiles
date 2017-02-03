@@ -31,7 +31,7 @@ floating_modifier $mod
 
 
 set $base00 #ff4800
-set $base01 #00bcd4
+set $base01 #d3d3d3
 set $base02 #3e4a50
 set $base03 #7780a1
 set $base04 #ffffff
@@ -58,15 +58,15 @@ set $base0F #fcc09e
 
 
 # start a terminal
-bindsym $mod+Return exec i3-sensible-terminal
+bindsym $mod+Return exec termite
 
 # kill focused window
 bindsym $mod+Shift+q kill
 
 # start dmenu (a program launcher)
 
-bindsym $mod+d exec rofi -show run -config home/chabam/.config/i3/rofi.conf   
-bindsym $mod+Tab exec rofi -show window -config home/chabam/.config/i3/rofi.conf   
+bindsym $mod+d exec rofi -show run    
+bindsym $mod+Tab exec rofi -show window   
 
 # There also is the (new) i3-dmenu-desktop which only displays applications
 # shipping a .desktop file. It is a wrapper around dmenu, so you need that
@@ -211,7 +211,7 @@ bar {
 bindsym $mod+p exec i3lock-fancy -f roboto 
 
 # Wallpaper
-exec_always feh --bg-scale /home/chabam/Pictures/Wall/forest.jpg
+exec_always feh --bg-scale /home/chabam/Pictures/Wall/road.jpg
 
 # autostart
 exec compton -f --refresh-rate 144
@@ -224,3 +224,11 @@ gaps outer 5
 
 # Title
 new_window 1pixel
+
+# Media control
+bindsym Control+t exec mpc toggle
+bindsym Control+n exec mpc next
+bindsym Control+p exec mpc prev
+bindsym Control+l exec mpc volume -5
+bindsym Control+r exec mpc volume +5
+
