@@ -33,7 +33,7 @@ browser = google-chrome-stable
 foreground = #d3d3d3
 foreground_bold = #eeeeee
 #foreground_dim = #888888
-background = rgba(62, 74, 80, 0.8) 
+background = rgba(62, 74, 80, 0.95) 
 cursor = #93a1a1
 
 # if unset, will reverse foreground and background
