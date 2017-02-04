@@ -217,18 +217,10 @@ exec_always feh --bg-scale /home/chabam/Pictures/Wall/road.jpg
 exec compton -f --refresh-rate 144
 exec mpd
 exec dropbox
-exec mpdscribble
+exec xbindkeys
 # Gapps
 gaps inner 5 
 gaps outer 5
 
 # Title
 new_window 1pixel
-
-# Media control
-bindsym Control+t exec mpc toggle
-bindsym Control+n exec mpc next
-bindsym Control+p exec mpc prev
-bindsym Control+l exec mpc volume -5
-bindsym Control+r exec mpc volume +5
-
