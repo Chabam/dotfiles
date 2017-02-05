@@ -65,7 +65,7 @@ bindsym $mod+Shift+q kill
 
 # start dmenu (a program launcher)
 
-bindsym $mod+d exec rofi -show run    
+bindsym $mod+d exec rofi -show run 
 bindsym $mod+Tab exec rofi -show window   
 
 # There also is the (new) i3-dmenu-desktop which only displays applications
@@ -208,19 +208,16 @@ bar {
     }
 }
 # Lock screen
-bindsym $mod+p exec i3lock-fancy -f roboto 
+bindsym $mod+p exec i3lock-fancy
 
 # Wallpaper
 exec_always feh --bg-scale /home/chabam/Pictures/Wall/road.jpg
 
 # autostart
-exec compton -f --refresh-rate 144
+exec compton -f --refresh-rate 144 --blur-background
 exec mpd
 exec dropbox
 exec xbindkeys
-# Gapps
-gaps inner 5 
-gaps outer 5
 
 # Title
-new_window 1pixel
+new_window pixel
