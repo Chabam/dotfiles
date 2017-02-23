@@ -13,7 +13,7 @@ set $mod Mod4
 
 # Font for window titles. Will also be used by the bar unless a different font
 # is used in the bar {} block below.
-font pango:roboto 10
+font pango:xos4 Terminus 10
 
 # This font is widely installed, provides lots of unicode glyphs, right-to-left
 # text rendering and scalability on retina/hidpi displays (thanks to pango).
@@ -29,10 +29,10 @@ font pango:roboto 10
 # Use Mouse+$mod to drag floating windows to their wanted position
 floating_modifier $mod
 
-
+set $wallpaper "/home/chabam/Pictures/Wall/nice_gradient.png"
 set $base00 #ff4800
 set $base01 #d3d3d3
-set $base02 #3e4a50
+set $base02 #151515
 set $base03 #7780a1
 set $base04 #ffffff
 set $base05 #777777
@@ -65,8 +65,7 @@ bindsym $mod+Shift+q kill
 
 # start dmenu (a program launcher)
 
-bindsym $mod+d exec rofi -show run 
-bindsym $mod+Tab exec rofi -show window   
+bindsym $mod+d exec dmenu_run -nb "$base02" -nf "$base07" -sb "$base01" -sf "$base02" -fn "xos4 Terminus"
 
 # There also is the (new) i3-dmenu-desktop which only displays applications
 # shipping a .desktop file. It is a wrapper around dmenu, so you need that
@@ -124,16 +123,16 @@ bindsym $mod+a focus parent
 #bindsym $mod+d focus child
 
 # Terminals
-set $workspace1 "1: "
-set $workspace2 "2: "
-set $workspace3 "3: "
-set $workspace4 "4: "
-set $workspace5 "5: "
-set $workspace6 "6: "
-set $workspace7 "7: "
-set $workspace8 "8: "
-set $workspace9 "9: "
-set $workspace10 "10: "
+set $workspace1 1
+set $workspace2 2
+set $workspace3 3
+set $workspace4 4
+set $workspace5 5
+set $workspace6 6
+set $workspace7 7
+set $workspace8 8
+set $workspace9 9
+set $workspace10 10
 # switch to workspace
 bindsym $mod+1 workspace $workspace1
 bindsym $mod+2 workspace $workspace2
@@ -164,7 +163,7 @@ bindsym $mod+Shift+c reload
 # restart i3 inplace (preserves your layout/session, can be used to upgrade i3)
 bindsym $mod+Shift+r restart
 # exit i3 (logs you out of your X session)
-bindsym $mod+Shift+e exec /home/chabam/.script/shutdown_menu
+bindsym $mod+Shift+e exec "i3-nagbar -t warning -m 'You pressed the exit shortcut. Do you really want to exit i3? This will end your X session.' -b 'Yes, exit i3' 'i3-msg exit'"
 # resize window (you can also use the mouse for that)
 mode "resize" {
         # These bindings trigger as soon as you enter the resize mode
@@ -208,16 +207,20 @@ bar {
     }
 }
 # Lock screen
-bindsym $mod+p exec i3lock-fancy
-
+bindsym $mod+p exec i3lock -i $wallpaper
 # Wallpaper
-exec_always feh --bg-scale /home/chabam/Pictures/Wall/road.jpg
+exec_always feh --bg-scale $wallpaper 
 
 # autostart
-exec compton -f --refresh-rate 144 --blur-background
+exec compton -f --refresh-rate 144 
 exec mpd
 exec dropbox
 exec xbindkeys
 
 # Title
 new_window pixel
+
+#Gapps
+
+gaps inner 5
+gaps outer 0

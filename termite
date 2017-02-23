@@ -30,28 +30,36 @@ browser = google-chrome-stable
 #modify_other_keys = false
 
 [colors]
-foreground = #d3d3d3
+foreground = #D7D0C7
 foreground_bold = #eeeeee
 #foreground_dim = #888888
-background = rgba(62, 74, 80, 0.95) 
+background = #151515 
 cursor = #93a1a1
 
 # if unset, will reverse foreground and background
 #highlight = #839496
 
 # colors from color0 to color254 can be set
-color0 = #073642
-color1 = #dc322f
-color2 = #859900
-color3 = #b58900
-color4 = #268bd2
-color5 = #d33682
-color6 = #2aa198
-color7 = #eee8d5
-color8 = #002b36
-color9 = #cb4b16
-color10 = #586e75
-color11 = #657b83
-color12 = #839496
-color13 = #6c71c4
-color14 = #93a1a1
+color0  = #101010
+color8  = #404040
+#red
+color1  = #E84F4F
+color9  = #D23D3D
+#green
+color2  = #B8D68C
+color10 = #A0CF5D
+#yellow
+color3  = #E1AA5D
+color11 = #F39D21
+#blue
+color4  = #7DC1CF
+color12 = #4E9FB1
+#magenta
+color5  = #9B64FB
+color13 = #8542FF
+#cyan
+color6  = #6D878D
+color14 = #42717B
+#white
+color7  = #dddddd
+color15 = #dddddd
