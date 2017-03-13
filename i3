@@ -206,8 +206,6 @@ bar {
 	        urgent_workspace   	$base02		$base02 	$base00
     }
 }
-# Lock screen
-bindsym $mod+p exec i3lock -i $wallpaper
 # Wallpaper
 exec_always feh --bg-scale $wallpaper 
 
