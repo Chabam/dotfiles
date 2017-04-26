@@ -4,20 +4,10 @@
 # Path to your oh-my-zsh installation.
   export ZSH=/home/chabam/.oh-my-zsh
 
-export PYTHONPATH=/usr/lib/python3.6/site-packages
-
-powerline-daemon -q
-POWERLINE_ZSH_CONTINUATION=1
-POWERLINE_ZSH_SELECT=1
-. /usr/lib/python3.6/site-packages/powerline/bindings/zsh
-
-
-
-
 # Set name of the theme to load. Optionally, if you set this to "random"
 # it'll load a random theme each time that oh-my-zsh is loaded.
 # See https://github.com/robbyrussell/oh-my-zsh/wiki/Themes
-ZSH_THEME="agnoster"
+ZSH_THEME="gentoo"
 
 # Uncomment the following line to use case-sensitive completion.
 # CASE_SENSITIVE="true"
@@ -93,8 +83,3 @@ source $ZSH/oh-my-zsh.sh
 # Example aliases
 # alias zshconfig="mate ~/.zshrc"
 # alias ohmyzsh="mate ~/.oh-my-zsh"
-
-if [[ -r ~/.local/bin/powerline/bindings/zsh/powerline.zsh ]]; then
-    source ~/.local/bin/powerline/bindings/zsh/powerline.zsh
-fi
-

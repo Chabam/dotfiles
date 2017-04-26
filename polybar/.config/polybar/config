@@ -1,0 +1,202 @@
+;=====================================================
+;
+;   To learn more about how to configure Polybar
+;   go to https://github.com/jaagr/polybar
+;
+;   The README contains alot of information
+;
+;=====================================================
+
+
+[colors]
+background = #151515
+foreground = #ffffff
+empty = #333333
+red = #f44336
+orange = #ff9800
+yellow = #ffeb3b
+green = #cddc39
+blue = #00bcd4
+purple = #9c27b0
+focused = #9e9e9e
+urgent = #ff5722
+occupied = #777777
+
+[bar/top]
+monitor = ${env:MONITOR:DVI-I-1}
+width = 100%
+height = 27
+radius = 0.0
+fixed-center = false
+
+background = ${colors.background}
+foreground = ${colors.foreground}
+
+border-size = 0
+border-color = #00000000
+
+modules-left = mpd
+modules-center = bspwm
+modules-right =  xbacklight volume wired-network wireless-network battery date power-menu 
+
+font-0 = xos4 Terminus:pixelsize=12;2
+font-1 = Wuncon Siji:pixelsize=12;3
+
+[bar/topalt]
+inherit = bar/top
+monitor = ${env:MONITOR:DVI-D-0}
+
+modules-left =
+modules-center = bspwm
+modules-right =
+
+;-------------- bspwm --------------
+
+[module/bspwm]
+type = internal/bspwm
+
+enable-scroll = false
+
+format = <label-state> <label-mode>
+
+inline-mode = true
+
+label-focused-foreground = ${colors.yellow}
+
+label-occupied-foreground = ${colors.foreground}
+
+label-urgent-foreground = ${colors.urgent}
+
+label-empty-foreground = ${colors.empty}
+
+;-------------- date --------------
+
+[module/date]
+type = internal/date
+label = %date% %time%
+label-padding = 2
+date =  %d/%m/%Y
+time =  %H:%M
+interval = 5
+
+[module/xbacklight]
+type = internal/xbacklight
+format = <ramp> <label>
+ramp-0 = 
+ramp-1 = 
+ramp-2 = 
+ramp-foreground = ${colors.red}
+label-foreground = ${root.foreground}
+
+;-------------- volume --------------
+
+[module/volume]
+type = internal/volume
+speaker-mixer = Speaker
+headphone-mixer = Headphone
+headphone-id = 9
+
+format-volume = <ramp-volume> <label-volume>
+label-volume = %percentage%%
+label-volume-foreground = ${color.foreground}
+
+format-muted-prefix = ""
+format-muted-foreground = ${color.occupied}
+label-muted = sound muted
+
+ramp-volume-0 = 
+ramp-volume-1 = 
+ramp-volume-2 = 
+ramp-volume-3 = 
+ramp-volume-foreground = ${color.foreground}
+
+ramp-headphones-0 = 
+ramp-headphones-1 = 
+ramp-headphones-foreground = ${color.foreground}
+
+;-------------- battery --------------
+
+[module/battery]
+type = internal/battery
+full-at = 98
+time-format = %H:%M
+
+format-charging = <animation-charging> <label-charging>
+label-charging = %percentage%% %time%
+
+format-discharging = <ramp-capacity> <label-discharging>
+label-discharging = %percentage%% %time%
+
+format-full = <label-full>
+format-full-prefix = " "
+format-full-prefix-foreground = ${color.green}
+
+ramp-capacity-0 = 
+ramp-capacity-1 = 
+ramp-capacity-2 = 
+ramp-capacity-foreground = ${color.foreground}
+
+animation-charging-0 = 
+animation-charging-1 = 
+animation-charging-2 = 
+animation-charging-foreground = ${color.yellow}
+animation-charging-framerate = 750
+
+;-------------- network --------------
+
+[module/wired-network]
+type = internal/network
+interface = eno1
+
+format-connected = <label-connected>
+format-disconnected = <label-disconnected>
+
+label-connected =  connected
+label-connected-foreground = ${colors.green}
+
+label-disconnected = not connected
+label-disconnected-foreground = ${colors.red}
+
+[module/wireless-network]
+type = internal/network
+interface = wlan1
+
+format-connected = <ramp-signal> <label-connected>
+format-disconnected = <label-disconnected>
+
+label-connected = %essid%
+label-connected-foreground = ${colors.foreground}
+
+label-disconnected = not connected
+label-disconnected-foreground = ${colors.occupied}
+
+ramp-signal-0 = 😱
+ramp-signal-1 = 😠
+ramp-signal-2 = 😒
+ramp-signal-3 = 😊
+ramp-signal-4 = 😃
+ramp-signal-5 = 😈
+
+;-------------- music --------------
+
+[module/mpd]
+type = internal/mpd
+
+host = 127.0.0.1
+port = 6600
+interval = 1
+
+format-online = <label-time> <label-song>
+format-online-spacing = 0
+format-online-padding = 1
+
+format-offline = 
+
+label-song = %artist% - %title%
+label-song-maxlen = 35
+label-song-ellipsis = true
+label-song-foreground = ${colors.green}
+
+label-time-foreground = ${colors.yellow}
+
+; vim:ft=dosini
