@@ -8,11 +8,9 @@ allow_bold = true
 dynamic_title = true
 urgent_on_bell = true
 clickable_url = true
-font = xos4 Terminus 12
+font = Roboto Mono for Powerline 12
 scrollback_lines = 1000
 search_wrap = true
-#icon_name = terminal
-#geometry = 640x480
 
 # "system", "on" or "off"
 cursor_blink = system
@@ -21,7 +19,7 @@ cursor_blink = system
 cursor_shape = block
 
 # $BROWSER is used by default
-browser = google-chrome-stable
+browser = chromium
 
 # set size hints for the window
 #size_hints = false
@@ -33,7 +31,7 @@ browser = google-chrome-stable
 foreground = #D7D0C7
 foreground_bold = #eeeeee
 #foreground_dim = #888888
-background = #151515 
+background = #151515
 cursor = #93a1a1
 
 # if unset, will reverse foreground and background
@@ -63,3 +61,4 @@ color14 = #42717B
 #white
 color7  = #dddddd
 color15 = #dddddd
+

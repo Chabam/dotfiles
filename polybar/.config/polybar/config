@@ -23,7 +23,7 @@ urgent = #ff5722
 occupied = #777777
 
 [bar/top]
-monitor = ${env:MONITOR:DVI-I-1}
+monitor = ${env:MONITOR:LVDS-1}
 width = 100%
 height = 27
 radius = 0.0
@@ -35,12 +35,14 @@ foreground = ${colors.foreground}
 border-size = 0
 border-color = #00000000
 
-modules-left = mpd
+modules-left = wired-network wireless-network volume
 modules-center = bspwm
-modules-right =  xbacklight volume wired-network wireless-network battery date power-menu 
+modules-right = battery date
 
-font-0 = xos4 Terminus:pixelsize=12;2
-font-1 = Wuncon Siji:pixelsize=12;3
+font-0 = Roboto:pixelsize=12;2
+font-1 = Material Icons:pixelsize=12;3
+
+tray-position = left
 
 [bar/topalt]
 inherit = bar/top
@@ -61,9 +63,9 @@ format = <label-state> <label-mode>
 
 inline-mode = true
 
-label-focused-foreground = ${colors.yellow}
+label-focused-foreground = ${colors.foreground}
 
-label-occupied-foreground = ${colors.foreground}
+label-occupied-foreground = ${colors.occupied}
 
 label-urgent-foreground = ${colors.urgent}
 
@@ -73,20 +75,11 @@ label-empty-foreground = ${colors.empty}
 
 [module/date]
 type = internal/date
-label = %date% %time%
+label =  %date%  %time%
 label-padding = 2
-date =  %d/%m/%Y
-time =  %H:%M
+date = %d/%m/%Y
+time = %H:%M
 interval = 5
-
-[module/xbacklight]
-type = internal/xbacklight
-format = <ramp> <label>
-ramp-0 = 
-ramp-1 = 
-ramp-2 = 
-ramp-foreground = ${colors.red}
-label-foreground = ${root.foreground}
 
 ;-------------- volume --------------
 
@@ -98,49 +91,39 @@ headphone-id = 9
 
 format-volume = <ramp-volume> <label-volume>
 label-volume = %percentage%%
-label-volume-foreground = ${color.foreground}
+label-volume-foreground = ${colors.foreground}
 
-format-muted-prefix = ""
-format-muted-foreground = ${color.occupied}
-label-muted = sound muted
+format-muted-foreground = ${colors.red}
+label-muted = 
 
-ramp-volume-0 = 
-ramp-volume-1 = 
-ramp-volume-2 = 
-ramp-volume-3 = 
-ramp-volume-foreground = ${color.foreground}
+ramp-volume-0 = 
+ramp-volume-1 = 
+ramp-volume-2 = 
+ramp-volume-3 = 
+ramp-volume-foreground = ${colors.green}
 
-ramp-headphones-0 = 
-ramp-headphones-1 = 
-ramp-headphones-foreground = ${color.foreground}
+ramp-headphones-0 = 
+ramp-headphones-foreground = ${colors.green}
 
 ;-------------- battery --------------
 
 [module/battery]
 type = internal/battery
 full-at = 98
-time-format = %H:%M
 
-format-charging = <animation-charging> <label-charging>
-label-charging = %percentage%% %time%
+format-charging = <label-charging>
+label-charging = %percentage%%
+format-charging-prefix = " "
+format-charging--prefix-foreground = ${colors.blue}
 
-format-discharging = <ramp-capacity> <label-discharging>
-label-discharging = %percentage%% %time%
+format-discharging = <label-discharging>
+label-discharging = %percentage%%
+format-discharging-prefix = " "
+format-discharging-prefix-foreground = ${colors.yellow}
 
 format-full = <label-full>
-format-full-prefix = " "
-format-full-prefix-foreground = ${color.green}
-
-ramp-capacity-0 = 
-ramp-capacity-1 = 
-ramp-capacity-2 = 
-ramp-capacity-foreground = ${color.foreground}
-
-animation-charging-0 = 
-animation-charging-1 = 
-animation-charging-2 = 
-animation-charging-foreground = ${color.yellow}
-animation-charging-framerate = 750
+format-full-prefix = " "
+format-full-foreground = ${colors.green}
 
 ;-------------- network --------------
 
@@ -151,7 +134,7 @@ interface = eno1
 format-connected = <label-connected>
 format-disconnected = <label-disconnected>
 
-label-connected =  connected
+label-connected = connected
 label-connected-foreground = ${colors.green}
 
 label-disconnected = not connected
@@ -159,44 +142,21 @@ label-disconnected-foreground = ${colors.red}
 
 [module/wireless-network]
 type = internal/network
-interface = wlan1
+interface = wlp3s0
 
 format-connected = <ramp-signal> <label-connected>
+format-connected-padding = 2
+
 format-disconnected = <label-disconnected>
+format-disconnected-padding = 2
 
 label-connected = %essid%
 label-connected-foreground = ${colors.foreground}
 
-label-disconnected = not connected
-label-disconnected-foreground = ${colors.occupied}
+label-disconnected = " "
+label-disconnected-foreground = ${colors.red}
 
-ramp-signal-0 = 😱
-ramp-signal-1 = 😠
-ramp-signal-2 = 😒
-ramp-signal-3 = 😊
-ramp-signal-4 = 😃
-ramp-signal-5 = 😈
-
-;-------------- music --------------
-
-[module/mpd]
-type = internal/mpd
-
-host = 127.0.0.1
-port = 6600
-interval = 1
-
-format-online = <label-time> <label-song>
-format-online-spacing = 0
-format-online-padding = 1
-
-format-offline = 
-
-label-song = %artist% - %title%
-label-song-maxlen = 35
-label-song-ellipsis = true
-label-song-foreground = ${colors.green}
-
-label-time-foreground = ${colors.yellow}
+ramp-signal-0 = " "
+ramp-signal-0-foreground = ${colors.green}
 
 ; vim:ft=dosini

@@ -8,7 +8,7 @@ super + Return
 
 # program launcher
 super + space
-	rofi -show run -font "xos4 Terminus 12" -bw 2
+	rofi -show run -font "Roboto 12" -bw 2
 
 # make sxhkd reload its configuration files:
 super + Escape
@@ -122,23 +122,28 @@ super + {Left,Down,Up,Right}
 super + r
 	bspc node @/ -R 90
 
+ctrl + alt + l
+	slock
+
 # Audio stuff
 
 XF86AudioPlay
-	/home/chabam/scripts/play-pause.sh
+	playerctl play-pause
 
 XF86AudioNext
-	/home/chabam/scripts/next.sh
+	playerctl next
 
 XF86AudioPrev 
-	/home/chabam/scripts/prev.sh
-
-XF86AudioLowerVolume
-	mpc volume -5
-
-XF86AudioRaiseVolume
-	mpc volume +5
+	playerctl previous
 
 XF86AudioStop 	
-	/home/chabam/scripts/stop.sh
+	playerctl stop
 
+XF86AudioLowerVolume
+	ponymix decrease 5
+
+XF86AudioRaiseVolume
+	ponymix increase 5
+
+XF86AudioMute
+    ponymix toggle
