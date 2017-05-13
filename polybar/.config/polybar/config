@@ -42,7 +42,8 @@ modules-center = bspwm
 modules-right = battery date
 
 font-0 = Roboto:pixelsize=11;2
-font-1 = Material Icons:pixelsize=12;3
+font-1 = FontAwesome:pixelsize=11;2
+font-2 = Material Icons:pixelsize=12;3
 
 [bar/topalt]
 inherit = bar/top
@@ -59,13 +60,13 @@ type = internal/bspwm
 
 enable-scroll = false
 
-format =<label-state><label-mode>
+format = <label-state><label-mode>
 
 inline-mode = true
 
 label-focused-foreground = ${colors.foreground}
 label-focused-padding-right = 1
-label-focused-underline = ${colors.blue}
+label-focused-underline = ${colors.foreground}
 
 label-occupied-foreground = ${colors.foreground}
 label-occupied-padding-right = 1
@@ -97,17 +98,14 @@ format-volume = <ramp-volume> <label-volume>
 label-volume = %percentage%%
 label-volume-foreground = ${colors.foreground}
 
-format-muted-foreground = ${colors.red}
-label-muted = 
+label-muted =  Muted
 
 ramp-volume-0 = 
 ramp-volume-1 = 
 ramp-volume-2 = 
 ramp-volume-3 = 
-ramp-volume-foreground = ${colors.green}
 
 ramp-headphones-0 = 
-ramp-headphones-foreground = ${colors.green}
 
 ;-------------- battery --------------
 
@@ -115,19 +113,31 @@ ramp-headphones-foreground = ${colors.green}
 type = internal/battery
 full-at = 98
 
-format-charging = <label-charging>
+format-charging = <animation-charging> <label-charging>
 label-charging = %percentage%%
-format-charging-prefix = " "
-format-charging--prefix-foreground = ${colors.blue}
 
-format-discharging = <label-discharging>
+format-discharging = <ramp-capacity> <label-discharging>
 label-discharging = %percentage%%
-format-discharging-prefix = " "
-format-discharging-prefix-foreground = ${colors.yellow}
 
-format-full = <label-full>
-format-full-prefix = " "
-format-full-foreground = ${colors.green}
+format-full = <ramp-capacity> <label-full>
+
+ramp-capacity-0 = 
+ramp-capacity-0-foreground = ${colors.red}
+ramp-capacity-1 = 
+ramp-capacity-1-foreground = ${colors.yellow}
+ramp-capacity-2 = 
+ramp-capacity-3 = 
+ramp-capacity-4 = 
+
+; Only applies if <animation-charging> is used
+animation-charging-0 = 
+animation-charging-1 = 
+animation-charging-2 = 
+animation-charging-3 = 
+animation-charging-4 = 
+animation-charging-foreground = ${colors.blue}
+; Framerate in milliseconds
+animation-charging-framerate = 750
 
 ;-------------- network --------------
 
@@ -157,10 +167,8 @@ format-disconnected-padding = 2
 label-connected = %essid%
 label-connected-foreground = ${colors.foreground}
 
-label-disconnected = " "
-label-disconnected-foreground = ${colors.red}
+label-disconnected =  Disconnected
 
 ramp-signal-0 = " "
-ramp-signal-0-foreground = ${colors.green}
 
 ; vim:ft=dosini
