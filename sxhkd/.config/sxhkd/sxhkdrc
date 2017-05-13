@@ -122,8 +122,17 @@ super + {Left,Down,Up,Right}
 super + r
 	bspc node @/ -R 90
 
+# Lock the screen
 ctrl + alt + l
 	slock
+
+# Change keyboard layout
+super + {F1,F2} 
+	setxkbmap {us,ca fr}
+
+# toggle gaps
+super + {F3,F4}
+	bspc config window_gap {10,0}
 
 # Audio stuff
 

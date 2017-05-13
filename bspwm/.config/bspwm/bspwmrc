@@ -4,7 +4,7 @@ xsetroot -cursor_name left_ptr &
 compton &
 dropbox &
 /home/chabam/.config/polybar/launch.sh &
-mpd &
+
 bspc monitor LVDS-1 -d I II III IV V VI VII VIII IX X
 
 bspc config border_width         2

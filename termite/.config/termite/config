@@ -38,7 +38,7 @@ cursor = #93a1a1
 #highlight = #839496
 
 # colors from color0 to color254 can be set
-color0  = #101010
+color0  = #151515
 color8  = #404040
 #red
 color1  = #E84F4F

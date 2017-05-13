@@ -31,6 +31,8 @@ fixed-center = false
 
 background = ${colors.background}
 foreground = ${colors.foreground}
+line-size = 2
+line-color = #f00
 
 border-size = 0
 border-color = #00000000
@@ -39,10 +41,8 @@ modules-left = wired-network wireless-network volume
 modules-center = bspwm
 modules-right = battery date
 
-font-0 = Roboto:pixelsize=12;2
+font-0 = Roboto:pixelsize=11;2
 font-1 = Material Icons:pixelsize=12;3
-
-tray-position = left
 
 [bar/topalt]
 inherit = bar/top
@@ -59,18 +59,22 @@ type = internal/bspwm
 
 enable-scroll = false
 
-format = <label-state> <label-mode>
+format =<label-state><label-mode>
 
 inline-mode = true
 
 label-focused-foreground = ${colors.foreground}
+label-focused-padding-right = 1
+label-focused-underline = ${colors.blue}
 
-label-occupied-foreground = ${colors.occupied}
+label-occupied-foreground = ${colors.foreground}
+label-occupied-padding-right = 1
 
 label-urgent-foreground = ${colors.urgent}
+label-urgent-padding-right = 1
 
-label-empty-foreground = ${colors.empty}
-
+label-empty-foreground = ${colors.occupied}
+label-empty-padding-right = 1
 ;-------------- date --------------
 
 [module/date]
@@ -87,7 +91,7 @@ interval = 5
 type = internal/volume
 speaker-mixer = Speaker
 headphone-mixer = Headphone
-headphone-id = 9
+headphone-id = 17
 
 format-volume = <ramp-volume> <label-volume>
 label-volume = %percentage%%
