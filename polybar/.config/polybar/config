@@ -137,7 +137,7 @@ animation-charging-3 = 
 animation-charging-4 = 
 animation-charging-foreground = ${colors.blue}
 ; Framerate in milliseconds
-animation-charging-framerate = 750
+animation-charging-framerate = 550
 
 ;-------------- network --------------
 
