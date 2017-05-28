@@ -4,7 +4,7 @@
 
 # terminal emulator
 super + Return
-	termite
+	urxvt
 
 # program launcher
 super + space
@@ -131,6 +131,9 @@ super + shift + b
 # Lock the screen
 ctrl + alt + l
 	slock
+# Print screen
+Print
+    scrot '%s.png' -e 'mv $f ~/Pictures/Screenshots/'
 
 # Change keyboard layout
 super + {F1,F2}
@@ -138,7 +141,7 @@ super + {F1,F2}
 
 # toggle gaps
 super + {F3,F4}
-	bspc config window_gap {10,0}
+	bspc config window_gap {5,0}
 
 # Audio stuff
 

@@ -27,7 +27,7 @@ monitor = ${env:MONITOR:LVDS-1}
 width = 100%
 height = 27
 radius = 0.0
-fixed-center = false
+fixed-center = true
 
 background = ${colors.background}
 foreground = ${colors.foreground}
@@ -98,7 +98,7 @@ format-volume = <ramp-volume> <label-volume>
 label-volume = %percentage%%
 label-volume-foreground = ${colors.foreground}
 
-label-muted =  Muted
+label-muted = 
 
 ramp-volume-0 = 
 ramp-volume-1 = 
@@ -167,8 +167,6 @@ format-disconnected-padding = 2
 label-connected = %essid%
 label-connected-foreground = ${colors.foreground}
 
-label-disconnected =  Disconnected
+label-disconnected = 
 
 ramp-signal-0 = " "
-
-; vim:ft=dosini
