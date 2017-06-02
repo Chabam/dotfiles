@@ -5,7 +5,12 @@ compton &
 dropbox &
 /home/chabam/.config/polybar/launch.sh &
 
+<<<<<<< Updated upstream
 bspc monitor LVDS-1 -d I II III IV V VI VII VIII IX X
+=======
+bspc monitor DVI-I-1 -d VI VII VIII IX X
+bspc monitor DVI-D-0 -d I II III IV V
+>>>>>>> Stashed changes
 
 bspc config border_width         2
 bspc config window_gap           5

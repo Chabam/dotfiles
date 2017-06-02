@@ -23,7 +23,7 @@ urgent = #ff5722
 occupied = #777777
 
 [bar/top]
-monitor = ${env:MONITOR:LVDS-1}
+monitor = ${env:MONITOR:DVI-I-1}
 width = 100%
 height = 27
 radius = 0.0
@@ -51,7 +51,7 @@ monitor = ${env:MONITOR:DVI-D-0}
 
 modules-left =
 modules-center = bspwm
-modules-right =
+modules-right = date
 
 ;-------------- bspwm --------------
 
@@ -147,11 +147,13 @@ interface = eno1
 
 format-connected = <label-connected>
 format-disconnected = <label-disconnected>
+format-connected-padding = 2
+format-disconnected-padding = 2
 
-label-connected = connected
-label-connected-foreground = ${colors.green}
+label-connected = 
+label-connected-foreground = ${colors.foreground}
 
-label-disconnected = not connected
+label-disconnected = 
 label-disconnected-foreground = ${colors.red}
 
 [module/wireless-network]
