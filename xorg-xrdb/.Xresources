@@ -16,11 +16,7 @@ URxvt.matcher.button: 1
 
 URxvt.internalBorder: 15
 
-<<<<<<< Updated upstream
 URxvt.scrollStyle:        rxvt
-=======
-URxvt.scrollStyle:          rxvt
->>>>>>> Stashed changes
 URxvt.scrollBar:          false
 
 ! Base16 Default Dark
