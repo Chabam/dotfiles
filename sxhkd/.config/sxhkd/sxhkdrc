@@ -10,6 +10,10 @@ super + Return
 super + space
 	rofi -show run -font "Roboto 12" -bw 2
 
+# program switcher 
+super + shift + space	
+	rofi -show window -font "Roboto 12" -bw 2
+
 # make sxhkd reload its configuration files:
 super + Escape
 	pkill -USR1 -x sxhkd

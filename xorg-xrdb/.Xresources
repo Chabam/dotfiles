@@ -14,7 +14,9 @@ URxvt.perl-ext-common: default,matcher
 URxvt.url-launcher: /usr/bin/xdg-open
 URxvt.matcher.button: 1
 
-xvt.scrollStyle:          rxvt
+URxvt.internalBorder: 15
+
+URxvt.scrollStyle:        rxvt
 URxvt.scrollBar:          false
 
 ! Base16 Default Dark

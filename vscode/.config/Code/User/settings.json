@@ -1,0 +1,11 @@
+{
+    "editor.lineNumbers": "relative",
+    "editor.fontFamily": "Roboto Mono",
+    "editor.renderIndentGuides": true,
+    "files.autoSave": "onWindowChange",
+    "workbench.colorTheme": "Solarized Dark",
+    "vsicons.presets.hideFolders": false,
+    "vsicons.dontShowNewVersionMessage": true,
+    "workbench.iconTheme": "vscode-icons",
+    "vim.disableAnnoyingNeovimMessage": true
+}
