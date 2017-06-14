@@ -1,11 +1,13 @@
 {
-    "editor.lineNumbers": "relative",
-    "editor.fontFamily": "Roboto Mono",
-    "editor.renderIndentGuides": true,
-    "files.autoSave": "onWindowChange",
-    "workbench.colorTheme": "Solarized Dark",
-    "vsicons.presets.hideFolders": false,
-    "vsicons.dontShowNewVersionMessage": true,
-    "workbench.iconTheme": "vscode-icons",
-    "vim.disableAnnoyingNeovimMessage": true
+	"editor.renderWhitespace": "all",
+	"editor.fontFamily": "Roboto Mono",
+	"editor.renderIndentGuides": true,
+	"files.autoSave": "onWindowChange",
+	"vsicons.presets.hideFolders": false,
+	"vsicons.dontShowNewVersionMessage": true,
+	"workbench.iconTheme": "material-icon-theme",
+	"editor.insertSpaces": false,
+	"window.reopenFolders": "none",
+	"editor.minimap.enabled": false,
+	"workbench.colorTheme": "Monokai Dimmed"
 }
