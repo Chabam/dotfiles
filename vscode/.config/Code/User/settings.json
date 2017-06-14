@@ -1,6 +1,6 @@
 {
 	"editor.renderWhitespace": "all",
-	"editor.fontFamily": "Roboto Mono",
+	"editor.fontFamily": "Ubuntu Mono",
 	"editor.renderIndentGuides": true,
 	"files.autoSave": "onWindowChange",
 	"vsicons.presets.hideFolders": false,
