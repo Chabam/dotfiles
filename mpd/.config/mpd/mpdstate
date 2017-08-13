@@ -2,8 +2,8 @@ sw_volume: 100
 audio_device_state:1:pulse audio
 audio_device_state:1:my_fifo
 state: play
-current: 1
-time: 427.479000
+current: 9
+time: 258.848000
 random: 0
 repeat: 0
 single: 0
@@ -12,12 +12,26 @@ crossfade: 0
 mixrampdb: 0.000000
 mixrampdelay: -1.000000
 playlist_begin
-0:Uncompressed/Electric Wizard/Dopethrone/01 Vinum Sabbathi.flac
-1:Uncompressed/Electric Wizard/Dopethrone/02 Funeralopolis.flac
-2:Uncompressed/Electric Wizard/Dopethrone/03 Weird Tales i-Electric Frost ii-Golgotha iii-Altar of Melektaus.flac
-3:Uncompressed/Electric Wizard/Dopethrone/04 Barbarian.flac
-4:Uncompressed/Electric Wizard/Dopethrone/05 I, the Witchfinder.flac
-5:Uncompressed/Electric Wizard/Dopethrone/06 The Hills Have Eyes.flac
-6:Uncompressed/Electric Wizard/Dopethrone/07 We Hate You.flac
-7:Uncompressed/Electric Wizard/Dopethrone/08 Dopethrone.flac
+0:Compressed/Sufjan Stevens/Illinois/09 - Chicago.mp3
+1:Compressed/Sufjan Stevens/Illinois/01 - Concerning The UFO Sighting Near Highland, Illinois.mp3
+2:Compressed/Sufjan Stevens/Illinois/02 - The Black Hawk War, or, How to Demolish An Entire Civilization and Still Feel Good About Yourself in the Morning, or, We Apolog.mp3
+3:Compressed/Sufjan Stevens/Illinois/03 - Come On! Feel The Illinoise!- Part I- The World's Columbian Exposition-Part II- Carl Sandburg Visits Me in a Dream.mp3
+4:Compressed/Sufjan Stevens/Illinois/04 - John Wayne Gacy, Jr..mp3
+5:Compressed/Sufjan Stevens/Illinois/05 - Jacksonville.mp3
+6:Compressed/Sufjan Stevens/Illinois/06 - A Short Reprise for Mary Todd, Who Went Insane, but for Very Good Reasons.mp3
+7:Compressed/Sufjan Stevens/Illinois/07 - Decatur, or, Round of Applause for Your Stepmother!.mp3
+8:Compressed/Sufjan Stevens/Illinois/08 - One Last 'Whoo-Hoo!' for the Pullman.mp3
+9:Compressed/Sufjan Stevens/Illinois/09 - Chicago.mp3
+10:Compressed/Sufjan Stevens/Illinois/10 - Casimir Pulaski Day.mp3
+11:Compressed/Sufjan Stevens/Illinois/11 - To the Workers of the Rock River Valley Region, I Have an Idea Concerning Your Predicament.mp3
+12:Compressed/Sufjan Stevens/Illinois/12 - The Man of Metropolis Steals Our Hearts.mp3
+13:Compressed/Sufjan Stevens/Illinois/13 - Prairie Fire That Wanders About.mp3
+14:Compressed/Sufjan Stevens/Illinois/14 - A Conjunction of Drones Simulating the Way in Which Sufjan Stevens Has an Existential Crisis in the Great Godfrey Maze.mp3
+15:Compressed/Sufjan Stevens/Illinois/15 - The Predatory Wasp of the Palisades is Out to Get Us!.mp3
+16:Compressed/Sufjan Stevens/Illinois/16 - They Are Night Zombies!! They Are Neighbors!! They Have Come Back from the Dead!! Ahhhh!.mp3
+17:Compressed/Sufjan Stevens/Illinois/17 - Let's Hear That String Part Again, Because I Don't Think They Heard It All the Way Out in Bushnell.mp3
+18:Compressed/Sufjan Stevens/Illinois/18 - In This Temple as in the Hearts of Man for Whom He Saved the Earth.mp3
+19:Compressed/Sufjan Stevens/Illinois/19 - The Seer's Tower.mp3
+20:Compressed/Sufjan Stevens/Illinois/20 - The Tallest Man, The Broadest Shoulders- Part I- The Great Frontier-Part II- Come to Me Only With Playthings Now.mp3
+21:Compressed/Sufjan Stevens/Illinois/21 - Riffs and Variations on a Single Note for Jelly Roll, Earl Hines, Louis Armstrong, Baby Dodds, And The King of Swing, to Name a Few.mp3
 playlist_end

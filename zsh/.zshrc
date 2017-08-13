@@ -83,3 +83,6 @@ source $ZSH/oh-my-zsh.sh
 # Example aliases
 # alias zshconfig="mate ~/.zshrc"
 # alias ohmyzsh="mate ~/.oh-my-zsh"
+alias ssh-tarin="ssh chaf2717@tarin.dinf.usherbrooke.ca"
+alias open-viewer="~/.scripts/OpenViewer.sh"
+alias close-viewer="~/.scripts/CloseViewer.sh"

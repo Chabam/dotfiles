@@ -8,11 +8,11 @@ super + Return
 
 # program launcher
 super + space
-	rofi -show run -font "Roboto 12" -bw 2
+	rofi -show run -font "Gohu GohuFont 12" -bw 3 -lines 3 -width 30
 
-# program switcher 
-super + shift + space	
-	rofi -show window -font "Roboto 12" -bw 2
+# program switcher
+super + shift + space
+	rofi -show window -font "Gohu GohuFont 12" -bw 3 -lines 3 -width 30
 
 # make sxhkd reload its configuration files:
 super + Escape
@@ -145,27 +145,27 @@ super + {F1,F2}
 
 # toggle gaps
 super + {F3,F4}
-	bspc config window_gap {5,0}
+	bspc config window_gap {15,0}
 
 # Audio stuff
 
 XF86AudioPlay
-	playerctl play-pause
+	~/.scripts/PlayPause.sh
 
 XF86AudioNext
-	playerctl next
+	~/.scripts/Next.sh
 
 XF86AudioPrev
-	playerctl previous
+	~/.scripts/Previous.sh
 
 XF86AudioStop
-	playerctl stop
+	~/.scripts/Stop.sh
 
 XF86AudioLowerVolume
-	ponymix decrease 5
+	mpc volume -5
 
 XF86AudioRaiseVolume
-	ponymix increase 5
+	mpc volume +5
 
 XF86AudioMute
     ponymix toggle

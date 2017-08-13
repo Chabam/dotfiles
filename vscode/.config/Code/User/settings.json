@@ -1,13 +1,14 @@
 {
-	"editor.renderWhitespace": "all",
-	"editor.fontFamily": "Ubuntu Mono",
+	"editor.renderWhitespace": "none",
 	"editor.renderIndentGuides": true,
 	"files.autoSave": "onWindowChange",
 	"vsicons.presets.hideFolders": false,
 	"vsicons.dontShowNewVersionMessage": true,
 	"workbench.iconTheme": "material-icon-theme",
 	"editor.insertSpaces": false,
-	"window.reopenFolders": "none",
 	"editor.minimap.enabled": false,
-	"workbench.colorTheme": "Monokai Dimmed"
+	"workbench.colorTheme": "Visual Studio Dark",
+	"editor.fontSize": 14,
+	"java.errors.incompleteClasspath.severity": "ignore",
+	"editor.roundedSelection": false
 }

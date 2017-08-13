@@ -1,4 +1,3 @@
-% egrep -v '^#' .ncmpcpp/config
 mpd_music_dir = "home/chabam/Music/"
 visualizer_in_stereo = "yes"
 visualizer_fifo_path = "/tmp/mpd.fifo"
