@@ -1,21 +1,21 @@
-#define back        #393D3F
-#define fore        #FFFFFF
-#define base00      #1B2B34
-#define base01      #343D46
-#define base02      #4F5B66
-#define base03      #65737E
-#define base04      #A7ADBA
-#define base05      #C0C5CE
-#define base06      #CDD3DE
-#define base07      #D8DEE9
-#define base08      #EC5f67
-#define base09      #F99157
-#define base0A      #FAC863
-#define base0B      #99C794
-#define base0C      #5FB3B3
-#define base0D      #6699CC
-#define base0E      #C594C5
-#define base0F      #AB7967
+#define back        #2C2C2C
+#define fore        #DCDCDC
+#define base00      #3F3F3F
+#define base01      #705050
+#define base02      #60B48A
+#define base03      #DFAF8F
+#define base04      #9AB8D7
+#define base05      #DC8CC3
+#define base06      #8CD0D3
+#define base07      #DCDCCC
+#define base08      #709080
+#define base09      #DCA3A3
+#define base0A      #72D5A3
+#define base0B      #F0DFAF
+#define base0C      #94BFF3
+#define base0D      #EC93D3
+#define base0E      #93E0E3
+#define base0F      #FFFFFF
 
 rofi.color-enabled: true
 rofi.color-window: back, base07,  back
@@ -27,7 +27,7 @@ URXVT*scrollTtyOutput: false
 URXVT*scrollWithBuffer: true
 URXT*scrollTtyKeypress: true
 
-URxvt.font: xft: Gohu GohuFont:size=11
+URxvt.font: xft: DejaVu Sans Mono:size=11
 
 URxvt.perl-ext-common: default,matcher
 URxvt.url-launcher: /usr/bin/xdg-open
