@@ -1,21 +1,47 @@
 #define back        #2C2C2C
 #define fore        #DCDCDC
+!! Blacks
 #define base00      #3F3F3F
-#define base01      #705050
-#define base02      #60B48A
-#define base03      #DFAF8F
-#define base04      #9AB8D7
-#define base05      #DC8CC3
-#define base06      #8CD0D3
-#define base07      #DCDCCC
 #define base08      #709080
+!! Reds
+#define base01      #705050
 #define base09      #DCA3A3
-#define base0A      #72D5A3
-#define base0B      #F0DFAF
-#define base0C      #94BFF3
-#define base0D      #EC93D3
-#define base0E      #93E0E3
+!! Greens
+#define base02      #DFAF8F
+#define base0A      #F0DFAF
+!! Yellows
+#define base03      #60B48A
+#define base0B      #72D5A2
+!! Blues
+#define base04      #9AB9D7
+#define base0C      #94C0F3
+!! Magentas
+#define base05      #DC8CC4
+#define base0D      #EC93D5
+!! Cyans
+#define base06      #8CD1D3
+#define base0E      #93E1E3
+!! Whites
+#define base07      #DCDCCD
 #define base0F      #FFFFFF
+
+
+! *color0:  #3f3f3f
+! *color1:  #705050
+! *color2:  #60b48a
+! *color3:  #dfaf8f
+! *color4:  #9ab9d7
+! *color5:  #dc8cc4
+! *color6:  #8cd1d3
+! *color7:  #dcdccd
+! *color8:  #709080
+! *color9:  #dca3a3
+! *color10: #72d5a2
+! *color11: #f0dfaf
+! *color12: #94c0f3
+! *color13: #ec93d5
+! *color14: #93e1e3
+! *color15: #ffffff
 
 rofi.color-enabled: true
 rofi.color-window: back, base07,  back
