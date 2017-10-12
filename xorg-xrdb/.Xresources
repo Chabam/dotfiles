@@ -1,91 +1,10 @@
 #define back        #2C2C2C
-#define fore        #DCDCDC
-!! Blacks
-#define base00      #3F3F3F
-#define base08      #709080
-!! Reds
-#define base01      #705050
-#define base09      #DCA3A3
-!! Greens
-#define base02      #DFAF8F
-#define base0A      #F0DFAF
-!! Yellows
-#define base03      #60B48A
-#define base0B      #72D5A2
-!! Blues
-#define base04      #9AB9D7
-#define base0C      #94C0F3
-!! Magentas
-#define base05      #DC8CC4
-#define base0D      #EC93D5
-!! Cyans
-#define base06      #8CD1D3
-#define base0E      #93E1E3
-!! Whites
-#define base07      #DCDCCD
-#define base0F      #FFFFFF
-
-
-! *color0:  #3f3f3f
-! *color1:  #705050
-! *color2:  #60b48a
-! *color3:  #dfaf8f
-! *color4:  #9ab9d7
-! *color5:  #dc8cc4
-! *color6:  #8cd1d3
-! *color7:  #dcdccd
-! *color8:  #709080
-! *color9:  #dca3a3
-! *color10: #72d5a2
-! *color11: #f0dfaf
-! *color12: #94c0f3
-! *color13: #ec93d5
-! *color14: #93e1e3
-! *color15: #ffffff
+#define accent	    #4084D6
+#define urgent	    #E53935
+#define text	    #F3F4F5
 
 rofi.color-enabled: true
-rofi.color-window: back, base07,  back
-rofi.color-normal: back, base07,  back, base07,  back
-rofi.color-active: back, base0A,  back, base0A,  back
-rofi.color-urgent: back, base0B,  back, base0B,  back
-
-URXVT*scrollTtyOutput: false
-URXVT*scrollWithBuffer: true
-URXT*scrollTtyKeypress: true
-
-URxvt.font: xft: DejaVu Sans Mono:size=11
-
-URxvt.perl-ext-common: default,matcher
-URxvt.url-launcher: /usr/bin/xdg-open
-URxvt.matcher.button: 1
-
-URxvt.keysym.Shift-Control-V: eval:paste_clipboard
-URxvt.keysym.Shift-Control-C: eval:selection_to_clipboard
-
-URxvt.internalBorder: 15
-
-URxvt.scrollStyle:        rxvt
-URxvt.scrollBar:          false
-
-*.foreground:   fore
-*.background:   back
-
-*.cursorColor:  base0F
-
-*.color0:       base00
-*.color1:       base08
-*.color2:       base0B
-*.color3:       base0A
-*.color4:       base0D
-*.color5:       base0E
-*.color6:       base0C
-*.color7:       base05
-
-*.color8:       base03
-*.color9:       base08
-*.color10:      base0B
-*.color11:      base0A
-*.color12:      base0D
-*.color13:      base0E
-*.color14:      base0C
-*.color15:      base07
+rofi.color-window: back, accent,  back
+rofi.color-normal: back, text,  back, accent,  text
+rofi.color-active: back, text,    back, text,    back
+rofi.color-urgent: back, urgent,  back, urgent,  back
