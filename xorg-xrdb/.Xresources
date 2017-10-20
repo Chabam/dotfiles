@@ -1,4 +1,4 @@
-#define back        #2C2C2C
+#define back        #2f343f
 #define accent	    #4084D6
 #define urgent	    #E53935
 #define text	    #F3F4F5
