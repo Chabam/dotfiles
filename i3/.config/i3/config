@@ -180,3 +180,12 @@ bar {
 }
 
 exec --no-startup-id compton
+exec --no-startup-id shutter --min_at_startup
+
+# XFCE services
+exec --no-startup-id xfsettingsd --sm-client-disable &
+exec --no-startup-id xfce4-volumed &
+exec --no-startup-id xfce4-power-manager &
+exec --no-startup-id nm-applet &
+exec --no-startup-id /usr/lib/policykit-1-gnome/polkit-gnome-authentication-agent-1 &
+exec --no-startup-id pasystray &
