@@ -8,3 +8,67 @@ rofi.color-window: back, accent,  back
 rofi.color-normal: back, text,  back, accent,  text
 rofi.color-active: back, text,    back, text,    back
 rofi.color-urgent: back, urgent,  back, urgent,  back
+
+! do not scroll with output
+URxvt*scrollTtyOutput: false
+
+! scroll in relation to buffer (with mouse scroll or Shift+Page Up)
+URxvt*scrollWithBuffer: true
+
+! scroll back to the bottom on keypress
+URxvt*scrollTtyKeypress: true
+
+! font
+URxvt.font: xft:DejaVu Sans Mono for Powerline:style=Book:size=11
+
+! rebind copy paste 
+URxvt.keysym.Shift-Control-V: eval:paste_clipboard
+URxvt.keysym.Shift-Control-C: eval:selection_to_clipboard
+
+! jump words
+URxvt.keysym.Control-Up:   \033[1;5A
+URxvt.keysym.Control-Down:    \033[1;5B
+URxvt.keysym.Control-Left:    \033[1;5D
+URxvt.keysym.Control-Right:    \033[1;5C
+
+! disable scrollbar
+URxvt*scrollBar: false
+
+! disable ISO 14755
+URxvt*iso14755: False
+
+! clickable URL
+URxvt.perl-ext-common: default,matcher
+URxvt.url-launcher: /usr/bin/xdg-open
+URxvt.matcher.button: 1
+
+! taskbar icon
+URxvt.iconFile:    /usr/share/icons/Paper/32x32/apps/terminal.png
+
+! Colors
+URxvt*background: #2C2C2C
+URxvt*foreground: #DCDCDC
+! black
+URxvt*color0:  #3F3F3F
+URxvt*color8:  #709080
+! red
+URxvt*color1:  #705050
+URxvt*color9:  #DCA3A3
+! green
+URxvt*color2:  #60B48A
+URxvt*color10: #72D5A3
+! yellow
+URxvt*color3:  #DFAF8F
+URxvt*color11: #F0DFAF
+! blue
+URxvt*color4:  #9AB8D7
+URxvt*color12: #94BFF3
+! purple
+URxvt*color5:  #DC8CC3
+URxvt*color13: #EC93D3
+! cyan
+URxvt*color6:  #8CD0D3
+URxvt*color14: #93E0E3
+! white
+URxvt*color7:  #DCDCDC
+URxvt*color15: #FFFFFF
