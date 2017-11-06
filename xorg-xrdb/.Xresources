@@ -19,7 +19,7 @@ URxvt*scrollWithBuffer: true
 URxvt*scrollTtyKeypress: true
 
 ! font
-URxvt.font: xft:DejaVu Sans Mono for Powerline:style=Book:size=11
+URxvt.font: xft:Hack:size=12
 
 ! rebind copy paste 
 URxvt.keysym.Shift-Control-V: eval:paste_clipboard

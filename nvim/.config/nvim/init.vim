@@ -1,4 +1,7 @@
-execute pathogen#infect()
+let $NVIM_TUI_ENABLE_CURSOR_SHAPE=1
+let g:airline_powerline_fonts = 1
+
+colo molokai
 syntax on
 filetype plugin indent on
 
@@ -21,7 +24,9 @@ set mouse=a
 map <ScrollWheelUp> <C-Y>
 map <ScrollWheelDown> <C-E>
 
-set rtp+=$HOME/.local/lib/python2.7/site-packages/powerline/bindings/vim/
-set laststatus=2 " Always display the statusline in all windows
-set showtabline=2 " Always display the tabline, even if there is only one tab
-set noshowmode " Hide the default mode text (e.g. -- INSERT -- below the statusline)
+call plug#begin('~/.local/share/nvim/plugged')
+
+Plug 'vim-airline/vim-airline'
+Plug 'vim-airline/vim-airline-themes'
+
+call plug#end()
