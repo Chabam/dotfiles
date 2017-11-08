@@ -1,7 +1,7 @@
 let $NVIM_TUI_ENABLE_CURSOR_SHAPE=1
-let g:airline_powerline_fonts = 1
 
 colo molokai
+set background=dark
 syntax on
 filetype plugin indent on
 
@@ -24,9 +24,11 @@ set mouse=a
 map <ScrollWheelUp> <C-Y>
 map <ScrollWheelDown> <C-E>
 
-call plug#begin('~/.local/share/nvim/plugged')
+call plug#begin('~/.config/nvim/plugged')
 
 Plug 'vim-airline/vim-airline'
 Plug 'vim-airline/vim-airline-themes'
-
+Plug 'scrooloose/nerdtree', { 'on':  'NERDTreeToggle' }
+Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
+Plug 'junegunn/fzf.vim'
 call plug#end()
