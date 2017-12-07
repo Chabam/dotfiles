@@ -1,4 +1,5 @@
 #! /bin/sh
+sxhkd &
 feh --bg-scale ~/Pictures/wallpaper &
 xsetroot -cursor_name left_ptr &
 compton &
@@ -7,8 +8,8 @@ mpd &
 [[ -z $(pgrep -xU $UID mpdscribble) ]] && mpdscribble &
 /home/chabam/.config/polybar/launch.sh &
 
-bspc monitor DVI-D-0 -d I II III IV V
-bspc monitor DVI-I-1 -d VI VII VIII IX X
+bspc monitor DP-2 -d I II III IV V
+bspc monitor DVI-D-1 -d VI VII VIII IX X
 
 bspc config border_width        3
 bspc config window_gap          15
