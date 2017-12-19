@@ -1,4 +1,4 @@
-colo molokai
+colo solarized
 set background=dark
 syntax on
 filetype plugin indent on
