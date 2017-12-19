@@ -7,4 +7,5 @@
 	"vsicons.dontShowNewVersionMessage": true,
 	"workbench.iconTheme": "material-icon-theme",
 	"editor.roundedSelection": false,
+	"git.autofetch": true,
 }
