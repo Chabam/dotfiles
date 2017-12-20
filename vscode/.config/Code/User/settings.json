@@ -8,4 +8,5 @@
 	"workbench.iconTheme": "material-icon-theme",
 	"editor.roundedSelection": false,
 	"git.autofetch": true,
+	"editor.cursorBlinking": "smooth",
 }
