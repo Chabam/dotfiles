@@ -1,2 +1,13 @@
 *.log
 mpdscribble.conf
+*/Code/Backups
+*/Code/Cache
+*/Code/CachedData
+*/Code/CachedExtensions
+*/Code/GPUCache
+*/Code/Local\ Storage
+*/Code/Cookies
+*/Code/Cookies-journal
+*/Code/machineid
+*/Code/Preferences
+*/Code/storage.json
