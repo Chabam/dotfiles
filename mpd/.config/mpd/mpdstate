@@ -1,9 +1,8 @@
 sw_volume: 100
 audio_device_state:1:pulse audio
 audio_device_state:1:my_fifo
-state: play
+state: stop
 current: 9
-time: 258.848000
 random: 0
 repeat: 0
 single: 0
@@ -34,4 +33,21 @@ playlist_begin
 19:Compressed/Sufjan Stevens/Illinois/19 - The Seer's Tower.mp3
 20:Compressed/Sufjan Stevens/Illinois/20 - The Tallest Man, The Broadest Shoulders- Part I- The Great Frontier-Part II- Come to Me Only With Playthings Now.mp3
 21:Compressed/Sufjan Stevens/Illinois/21 - Riffs and Variations on a Single Note for Jelly Roll, Earl Hines, Louis Armstrong, Baby Dodds, And The King of Swing, to Name a Few.mp3
+22:Compressed/BROCKHAMPTON/SATURATION/01. HEAT.mp3
+23:Compressed/BROCKHAMPTON/SATURATION/02. GOLD.mp3
+24:Compressed/BROCKHAMPTON/SATURATION/03. STAR.mp3
+25:Compressed/BROCKHAMPTON/SATURATION/04. BOYS.mp3
+26:Compressed/BROCKHAMPTON/SATURATION/05. 2PAC.mp3
+27:Compressed/BROCKHAMPTON/SATURATION/06. SKIT 1.mp3
+28:Compressed/BROCKHAMPTON/SATURATION/07. FAKE.mp3
+29:Compressed/BROCKHAMPTON/SATURATION/08. BANK.mp3
+30:Compressed/BROCKHAMPTON/SATURATION/09. SKIT 2.mp3
+31:Compressed/BROCKHAMPTON/SATURATION/10. TRIP.mp3
+32:Compressed/BROCKHAMPTON/SATURATION/11. SWIM.mp3
+33:Compressed/BROCKHAMPTON/SATURATION/12. BUMP.mp3
+34:Compressed/BROCKHAMPTON/SATURATION/13. CASH.mp3
+35:Compressed/BROCKHAMPTON/SATURATION/14. SKIT 3.mp3
+36:Compressed/BROCKHAMPTON/SATURATION/15. MILK.mp3
+37:Compressed/BROCKHAMPTON/SATURATION/16. FACE.mp3
+38:Compressed/BROCKHAMPTON/SATURATION/17. WASTE.mp3
 playlist_end

@@ -38,5 +38,5 @@ fi
 
 xset -b
 
-sxhkd &
-exec bspwm
+exec xss-lock -- i3lock-fancy &
+exec i3

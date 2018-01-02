@@ -1,0 +1,17 @@
+mkdir plugged
+shell git clone https://github.com/scrooloose/nerdtree.git
+shell git clone https://github.com/junegunn/fzf.vim.git
+shell git clone https://github.com/vim-airline/vim-airline.git
+shell ln -s ~/Pictures/wallpaper
+shell ln -s vaporwave ~/Pictures/wallpaper
+shell ln plants.jpg ../wallpaper
+shell feh --bg-scale wallpaper
+ln -f fm.thisfile.basename ~/Pictures/wallpaper
+
+set colorscheme snowball
+set colorscheme jungle
+echo fm.thisfile.basename
+cd /
+delete
+shell git stash apply
+shell stow vscode -t ~

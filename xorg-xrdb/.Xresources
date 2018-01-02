@@ -1,5 +1,5 @@
 #define back        #2f343f
-#define accent	    #4084D6
+#define accent	    #508e46
 #define urgent	    #E53935
 #define text	    #F3F4F5
 
@@ -42,33 +42,39 @@ URxvt.perl-ext-common: default,matcher
 URxvt.url-launcher: /usr/bin/xdg-open
 URxvt.matcher.button: 1
 
-! taskbar icon
-URxvt.iconFile:    /usr/share/icons/Paper/32x32/apps/terminal.png
+URxvt.depth: 32
+URxvt.background: [95]#002b36
+*foreground: #657b83
+!!*fading: 40
+*fadeColor: #002b36
+*cursorColor: #93a1a1
+*pointerColorBackground: #586e75
+*pointerColorForeground: #93a1a1
 
-! Colors
-URxvt*background: #2C2C2C
-URxvt*foreground: #DCDCDC
-! black
-URxvt*color0:  #3F3F3F
-URxvt*color8:  #709080
-! red
-URxvt*color1:  #705050
-URxvt*color9:  #DCA3A3
-! green
-URxvt*color2:  #60B48A
-URxvt*color10: #72D5A3
-! yellow
-URxvt*color3:  #DFAF8F
-URxvt*color11: #F0DFAF
-! blue
-URxvt*color4:  #9AB8D7
-URxvt*color12: #94BFF3
-! purple
-URxvt*color5:  #DC8CC3
-URxvt*color13: #EC93D3
-! cyan
-URxvt*color6:  #8CD0D3
-URxvt*color14: #93E0E3
-! white
-URxvt*color7:  #DCDCDC
-URxvt*color15: #FFFFFF
+!! black dark/light
+*color0: #073642
+*color8: #002b36
+
+!! red dark/light
+*color1: #dc322f
+*color9: #cb4b16
+
+!! green dark/light
+*color2: #859900
+*color10: #586e75
+
+!! yellow dark/light
+*color3: #b58900
+*color11: #657b83
+
+!! blue dark/light
+*color4: #268bd2
+*color12: #839496
+
+!! magenta dark/light
+*color5: #d33682
+*color13: #6c71c4
+
+!! cyan dark/light
+*color6: #2aa198
+*color14: #93a1a1

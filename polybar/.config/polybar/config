@@ -13,11 +13,11 @@ background = #393D3F
 foreground = #ffffff
 foregroundalt = #c1c1c1
 urgent = #FF6347
-accent = #FF5E8E
-accentalt = #FF7AA2
+accent = #68A65E
+accentalt = #508E46
 
 [bar/top]
-monitor = ${env:MONITOR:DP-2}
+monitor = LVDS-1
 width = 100%
 height = 27
 radius = 0.0
@@ -29,47 +29,115 @@ foreground = ${colors.foreground}
 border-size = 0
 border-color = #00000000
 
-modules-left = bspwm mpd
+modules-left = i3 mpd
 modules-center = date
-modules-right = volume battery wired-network
+modules-right = wireless-network volume battery
 
-font-0 = Gohu GohuFont:pixelsize=11;2
-font-1 = Wuncon Siji:pixelsize=10;2
+font-0 = DejaVu Sans:pixelsize=11;2
+font-1 = Ionicons:pixelsize=12;2
 
 [bar/topalt]
 inherit = bar/top
 monitor = ${env:MONITOR:DVI-D-1}
 
-modules-left = bspwm mpd
+modules-left = i3 mpd
 modules-center = date
-modules-right = volume battery wired-network
+modules-right = wireless-network volume battery
 
 ;-------------- bspwm --------------
 
-[module/bspwm]
-type = internal/bspwm
+[module/i3]
+type = internal/i3
 
+; Only show workspaces defined on the same output as the bar
+;
+; Useful if you want to show monitor specific workspaces
+; on different bars
+;
+; Default: false
+pin-workspaces = true
+
+; This will split the workspace name on ':'
+; Default: false
+strip-wsnumbers = false
+
+; Sort the workspaces by index instead of the default
+; sorting that groups the workspaces by output
+; Default: false
+index-sort = true
+
+; Create click handler used to focus workspace
+; Default: true
+enable-click = true
+
+; Create scroll handlers used to cycle workspaces
+; Default: true
 enable-scroll = false
 
-format = <label-state><label-mode>
-format-padding = 2
-format-background = ${colors.accent}
+; Wrap around when reaching the first/last workspace
+; Default: true
+wrapping-scroll = false
 
-inline-mode = true
+; Set the scroll cycle direction 
+; Default: true
+reverse-scroll = false
 
-ws-icon-default = 
+; Use fuzzy (partial) matching on labels when assigning 
+; icons to workspaces
+; Example: code;♚ will apply the icon to all workspaces 
+; containing 'code' in the label
+; Default: false
+fuzzy-match = true
 
-label-focused = 
+; Available tags:
+;   <label-state> (default) - gets replaced with <label-(focused|unfocused|visible|urgent)>
+;   <label-mode> (default)
+format = <label-state> <label-mode>
+
+; Available tokens:
+;   %mode%
+; Default: %mode%
+label-mode = %mode%
+
+; Available tokens:
+;   %name%
+;   %icon%
+;   %index%
+;   %output%
+; Default: %icon%  %name%
+label-focused = %index%
+label-focused-padding = 2
+label-focused-background = ${colors.accent}
 label-focused-foreground = ${colors.foreground}
 
-label-occupied = %icon%
-label-occupied-foreground = ${colors.foreground}
+; Available tokens:
+;   %name%
+;   %icon%
+;   %index%
+; Default: %icon%  %name%
+label-unfocused = %index%
+label-unfocused-padding = 2
+label-unfocused-background = ${colors.accent}
+label-unfocused-foreground = ${colors.background}
 
-label-urgent = %icon%
-label-urgent-foreground = ${colors.urgent}
+; Available tokens:
+;   %name%
+;   %icon%
+;   %index%
+; Default: %icon%  %name%
+label-visible = %index%
+label-visible-padding = 2
+label-visible-background = ${colors.accent}
 
-label-empty = %icon%
-label-empty-foreground = ${colors.foregroundalt}
+; Available tokens:
+;   %name%
+;   %icon%
+;   %index%
+; Default: %icon%  %name%
+label-urgent = %index%
+label-urgent-padding = 2
+label-urgent-background = ${colors.urgent}
+
 ;-------------- date --------------
 
 [module/date]
@@ -95,14 +163,20 @@ headphone-mixer = Headphone
 headphone-id = 17
 
 format-volume = <ramp-volume> <label-volume>
+format-volume-padding = 2
+format-volume-background = ${colors.accent}
+format-volume-foreground = ${colors.foreground}
+
 label-volume = %percentage%%
-label-volume-foreground = ${colors.foreground}
+label-muted-padding = 2
+label-muted-background = ${colors.accent}
+label-muted-foreground = ${colors.foreground}
 
-label-muted = 
-
-ramp-volume-0 = 
-
-ramp-headphones-0 = 
+label-muted = 
+ramp-volume-0 = 
+ramp-volume-1 = 
+ramp-volume-2 = 
+ramp-headphones-0 = 
 
 ;-------------- battery --------------
 
@@ -111,18 +185,22 @@ type = internal/battery
 full-at = 98%
 
 format-charging = <label-charging>
-label-charging =  %percentage%%
+format-charging-padding = 2
+format-charging-background = ${colors.accent}
+label-charging =  %percentage%%
 
 format-discharging = <ramp-capacity> <label-discharging>
+format-discharging-padding = 2
+format-discharging-background = ${colors.accent}
 label-discharging = %percentage%%
 
 format-full = <ramp-capacity> <label-full>
 
-label-full = 
+label-full = 
 
-ramp-capacity-0 = 
-ramp-capacity-1 = 
-ramp-capacity-2 = 
+ramp-capacity-0 = 
+ramp-capacity-1 = 
+ramp-capacity-2 = 
 
 ;-------------- mpd ------------------
 
@@ -138,31 +216,11 @@ label-time = " [%elapsed%/%total%]"
 label-time-background = ${colors.accentalt}
 label-time-padding-right = 2
 
-label-song =  %artist% - %title%
+label-song =  %artist% - %title%
 label-song-background = ${colors.accentalt}
 label-song-padding-left = 2
 label-song-maxlen = 40
 label-song-ellipsis = true
-
-;-------------- network --------------
-
-[module/wired-network]
-type = internal/network
-interface = eno1
-
-format-connected = <label-connected>
-
-format-disconnected = 
-
-label-connected =  Connected
-label-connected-foreground = ${colors.foreground}
-label-connected-background = ${colors.accent}
-label-connected-padding = 2
-
-label-disconnected =  Disconnected
-label-disconnected-foreground = ${colors.foreground}
-label-disconnected-background = ${colors.accent}
-label-disconnected-padding = 2
 
 [module/wireless-network]
 type = internal/network
@@ -170,6 +228,7 @@ interface = wlp3s0
 
 format-connected = <ramp-signal> <label-connected>
 format-connected-padding = 2
+format-connected-background = ${colors.accentalt}
 
 format-disconnected = 
 format-disconnected-padding = 2
@@ -177,6 +236,4 @@ format-disconnected-padding = 2
 label-connected = %essid%
 label-connected-foreground = ${colors.foreground}
 
-label-disconnected = 
-
-ramp-signal-0 = " "
+ramp-signal-0 = " "

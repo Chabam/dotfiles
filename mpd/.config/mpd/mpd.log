@@ -2856,3 +2856,169 @@ Aug 12 22:33 : client: [65] opened from 127.0.0.1:48286
 Aug 12 22:33 : client: [65] closed
 Aug 12 22:33 : client: [66] opened from 127.0.0.1:48328
 Aug 12 22:33 : client: [66] closed
+Jan 01 15:20 : exception: OutputThread could not get realtime scheduling, continuing anyway: sched_setscheduler failed: Operation not permitted
+Jan 01 15:20 : exception: Failed to enable output "pulse audio" [pulse]
+Jan 01 15:20 : exception: nested: pa_context_connect() has failed: Connection refused
+Jan 01 15:20 : exception: Failed to enable output "pulse audio" [pulse]
+Jan 01 15:20 : exception: nested: pa_context_connect() has failed: Connection refused
+Jan 01 15:20 : exception: Failed to enable output "pulse audio" [pulse]
+Jan 01 15:20 : exception: nested: pa_context_connect() has failed: Connection refused
+Jan 01 15:20 : exception: OutputThread could not get realtime scheduling, continuing anyway: sched_setscheduler failed: Operation not permitted
+Jan 01 15:21 : client: [0] opened from 127.0.0.1:44742
+Jan 01 15:22 : client: [0] closed
+Jan 01 15:30 : player: played "Compressed/Sufjan Stevens/Illinois/09 - Chicago.mp3"
+Jan 01 15:30 : exception: OutputThread could not get realtime scheduling, continuing anyway: sched_setscheduler failed: Operation not permitted
+Jan 01 15:30 : exception: Failed to enable output "pulse audio" [pulse]
+Jan 01 15:30 : exception: nested: pa_context_connect() has failed: Connection refused
+Jan 01 15:30 : exception: Failed to enable output "pulse audio" [pulse]
+Jan 01 15:30 : exception: nested: pa_context_connect() has failed: Connection refused
+Jan 01 16:23 : client: [0] opened from 127.0.0.1:59420
+Jan 01 16:24 : client: [0] closed
+Jan 01 16:24 : client: [1] opened from 127.0.0.1:59424
+Jan 01 16:29 : client: [1] closed
+Jan 01 16:29 : client: [2] opened from 127.0.0.1:59458
+Jan 01 16:31 : client: [2] closed
+Jan 01 16:31 : client: [3] opened from 127.0.0.1:59472
+Jan 01 16:31 : client: [3] closed
+Jan 01 16:31 : client: [4] opened from 127.0.0.1:59474
+Jan 01 16:32 : client: [4] closed
+Jan 01 16:32 : client: [5] opened from 127.0.0.1:59480
+Jan 01 16:35 : client: [5] closed
+Jan 01 16:35 : client: [6] opened from 127.0.0.1:59490
+Jan 01 16:37 : client: [6] closed
+Jan 01 16:37 : client: [7] opened from 127.0.0.1:59492
+Jan 01 16:38 : client: [7] closed
+Jan 01 16:38 : client: [8] opened from 127.0.0.1:59494
+Jan 01 16:40 : client: [8] closed
+Jan 01 16:40 : client: [9] opened from 127.0.0.1:59496
+Jan 01 16:40 : client: [9] closed
+Jan 01 16:40 : client: [10] opened from 127.0.0.1:59500
+Jan 01 16:43 : client: [10] closed
+Jan 01 16:43 : client: [11] opened from 127.0.0.1:59502
+Jan 01 16:44 : client: [11] closed
+Jan 01 16:44 : client: [12] opened from 127.0.0.1:59504
+Jan 01 16:45 : client: [12] closed
+Jan 01 16:45 : client: [13] opened from 127.0.0.1:59506
+Jan 01 16:47 : client: [13] closed
+Jan 01 16:47 : client: [14] opened from 127.0.0.1:59510
+Jan 01 16:48 : client: [14] closed
+Jan 01 16:48 : client: [15] opened from 127.0.0.1:59512
+Jan 01 16:48 : client: [15] closed
+Jan 01 16:48 : client: [16] opened from 127.0.0.1:59514
+Jan 01 16:48 : client: [16] closed
+Jan 01 16:48 : client: [17] opened from 127.0.0.1:59516
+Jan 01 16:52 : client: [17] closed
+Jan 01 16:52 : client: [18] opened from 127.0.0.1:59520
+Jan 01 16:52 : client: [18] closed
+Jan 01 16:53 : client: [19] opened from 127.0.0.1:59522
+Jan 01 17:08 : client: [19] closed
+Jan 01 17:08 : client: [20] opened from 127.0.0.1:59938
+Jan 01 17:11 : client: [20] closed
+Jan 01 17:11 : client: [21] opened from 127.0.0.1:59942
+Jan 01 17:14 : client: [21] closed
+Jan 01 17:15 : client: [22] opened from 127.0.0.1:59944
+Jan 01 17:16 : client: [22] closed
+Jan 01 17:16 : client: [23] opened from 127.0.0.1:59948
+Jan 01 17:17 : client: [24] opened from 127.0.0.1:59952
+Jan 01 17:17 : client: [24] closed
+Jan 01 17:18 : client: [23] closed
+Jan 01 17:18 : client: [25] opened from 127.0.0.1:59954
+Jan 01 17:20 : client: [25] closed
+Jan 01 17:20 : client: [26] opened from 127.0.0.1:59958
+Jan 01 17:29 : client: [26] closed
+Jan 01 17:29 : client: [27] opened from 127.0.0.1:60032
+Jan 01 17:37 : client: [27] closed
+Jan 01 17:37 : client: [28] opened from 127.0.0.1:60086
+Jan 01 18:37 : client: [28] closed
+Jan 01 18:37 : client: [29] opened from 127.0.0.1:60210
+Jan 01 20:12 : player: played "Compressed/Sufjan Stevens/Illinois/09 - Chicago.mp3"
+Jan 01 20:12 : exception: OutputThread could not get realtime scheduling, continuing anyway: sched_setscheduler failed: Operation not permitted
+Jan 01 20:12 : exception: Failed to enable output "pulse audio" [pulse]
+Jan 01 20:12 : exception: nested: pa_context_connect() has failed: Connection refused
+Jan 01 20:12 : exception: Failed to enable output "pulse audio" [pulse]
+Jan 01 20:12 : exception: nested: pa_context_connect() has failed: Connection refused
+Jan 01 20:12 : client: [0] opened from 127.0.0.1:56960
+Jan 01 20:18 : client: [0] closed
+Jan 01 20:18 : client: [1] opened from 127.0.0.1:57012
+Jan 01 20:20 : client: [1] closed
+Jan 01 20:20 : client: [2] opened from 127.0.0.1:57048
+Jan 01 20:30 : client: [2] closed
+Jan 01 20:30 : client: [3] opened from 127.0.0.1:57144
+Jan 01 20:30 : client: [3] closed
+Jan 01 20:30 : client: [4] opened from 127.0.0.1:57148
+Jan 01 20:32 : player: played "Compressed/Sufjan Stevens/Illinois/09 - Chicago.mp3"
+Jan 01 20:32 : exception: OutputThread could not get realtime scheduling, continuing anyway: sched_setscheduler failed: Operation not permitted
+Jan 01 20:32 : exception: Failed to enable output "pulse audio" [pulse]
+Jan 01 20:32 : exception: nested: pa_context_connect() has failed: Connection refused
+Jan 01 20:32 : exception: Failed to enable output "pulse audio" [pulse]
+Jan 01 20:32 : exception: nested: pa_context_connect() has failed: Connection refused
+Jan 01 20:32 : client: [0] opened from 127.0.0.1:41578
+Jan 01 20:35 : client: [0] closed
+Jan 01 20:35 : client: [1] opened from 127.0.0.1:41672
+Jan 01 20:35 : client: [1] closed
+Jan 01 20:35 : client: [2] opened from 127.0.0.1:41674
+Jan 01 20:41 : client: [2] closed
+Jan 01 20:41 : client: [3] opened from 127.0.0.1:41710
+Jan 01 20:41 : client: [3] closed
+Jan 01 20:41 : client: [4] opened from 127.0.0.1:41712
+Jan 01 20:42 : client: [4] closed
+Jan 01 20:42 : client: [5] opened from 127.0.0.1:41716
+Jan 01 20:42 : client: [5] closed
+Jan 01 20:42 : client: [6] opened from 127.0.0.1:41720
+Jan 01 20:42 : client: [6] closed
+Jan 01 20:42 : client: [7] opened from 127.0.0.1:41724
+Jan 01 20:42 : client: [7] closed
+Jan 01 20:42 : client: [8] opened from 127.0.0.1:41726
+Jan 01 20:49 : client: [8] closed
+Jan 01 20:49 : client: [9] opened from 127.0.0.1:41746
+Jan 01 20:49 : client: [9] closed
+Jan 01 20:49 : client: [10] opened from 127.0.0.1:41754
+Jan 01 20:51 : client: [10] closed
+Jan 01 20:51 : client: [11] opened from 127.0.0.1:41770
+Jan 01 20:52 : client: [11] closed
+Jan 01 20:52 : client: [12] opened from 127.0.0.1:41780
+Jan 01 20:52 : client: [12] closed
+Jan 01 20:52 : client: [13] opened from 127.0.0.1:41784
+Jan 01 20:54 : client: [13] closed
+Jan 01 20:54 : client: [14] opened from 127.0.0.1:41804
+Jan 01 20:55 : client: [14] closed
+Jan 01 20:55 : client: [15] opened from 127.0.0.1:41810
+Jan 01 20:57 : client: [15] closed
+Jan 01 20:57 : client: [16] opened from 127.0.0.1:41816
+Jan 01 21:00 : client: [16] closed
+Jan 01 21:00 : client: [17] opened from 127.0.0.1:41858
+Jan 01 21:01 : client: [17] closed
+Jan 01 21:01 : client: [18] opened from 127.0.0.1:41862
+Jan 01 21:01 : client: [18] closed
+Jan 01 21:01 : client: [19] opened from 127.0.0.1:41864
+Jan 01 21:01 : client: [19] closed
+Jan 01 21:01 : client: [20] opened from 127.0.0.1:41868
+Jan 01 21:01 : client: [20] closed
+Jan 01 21:01 : client: [21] opened from 127.0.0.1:41872
+Jan 01 21:02 : client: [21] closed
+Jan 01 21:02 : client: [22] opened from 127.0.0.1:41886
+Jan 01 21:04 : client: [22] closed
+Jan 01 21:04 : client: [23] opened from 127.0.0.1:41902
+Jan 01 21:04 : client: [23] closed
+Jan 01 21:04 : client: [24] opened from 127.0.0.1:41906
+Jan 01 21:07 : client: [24] closed
+Jan 01 21:07 : client: [25] opened from 127.0.0.1:41956
+Jan 01 21:07 : client: [25] closed
+Jan 01 21:07 : client: [26] opened from 127.0.0.1:41964
+Jan 01 21:08 : client: [26] closed
+Jan 01 21:08 : client: [27] opened from 127.0.0.1:41968
+Jan 01 21:08 : client: [27] closed
+Jan 01 21:08 : client: [28] opened from 127.0.0.1:41972
+Jan 01 21:09 : client: [28] closed
+Jan 01 21:09 : client: [29] opened from 127.0.0.1:41976
+Jan 01 21:10 : client: [29] closed
+Jan 01 21:10 : client: [30] opened from 127.0.0.1:41986
+Jan 01 21:10 : client: [30] closed
+Jan 01 21:10 : client: [31] opened from 127.0.0.1:41990
+Jan 01 21:11 : client: [31] closed
+Jan 01 21:11 : client: [32] opened from 127.0.0.1:41998
+Jan 01 21:11 : client: [33] opened from 127.0.0.1:42004
+Jan 01 21:12 : client: [33] closed
+Jan 01 21:12 : client: [34] opened from 127.0.0.1:42010
+Jan 01 21:12 : player: played "Compressed/Sufjan Stevens/Illinois/09 - Chicago.mp3"
+Jan 01 21:12 : client: [34] closed
