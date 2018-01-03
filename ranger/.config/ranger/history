@@ -1,7 +1,3 @@
-mkdir plugged
-shell git clone https://github.com/scrooloose/nerdtree.git
-shell git clone https://github.com/junegunn/fzf.vim.git
-shell git clone https://github.com/vim-airline/vim-airline.git
 shell ln -s ~/Pictures/wallpaper
 shell ln -s vaporwave ~/Pictures/wallpaper
 shell ln plants.jpg ../wallpaper
@@ -12,6 +8,30 @@ set colorscheme snowball
 set colorscheme jungle
 echo fm.thisfile.basename
 cd /
-delete
 shell git stash apply
 shell stow vscode -t ~
+shell chmod -R 755 *
+shell git clone https://github.com/vim-airline/vim-airline.git
+shell git clone https://github.com/scrooloose/nerdtree.git
+shell git clone https://github.com/junegunn/fzf.vim.git
+mkdir plugged
+mkdir Hentai/Cartoons
+mkdir Conventional
+mkdir Traps
+mkdir Videos
+mkdir Webm
+mkdir Layouts
+shell ln -s Standard.sh currentLayout
+mkdir Wall
+mkdir .mpdscribble
+shell git clone https://github.com/Chabam/MusicStoreSpring.git
+search qute
+shell git clone https://github.com/vim-airline/vim-airline-themes.git
+shell unzip
+shell unzip spring-security-4.2.3.RELEASE.zip 
+shell unzip bootstrap-4.0.0-beta.3.zip 
+delete
+c
+shell chown chabam:chabam .gitignore
+shell sudo chown chabam:chabam .gitignore
+shell sudo chown -R chabam:chabam .git

@@ -19,9 +19,9 @@ URxvt*scrollWithBuffer: true
 URxvt*scrollTtyKeypress: true
 
 ! font
-URxvt.font: xft:DejaVu Sans Mono:size=12
+URxvt.font: xft:DejaVu Sans Mono:size=11
 
-! rebind copy paste 
+! rebind copy paste
 URxvt.keysym.Shift-Control-V: eval:paste_clipboard
 URxvt.keysym.Shift-Control-C: eval:selection_to_clipboard
 

@@ -17,7 +17,7 @@ accent = #68A65E
 accentalt = #508E46
 
 [bar/top]
-monitor = LVDS-1
+monitor = DP-2
 width = 100%
 height = 27
 radius = 0.0
@@ -31,7 +31,10 @@ border-color = #00000000
 
 modules-left = i3 mpd
 modules-center = date
-modules-right = wireless-network volume battery
+modules-right = wired-network wireless-network volume battery
+
+tray-position = right
+tray-background = ${colors.accentalt}
 
 font-0 = DejaVu Sans:pixelsize=11;2
 font-1 = Ionicons:pixelsize=12;2
@@ -40,11 +43,13 @@ font-1 = Ionicons:pixelsize=12;2
 inherit = bar/top
 monitor = ${env:MONITOR:DVI-D-1}
 
-modules-left = i3 mpd
+modules-left = i3
 modules-center = date
-modules-right = wireless-network volume battery
+modules-right = volume battery
 
-;-------------- bspwm --------------
+tray-position =
+
+;-------------- i3 --------------
 
 [module/i3]
 type = internal/i3
@@ -78,13 +83,13 @@ enable-scroll = false
 ; Default: true
 wrapping-scroll = false
 
-; Set the scroll cycle direction 
+; Set the scroll cycle direction
 ; Default: true
 reverse-scroll = false
 
-; Use fuzzy (partial) matching on labels when assigning 
+; Use fuzzy (partial) matching on labels when assigning
 ; icons to workspaces
-; Example: code;♚ will apply the icon to all workspaces 
+; Example: code;♚ will apply the icon to all workspaces
 ; containing 'code' in the label
 ; Default: false
 fuzzy-match = true
@@ -142,10 +147,10 @@ label-urgent-background = ${colors.urgent}
 
 [module/date]
 type = internal/date
-label-background = ${colors.background}
+label-background = ${colors.accentalt}
 label = %date% - %time%
 label-padding = 2
-date = %a %d
+date = %d/%m/%Y
 time = %H:%M
 interval = 5
 
@@ -210,17 +215,16 @@ type = internal/mpd
 host = 127.0.0.1
 port = 6600
 
-format-online = <label-song><label-time>
+format-online = <label-song>
 
-label-time = " [%elapsed%/%total%]" 
-label-time-background = ${colors.accentalt}
-label-time-padding-right = 2
 
 label-song =  %artist% - %title%
 label-song-background = ${colors.accentalt}
-label-song-padding-left = 2
+label-song-padding = 2
 label-song-maxlen = 40
 label-song-ellipsis = true
+
+;-------------- wireless-network ---------
 
 [module/wireless-network]
 type = internal/network
@@ -230,10 +234,29 @@ format-connected = <ramp-signal> <label-connected>
 format-connected-padding = 2
 format-connected-background = ${colors.accentalt}
 
-format-disconnected = 
+format-disconnected =
 format-disconnected-padding = 2
 
 label-connected = %essid%
 label-connected-foreground = ${colors.foreground}
 
 ramp-signal-0 = " "
+
+;-------------- wired-network --------------
+
+[module/wired-network]
+type = internal/network
+interface = eno1
+
+format-connected = <ramp-signal> <label-connected>
+format-connected-padding = 2
+format-connected-background = ${colors.accentalt}
+
+format-disconnected =
+format-disconnected-padding = 2
+
+label-connected =
+label-connected-foreground = ${colors.foreground}
+
+ramp-signal-0 = 
+ramp-signal-padding = 2

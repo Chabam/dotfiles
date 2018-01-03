@@ -1,10 +1,7 @@
 #!/bin/sh
-
-case "$(pidof spotify | wc -w)" in
-
-0)	mpc next &
-	;;
-
-*) 	playerctl next &
-	;;
-esac
+playerctl status
+if [ $? -eq 1 ]; then
+	mpc next
+else
+	playerctl next
+fi

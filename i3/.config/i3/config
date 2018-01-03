@@ -150,9 +150,33 @@ mode "resize" {
 
 bindsym $mod+r mode "resize"
 
+# Audio
+# Pause
+bindsym XF86AudioPause exec ~/.scripts/PlayPause.sh
+
+# Next
+bindsym XF86AudioNext exec ~/.scripts/Next.sh
+
+# Prev
+bindsym XF86AudioPrev exec ~/.scripts/Next.sh
+
+# Stop
+bindsym XF86AudioStop exec ~/.scripts/Stop.sh
+
+# Lower
+bindsym XF86AudioRaiseVolume exec mpc volume +5
+
+# Raise
+bindsym XF86AudioLowerVolume exec mpc volume -5
+
+# lock
+bindsym $mod+Ctrl+l exec i3lock
+
+
 gaps inner 5
 gaps outer 5
 new_window pixel 2
+smart_gaps on
 
 set $bg-color 	                #2f343f
 set $focused                    #68A65E
@@ -169,7 +193,15 @@ client.unfocused        $inactive-bg-color      $inactive-bg-color      $inactiv
 client.focused_inactive $inactive-bg-color      $inactive-bg-color      $inactive-text-color    $indicator
 client.urgent           $urgent-bg-color        $urgent-bg-color        $text-color             $indicator
 
+# Application autostart
 exec --no-startup-id compton &
 exec_always  ~/.config/polybar/launch.sh &
 exec --no-startup-id mpd &
+exec --no-startup-id mpdscribble &
 exec_always feh ~/Pictures/wallpaper --bg-scale &
+exec dropbox &
+
+# Misc Settings
+exec ~/Documents/Layouts/currentLayout &
+exec setxkbmap -layout us -variant altgr-intl &
+exec_always xsetroot -cursor_name left_ptr &

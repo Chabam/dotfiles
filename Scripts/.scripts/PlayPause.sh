@@ -1,10 +1,7 @@
 #!/bin/sh
-
-case "$(pidof spotify | wc -w)" in
-
-0)	mpc toggle
-	;;
-
-*) 	playerctl play-pause &
-	;;
-esac
+playerctl status
+if [ $? -eq 1 ]; then
+	mpc toggle
+else
+	playerctl play-pause
+fi

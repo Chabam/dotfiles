@@ -1,8 +1,10 @@
-*.log
-*.pid
-history
-tagged
-mpdscribble.conf
+**/*.log
+**/*.pid
+**/*.db
+**/history
+**/tagged
+**/playlists
+**/mpdscribble.conf
 **/Code/Backups
 **/Code/Cache
 **/Code/CachedData
