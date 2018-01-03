@@ -1,4 +1,7 @@
 *.log
+*.pid
+history
+tagged
 mpdscribble.conf
 **/Code/Backups
 **/Code/Cache
