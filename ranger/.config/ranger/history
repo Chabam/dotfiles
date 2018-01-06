@@ -1,21 +1,3 @@
-shell ln -s ~/Pictures/wallpaper
-shell ln -s vaporwave ~/Pictures/wallpaper
-shell ln plants.jpg ../wallpaper
-shell feh --bg-scale wallpaper
-ln -f fm.thisfile.basename ~/Pictures/wallpaper
-
-set colorscheme snowball
-set colorscheme jungle
-echo fm.thisfile.basename
-cd /
-shell git stash apply
-shell stow vscode -t ~
-shell chmod -R 755 *
-shell git clone https://github.com/vim-airline/vim-airline.git
-shell git clone https://github.com/scrooloose/nerdtree.git
-shell git clone https://github.com/junegunn/fzf.vim.git
-mkdir plugged
-mkdir Hentai/Cartoons
 mkdir Conventional
 mkdir Traps
 mkdir Videos
@@ -30,8 +12,39 @@ shell git clone https://github.com/vim-airline/vim-airline-themes.git
 shell unzip
 shell unzip spring-security-4.2.3.RELEASE.zip 
 shell unzip bootstrap-4.0.0-beta.3.zip 
-delete
 c
 shell chown chabam:chabam .gitignore
 shell sudo chown chabam:chabam .gitignore
 shell sudo chown -R chabam:chabam .git
+search trans
+rename SATURATION III
+search bro
+shell 
+shell unzip Indian\ -\ From\ All\ Purity.zip 
+mkdir Indian
+mkdir From all purity
+rename From All Purity
+shell unzip Primordial\ -\ To\ the\ Nameless\ Dead.zip 
+mkdir Primoridal
+mkdir To The Nameless Dead
+
+rename To the Nameless Dead
+open_with jk
+find 
+mkdir Leonard Cohen
+rename You Want It Darker
+lll
+open_with l
+shell unzip bootstrap-4.0.0-beta.3-dist.zip 
+find ..
+find ub
+find and justice
+find fo
+ren
+find and justice for all
+search metallica
+search ...and justice
+open_with 
+open_with unzip
+open_with k
+delete

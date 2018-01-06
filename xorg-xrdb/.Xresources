@@ -1,7 +1,7 @@
-#define back        #2f343f
-#define accent	    #508e46
+#define back        #393D3F
+#define accent	    #68A65E
 #define urgent	    #E53935
-#define text	    #F3F4F5
+#define text	    #FFFFFF
 
 rofi.color-enabled: true
 rofi.color-window: back, accent,  back

@@ -184,14 +184,13 @@ set $inactive-bg-color          #2f343f
 set $text-color                 #f3f4f5
 set $inactive-text-color        #676E7D
 set $urgent-bg-color            #E53935
-set $indicator                  #508E46
 
 # window colors
 #                       border                  background              text                    indicator
-client.focused          $focused                $focused                $text-color             $indicator
-client.unfocused        $inactive-bg-color      $inactive-bg-color      $inactive-text-color    $indicator
-client.focused_inactive $inactive-bg-color      $inactive-bg-color      $inactive-text-color    $indicator
-client.urgent           $urgent-bg-color        $urgent-bg-color        $text-color             $indicator
+client.focused          $focused                $focused                $text-color             $urgent-bg-color
+client.unfocused        $inactive-bg-color      $inactive-bg-color      $inactive-text-color    $inactive-bg-color
+client.focused_inactive $inactive-bg-color      $inactive-bg-color      $inactive-text-color    $inactive-bg-color
+client.urgent           $urgent-bg-color        $urgent-bg-color        $text-color             $urgent-bg-color
 
 # Application autostart
 exec --no-startup-id compton &
@@ -200,6 +199,7 @@ exec --no-startup-id mpd &
 exec --no-startup-id mpdscribble &
 exec_always feh ~/Pictures/wallpaper --bg-scale &
 exec dropbox &
+exec unclutter &
 
 # Misc Settings
 exec ~/Documents/Layouts/currentLayout &
