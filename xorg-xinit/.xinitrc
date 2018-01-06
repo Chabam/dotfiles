@@ -38,5 +38,6 @@ fi
 
 xset -b
 
-exec xss-lock -- i3lock-fancy &
+exec udiskie &
+exec xss-lock -- i3lock &
 exec i3

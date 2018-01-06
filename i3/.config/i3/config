@@ -180,7 +180,7 @@ smart_gaps on
 
 set $bg-color 	                #2f343f
 set $focused                    #68A65E
-set $inactive-bg-color          #2f343f
+set $inactive-bg-color          #393D3f
 set $text-color                 #f3f4f5
 set $inactive-text-color        #676E7D
 set $urgent-bg-color            #E53935
@@ -197,9 +197,9 @@ exec --no-startup-id compton &
 exec_always  ~/.config/polybar/launch.sh &
 exec --no-startup-id mpd &
 exec --no-startup-id mpdscribble &
-exec_always feh ~/Pictures/wallpaper --bg-scale &
-exec dropbox &
-exec unclutter &
+exec_always --no-startup-id feh ~/Pictures/wallpaper --bg-scale &
+exec --no-startup-id unclutter &
+exec --no-startup-id deluge &
 
 # Misc Settings
 exec ~/Documents/Layouts/currentLayout &

@@ -34,7 +34,8 @@ modules-center = date
 modules-right = wired-network wireless-network volume battery
 
 tray-position = right
-tray-background = ${colors.accentalt}
+tray-background = ${colors.accent}
+tray-padding = 1
 
 font-0 = DejaVu Sans:pixelsize=11;2
 font-1 = Ionicons:pixelsize=12;2
@@ -253,10 +254,9 @@ format-connected-padding = 2
 format-connected-background = ${colors.accentalt}
 
 format-disconnected =
-format-disconnected-padding = 2
 
 label-connected =
 label-connected-foreground = ${colors.foreground}
 
 ramp-signal-0 = 
-ramp-signal-padding = 2
+ramp-signal-padding = 1
