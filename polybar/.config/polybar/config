@@ -17,7 +17,7 @@ accent = #68A65E
 accentalt = #508E46
 
 [bar/top]
-monitor = DP-2
+monitor = LVDS-1
 width = 100%
 height = 27
 radius = 0.0
@@ -31,7 +31,7 @@ border-color = #00000000
 
 modules-left = i3 mpd
 modules-center = date
-modules-right = wired-network wireless-network volume battery
+modules-right = battery
 
 tray-position = right
 tray-background = ${colors.accent}
@@ -42,13 +42,7 @@ font-1 = Ionicons:pixelsize=12;2
 
 [bar/topalt]
 inherit = bar/top
-monitor = ${env:MONITOR:DVI-D-1}
-
-modules-left = i3
-modules-center = date
-modules-right = volume battery
-
-tray-position =
+monitor = VGA-1
 
 ;-------------- i3 --------------
 
@@ -148,41 +142,12 @@ label-urgent-background = ${colors.urgent}
 
 [module/date]
 type = internal/date
-label-background = ${colors.accentalt}
+label-background = ${colors.accent}
 label = %date% - %time%
 label-padding = 2
 date = %d/%m/%Y
 time = %H:%M
 interval = 5
-
-;-------------- volume --------------
-
-[module/volume]
-type = internal/volume
-
-master-soundcard = default
-speaker-soundcard = default
-headphone-soundcard = default
-
-speaker-mixer = Speaker
-headphone-mixer = Headphone
-headphone-id = 17
-
-format-volume = <ramp-volume> <label-volume>
-format-volume-padding = 2
-format-volume-background = ${colors.accent}
-format-volume-foreground = ${colors.foreground}
-
-label-volume = %percentage%%
-label-muted-padding = 2
-label-muted-background = ${colors.accent}
-label-muted-foreground = ${colors.foreground}
-
-label-muted = 
-ramp-volume-0 = 
-ramp-volume-1 = 
-ramp-volume-2 = 
-ramp-headphones-0 = 
 
 ;-------------- battery --------------
 
@@ -224,39 +189,3 @@ label-song-background = ${colors.accentalt}
 label-song-padding = 2
 label-song-maxlen = 40
 label-song-ellipsis = true
-
-;-------------- wireless-network ---------
-
-[module/wireless-network]
-type = internal/network
-interface = wlp3s0
-
-format-connected = <ramp-signal> <label-connected>
-format-connected-padding = 2
-format-connected-background = ${colors.accentalt}
-
-format-disconnected =
-format-disconnected-padding = 2
-
-label-connected = %essid%
-label-connected-foreground = ${colors.foreground}
-
-ramp-signal-0 = " "
-
-;-------------- wired-network --------------
-
-[module/wired-network]
-type = internal/network
-interface = eno1
-
-format-connected = <ramp-signal> <label-connected>
-format-connected-padding = 2
-format-connected-background = ${colors.accentalt}
-
-format-disconnected =
-
-label-connected =
-label-connected-foreground = ${colors.foreground}
-
-ramp-signal-0 = 
-ramp-signal-padding = 1

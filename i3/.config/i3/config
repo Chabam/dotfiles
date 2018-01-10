@@ -164,10 +164,13 @@ bindsym XF86AudioPrev exec ~/.scripts/Next.sh
 bindsym XF86AudioStop exec ~/.scripts/Stop.sh
 
 # Lower
-bindsym XF86AudioRaiseVolume exec mpc volume +5
+bindsym XF86AudioRaiseVolume exec ponymix increase 5
 
 # Raise
-bindsym XF86AudioLowerVolume exec mpc volume -5
+bindsym XF86AudioLowerVolume exec ponymix decrease 5
+
+# Raise
+bindsym XF86AudioMute exec ponymix toggle
 
 # lock
 bindsym $mod+Ctrl+l exec i3lock
@@ -192,6 +195,12 @@ client.unfocused        $inactive-bg-color      $inactive-bg-color      $inactiv
 client.focused_inactive $inactive-bg-color      $inactive-bg-color      $inactive-text-color    $inactive-bg-color
 client.urgent           $urgent-bg-color        $urgent-bg-color        $text-color             $urgent-bg-color
 
+# Misc Settings
+exec ~/Documents/Layouts/currentLayout &
+exec setxkbmap -layout us -variant altgr-intl &
+exec_always xsetroot -cursor_name left_ptr &
+exec_always xrdb ~/.Xresources &
+
 # Application autostart
 exec --no-startup-id compton &
 exec_always  ~/.config/polybar/launch.sh &
@@ -200,8 +209,6 @@ exec --no-startup-id mpdscribble &
 exec_always --no-startup-id feh ~/Pictures/wallpaper --bg-scale &
 exec --no-startup-id unclutter &
 exec --no-startup-id deluge &
-
-# Misc Settings
-exec ~/Documents/Layouts/currentLayout &
-exec setxkbmap -layout us -variant altgr-intl &
-exec_always xsetroot -cursor_name left_ptr &
+exec --no-startup-id blueman-applet &
+exec --no-startup-id nm-applet &
+exec --no-startup-id pasystray &

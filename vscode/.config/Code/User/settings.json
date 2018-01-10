@@ -9,4 +9,5 @@
 	"editor.roundedSelection": false,
 	"git.autofetch": true,
 	"editor.cursorBlinking": "smooth",
+	"editor.minimap.enabled": false,
 }
