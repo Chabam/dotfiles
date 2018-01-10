@@ -1,8 +1,0 @@
-let g:netrw_dirhistmax  =10
-let g:netrw_dirhist_cnt =6
-let g:netrw_dirhist_1='/home/fchabot/dev/progression-custom'
-let g:netrw_dirhist_2='/home/fchabot/dev/progression-custom/awsca05'
-let g:netrw_dirhist_3='/home/chabam/Documents/Git/st'
-let g:netrw_dirhist_4='/home/chabam/Documents/Git/dotfiles/i3/.config/i3'
-let g:netrw_dirhist_5='/home/chabam/.config/polybar'
-let g:netrw_dirhist_6='/home/chabam/.scripts'
