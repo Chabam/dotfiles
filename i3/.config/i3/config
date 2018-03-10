@@ -152,63 +152,67 @@ bindsym $mod+r mode "resize"
 
 # Audio
 # Pause
-bindsym XF86AudioPause exec ~/.scripts/PlayPause.sh
+bindsym $mod+Up exec playerctl play-pause
 
 # Next
-bindsym XF86AudioNext exec ~/.scripts/Next.sh
+bindsym $mod+Right exec playertctl next
 
 # Prev
-bindsym XF86AudioPrev exec ~/.scripts/Next.sh
+bindsym $mod+Left exec playerctl previous
 
 # Stop
-bindsym XF86AudioStop exec ~/.scripts/Stop.sh
+bindsym $mod+Down exec playerctl stop
 
 # Lower
-bindsym XF86AudioRaiseVolume exec ponymix increase 5
+bindsym XF86AudioRaiseVolume exec amixer -q -D pulse sset Master 5%+
 
 # Raise
-bindsym XF86AudioLowerVolume exec ponymix decrease 5
+bindsym XF86AudioLowerVolume exec amixer -q -D pulse sset Master 5%-
 
-# Raise
-bindsym XF86AudioMute exec ponymix toggle
+# Mute
+bindsym XF86AudioMute exec amixer -q -D pulse sset Master toggle
 
 # lock
 bindsym $mod+Ctrl+l exec i3lock
 
-
-gaps inner 5
-gaps outer 5
 new_window pixel 2
-smart_gaps on
 
-set $bg-color 	                #2f343f
-set $focused                    #68A65E
-set $inactive-bg-color          #393D3f
-set $text-color                 #f3f4f5
-set $inactive-text-color        #676E7D
+set $bg-color 	                #2a313b
+set $focused                    #5294e2
+set $text-color                 #FFFFFF
 set $urgent-bg-color            #E53935
+
+bar {
+	status_command i3blocks
+	position top
+	tray_output primary
+	colors {
+		background $bg-color
+						 # border background foreground
+		focused_workspace 		$bg-color $bg-color $focused
+		active_workspace  		$bg-color $bg-color $text-color
+		inactive_workspace		$bg-color $bg-color $text-color
+		urgent_workspace  		$bg-color $bg-color $urgent-bg-color
+	}
+}
 
 # window colors
 #                       border                  background              text                    indicator
-client.focused          $focused                $focused                $text-color             $urgent-bg-color
-client.unfocused        $inactive-bg-color      $inactive-bg-color      $inactive-text-color    $inactive-bg-color
-client.focused_inactive $inactive-bg-color      $inactive-bg-color      $inactive-text-color    $inactive-bg-color
+client.focused          $focused                $focused                $text-color             $text-color
+client.unfocused        $bg-color      			$bg-color      			$bg-color    			$bg-color
+client.focused_inactive $bg-color      			$bg-color      			$bg-color			    $bg-color
 client.urgent           $urgent-bg-color        $urgent-bg-color        $text-color             $urgent-bg-color
 
 # Misc Settings
 exec ~/Documents/Layouts/currentLayout &
-exec setxkbmap -layout us -variant altgr-intl &
 exec_always xsetroot -cursor_name left_ptr &
 exec_always xrdb ~/.Xresources &
 
 # Application autostart
 exec --no-startup-id compton &
 exec_always  ~/.config/polybar/launch.sh &
-exec --no-startup-id mpd &
-exec --no-startup-id mpdscribble &
 exec_always --no-startup-id feh ~/Pictures/wallpaper --bg-scale &
-exec --no-startup-id unclutter &
 exec --no-startup-id deluge &
-exec --no-startup-id blueman-applet &
 exec --no-startup-id nm-applet &
 exec --no-startup-id pasystray &
+exec --no-startup-id udiskie &

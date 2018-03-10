@@ -1,5 +1,5 @@
-#define back        #393D3F
-#define accent	    #68A65E
+#define back        #2a313b
+#define accent	    #5294e2
 #define urgent	    #E53935
 #define text	    #FFFFFF
 
