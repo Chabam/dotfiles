@@ -1,11 +1,11 @@
 **/*.log
 **/*.pid
 **/*.db
-**/Ranger
-!**/Ranger/rc.conf
+**/ranger/*
+!**/ranger/rc.conf
 **/playlists
 **/mpdstate
 **/mpdscribble.conf
 **/Code/*
-!/Code/User/settings.json
+!**/Code/User/settings.json
 **/.netrwhist
