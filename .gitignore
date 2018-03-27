@@ -1,21 +1,11 @@
 **/*.log
 **/*.pid
 **/*.db
-**/history
-**/tagged
+**/Ranger
+!**/Ranger/rc.conf
 **/playlists
 **/mpdstate
 **/mpdscribble.conf
-**/Code/Backups
-**/Code/Cache
-**/Code/CachedData
-**/Code/CachedExtensions
-**/Code/GPUCache
-**/Code/Local\ Storage
-**/Code/Cookies
-**/Code/Cookies-journal
-**/Code/machineid
-**/Code/Preferences
-**/Code/storage.json
-**/projects.json
+**/Code/*
+!/Code/User/settings.json
 **/.netrwhist
