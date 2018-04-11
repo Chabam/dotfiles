@@ -2,12 +2,12 @@
 	"editor.renderIndentGuides": true,
 	"files.autoSave": "onFocusChange",
 	"update.channel": "none",
-	"workbench.colorTheme": "Solarized Dark",
-	"vsicons.presets.hideFolders": false,
-	"vsicons.dontShowNewVersionMessage": true,
 	"workbench.iconTheme": "material-icon-theme",
 	"editor.roundedSelection": false,
 	"git.autofetch": true,
 	"editor.cursorBlinking": "smooth",
-	"editor.minimap.enabled": false,
+	"window.zoomLevel": 0,
+	"extensions.ignoreRecommendations": true,
+	"editor.wordWrap": "on",
+	"workbench.activityBar.visible": true
 }
