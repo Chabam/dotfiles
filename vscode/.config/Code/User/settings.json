@@ -6,8 +6,8 @@
 	"editor.roundedSelection": false,
 	"git.autofetch": true,
 	"editor.cursorBlinking": "smooth",
-	"window.zoomLevel": 0,
-	"extensions.ignoreRecommendations": true,
-	"editor.wordWrap": "on",
-	"workbench.activityBar.visible": true
+	"explorer.confirmDragAndDrop": false,
+	"explorer.confirmDelete": false,
+	"extensions.showRecommendationsOnlyOnDemand": true,
+	"git.enableSmartCommit": true,
 }
