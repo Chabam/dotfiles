@@ -2,7 +2,7 @@
 	"editor.renderIndentGuides": true,
 	"files.autoSave": "onFocusChange",
 	"update.channel": "none",
-	"workbench.iconTheme": "material-icon-theme",
+	"workbench.iconTheme": "vscode-icons",
 	"editor.roundedSelection": false,
 	"git.autofetch": true,
 	"editor.cursorBlinking": "smooth",
@@ -10,4 +10,9 @@
 	"explorer.confirmDelete": false,
 	"extensions.showRecommendationsOnlyOnDemand": true,
 	"git.enableSmartCommit": true,
+	"gitlens.advanced.messages": {
+		"suppressShowKeyBindingsNotice": true
+	},
+	"terminal.explorerKind": "external",
+	"editor.renderWhitespace": "none",
 }
