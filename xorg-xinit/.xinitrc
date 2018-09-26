@@ -39,5 +39,5 @@ fi
 xset -b
 
 exec udiskie &
-exec xss-lock -- i3lock &
+exec setxkbmap -layout us -variant alt-intl &
 exec i3
