@@ -1,14 +1,3 @@
-#define back        #2a313b
-#define accent	    #5294e2
-#define urgent	    #E53935
-#define text	    #FFFFFF
-
-rofi.color-enabled: true
-rofi.color-window: back, accent,  back
-rofi.color-normal: back, text,  back, accent,  text
-rofi.color-active: back, text,    back, text,    back
-rofi.color-urgent: back, urgent,  back, urgent,  back
-
 ! do not scroll with output
 URxvt*scrollTtyOutput: false
 
@@ -19,7 +8,7 @@ URxvt*scrollWithBuffer: true
 URxvt*scrollTtyKeypress: true
 
 ! font
-URxvt.font: xft:DejaVu Sans Mono:size=11
+URxvt.font: xft:xos4 Terminus:size=11
 
 ! rebind copy paste
 URxvt.keysym.Shift-Control-V: eval:paste_clipboard
@@ -42,39 +31,39 @@ URxvt.perl-ext-common: default,matcher
 URxvt.url-launcher: /usr/bin/xdg-open
 URxvt.matcher.button: 1
 
-URxvt.depth: 32
-URxvt.background: [95]#002b36
-*foreground: #657b83
-!!*fading: 40
-*fadeColor: #002b36
-*cursorColor: #93a1a1
-*pointerColorBackground: #586e75
-*pointerColorForeground: #93a1a1
+! special
+*.foreground:   #c5c8c6
+*.background:   #1d1f21
+*.cursorColor:  #c5c8c6
 
-!! black dark/light
-*color0: #073642
-*color8: #002b36
+! black
+*.color0:       #1d1f21
+*.color8:       #969896
 
-!! red dark/light
-*color1: #dc322f
-*color9: #cb4b16
+! red
+*.color1:       #cc342b
+*.color9:       #cc342b
 
-!! green dark/light
-*color2: #859900
-*color10: #586e75
+! green
+*.color2:       #198844
+*.color10:      #198844
 
-!! yellow dark/light
-*color3: #b58900
-*color11: #657b83
+! yellow
+*.color3:       #fba922
+*.color11:      #fba922
 
-!! blue dark/light
-*color4: #268bd2
-*color12: #839496
+! blue
+*.color4:       #3971ed
+*.color12:      #3971ed
 
-!! magenta dark/light
-*color5: #d33682
-*color13: #6c71c4
+! magenta
+*.color5:       #a36ac7
+*.color13:      #a36ac7
 
-!! cyan dark/light
-*color6: #2aa198
-*color14: #93a1a1
+! cyan
+*.color6:       #3971ed
+*.color14:      #3971ed
+
+! white
+*.color7:       #c5c8c6
+*.color15:      #ffffff

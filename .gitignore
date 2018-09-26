@@ -3,8 +3,8 @@
 *.db
 ranger/.config/ranger/*
 !ranger/.config/ranger/rc.conf
-playlists/
-mpdstate/
+mpd/.config/mpd/config/*
+!mpd/.config/mpd/config/mpd.conf
 mpdscribble.conf
 vscode/.config/Code/*
 !vscode/.config/Code/User
