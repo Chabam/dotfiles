@@ -25,6 +25,7 @@ URxvt*scrollBar: false
 
 ! disable ISO 14755
 URxvt*iso14755: False
+URxvt*iso14755_52: False
 
 ! clickable URL
 URxvt.perl-ext-common: default,matcher
