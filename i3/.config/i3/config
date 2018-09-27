@@ -106,6 +106,15 @@ bindsym XF86AudioLowerVolume exec amixer -q -D pulse sset Master 5%-
 # Mute
 bindsym XF86AudioMute exec amixer -q -D pulse sset Master toggle
 
+# Lock the screen
+bindsym Ctrl+Mod1+l exec i3lock
+
+# Screenshot
+bindsym Print exec scrot ~/Pictures/Screenshots/$(date '+%d-%m-%Y-%Hh%m').png
+
+# Screenshot select
+bindsym --release Shift+Print exec scrot -s  ~/Pictures/Screenshots/$(date '+%d-%m-%Y-%Hh%m').png
+
 # Define names for default workspaces for which we configure key bindings later on.
 # We use variables to avoid repeating the names in multiple places.
 set $ws1 "1"

@@ -10,8 +10,8 @@ set incsearch		" Incremental search
 set number			" Relative numbers
 set tabstop=4		" Set tabs to 4 instead of 8
 
-" Mapping
-
+" Mappings
+" Moving in tabs easier
 map <C-h> <C-w>h
 map <C-j> <C-w>j
 map <C-k> <C-w>k
