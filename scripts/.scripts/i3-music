@@ -1,0 +1,20 @@
+#!/bin/sh
+
+spotify=$(playerctl status)
+mpc=$(mpc status)
+output=""
+if [ "$spotify" = "Playing" ] || [ "$spotify" = "Paused" ]; then
+	echo "SPOTIFY"
+elif [ $(mpc status | grep n/a) ]; then
+	echo "MPD"
+else
+	echo "Nothing"
+fi
+
+# case $BLOCK_BUTTON in
+#     1) mpc status | filter && urxvt -e ncmpcpp & disown ;;  # right click, pause/unpause
+#     3) mpc toggle | filter ;;  # right click, pause/unpause
+#     4) mpc prev   | filter ;;  # scroll up, previous
+#     5) mpc next   | filter ;;  # scroll down, next
+#     *) mpc status | filter ;;
+# esac
