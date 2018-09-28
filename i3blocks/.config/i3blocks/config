@@ -34,7 +34,7 @@ command=~/.scripts/i3-music
 signal=11
 
 [volume]
-interval=once
+interval=1
 command=~/.scripts/i3-volume
 signal=10
 
@@ -43,18 +43,17 @@ signal=10
 # If the instance is not specified, use the interface used for default route.
 # The address can be forced to IPv4 or IPv6 with -4 or -6 switches.
 [iface]
-#instance=wlan0
 label=🌐
 color=#00FF00
 interval=10
 
 [battery]
 command=~/.scripts/i3-battery
-interval=5
+interval=1
 
 # Date Time
 #
 [time]
 label=📅
 command=date '+%Y-%m-%d %H:%M'
-interval=5
+interval=1
