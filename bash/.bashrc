@@ -117,6 +117,4 @@ if ! shopt -oq posix; then
 fi
 
 [ -f ~/.fzf.bash ] && source ~/.fzf.bash
-export EDITOR=vim
-export PATH=$PATH:~/.scripts
 alias fuck='sudo $(history -p \!\!)'
