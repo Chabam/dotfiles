@@ -26,11 +26,10 @@
 # Each block command defaults to the script name to avoid boilerplate.
 command=/usr/lib/i3blocks/$BLOCK_NAME
 separator_block_width=15
-markup=none
+markup=pango
 
 [music]
-label=🎼
-interval=once
+interval=1
 command=~/.scripts/i3-music
 signal=11
 
@@ -49,14 +48,9 @@ label=🌐
 color=#00FF00
 interval=10
 
-# Battery indicator
-#
-# The battery instance defaults to 0.
 [battery]
-label=BAT
-#label=⚡
-#instance=1
-interval=30
+command=~/.scripts/i3-battery
+interval=5
 
 # Date Time
 #

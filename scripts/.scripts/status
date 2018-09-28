@@ -1,7 +1,0 @@
-#!/bin/sh
-output=$(playerctl status)
-if [ "$output" != "Playing" ] && [ "$output" != "Paused" ]; then
-	mpc status 2> /dev/null
-else
-	playerctl status 2> /dev/null
-fi

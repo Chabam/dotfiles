@@ -1,5 +1,4 @@
 syntax on
-set encoding=utf-8
 filetype plugin on
 " Settings
 

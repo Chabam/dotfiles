@@ -1,20 +1,29 @@
-#!/bin/sh
+#!/bin/sh 
+case $BLOCK_BUTTON in
+    1) ~/.scripts/play-pause ;;  # right click, pause/unpause
+esac
 
 spotify=$(playerctl status)
 mpc=$(mpc status)
-output=""
 if [ "$spotify" = "Playing" ] || [ "$spotify" = "Paused" ]; then
-	echo "SPOTIFY"
-elif [ $(mpc status | grep n/a) ]; then
-	echo "MPD"
+	if [ "$spotify" = "Paused" ]; then
+		status="⏸️"
+	else
+		status="▶️"
+	fi
+	artist=$(playerctl metadata artist)
+	title=$(playerctl metadata title)
+	echo "$status $artist - $title"
+elif [ "$(echo "$mpc" | grep "paused")" ] || [ "$(echo "$mpc" | grep "playing")" ]; then
+	if [ "$(echo "$mpc" | grep "paused")" ]; then
+		status="⏸️"
+	else
+		status="▶️"
+	fi
+	artisttitle=$(echo "$mpc" | awk 'NR==1')
+	echo "$status $artisttitle"
 else
-	echo "Nothing"
+	echo ""
+	exit
 fi
 
-# case $BLOCK_BUTTON in
-#     1) mpc status | filter && urxvt -e ncmpcpp & disown ;;  # right click, pause/unpause
-#     3) mpc toggle | filter ;;  # right click, pause/unpause
-#     4) mpc prev   | filter ;;  # scroll up, previous
-#     5) mpc next   | filter ;;  # scroll down, next
-#     *) mpc status | filter ;;
-# esac

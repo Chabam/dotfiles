@@ -98,13 +98,13 @@ bindsym $mod+Down exec ~/.scripts/stop
 bindsym XF86AudioStop exec ~/.scripts/stop
 
 # Lower
-bindsym XF86AudioRaiseVolume exec amixer -q -D pulse sset Master 5%+
+bindsym --release XF86AudioRaiseVolume exec pkill -RTMIN+10 i3blocks && pamixer -i 5
 
 # Raise
-bindsym XF86AudioLowerVolume exec amixer -q -D pulse sset Master 5%-
+bindsym --release XF86AudioLowerVolume exec pkill -RTMIN+10 i3blocks && pamixer -d 5
 
 # Mute
-bindsym XF86AudioMute exec amixer -q -D pulse sset Master toggle
+bindsym XF86AudioMute exec pkill -RTMIN+10 i3blocks && pamixer -t
 
 # Lock the screen
 bindsym Ctrl+Mod1+l exec i3lock
@@ -195,3 +195,4 @@ new_window pixel 3
 exec_always xsetroot -cursor_name left_ptr &
 exec --no-startup-id compton -C -D 0 &
 exec_always --no-startup-id feh ~/Pictures/wallpaper --bg-scale &
+exec nm-applet &
