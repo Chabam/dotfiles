@@ -3,6 +3,9 @@
 # Author : Luke Smith
 # Source : https://github.com/LukeSmithxyz/voidrice/blob/master/.scripts/i3volume
 
+
+pkill -RTMIN+10 i3blocks
+
 case $BLOCK_BUTTON in
 	1) pavucontrol & disown ;;
 	3) pamixer -t ;;
