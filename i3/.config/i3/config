@@ -107,7 +107,7 @@ bindsym --release XF86AudioLowerVolume exec pkill -RTMIN+10 i3blocks && pamixer 
 bindsym XF86AudioMute exec pkill -RTMIN+10 i3blocks && pamixer -t
 
 # Lock the screen
-bindsym Ctrl+Mod1+l exec i3lock
+bindsym Ctrl+Mod1+l exec i3lock -i ~/Pictures/wallpaper
 
 # Screenshot
 bindsym Print exec scrot ~/Pictures/Screenshots/$(date '+%d-%m-%Y-%Hh%m').png

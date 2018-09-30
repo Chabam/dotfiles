@@ -1,0 +1,12 @@
+[Unit]
+Description=Lock the screen before hibernating
+Before=hibernate.target
+
+[Service]
+User=%I
+Type=forking
+Environment=DISPLAY=:0
+ExecStart=/usr/bin/i3lock -i home/%i/Pictures/wallpaper
+
+[Install]
+WantedBy=hibernate.target
