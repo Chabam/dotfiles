@@ -1,5 +1,5 @@
 syntax on
-filetype plugin on
+filetype plugin indent on
 " Settings
 
 set showcmd			" Show (partial) command in status line.

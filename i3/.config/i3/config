@@ -192,7 +192,6 @@ bar {
 new_window pixel 3
 
 # Program autostart
-exec_always xsetroot -cursor_name left_ptr &
 exec --no-startup-id compton -C -D 0 &
 exec_always --no-startup-id feh ~/Pictures/wallpaper --bg-scale &
 exec nm-applet &
