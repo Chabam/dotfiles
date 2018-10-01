@@ -8,6 +8,8 @@ set ignorecase		" Do case insensitive matching
 set incsearch		" Incremental search
 set number			" Relative numbers
 set tabstop=4		" Set tabs to 4 instead of 8
+set shiftwidth=4	" Set tabs to 4 instead of 8
+set expandtab
 
 " Mappings
 " Moving in tabs easier
