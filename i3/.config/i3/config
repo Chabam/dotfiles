@@ -200,6 +200,7 @@ bar {
 
 # A E S T H E T I C S stuff
 new_window pixel 5
+for_window [class="Steam" title="Friends List"] floating enable
 
 # Program autostart
 exec --no-startup-id compton -C -D 0 &
