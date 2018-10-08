@@ -38,7 +38,7 @@ fi
 
 xset -b
 
-exec udiskie &
+exec udiskie -s &
 exec setxkbmap -layout us -variant alt-intl &
 exec mpd &
 exec mpdscribble &
