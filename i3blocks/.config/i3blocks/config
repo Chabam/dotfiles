@@ -28,6 +28,10 @@ command=/usr/lib/i3blocks/$BLOCK_NAME
 separator_block_width=15
 markup=pango
 
+[custom/script]
+interval=60
+command=~/.scripts/i3-packages
+
 [music]
 interval=1
 command=~/.scripts/i3-music
