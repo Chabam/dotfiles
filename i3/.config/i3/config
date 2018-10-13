@@ -162,6 +162,8 @@ bindsym $mod+Shift+8 move container to workspace $ws8
 bindsym $mod+Shift+9 move container to workspace $ws9
 bindsym $mod+Shift+0 move container to workspace $ws10
 
+bindsym Ctrl+Mod1+Esc xkill
+
 # reload the configuration file
 bindsym $mod+Shift+c reload
 # restart i3 inplace (preserves your layout/session, can be used to upgrade i3)
@@ -205,4 +207,6 @@ for_window [class="Steam" title="Friends List"] floating enable
 # Program autostart
 exec --no-startup-id compton -C -D 0 &
 exec_always --no-startup-id feh ~/Pictures/wallpaper --bg-scale &
+exec_always setxkbmap -layout us -variant alt-intl &
 exec nm-applet &
+exec blueman-applet &
