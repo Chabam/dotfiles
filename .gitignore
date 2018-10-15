@@ -6,8 +6,8 @@ ranger/.config/ranger/*
 mpd/.config/mpd/*
 !mpd/.config/mpd/mpd.conf
 mpdscribble.conf
-vscode/.config/Code/*
-!vscode/.config/Code/User
-vscode/.config/Code/User/*
-!vscode/.config/Code/User/settings.json
+vscode/.config/Code - OSS/*
+!vscode/.config/Code - OSS/User
+vscode/.config/Code - OSS/User/*
+!vscode/.config/Code - OSS/User/settings.json
 .netrwhist
