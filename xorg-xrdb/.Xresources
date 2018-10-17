@@ -39,11 +39,6 @@ URxvt*scrollBar: false
 URxvt*iso14755: False
 URxvt*iso14755_52: False
 
-! clickable URL
-URxvt.perl-ext-common: default,matcher
-URxvt.url-launcher: /usr/bin/xdg-open
-URxvt.matcher.button: 1
-
 ! Colors
 URxvt*background: #000000
 URxvt*foreground: #B2B2B2
