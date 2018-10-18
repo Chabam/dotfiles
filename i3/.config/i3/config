@@ -203,7 +203,7 @@ bar {
 # A E S T H E T I C S stuff
 new_window pixel 5
 for_window [class="Steam" title="Friends List"] floating enable
-
+for_window [title="wlroots - X11-1"] floating enable
 # Program autostart
 exec --no-startup-id compton -C -D 0 &
 exec_always --no-startup-id feh ~/Pictures/wallpaper --bg-scale &

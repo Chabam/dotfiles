@@ -10,9 +10,15 @@
 	"explorer.confirmDelete": false,
 	"extensions.showRecommendationsOnlyOnDemand": true,
 	"git.enableSmartCommit": true,
-	"gitlens.advanced.messages": {
-		"suppressShowKeyBindingsNotice": true
-	},
 	"terminal.explorerKind": "external",
 	"editor.renderWhitespace": "none",
+	"editor.rulers": [
+		120
+	],
+	"gitlens.blame.highlight.enabled": false,
+	"gitlens.codeLens.recentChange.enabled": false,
+	"gitlens.codeLens.authors.enabled": false,
+	"gitlens.currentLine.enabled": false,
+	"gitlens.hovers.currentLine.over": "line",
+	"terminal.external.linuxExec": "urxvt",
 }
