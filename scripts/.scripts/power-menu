@@ -1,8 +1,13 @@
 #!/bin/bash
 
-power_action=$(printf "Poweroff\nSuspend\nHibernate\nCancel" | rofi -dmenu -p "Select a power action" -bw 5 -width 25 | tr '[:upper:]' '[:lower:]')
+power_action=$(printf "Poweroff\nSuspend\nHibernate\nLog out\nCancel" | rofi -dmenu -p "Select a power action" -bw 5 -width 25 | tr '[:upper:]' '[:lower:]')
 
 if [ "$power_action" != "cancel" ]
 then
+    if [ "$power_action" == "log out" ]
+    then
+        i3-msg exit
+        exit
+    fi
     systemctl "$power_action"
 fi

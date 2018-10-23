@@ -37,7 +37,7 @@ bindsym $mod+Shift+q kill
 # start dmenu (a program launcher)
 bindsym $mod+d exec rofi -show run -bw 5 -width 25
 
-bindsym $mod+Escape exec ~/.scripts/power-menu
+bindsym $mod+Shift+e exec ~/.scripts/power-menu
 
 # Sort of a Alt-Tab
 bindsym $mod+Tab exec rofi -show window -bw 5 -width 25
@@ -167,8 +167,6 @@ bindsym $mod+Shift+0 move container to workspace $ws10
 bindsym $mod+Shift+c reload
 # restart i3 inplace (preserves your layout/session, can be used to upgrade i3)
 bindsym $mod+Shift+r restart
-# exit i3 (logs you out of your X session)
-bindsym $mod+Shift+e exec "i3-nagbar -t warning -m 'You pressed the exit shortcut. Do you really want to exit i3? This will end your X session.' -b 'Yes, exit i3' 'i3-msg exit'"
 
 # resize window (you can also use the mouse for that)
 mode "resize" {
@@ -204,9 +202,8 @@ new_window pixel 5
 for_window [class="Steam" title="Friends List"] floating enable
 for_window [title="wlroots - X11-1"] floating enable
 # Program autostart
-exec_always ~/.screenlayout/current &
-exec --no-startup-id compton -C -D 0 &
-exec_always feh ~/Pictures/wallpaper --bg-scale &
+exec_always ~/.screenlayout/current && feh ~/Pictures/wallpaper --bg-scale & 
 exec_always setxkbmap -layout us -variant alt-intl &
+exec --no-startup-id compton -C -D 0 &
 exec nm-applet &
 exec blueman-applet &
