@@ -21,4 +21,5 @@
 	"gitlens.currentLine.enabled": false,
 	"gitlens.hovers.currentLine.over": "line",
 	"terminal.external.linuxExec": "urxvt",
+	"window.zoomLevel": 0,
 }

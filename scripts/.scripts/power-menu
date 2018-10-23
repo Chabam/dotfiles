@@ -1,0 +1,8 @@
+#!/bin/bash
+
+power_action=$(printf "Poweroff\nSuspend\nHibernate\nCancel" | rofi -dmenu -p "Select a power action" -bw 5 -width 25 | tr '[:upper:]' '[:lower:]')
+
+if [ "$power_action" != "cancel" ]
+then
+    systemctl "$power_action"
+fi
