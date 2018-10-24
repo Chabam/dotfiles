@@ -1,0 +1,12 @@
+#!/bin/bash
+options=$(ls "$HOME"/.screenlayout/ | grep ".sh" | sed "s/.sh//g")
+display_option=$(printf "$options\nCancel" | rofi -dmenu -p "Select a display setting" | tr '[:upper:]' '[:lower:]')
+
+if [ "$power_action" != "cancel" ]
+then
+    echo "ln -sf "$HOME"/.screenlayout/"$display_option.sh" "$HOME"/.screenlayout/current"
+    ln -sf "$HOME"/.screenlayout/"$display_option.sh" "$HOME"/.screenlayout/current
+    "$HOME"/.screenlayout/current
+    feh "$HOME"/Pictures/wallpaper --bg-scale
+fi
+

@@ -9,6 +9,8 @@ rofi.color-normal:  back, text,  back, back,  accent
 rofi.color-active:  back, text,  back, back,    back
 rofi.color-urgent:  back, urgent,  back, back,  back
 rofi.font: xos4 Terminus 11
+rofi.width: 25
+rofi.bw: 5
 
 ! do not scroll with output
 URxvt*scrollTtyOutput: false

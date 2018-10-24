@@ -1,6 +1,6 @@
 #!/bin/bash
 
-power_action=$(printf "Poweroff\nSuspend\nHibernate\nLog out\nCancel" | rofi -dmenu -p "Select a power action" -bw 5 -width 25 | tr '[:upper:]' '[:lower:]')
+power_action=$(printf "Poweroff\nSuspend\nHibernate\nLog out\nCancel" | rofi -dmenu -p "Select a power action" | tr '[:upper:]' '[:lower:]')
 
 if [ "$power_action" != "cancel" ]
 then
