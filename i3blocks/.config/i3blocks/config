@@ -30,16 +30,16 @@ markup=pango
 
 [custom/script]
 interval=60
-command=~/.scripts/i3-packages
+command=$HOME/.scripts/i3-packages
 
 [music]
 interval=1
-command=~/.scripts/i3-music
+command=$HOME/.scripts/i3-music
 signal=11
 
 [volume]
 interval=1
-command=~/.scripts/i3-volume
+command=$HOME/.scripts/i3-volume
 signal=10
 
 # Network interface monitoring
@@ -52,7 +52,7 @@ color=#00FF00
 interval=10
 
 [battery]
-command=~/.scripts/i3-battery
+command=$HOME/.scripts/i3-battery
 interval=1
 
 # Date Time

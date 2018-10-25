@@ -8,7 +8,8 @@ rofi.color-window:  back, accent,  back
 rofi.color-normal:  back, text,  back, back,  accent
 rofi.color-active:  back, text,  back, back,    back
 rofi.color-urgent:  back, urgent,  back, back,  back
-rofi.font: xos4 Terminus 11
+rofi.hide-scrollbar: true
+rofi.font: monospace 11
 rofi.width: 25
 rofi.bw: 5
 
@@ -22,7 +23,7 @@ URxvt*scrollWithBuffer: true
 URxvt*scrollTtyKeypress: true
 
 ! font
-URxvt.font: xft:xos4 Terminus:size=11
+URxvt.font: xft:monospace:size=11
 
 ! rebind copy paste
 URxvt.keysym.Shift-Control-V: eval:paste_clipboard

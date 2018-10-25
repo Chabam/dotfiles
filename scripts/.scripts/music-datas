@@ -1,2 +1,2 @@
 #!/bin/bash
-rsync -ruv ~/Music/* /media/chabam/Datas/Music --delete
+rsync -ruv "$HOME"/Music/* /media/chabam/Datas/Music --delete

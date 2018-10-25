@@ -1,6 +1,6 @@
 #!/bin/sh 
 case $BLOCK_BUTTON in
-    1) ~/.scripts/play-pause ;;  # right click, pause/unpause
+    1) "$HOME"/.scripts/play-pause ;;  # right click, pause/unpause
 esac
 
 pangoify() {
