@@ -1,5 +1,5 @@
 #!/bin/bash
-options=$(ls "$HOME"/.screenlayout/ | grep ".sh" | sed "s/.sh//g")
+options=$(ls "$HOME"/.screenlayout/ | grep ".sh" | sed "s/.sh//g" | sed 's/.*/\u&/')
 display_option=$(printf "$options\nCancel" | rofi -dmenu -p "Select a display setting" | tr '[:upper:]' '[:lower:]')
 
 if [ "$power_action" != "cancel" ]
