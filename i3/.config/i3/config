@@ -203,7 +203,7 @@ new_window pixel 5
 for_window [class="Steam" title="Friends List"] floating enable
 for_window [title="wlroots - X11-1"] floating enable
 # Program autostart
-exec_always $HOME/.screenlayout/current && feh $HOME/Pictures/wallpaper --bg-scale & 
+exec_always $HOME/.screenlayout/current ; feh $HOME/Pictures/wallpaper --bg-scale & 
 exec_always setxkbmap -layout us -variant alt-intl &
 exec --no-startup-id compton -C -D 0 &
 exec nm-applet &
