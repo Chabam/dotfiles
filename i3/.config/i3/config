@@ -208,3 +208,4 @@ exec_always setxkbmap -layout us -variant alt-intl &
 exec --no-startup-id compton -C -D 0 &
 exec nm-applet &
 exec blueman-applet &
+exec solaar &
