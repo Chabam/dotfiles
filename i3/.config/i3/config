@@ -31,6 +31,8 @@ floating_modifier $mod
 # start a terminal
 bindsym $mod+Return exec urxvt
 
+bindsym $mod+Shift+Return exec urxvt -T "floating-urxvt-console"
+
 # kill focused window
 bindsym $mod+Shift+q kill
 
@@ -200,8 +202,9 @@ bar {
 
 # A E S T H E T I C S stuff
 new_window pixel 5
-for_window [class="Steam" title="Friends List"] floating enable
+for_window [class="Steam" title="Friehds List"] floating enable
 for_window [title="wlroots - X11-1"] floating enable
+for_window [title="floating-urxvt-console"] floating enable
 # Program autostart
 exec_always $HOME/.screenlayout/current ; feh $HOME/Pictures/wallpaper --bg-scale & 
 exec_always setxkbmap -layout us -variant alt-intl &
