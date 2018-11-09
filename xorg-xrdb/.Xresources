@@ -42,6 +42,8 @@ URxvt*scrollBar: false
 URxvt*iso14755: False
 URxvt*iso14755_52: False
 
+URxvt.perl-ext-common: resize-font
+
 ! Colors
 URxvt*background: #000000
 URxvt*foreground: #B2B2B2
