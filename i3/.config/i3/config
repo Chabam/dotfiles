@@ -209,7 +209,6 @@ for_window [title="floating-urxvt-console"] floating enable
 exec_always $HOME/.screenlayout/current ; feh $HOME/Pictures/wallpaper --bg-scale & 
 exec_always setxkbmap -layout us -variant alt-intl &
 exec --no-startup-id compton -C -D 0 &
-exec unclutter &
 exec nm-applet &
 exec blueman-applet &
 exec solaar &
