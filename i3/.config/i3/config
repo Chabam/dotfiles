@@ -129,6 +129,9 @@ bindsym --release Shift+Print exec scrot -s  $HOME/Pictures/Screenshots/$(date '
 bindsym XF86MonBrightnessDown	exec --no-startup-id xbacklight -dec 15
 bindsym XF86MonBrightnessUp	exec --no-startup-id xbacklight -inc 15
 
+# Browser
+bindsym $mod+b exec $BROWSER
+
 # Define names for default workspaces for which we configure key bindings later on.
 # We use variables to avoid repeating the names in multiple places.
 set $ws1 "1"
@@ -208,7 +211,10 @@ for_window [title="floating-urxvt-console"] floating enable
 # Program autostart
 exec_always $HOME/.screenlayout/current ; feh $HOME/Pictures/wallpaper --bg-scale & 
 exec_always setxkbmap -layout us -variant alt-intl &
-exec --no-startup-id compton -C -D 0 &
+exec compton -C -D 0 &
 exec nm-applet &
 exec blueman-applet &
 exec solaar &
+exec udiskie -s &
+exec mpd &
+exec mpdscribble &

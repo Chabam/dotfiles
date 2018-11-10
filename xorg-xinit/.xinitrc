@@ -38,7 +38,4 @@ fi
 
 xset -b
 
-exec udiskie -s &
-exec mpd &
-exec mpdscribble &
 exec i3
