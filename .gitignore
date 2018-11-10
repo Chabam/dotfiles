@@ -11,3 +11,4 @@ vscode/.config/Code - OSS/*
 vscode/.config/Code - OSS/User/*
 !vscode/.config/Code - OSS/User/settings.json
 .netrwhist
+scripts/.scripts/private/*
