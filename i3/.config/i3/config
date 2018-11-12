@@ -209,7 +209,7 @@ for_window [class="Steam" title="Friehds List"] floating enable
 for_window [title="wlroots - X11-1"] floating enable
 for_window [title="floating-urxvt-console"] floating enable
 # Program autostart
-exec_always $HOME/.screenlayout/current ; feh $HOME/Pictures/wallpaper --bg-scale & 
+exec_always $HOME/.screenlayout/current ; feh $HOME/Pictures/.wallpaper --bg-scale & 
 exec_always setxkbmap -layout us -variant alt-intl &
 exec compton -C -D 0 &
 exec nm-applet &
