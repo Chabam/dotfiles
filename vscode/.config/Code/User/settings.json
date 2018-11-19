@@ -20,6 +20,6 @@
 	"gitlens.codeLens.authors.enabled": false,
 	"gitlens.currentLine.enabled": false,
 	"gitlens.hovers.currentLine.over": "line",
-	"terminal.external.linuxExec": "urxvt",
+	"terminal.external.linuxExec": "xfce4-terminal",
 	"window.zoomLevel": 0,
 }
