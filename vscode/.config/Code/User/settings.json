@@ -22,4 +22,6 @@
 	"gitlens.hovers.currentLine.over": "line",
 	"terminal.external.linuxExec": "xfce4-terminal",
 	"window.zoomLevel": 0,
+	"python.pythonPath": "python3",
+	"terminal.integrated.rendererType": "dom",
 }
