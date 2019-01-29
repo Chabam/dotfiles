@@ -24,4 +24,11 @@
 	"window.zoomLevel": 0,
 	"python.pythonPath": "python3",
 	"terminal.integrated.rendererType": "dom",
+	"latex-workshop.view.pdf.viewer": "tab",
+	"latex-workshop.intellisense.package.enabled": true,
+	"latex-workshop.intellisense.surroundCommand.enabled": true,
+	"editor.minimap.enabled": false,
+	"banner-comments.h2": "Bright",
+	"window.titleBarStyle": "native",
+	"javascript.updateImportsOnFileMove.enabled": "always",
 }
