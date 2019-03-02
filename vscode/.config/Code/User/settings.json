@@ -10,7 +10,6 @@
 	"explorer.confirmDelete": false,
 	"extensions.showRecommendationsOnlyOnDemand": true,
 	"git.enableSmartCommit": true,
-	"terminal.explorerKind": "external",
 	"editor.renderWhitespace": "none",
 	"editor.rulers": [
 		120
@@ -20,8 +19,14 @@
 	"gitlens.codeLens.authors.enabled": false,
 	"gitlens.currentLine.enabled": false,
 	"gitlens.hovers.currentLine.over": "line",
-	"terminal.external.linuxExec": "xfce4-terminal",
 	"window.zoomLevel": 0,
-	"python.pythonPath": "python3",
 	"terminal.integrated.rendererType": "dom",
+	"window.titleBarStyle": "native",
+	"javascript.preferences.quoteStyle": "single",
+	"files.exclude": {
+		"**/node_modules": true
+	},
+	"javascript.updateImportsOnFileMove.enabled": "always",
+	"terminal.explorerKind": "external",
+	"terminal.external.linuxExec": "xfce4-terminal",
 }

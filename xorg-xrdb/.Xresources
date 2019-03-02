@@ -3,6 +3,8 @@
 #define urgent	    #B21818
 #define text	    #B2B2B2
 
+Xcursor.size: 24
+
 rofi.color-enabled: true
 rofi.color-window:  back, accent,  back
 rofi.color-normal:  back, text,  back, back,  accent

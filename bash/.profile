@@ -1,10 +1,5 @@
-export DE="i3"
 export SHELL="/bin/bash"
-export BROWSER="firefox"
+export BROWSER="google-chrome"
 export EDITOR="nvim"
 export PAGER="less"
-export PATH="$PATH:$HOME/.scripts:$HOME/.scripts/private:$HOME/.cargo/bin"
-
-if [[ ! $DISPLAY && $XDG_VTNR -eq 1 ]]; then
-  exec startx
-fi
+export PATH="$PATH:$HOME/.scripts:$HOME/.scripts/private:"
