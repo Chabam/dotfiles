@@ -31,5 +31,6 @@
 	"terminal.external.linuxExec": "xfce4-terminal",
 	"latex-workshop.view.pdf.viewer": "tab",
 	"latex-workshop.intellisense.package.enabled": true,
-	"latex-workshop.intellisense.surroundCommand.enabled": true
+	"latex-workshop.intellisense.surroundCommand.enabled": true,
+	"editor.insertSpaces": false
 }

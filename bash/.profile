@@ -1,4 +1,5 @@
 export SHELL="/bin/bash"
+export TERM="linux"
 export BROWSER="google-chrome"
 export EDITOR="nvim"
 export PAGER="less"
