@@ -1,36 +1,17 @@
 {
 	"editor.renderIndentGuides": true,
-	"files.autoSave": "onFocusChange",
-	"update.channel": "none",
 	"workbench.iconTheme": "vscode-icons",
-	"editor.roundedSelection": false,
 	"git.autofetch": true,
 	"editor.cursorBlinking": "smooth",
-	"explorer.confirmDragAndDrop": false,
-	"explorer.confirmDelete": false,
-	"extensions.showRecommendationsOnlyOnDemand": true,
-	"git.enableSmartCommit": true,
-	"editor.renderWhitespace": "none",
 	"editor.rulers": [
 		120
 	],
-	"gitlens.blame.highlight.enabled": false,
-	"gitlens.codeLens.recentChange.enabled": false,
-	"gitlens.codeLens.authors.enabled": false,
-	"gitlens.currentLine.enabled": false,
-	"gitlens.hovers.currentLine.over": "line",
-	"window.zoomLevel": 0,
-	"terminal.integrated.rendererType": "dom",
-	"window.titleBarStyle": "native",
 	"javascript.preferences.quoteStyle": "single",
 	"files.exclude": {
 		"**/node_modules": true
 	},
 	"javascript.updateImportsOnFileMove.enabled": "always",
 	"terminal.explorerKind": "external",
-	"terminal.external.linuxExec": "xfce4-terminal",
-	"latex-workshop.view.pdf.viewer": "tab",
-	"latex-workshop.intellisense.package.enabled": true,
-	"latex-workshop.intellisense.surroundCommand.enabled": true,
+	"terminal.external.linuxExec": "konsole",
 	"editor.insertSpaces": false
 }
