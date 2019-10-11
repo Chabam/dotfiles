@@ -8,7 +8,6 @@ pangoify() {
 }
 
 spotify=$(playerctl status)
-mpc=$(mpc status)
 if [ "$spotify" = "Playing" ] || [ "$spotify" = "Paused" ]; then
 	if [ "$spotify" = "Paused" ]; then
 		status="⏸️"
@@ -18,14 +17,6 @@ if [ "$spotify" = "Playing" ] || [ "$spotify" = "Paused" ]; then
 	artist=$(playerctl metadata artist)
 	title=$(playerctl metadata title)
 	echo "$status $artist - $title" | pangoify
-elif [ "$(echo "$mpc" | grep "paused")" ] || [ "$(echo "$mpc" | grep "playing")" ]; then
-	if [ "$(echo "$mpc" | grep "paused")" ]; then
-		status="⏸️"
-	else
-		status="▶️"
-	fi
-	artisttitle=$(echo "$mpc" | awk 'NR==1')
-	echo "$status $artisttitle" | pangoify
 else
 	echo ""
 	exit

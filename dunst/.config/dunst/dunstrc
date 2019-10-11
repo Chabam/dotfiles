@@ -81,7 +81,7 @@
     # for longer than idle_threshold seconds.
     # Set to 0 to disable.
     # Transient notifications ignore this setting.
-    idle_threshold = 120
+    idle_threshold = 5
 
     ### Text ###
 

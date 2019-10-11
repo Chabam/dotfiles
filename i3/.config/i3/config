@@ -9,10 +9,10 @@
 # Please see https://i3wm.org/docs/userguide.html for a complete reference!
 
 set $mod Mod4
-
+set $terminal gnome-terminal
 # Font for window titles. Will also be used by the bar unless a different font
 # is used in the bar {} block below.
-font pango:monospace 10
+font pango:monospace 16
 
 # This font is widely installed, provides lots of unicode glyphs, right-to-left
 # text rendering and scalability on retina/hidpi displays (thanks to pango).
@@ -29,9 +29,9 @@ font pango:monospace 10
 floating_modifier $mod
 
 # start a terminal
-bindsym $mod+Return exec $TERM
+bindsym $mod+Return exec $terminal
 
-bindsym $mod+Shift+Return exec urxvt -T "floating-urxvt-console"
+bindsym $mod+Shift+Return exec $terminal -t "floating-disposable-terminal"
 
 # kill focused window
 bindsym $mod+Shift+q kill
@@ -42,7 +42,7 @@ bindsym $mod+d exec rofi -show run
 # display a power option menu (poweroff, suspend, hibernate, etc...)
 bindsym $mod+Shift+e exec $HOME/.scripts/power-menu
 
-# display a power option menu (poweroff, suspend, hibernate, etc...)
+# display a menu to select predefined screenlayouts
 bindsym $mod+p exec $HOME/.scripts/display-menu
 
 # Sort of a Alt-Tab
@@ -65,7 +65,7 @@ bindsym $mod+Shift+k move up
 bindsym $mod+Shift+l move right
 
 # disable wrapping
-focus_wrapping no
+# focus_wrapping no
 
 # split in horizontal orientation
 bindsym $mod+shift+v split h
@@ -205,16 +205,13 @@ bar {
 
 # A E S T H E T I C S stuff
 new_window pixel 5
-for_window [class="Steam" title="Friehds List"] floating enable
-for_window [title="wlroots - X11-1"] floating enable
-for_window [title="floating-urxvt-console"] floating enable
+for_window [title="floating-disposable-terminal"] floating enable
 # Program autostart
 exec_always $HOME/.screenlayout/current ; feh $HOME/Pictures/.wallpaper --bg-scale & 
 exec_always setxkbmap -layout us -variant alt-intl &
 exec compton -C -D 0 &
+exec_always xrdb ~/.Xresources &
 exec nm-applet &
 exec blueman-applet &
 exec solaar &
 exec udiskie -s &
-exec mpd &
-exec mpdscribble &

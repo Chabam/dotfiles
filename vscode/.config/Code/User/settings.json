@@ -12,6 +12,7 @@
 	},
 	"javascript.updateImportsOnFileMove.enabled": "always",
 	"terminal.explorerKind": "external",
-	"terminal.external.linuxExec": "konsole",
-	"editor.insertSpaces": false
+	"terminal.external.linuxExec": "gnome-terminal",
+	"editor.insertSpaces": false,
+	"latex-workshop.view.pdf.viewer": "external"
 }
