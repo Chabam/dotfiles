@@ -25,7 +25,7 @@ URxvt*scrollWithBuffer: true
 URxvt*scrollTtyKeypress: true
 
 ! font
-URxvt.font: xft:monospace:size=11
+URxvt.font: xft:monospace:size=18
 
 ! rebind copy paste
 URxvt.keysym.Shift-Control-V: eval:paste_clipboard

@@ -31,8 +31,7 @@ floating_modifier $mod
 # start a terminal
 bindsym $mod+Return exec $terminal
 
-bindsym $mod+Shift+Return exec $terminal -t "floating-disposable-terminal"
-
+bindsym $mod+Shift+Return exec $terminal -t "floating-disposable-terminal" 
 # kill focused window
 bindsym $mod+Shift+q kill
 
@@ -131,6 +130,8 @@ bindsym XF86MonBrightnessUp	exec --no-startup-id xbacklight -inc 15
 
 # Browser
 bindsym $mod+b exec $BROWSER
+bindsym $mod+c exec code
+bindsym $mod+m exec i3-mpv
 
 # Define names for default workspaces for which we configure key bindings later on.
 # We use variables to avoid repeating the names in multiple places.

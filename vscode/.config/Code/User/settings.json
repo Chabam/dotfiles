@@ -14,5 +14,6 @@
 	"terminal.explorerKind": "external",
 	"terminal.external.linuxExec": "gnome-terminal",
 	"editor.insertSpaces": false,
-	"latex-workshop.view.pdf.viewer": "external"
+	"latex-workshop.view.pdf.viewer": "external",
+	"git.enableSmartCommit": true
 }
