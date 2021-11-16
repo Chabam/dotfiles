@@ -1,4 +1,3 @@
-colorscheme elflord
 syntax on
 filetype plugin indent on
 " Settings
