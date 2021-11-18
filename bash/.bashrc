@@ -40,18 +40,23 @@ GIT_PS1_SHOWUPSTREAM="auto"
 GIT_PS1_SHOWDIRTYSTATE=1
 GIT_PS1_SHOWCOLORHINTS=1
 GIT_PS1_SHOWUNTRACKEDFILES=1
-CLEAR="\e[0m"
-CYAN="\e[36m"
-YELLOW="\e[33m"
-MAGENTA="\e[35m"
-BLUE="\e[34m"
+CLEAR="\[\e[0m\]"
+CYAN="\[\e[36m\]"
+YELLOW="\[\e[33m\]"
+MAGENTA="\[\e[35m\]"
+BLUE="\[\e[34m\]"
 
 WD="$CYAN\w$CLEAR"
 TIME="($MAGENTA$(date +%H:%M)$CLEAR)"
 GIT_PRE="$YELLOW[$CLEAR$TIME $WD"
 GIT_POST="$YELLOW] $BLUE\$$CLEAR "
 
-PROMPT_COMMAND="__git_ps1 '$GIT_PRE' '$GIT_POST'" 
+if [ -z $ENABLE_GIT_STATUS ]; then
+    PS1="$GIT_PRE$GIT_POST"
+else
+    echo "WTFFFFF"
+    PROMPT_COMMAND="__git_ps1 '$GIT_PRE' '$GIT_POST'" 
+fi
 
 # enable color support of ls and also add handy aliases
 if [ -x /usr/bin/dircolors ]; then
