@@ -51,12 +51,16 @@ TIME="($MAGENTA$(date +%H:%M)$CLEAR)"
 GIT_PRE="$YELLOW[$CLEAR$TIME $WD"
 GIT_POST="$YELLOW] $BLUE\$$CLEAR "
 
-if [ -z $ENABLE_GIT_STATUS ]; then
+function print_ps1()
+{
+   if [[ "$(pwd)" =~ "/mnt" ]]; then
     PS1="$GIT_PRE$GIT_POST"
-else
-    echo "WTFFFFF"
-    PROMPT_COMMAND="__git_ps1 '$GIT_PRE' '$GIT_POST'" 
-fi
+  else
+    __git_ps1 "$GIT_PRE" "$GIT_POST"
+  fi
+}
+
+PROMPT_COMMAND=print_ps1
 
 # enable color support of ls and also add handy aliases
 if [ -x /usr/bin/dircolors ]; then
