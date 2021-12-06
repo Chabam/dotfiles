@@ -41,18 +41,15 @@ GIT_PS1_SHOWDIRTYSTATE=1
 GIT_PS1_SHOWCOLORHINTS=1
 GIT_PS1_SHOWUNTRACKEDFILES=1
 CLEAR="\[\e[0m\]"
-CYAN="\[\e[36m\]"
-YELLOW="\[\e[33m\]"
-MAGENTA="\[\e[35m\]"
-BLUE="\[\e[34m\]"
+GREEN="\[\e[1;92m\]"
+BLUE="\[\e[1;94m\]"
 
-WD="$CYAN\w$CLEAR"
-TIME="($MAGENTA$(date +%H:%M)$CLEAR)"
-GIT_PRE="$YELLOW[$CLEAR$TIME $WD"
-GIT_POST="$YELLOW] $BLUE\$$CLEAR "
+GIT_PRE="$GREEN\u@\h$CLEAR:$BLUE\w$CLEAR"
+GIT_POST="\$ "
 
 function print_ps1()
 {
+  # Fix for WSL for avoiding the use of git outside of the VM.
    if [[ "$(pwd)" =~ "/mnt" ]]; then
     PS1="$GIT_PRE$GIT_POST"
   else
