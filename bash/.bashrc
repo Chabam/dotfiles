@@ -29,11 +29,19 @@ shopt -s checkwinsize
 
 # make less more friendly for non-text input files, see lesspipe(1)
 [ -x /usr/bin/lesspipe ] && eval "$(SHELL=/bin/sh lesspipe)"
+GIT_PROMPT_SH=$SCRIPTS/git-prompt.sh
 
+if [[ ! -e $GIT_PROMPT_SH ]]; then
+	echo "Fetching git-prompt.sh into"
+	pushd ~/.scripts
+	wget https://raw.githubusercontent.com/git/git/master/contrib/completion/git-prompt.sh 
+	popd
+fi
 
-source ~/.git-prompt
+source git-prompt.sh
 
-GIT_PS1_SHOWUPSTREAM="auto"
+GIT_PS1_SHOWUPSTREAM="verbose"
+GIT_PS1_DESCRIBE_STYLE="branch"
 GIT_PS1_SHOWDIRTYSTATE=1
 GIT_PS1_SHOWCOLORHINTS=1
 GIT_PS1_SHOWUNTRACKEDFILES=1
@@ -44,17 +52,17 @@ BLUE="\[\e[1;94m\]"
 GIT_PRE="$GREEN\u@\h$CLEAR:$BLUE\w$CLEAR"
 GIT_POST="\$ "
 
-function print_ps1()
+# Fix for WSL for avoiding the use of git outside of the VM.
+function print_git_prompt()
 {
-  # Fix for WSL for avoiding the use of git outside of the VM.
-   if [[ "$(pwd)" =~ "/mnt" ]]; then
-    PS1="$GIT_PRE$GIT_POST"
-  else
-    __git_ps1 "$GIT_PRE" "$GIT_POST"
-  fi
+	if [[ "$(pwd)" =~ "/mnt" ]]; then
+		PS1="$GIT_PRE$GIT_POST"
+	else
+		__git_ps1 "$GIT_PRE" "$GIT_POST"
+	fi
 }
 
-PROMPT_COMMAND=print_ps1
+PROMPT_COMMAND=print_git_prompt
 
 # enable color support of ls and also add handy aliases
 if [ -x /usr/bin/dircolors ]; then
