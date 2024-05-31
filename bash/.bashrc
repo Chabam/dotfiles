@@ -31,9 +31,9 @@ shopt -s checkwinsize
 [ -x /usr/bin/lesspipe ] && eval "$(SHELL=/bin/sh lesspipe)"
 GIT_PROMPT_SH=$SCRIPTS/git-prompt.sh
 
-if [[ ! -e $GIT_PROMPT_SH ]]; then
+if [[ ! -f $GIT_PROMPT_SH ]]; then
 	echo "Fetching git-prompt.sh into"
-	pushd ~/.scripts
+	pushd $SCRIPTS
 	wget https://raw.githubusercontent.com/git/git/master/contrib/completion/git-prompt.sh 
 	popd
 fi
