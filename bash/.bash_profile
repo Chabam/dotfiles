@@ -6,5 +6,4 @@ if [ -f ~/.bashrc ]; then
 fi
 
 # User specific environment and startup programs
-MUTTER_DEBUG_FORCE_KMS_MODE=simple
 export TEXINPUTS="~/Cours/Common/Latex:"

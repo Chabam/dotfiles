@@ -5,6 +5,5 @@ export EDITOR="nvim"
 export PAGER="less"
 export SCRIPTS="$HOME/.scripts"
 export PATH="$PATH:$SCRIPTS"
-#export MOZ_ENABLE_WAYLAND=0
-export CC="/usr/bin/clang"
-export CXX="/usr/bin/clang++"
+
+export TEXINPUTS="~/Cours/Common/Latex:"
