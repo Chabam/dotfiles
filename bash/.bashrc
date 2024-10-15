@@ -59,3 +59,7 @@ function print_git_prompt()
 
 PROMPT_COMMAND=print_git_prompt
 PROMPT_DIRTRIM=3
+force_color_prompt=yes
+
+## Rust
+. $HOME/.cargo/env

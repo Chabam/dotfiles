@@ -1,30 +1,27 @@
-(require 'package)
-(add-to-list 'package-archives
-             '("melpa" . "https://melpa.org/packages/")
-             t)
+(setq custom-file "~/.emacs.custom.el")
+(load-file custom-file)
+
 (package-initialize)
-
-(custom-set-variables
- ;; custom-set-variables was added by Custom.
- ;; If you edit it by hand, you could mess it up, so be careful.
- ;; Your init file should contain only one such instance.
- ;; If there is more than one, they won't work right.
- '(custom-enabled-themes '(gruvbox-dark-medium))
- '(custom-safe-themes
-   '("98ef36d4487bf5e816f89b1b1240d45755ec382c7029302f36ca6626faf44bbd" "046a2b81d13afddae309930ef85d458c4f5d278a69448e5a5261a5c78598e012" "1594eb8fc081be254c7df7b2a37e9808f79c94863366da6d34bbe735519a30f5" "b0cbcb2fa0c69ab36f4505fec9967969b73327f1b8564f9afface8afd216bc93" "7b8f5bbdc7c316ee62f271acf6bcd0e0b8a272fdffe908f8c920b0ba34871d98" "8d146df8bd640320d5ca94d2913392bc6f763d5bc2bb47bed8e14975017eea91" default))
- '(font-use-system-font t)
- '(package-selected-packages
-   '(transpose-frame multiple-cursors modus-themes auctex gruvbox-theme which-key corfu racket-mode org lsp-mode yasnippet lsp-treemacs projectile hydra flycheck avy dap-mode lsp-scheme))
- '(tool-bar-mode nil))
-
-(when (cl-find-if-not #'package-installed-p package-selected-packages)
-  (package-refresh-contents)
-  (mapc #'package-install package-selected-packages))
+(tool-bar-mode 0)
+(menu-bar-mode 0)
+(global-display-line-numbers-mode)
+(global-visual-line-mode)
+(setq inhibit-startup-screen t)
 
 (set-face-attribute 'default nil :height 110 :family "Iosevka")
 
 (setq backup-directory-alist '(("." . "~/.emacs.d/backups")))
 (setq dired-listing-switches "-aBhlv  --group-directories-first")
+
+;; Packages
+(require 'package)
+(add-to-list 'package-archives
+             '("melpa" . "https://melpa.org/packages/")
+             t)
+
+(when (cl-find-if-not #'package-installed-p package-selected-packages)
+  (package-refresh-contents)
+  (mapc #'package-install package-selected-packages))
 
 (use-package corfu
   ;; Optional customizations
@@ -106,8 +103,6 @@
 ;; (define-key global-map [remap switch-to-buffer] #'helm-mini)
 
 (which-key-mode)
-(add-hook 'c-mode-hook 'lsp)
-(add-hook 'c++-mode-hook 'lsp)
 
 (setq gc-cons-threshold (* 100 1024 1024)
       read-process-output-max (* 1024 1024)
@@ -122,13 +117,6 @@
   (add-hook 'lsp-mode-hook #'lsp-enable-which-key-integration)
   (require 'dap-cpptools)
   (yas-global-mode))
-(custom-set-faces
- ;; custom-set-faces was added by Custom.
- ;; If you edit it by hand, you could mess it up, so be careful.
- ;; Your init file should contain only one such instance.
- ;; If there is more than one, they won't work right.
- '(line-number ((t (:foreground "#7c6f64" :background "#3c3836" :inherit default))))
- '(line-number-current-line ((t (:foreground "#fe8019" :background "#504945" :inherit default)))))
 
 ;; AUCTeX
 (use-package tex
@@ -137,3 +125,4 @@
 (setq TeX-auto-save t)
 (setq TeX-parse-self t)
 (setq-default TeX-master nil)
+(put 'dired-find-alternate-file 'disabled nil)
