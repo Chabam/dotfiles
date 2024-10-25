@@ -326,9 +326,7 @@ require("lazy").setup({
 				--  All the info you're looking for is in `:help telescope.setup()`
 				--
 				-- defaults = {
-				--   mappings = {
-				--     i = { ['<c-enter>'] = 'to_fuzzy_refine' },
-				--   },
+				-- 	mappings = {},
 				-- },
 				-- pickers = {}
 				extensions = {
@@ -344,6 +342,20 @@ require("lazy").setup({
 
 			-- See `:help telescope.builtin`
 			local builtin = require("telescope.builtin")
+			local action_state = require("telescope.actions.state")
+			local actions = require("telescope.actions")
+
+			buffer_searcher = function()
+				builtin.buffers({
+					attach_mappings = function(prompt_bufnr, map)
+						map("n", "<C-d>", actions.delete_buffer)
+						map("i", "<C-d>", actions.delete_buffer)
+
+						return true
+					end,
+				})
+			end
+
 			vim.keymap.set("n", "<leader>sh", builtin.help_tags, { desc = "[S]earch [H]elp" })
 			vim.keymap.set("n", "<leader>sk", builtin.keymaps, { desc = "[S]earch [K]eymaps" })
 			vim.keymap.set("n", "<leader>sf", builtin.find_files, { desc = "[S]earch [F]iles" })
@@ -353,7 +365,7 @@ require("lazy").setup({
 			vim.keymap.set("n", "<leader>sd", builtin.diagnostics, { desc = "[S]earch [D]iagnostics" })
 			vim.keymap.set("n", "<leader>sr", builtin.resume, { desc = "[S]earch [R]esume" })
 			vim.keymap.set("n", "<leader>s.", builtin.oldfiles, { desc = '[S]earch Recent Files ("." for repeat)' })
-			vim.keymap.set("n", "<leader><leader>", builtin.buffers, { desc = "[ ] Find existing buffers" })
+			vim.keymap.set("n", "<leader><leader>", buffer_searcher, { desc = "[ ] Find existing buffers" })
 
 			-- Slightly advanced example of overriding default behavior and theme
 			vim.keymap.set("n", "<leader>/", function()
@@ -570,6 +582,7 @@ require("lazy").setup({
 					settings = {
 						ltex = {
 							language = "fr",
+							completionEnabled = true,
 						},
 					},
 					filetypes = { "tex", "md" },
@@ -908,7 +921,6 @@ require("lazy").setup({
 	require("kickstart.plugins.indent_line"),
 	require("kickstart.plugins.lint"),
 	require("kickstart.plugins.autopairs"),
-	require("kickstart.plugins.neo-tree"),
 	require("kickstart.plugins.gitsigns"), -- adds gitsigns recommend keymaps
 
 	-- NOTE: The import below can automatically add your own plugins, configuration, etc from `lua/custom/plugins/*.lua`

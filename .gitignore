@@ -12,3 +12,4 @@ vscode/.config/Code/User/*
 !vscode/.config/Code/User/settings.json
 .netrwhist
 scripts/.scripts/private/*
+lazy-lock.json
