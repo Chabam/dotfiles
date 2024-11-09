@@ -23,13 +23,15 @@ if [ -d ~/.bashrc.d ]; then
     done
 fi
 unset rc
+# Disable Ctrl+S behavior
+stty -ixon
 
 GIT_PROMPT_SH=$SCRIPTS/git-prompt.sh
 
 if [[ ! -f $GIT_PROMPT_SH ]]; then
 	echo "Fetching git-prompt.sh into"
 	pushd $SCRIPTS
-	wget https://raw.githubusercontent.com/git/git/master/contrib/completion/git-prompt.sh 
+	wget https://raw.githubusercontent.com/git/git/master/contrib/completion/git-prompt.sh
 	popd
 fi
 
@@ -60,6 +62,3 @@ function print_git_prompt()
 PROMPT_COMMAND=print_git_prompt
 PROMPT_DIRTRIM=3
 force_color_prompt=yes
-
-## Rust
-. $HOME/.cargo/env
