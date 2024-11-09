@@ -3,6 +3,7 @@
 --
 -- See the kickstart.nvim README for more information
 return {
+	-- LaTeX
 	{
 		"lervag/vimtex",
 		lazy = false, -- we don't want to lazy load VimTeX
@@ -18,6 +19,7 @@ return {
 			}
 		end,
 	},
+	-- Conjure
 	{
 		"Olical/conjure",
 		ft = { "racket", "python" },
@@ -35,6 +37,7 @@ return {
 			return cmp.setup(config)
 		end,
 	},
+	-- Oil
 	{
 		"stevearc/oil.nvim",
 		lazy = true,

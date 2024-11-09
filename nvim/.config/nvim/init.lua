@@ -76,7 +76,7 @@ vim.opt.splitbelow = true
 --  See `:help 'list'`
 --  and `:help 'listchars'`
 vim.opt.list = false
-vim.opt.listchars = { tab = "» ", trail = "·", nbsp = "␣" }
+vim.opt.listchars = { tab = "» ", trail = "·", space = "·", nbsp = "␣" }
 
 -- Preview substitutions live, as you type!
 vim.opt.inccommand = "split"
@@ -97,6 +97,34 @@ vim.keymap.set("n", "<Esc>", "<cmd>nohlsearch<CR>")
 -- Diagnostic keymaps
 vim.keymap.set("n", "<leader>q", vim.diagnostic.setloclist, { desc = "Open diagnostic [Q]uickfix list" })
 
+vim.diagnostic.config({
+	virtual_text = false,
+	signs = true,
+	float = { border = "single" },
+})
+
+vim.api.nvim_create_autocmd("CursorHold", {
+	buffer = bufnr,
+	callback = function()
+		local opts = {
+			focusable = false,
+			close_events = { "BufLeave", "CursorMoved", "InsertEnter", "FocusLost" },
+			border = "rounded",
+			source = "always",
+			prefix = " ",
+			scope = "cursor",
+		}
+		vim.diagnostic.open_float(nil, opts)
+	end,
+})
+
+local signs = { Error = "󰅚 ", Warn = "󰀪 ", Hint = "󰌶 ", Info = " " }
+for type, icon in pairs(signs) do
+	local hl = "DiagnosticSign" .. type
+	vim.fn.sign_define(hl, { text = icon, texthl = hl, numhl = hl })
+end
+
+vim.cmd.highlight("DiagnosticUnderlineError guisp=#ff0000 gui=undercurl")
 -- Exit terminal mode in the builtin terminal with a shortcut that is a bit easier
 -- for people to discover. Otherwise, you normally need to press <C-\><C-n>, which
 -- is not what someone will guess without a bit more experience.
@@ -585,8 +613,8 @@ require("lazy").setup({
 							completionEnabled = true,
 						},
 					},
-					filetypes = { "tex", "md" },
-					enabled = { "tex", "md" },
+					filetypes = { "tex", "markdown" },
+					enabled = { "tex", "markdown" },
 				},
 				cmake = {
 					buildDirectory = "_build",
@@ -625,6 +653,7 @@ require("lazy").setup({
 			require("mason-tool-installer").setup({ ensure_installed = ensure_installed })
 			-- Racket needs to be manually installed like this because it's not appart of Mason?
 			require("lspconfig").racket_langserver.setup({})
+			require("lspconfig").ccls.setup({})
 
 			require("mason-lspconfig").setup({
 				handlers = {
