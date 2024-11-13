@@ -653,7 +653,6 @@ require("lazy").setup({
 			require("mason-tool-installer").setup({ ensure_installed = ensure_installed })
 			-- Racket needs to be manually installed like this because it's not appart of Mason?
 			require("lspconfig").racket_langserver.setup({})
-			require("lspconfig").ccls.setup({})
 
 			require("mason-lspconfig").setup({
 				handlers = {
