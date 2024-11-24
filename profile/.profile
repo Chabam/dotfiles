@@ -8,4 +8,4 @@ export RUST_BIN="$HOME/.cargo/bin"
 export PATH="$PATH:$SCRIPTS:$RUST_BIN"
 export DOCKER_HOST=unix:///run/user/1000/docker.sock
 
-export TEXINPUTS="~/Cours/Common/Latex:"
+export TEXINPUTS="$HOME/Cours/common/latex:"

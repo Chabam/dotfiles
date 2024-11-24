@@ -19,14 +19,6 @@ return {
 			}
 		end,
 	},
-	-- Conjure
-	{
-		"Olical/conjure",
-		ft = { "racket", "python" },
-		lazy = true,
-		init = function() end,
-		dependencies = { "PaterJason/cmp-conjure" },
-	},
 	{
 		"PaterJason/cmp-conjure",
 		lazy = true,

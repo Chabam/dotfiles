@@ -175,6 +175,9 @@ if vim.g.neovide then
 	end)
 end
 
+-- Disable LSP logging
+vim.lsp.set_log_level("off")
+
 -- [[ Install `lazy.nvim` plugin manager ]]
 --    See `:help lazy.nvim.txt` or https://github.com/folke/lazy.nvim for more info
 local lazypath = vim.fn.stdpath("data") .. "/lazy/lazy.nvim"
@@ -653,6 +656,7 @@ require("lazy").setup({
 			require("mason-tool-installer").setup({ ensure_installed = ensure_installed })
 			-- Racket needs to be manually installed like this because it's not appart of Mason?
 			require("lspconfig").racket_langserver.setup({})
+			require("lspconfig").hls.setup({})
 
 			require("mason-lspconfig").setup({
 				handlers = {
@@ -837,7 +841,10 @@ require("lazy").setup({
 		priority = 1000, -- Make sure to load this before all the other start plugins.
 		opts = {
 			transparent = true,
-			style = "deep",
+			style = "darker",
+			highlights = {
+				MatchParen = { fg = "$yellow", bg = "$none", fmt = "bold" },
+			},
 		},
 		init = function()
 			-- Load the colorscheme here.
