@@ -619,9 +619,7 @@ require("lazy").setup({
 					filetypes = { "tex", "markdown" },
 					enabled = { "tex", "markdown" },
 				},
-				cmake = {
-					buildDirectory = "_build",
-				},
+				pyright = {},
 
 				lua_ls = {
 					-- cmd = {...},
@@ -655,8 +653,12 @@ require("lazy").setup({
 			})
 			require("mason-tool-installer").setup({ ensure_installed = ensure_installed })
 			-- Racket needs to be manually installed like this because it's not appart of Mason?
-			require("lspconfig").racket_langserver.setup({})
-			require("lspconfig").hls.setup({})
+			lsp_config = require("lspconfig")
+			lsp_config.racket_langserver.setup({})
+			lsp_config.hls.setup({})
+			lsp_config.cmake.setup({
+				buildDirectory = "_build",
+			})
 
 			require("mason-lspconfig").setup({
 				handlers = {
@@ -666,7 +668,7 @@ require("lazy").setup({
 						-- by the server configuration above. Useful when disabling
 						-- certain features of an LSP (for example, turning off formatting for ts_ls)
 						server.capabilities = vim.tbl_deep_extend("force", {}, capabilities, server.capabilities or {})
-						require("lspconfig")[server_name].setup(server)
+						lsp_config[server_name].setup(server)
 					end,
 				},
 			})
@@ -958,7 +960,7 @@ require("lazy").setup({
 	--
 	require("kickstart.plugins.debug"),
 	require("kickstart.plugins.indent_line"),
-	require("kickstart.plugins.lint"),
+	-- require("kickstart.plugins.lint"),
 	require("kickstart.plugins.autopairs"),
 	require("kickstart.plugins.gitsigns"), -- adds gitsigns recommend keymaps
 
