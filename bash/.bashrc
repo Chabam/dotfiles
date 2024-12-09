@@ -64,7 +64,11 @@ PROMPT_DIRTRIM=3
 force_color_prompt=yes
 
 # Haskell
-source /home/chabam/.ghcup/env
+if [[ -f "$HOME/.ghcup" ]]; then
+    source $HOME/.ghcup/env
+fi
 
 # Rust
-source /home/chabam/.cargo/env
+if [[ -f "$HOME/.cargo" ]]; then
+    source $HOME/.cargo/env
+fi
