@@ -45,9 +45,16 @@ GIT_PS1_SHOWUNTRACKEDFILES=1
 CLEAR="\[\e[0m\]"
 GREEN="\[\e[1;92m\]"
 BLUE="\[\e[1;94m\]"
+PURPLE="\[\e[0;35m\]"
 
-GIT_PRE="$GREEN\u@\h$CLEAR:$BLUE\w$CLEAR"
+HST="\h"
+
+if [[ $container ]]; then
+    HST="$HST.$PURPLE$CONTAINER_ID"
+fi
+GIT_PRE="$GREEN\u@$HST$CLEAR:$BLUE\w$CLEAR"
 GIT_POST="\$ "
+
 
 # Fix for WSL for avoiding the use of git outside of the VM.
 function print_git_prompt()
