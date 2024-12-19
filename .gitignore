@@ -12,4 +12,5 @@ vscode/.config/Code/User/*
 !vscode/.config/Code/User/settings.json
 .netrwhist
 scripts/.scripts/private/*
+scripts/.scripts/git-prompt.sh
 lazy-lock.json
