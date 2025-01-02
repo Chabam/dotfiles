@@ -28,14 +28,11 @@ stty -ixon
 
 GIT_PROMPT_SH=$SCRIPTS/git-prompt.sh
 
-if [[ ! -f $GIT_PROMPT_SH ]]; then
-	echo "Fetching git-prompt.sh into"
-	pushd $SCRIPTS
-	wget https://raw.githubusercontent.com/git/git/master/contrib/completion/git-prompt.sh
-	popd
+if [ ! -f $GIT_PROMPT_SH ]; then
+    "$GIT_PROMPT_SH not found!"
+else
+    source $GIT_PROMPT_SH
 fi
-
-source git-prompt.sh
 
 GIT_PS1_SHOWUPSTREAM="verbose"
 GIT_PS1_DESCRIBE_STYLE="branch"
