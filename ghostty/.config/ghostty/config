@@ -1,0 +1,16 @@
+font-family = "IosevkaTerm Nerd Font"
+font-size = 13
+
+theme = light:Adwaita,dark:Adwaita Dark
+selection-invert-fg-bg = true
+background = #161616
+
+mouse-hide-while-typing = true
+
+keybind = ctrl+shift+alt+h=new_split:down
+keybind = ctrl+shift+alt+v=new_split:right
+
+keybind = ctrl+alt+h=goto_split:left
+keybind = ctrl+alt+l=goto_split:right
+keybind = ctrl+alt+k=goto_split:top
+keybind = ctrl+alt+j=goto_split:bottom
