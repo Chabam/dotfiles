@@ -14,3 +14,4 @@ vscode/.config/Code/User/*
 scripts/.scripts/private/*
 scripts/.scripts/git-prompt.sh
 lazy-lock.json
+fish/fish_variables
