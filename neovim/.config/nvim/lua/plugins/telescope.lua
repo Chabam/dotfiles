@@ -11,20 +11,18 @@ return { -- Telescope
                 return vim.fn.executable("make") == 1
             end,
         },
-        { "nvim-telescope/telescope-ui-select.nvim" },
-        { "nvim-tree/nvim-web-devicons",            enabled = vim.g.have_nerd_font },
+        { "nvim-tree/nvim-web-devicons", enabled = vim.g.have_nerd_font },
     },
     config = function()
         require("telescope").setup({
-            extensions = {
-                ["ui-select"] = {
-                    require("telescope.themes").get_dropdown(),
+            pickers = {
+                find_files = {
+                    hidden = true,
                 },
             },
         })
 
         pcall(require("telescope").load_extension, "fzf")
-        pcall(require("telescope").load_extension, "ui-select")
 
         local builtin = require("telescope.builtin")
         local action_state = require("telescope.actions.state")

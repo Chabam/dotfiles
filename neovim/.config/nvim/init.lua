@@ -48,10 +48,6 @@ vim.opt.list = false
 vim.opt.listchars = { tab = "» ", trail = "·", space = "·", nbsp = "␣" }
 
 vim.opt.inccommand = "split"
-
-vim.opt.cursorline = true
-
-
 vim.opt.scrolloff = 10
 
 vim.keymap.set("n", "<Esc>", "<cmd>nohlsearch<CR>")
@@ -87,7 +83,8 @@ end
 
 vim.cmd.highlight("DiagnosticUnderlineError guisp=#ff0000 gui=undercurl")
 
-vim.keymap.set("t", "<Esc><Esc>", "<C-\\><C-n>", { desc = "Exit terminal mode" })
+
+require("open_terminal")
 
 vim.api.nvim_create_autocmd("TextYankPost", {
   desc = "Highlight when yanking (copying) text",
@@ -110,7 +107,7 @@ if vim.g.neovide then
   end)
 end
 
-vim.lsp.set_log_level("off")
+-- vim.lsp.set_log_level("off")
 
 local lazypath = vim.fn.stdpath("data") .. "/lazy/lazy.nvim"
 if not (vim.uv or vim.loop).fs_stat(lazypath) then
@@ -123,34 +120,22 @@ end ---@diagnostic disable-next-line: undefined-field
 vim.opt.rtp:prepend(lazypath)
 
 require("lazy").setup({
-  "tpope/vim-sleuth", -- Detect tabstop and shiftwidth automatically
-  {
-    "navarasu/onedark.nvim",
-    priority = 1000,
-    opts = {
-      transparent = true,
-      highlights = {
-        MatchParen = { fg = "$yellow", bg = "$none", fmt = "bold" },
-      },
-    },
-    init = function()
-      vim.cmd.colorscheme("onedark")
-    end,
-  },
+  "tpope/vim-sleuth",
+  "tpope/vim-surround",
   {
     "folke/todo-comments.nvim",
     event = "VimEnter",
     dependencies = { "nvim-lua/plenary.nvim" },
     opts = { signs = false },
   },
-  require("plugins.indent_line"),
+  require("plugins.colorscheme"),
   require("plugins.gitsigns"),
   require("plugins.autocomplete"),
   require("plugins.autoformat"),
   require("plugins.gitsigns"),
   require("plugins.indent_line"),
   require("plugins.lsp"),
-  require("plugins.mini"),
+  require("plugins.lualine"),
   require("plugins.oil"),
   require("plugins.telescope"),
   require("plugins.treesitter"),
