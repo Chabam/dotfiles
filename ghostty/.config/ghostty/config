@@ -1,9 +1,8 @@
 font-family = "IosevkaTerm Nerd Font"
 font-size = 13
 
-theme = light:Adwaita,dark:Adwaita Dark
+theme = light:chabam-light,dark:chabam-dark
 selection-invert-fg-bg = true
-background = #161616
 
 mouse-hide-while-typing = true
 
