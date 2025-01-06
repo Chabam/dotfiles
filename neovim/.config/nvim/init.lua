@@ -16,7 +16,7 @@ require("lazy").setup({
     "machakann/vim-sandwich",
     "mg979/vim-visual-multi",
     "HiPhish/rainbow-delimiters.nvim",
-    "tpope/vim-fugitive",
+    "NeogitOrg/neogit",
     {
       "folke/todo-comments.nvim",
       event = "VimEnter",

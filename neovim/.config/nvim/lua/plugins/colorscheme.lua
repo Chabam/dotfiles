@@ -35,7 +35,7 @@ return {
 
                     CmpItemKindDefault       = { fg = "palette.fg2" },
 
-                    CmpItemMenu              = { fg = "palette.fg0", bg = "palette.bg0" },
+                    -- CmpItemMenu              = { fg = "palette.fg0", bg = "palette.bg0" },
                     CmpItemKindKeyword       = { fg = "palette.bg0", bg = "palette.fg1" },
 
                     CmpItemKindVariable      = { fg = "palette.bg0", bg = "syntax.variable" },
