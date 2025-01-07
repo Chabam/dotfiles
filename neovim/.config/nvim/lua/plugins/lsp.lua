@@ -105,9 +105,8 @@ return {
                 racket_langserver = {
                     filetypes = { "racket" },
                 },
-                cmake = {
-                    buildDirectory = "_build",
-                    filetpes = { "cmake" },
+                neocmake = {
+                    filetpes = { "cmake", "CMakeLists.txt" },
                 },
                 lua_ls = {
                     settings = {
@@ -130,7 +129,7 @@ return {
                     "ltex",
                     "pyright",
                     "racket_langserver",
-                    "cmake",
+                    "neocmake",
                     "lua_ls",
                 },
                 handlers = {
