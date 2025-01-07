@@ -88,7 +88,6 @@ return {
 
             local servers = {
                 clangd = {},
-                texlab = {},
                 ltex = {
                     settings = {
                         ltex = {
@@ -101,9 +100,6 @@ return {
                 },
                 pyright = {
                     filetypes = { "python" },
-                },
-                racket_langserver = {
-                    filetypes = { "racket" },
                 },
                 neocmake = {
                     filetpes = { "cmake", "CMakeLists.txt" },
@@ -125,10 +121,8 @@ return {
                 automatic_installation = false,
                 ensure_installed = {
                     "clangd",
-                    "texlab",
                     "ltex",
                     "pyright",
-                    "racket_langserver",
                     "neocmake",
                     "lua_ls",
                 },
