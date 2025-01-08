@@ -4,9 +4,12 @@ return {
         priority = 1000,
         lazy = false,
         opts = {
+            options = {
+                terminal_colors = false,
+            },
             palettes = {
                 dawnfox = {
-                    bg = "#ffffff",
+                    bg1 = "#ffffff",
                 },
             },
             groups = {
@@ -70,6 +73,23 @@ return {
             },
         },
         init = function()
+            vim.g.terminal_color_0  = '#241f31'
+            vim.g.terminal_color_1  = '#c01c28'
+            vim.g.terminal_color_2  = '#2ec27e'
+            vim.g.terminal_color_3  = '#f5c211'
+            vim.g.terminal_color_4  = '#1e78e4'
+            vim.g.terminal_color_5  = '#9841bb'
+            vim.g.terminal_color_6  = '#0ab9dc'
+            vim.g.terminal_color_7  = '#c0bfbc'
+            vim.g.terminal_color_8  = '#5e5c64'
+            vim.g.terminal_color_9  = '#ed333b'
+            vim.g.terminal_color_10 = '#57e389'
+            vim.g.terminal_color_11 = '#f8e45c'
+            vim.g.terminal_color_12 = '#51a1ff'
+            vim.g.terminal_color_13 = '#c061cb'
+            vim.g.terminal_color_14 = '#4fd2fd'
+            vim.g.terminal_color_15 = '#f6f5f4'
+
             vim.cmd.colorscheme("carbonfox")
         end,
     }
