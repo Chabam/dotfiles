@@ -5,7 +5,6 @@ end
 
 
 export SHELL="/bin/fish"
-export TERM="xterm-256color"
 export BROWSER="firefox"
 export EDITOR="nvim"
 export PAGER="less"
