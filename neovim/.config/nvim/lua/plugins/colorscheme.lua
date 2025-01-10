@@ -16,6 +16,9 @@ return {
                 dawnfox = {
                     bg1 = "#ffffff",
                 },
+                carbonfox = {
+                    bg1 = "#1e1e1e",
+                },
             },
             groups = {
                 all = {
