@@ -6,6 +6,7 @@ function fish_prompt --description 'Write out the prompt'
     set -l prompt_status ""
     set -g __fish_git_prompt_show_informative_status true
     set -g __fish_git_prompt_showcolorhints true
+    set -g __fish_git_prompt_showuntrackedfiles true
 
     # Since we display the prompt on a new line allow the directory names to be longer.
     set -q fish_prompt_pwd_dir_length
