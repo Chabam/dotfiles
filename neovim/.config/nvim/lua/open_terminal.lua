@@ -6,4 +6,4 @@ api.nvim_command("autocmd TermOpen * setlocal nonumber")         -- no numbers
 api.nvim_command("autocmd TermOpen * setlocal norelativenumber") -- no numbers
 api.nvim_command("autocmd TermEnter * setlocal signcolumn=no")   -- no sign column
 
-vim.keymap.set('t', '<esc>', "<C-\\><C-n>")                      -- esc to exit insert mode
+vim.keymap.set('t', '<esc><esc>', "<C-\\><C-n>")                      -- esc to exit insert mode
