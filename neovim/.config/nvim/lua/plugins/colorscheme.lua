@@ -6,6 +6,11 @@ return {
         opts = {
             options = {
                 terminal_colors = false,
+                inverse = {
+                    match_paren = true,
+                    visual = true,
+                    search = true,
+                }
             },
             palettes = {
                 dawnfox = {
@@ -14,6 +19,7 @@ return {
             },
             groups = {
                 all = {
+
                     TelescopeBorder          = { fg = "palette.bg0", bg = "palette.bg0" },
                     TelescopePromptBorder    = { fg = "palette.bg2", bg = "palette.bg2" },
                     TelescopePromptNormal    = { fg = "palette.fg1", bg = "palette.bg2" },
@@ -38,7 +44,6 @@ return {
 
                     CmpItemKindDefault       = { fg = "palette.fg2" },
 
-                    -- CmpItemMenu              = { fg = "palette.fg0", bg = "palette.bg0" },
                     CmpItemKindKeyword       = { fg = "palette.bg0", bg = "palette.fg1" },
 
                     CmpItemKindVariable      = { fg = "palette.bg0", bg = "syntax.variable" },

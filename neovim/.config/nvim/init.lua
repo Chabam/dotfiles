@@ -13,10 +13,15 @@ vim.opt.rtp:prepend(lazypath)
 
 require("lazy").setup({
     "tpope/vim-sleuth",
-    "machakann/vim-sandwich",
+    {
+      "kylechui/nvim-surround",
+      version = "*",
+      event = "VeryLazy",
+      opts = {}
+    },
     "mg979/vim-visual-multi",
     "HiPhish/rainbow-delimiters.nvim",
-    "NeogitOrg/neogit",
+    "stevearc/quicker.nvim",
     {
       "folke/todo-comments.nvim",
       event = "VimEnter",
