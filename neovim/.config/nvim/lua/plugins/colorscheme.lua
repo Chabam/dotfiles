@@ -23,6 +23,8 @@ return {
             groups = {
                 all = {
 
+                    Visual                   = { bg = "palette.sel1", style = "reverse" },
+
                     TelescopeBorder          = { fg = "palette.bg0", bg = "palette.bg0" },
                     TelescopePromptBorder    = { fg = "palette.bg2", bg = "palette.bg2" },
                     TelescopePromptNormal    = { fg = "palette.fg1", bg = "palette.bg2" },
