@@ -35,6 +35,9 @@ return {
                 },
                 float = {
                    border = "none",
+                },
+                confirmation = {
+                   border = "none",
                 }
             })
             vim.keymap.set("n", "<leader>-", "<CMD>Oil --float<CR>", { desc = "Open parent directory" })
