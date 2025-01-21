@@ -32,6 +32,7 @@ require("lazy").setup({
     },
     require("plugins.autocomplete"),
     require("plugins.autoformat"),
+    require("plugins.autopairs"),
     require("plugins.colorscheme"),
     require("plugins.debug"),
     require("plugins.gitsigns"),
