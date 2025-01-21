@@ -40,7 +40,6 @@ require("lazy").setup({
     require("plugins.lsp"),
     require("plugins.lualine"),
     require("plugins.neogit"),
-    require("plugins.neotree"),
     require("plugins.multiple_cursors"),
     require("plugins.oil"),
     require("plugins.telescope"),
