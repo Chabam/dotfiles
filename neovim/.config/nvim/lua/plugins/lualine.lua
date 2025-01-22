@@ -15,9 +15,9 @@ return {
             lualine_z = { 'location' }
         },
         tabline = {
-            lualine_a = { { 'filename', path = 3 } },
+            lualine_a = { { 'filename', path = 1, shorting_target = 0 } },
             lualine_y = { 'searchcount', 'selectioncount' },
-            lualine_z = { { 'tabs', mode = 2 }, },
+            lualine_z = { { 'tabs', mode = 2 }, }
         },
     },
 }
