@@ -5,18 +5,19 @@ return {
         options = {
             section_separators = '',
             component_separators = '',
-            always_show_tabline = false,
         },
         sections = {
             lualine_a = { 'mode' },
             lualine_b = { 'branch', 'diff', 'diagnostics' },
-            lualine_c = { 'filename', 'filesize' },
+            lualine_c = { 'filesize' },
             lualine_x = { 'encoding', 'fileformat', 'filetype' },
             lualine_y = { 'progress' },
-            lualine_z = { 'location', 'searchcount', 'selectioncount' }
+            lualine_z = { 'location' }
         },
         tabline = {
-            lualine_a = { 'tabs' },
+            lualine_a = { { 'filename', path = 3 } },
+            lualine_y = { 'searchcount', 'selectioncount' },
+            lualine_z = { { 'tabs', mode = 2 }, },
         },
     },
 }
