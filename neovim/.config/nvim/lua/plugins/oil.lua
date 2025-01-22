@@ -34,11 +34,20 @@ return {
                     signcolumn = "yes:2",
                 },
                 float = {
-                   border = "none",
+                    border = "none",
                 },
                 confirmation = {
-                   border = "none",
-                }
+                    border = "none",
+                },
+                ssh = {
+                    border = "none",
+                },
+                keymaps_help = {
+                    border = "none",
+                },
+                progress = {
+                    border = "none",
+                },
             })
             vim.keymap.set("n", "<leader>-", "<CMD>Oil --float<CR>", { desc = "Open parent directory" })
             vim.keymap.set("n", "-", "<CMD>Oil<CR>", { desc = "Open parent directory" })
