@@ -103,7 +103,11 @@ return {
             vim.g.terminal_color_14 = '#4fd2fd'
             vim.g.terminal_color_15 = '#f6f5f4'
 
-            vim.cmd.colorscheme("carbonfox")
+            if vim.fn.has('macunix') and os.getenv("XDG_CURRENT_DESKTOP") == "GNOME" and os.execute("is-dark-mode.sh") then
+                vim.cmd.colorscheme("dawnfox")
+            else
+                vim.cmd.colorscheme("carbonfox")
+            end
         end,
     }
 }
