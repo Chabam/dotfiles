@@ -20,10 +20,23 @@ return { -- Telescope
                 ["ui-select"] = {
                     require("telescope.themes").get_dropdown(),
                 },
+                fzf = {
+                    fuzzy = true,
+                    override_generic_sorter = true,
+                    override_file_sorter = true,
+                    case_mode = "smart_case",
+                }
+            },
+            defaults = {
+                file_ignore_patterns = { 'node_modules', '.git', '.venv' },
             },
             pickers = {
                 find_files = {
                     hidden = true,
+                    no_ignore = true,
+                },
+                live_grep = {
+                    additional_args = {"--no-ignore"}
                 }
             }
         })
@@ -32,12 +45,11 @@ return { -- Telescope
         pcall(require("telescope").load_extension, "ui-select")
 
         local builtin = require("telescope.builtin")
-        local action_state = require("telescope.actions.state")
         local actions = require("telescope.actions")
 
-        buffer_searcher = function()
+        local buffer_searcher = function()
             builtin.buffers({
-                attach_mappings = function(prompt_bufnr, map)
+                attach_mappings = function(_, map)
                     map("n", "<C-d>", actions.delete_buffer)
                     map("i", "<C-d>", actions.delete_buffer)
 
