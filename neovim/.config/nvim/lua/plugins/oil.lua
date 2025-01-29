@@ -33,21 +33,6 @@ return {
                     winbar = "%!v:lua.get_oil_winbar()",
                     signcolumn = "yes:2",
                 },
-                float = {
-                    border = "none",
-                },
-                confirmation = {
-                    border = "none",
-                },
-                ssh = {
-                    border = "none",
-                },
-                keymaps_help = {
-                    border = "none",
-                },
-                progress = {
-                    border = "none",
-                },
             })
             vim.keymap.set("n", "<leader>-", "<CMD>Oil --float<CR>", { desc = "Open parent directory" })
             vim.keymap.set("n", "-", "<CMD>Oil<CR>", { desc = "Open parent directory" })

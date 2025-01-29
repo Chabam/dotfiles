@@ -30,6 +30,8 @@ require("lazy").setup({
       dependencies = { "nvim-lua/plenary.nvim" },
       opts = { signs = false },
     },
+
+    require("plugins.fzf"),
     require("plugins.autocomplete"),
     require("plugins.autoformat"),
     require("plugins.autopairs"),
@@ -43,7 +45,6 @@ require("lazy").setup({
     require("plugins.neogit"),
     require("plugins.multiple_cursors"),
     require("plugins.oil"),
-    require("plugins.telescope"),
     require("plugins.treesitter"),
     require("plugins.vimtex"),
     require("plugins.which"),

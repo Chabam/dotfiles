@@ -9,9 +9,6 @@ return {
         event = "VeryLazy",
         opts = {
             hint_enable = false,
-            handler_opts = {
-                border = "none"
-            }
         },
         config = function(_, opts) require 'lsp_signature'.setup(opts) end
     },
@@ -21,7 +18,14 @@ return {
             { "williamboman/mason.nvim", config = true },
             "williamboman/mason-lspconfig.nvim",
             "WhoIsSethDaniel/mason-tool-installer.nvim",
-            { "j-hui/fidget.nvim",       opts = { notification = { window = { winblend = 0 } } } },
+            {
+                "j-hui/fidget.nvim",
+                opts = {
+                    notification = {
+                        window = { winblend = 0 }
+                    }
+                }
+            },
             "hrsh7th/cmp-nvim-lsp",
         },
         config = function()
@@ -42,7 +46,7 @@ return {
 
                     map("<leader>rn", vim.lsp.buf.rename, "[R]e[n]ame")
 
-                    map("<leader>ca", vim.lsp.buf.code_action, "[C]ode [A]ction", { "n", "x" })
+                    map("<leader>ca", require("fzf-lua").lsp_code_actions, "[C]ode [A]ction", { "n", "x" })
 
                     map("gD", vim.lsp.buf.declaration, "[G]oto [D]eclaration")
                     map("gH", function()
