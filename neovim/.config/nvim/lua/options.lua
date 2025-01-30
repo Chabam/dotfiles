@@ -37,6 +37,7 @@ vim.opt.ignorecase = true
 vim.opt.smartcase = true
 
 vim.opt.signcolumn = "yes"
+vim.opt.updatetime = 1000
 
 vim.opt.splitright = true
 vim.opt.splitbelow = true

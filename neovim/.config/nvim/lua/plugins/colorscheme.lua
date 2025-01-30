@@ -93,6 +93,10 @@ return {
                     CmpItemKindEnumMember    = { fg = "palette.bg0", bg = "syntax.ident" },
                     CmpItemKindOperator      = { fg = "palette.bg0", bg = "syntax.operator" },
                     CmpItemKindSnippet       = { fg = "palette.fg2" },
+
+                    LspReferenceText         = { bg = "palette.sel1" },
+                    LspReferenceRead         = { link = "LspReferenceText" },
+                    LspReferenceWrite        = { link = "LspReferenceText" },
                 },
             },
             inverse = {

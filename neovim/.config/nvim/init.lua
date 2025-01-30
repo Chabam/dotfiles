@@ -13,12 +13,7 @@ vim.opt.rtp:prepend(lazypath)
 
 require("lazy").setup({
     "tpope/vim-sleuth",
-    {
-      "kylechui/nvim-surround",
-      version = "*",
-      event = "VeryLazy",
-      opts = {}
-    },
+    "machakann/vim-sandwich",
     "HiPhish/rainbow-delimiters.nvim",
     {
       "stevearc/quicker.nvim",
@@ -43,7 +38,6 @@ require("lazy").setup({
     require("plugins.lsp"),
     require("plugins.lualine"),
     require("plugins.neogit"),
-    require("plugins.multiple_cursors"),
     require("plugins.oil"),
     require("plugins.treesitter"),
     require("plugins.vimtex"),
