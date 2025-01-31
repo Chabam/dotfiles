@@ -34,7 +34,7 @@ return {
                     PmenuSbar                = { bg = "palette.sel1" },
                     PmenuThumb               = { bg = "palette.fg3" },
 
-                    FzfLuaNormal             = { fg = "palette.comment", bg = "palette.bg0" },
+                    FzfLuaNormal             = { fg = "palette.fg1", bg = "palette.bg0" },
                     FzfLuaPreviewNormal      = { fg = "palette.fg1", bg = "palette.bg0" },
                     FzfLuaDirPart            = { fg = "palette.magenta" },
                     FzfLuaFilePart           = { fg = "palette.fg1" },
@@ -54,9 +54,10 @@ return {
                     FzfLuaFzfMatch           = { fg = "palette.fg1", bg = "palette.bg0" },
                     FzfLuaFzfHeader          = { fg = "palette.fg1", bg = "palette.bg0" },
                     FzfLuaFzfGutter          = { bg = "palette.bg0" },
-                    FzfLuaFzfNormal          = { fg = "palette.comment" },
+                    FzfLuaFzfNormal          = { fg = "palette.fg1" },
                     FzfLuaFzfQuery           = { fg = "palette.fg1" },
                     FzfLuaFzfMarker          = { fg = "palette.pink" },
+                    FzfLuaFzfPrompt          = { fg = "palette.pink" },
                     FzfLuaHeaderBind         = { fg = "palette.blue" },
 
                     CmpDocumentation         = { fg = "palette.fg1", bg = "palette.bg0" },
