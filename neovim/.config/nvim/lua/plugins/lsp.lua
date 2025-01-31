@@ -1,5 +1,5 @@
 return {
-    { -- LSP Plugins
+    {
         "folke/lazydev.nvim",
         ft = "lua",
         opts = {},
@@ -12,7 +12,7 @@ return {
         },
         config = function(_, opts) require 'lsp_signature'.setup(opts) end
     },
-    { -- LSP
+    {
         "neovim/nvim-lspconfig",
         dependencies = {
             { "williamboman/mason.nvim", config = true },
@@ -133,9 +133,11 @@ return {
                 },
                 handlers = {
                     function(server_name)
-                        local server = servers[server_name] or {}
-                        server.capabilities = vim.tbl_deep_extend("force", {}, capabilities, server.capabilities or {})
-                        require("lspconfig")[server_name].setup(server)
+                        local server_config = servers[server_name] or {}
+                        server_config.capabilities = vim.tbl_deep_extend("force", {}, capabilities, server_config.capabilities or {})
+
+                        local server = require("lspconfig")[server_name]
+                        server.setup(server_config)
                     end,
                 },
             })

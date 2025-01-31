@@ -47,6 +47,9 @@ return {
                     FzfLuaCursorLine         = { bg = "palette.bg1" },
                     FzfLuaScrollBorderEmpty  = { bg = "palette.bg1" },
                     FzfLuaScrollBorderFull   = { bg = "palette.bg2" },
+                    FzfLuaBufNr              = { fg = "palette.green" },
+                    FzfLuaBufLineNr          = { fg = "palette.blue" },
+                    FzfLuaBufFlagCur         = { fg = "palette.pink" },
 
                     FzfLuaFzfMatch           = { fg = "palette.fg1", bg = "palette.bg0" },
                     FzfLuaFzfHeader          = { fg = "palette.fg1", bg = "palette.bg0" },
@@ -97,6 +100,10 @@ return {
                     LspReferenceText         = { bg = "palette.sel1" },
                     LspReferenceRead         = { link = "LspReferenceText" },
                     LspReferenceWrite        = { link = "LspReferenceText" },
+
+
+                    TreesitterContext = { bg = "palette.bg3" },
+                    TreesitterContextLineNumberBottom = { bg = "palette.bg1" },
                 },
             },
             inverse = {
