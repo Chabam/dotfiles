@@ -79,11 +79,35 @@ return {
       require('mason-nvim-dap').setup {
         -- Makes a best effort to setup the various debuggers with
         -- reasonable debug configurations
-        automatic_installation = false,
+        automatic_installation = true,
 
         -- You can provide additional configuration to the handlers,
         -- see mason-nvim-dap README for more information
-        handlers = {},
+        handlers = {
+          cppdbg = function(config)
+            config.configurations = {
+              {
+                name = 'Launch file',
+                type = 'cppdbg',
+                request = 'launch',
+                program = function()
+                  return vim.fn.input('Path to executable: ', vim.fn.getcwd() .. '/', 'file')
+                end,
+                cwd = '${workspaceFolder}',
+                stopAtEntry = true,
+              },
+              {
+                name = 'Attach to process',
+                program = '/usr/bin/gdb',
+                type = 'cppdbg',
+                request = 'attach',
+                cwd = '${workspaceFolder}',
+                processId = '${command:pickProcess}'
+              }
+            }
+            require("mason-nvim-dap").default_setup(config)
+          end
+        },
 
         -- You'll need to check that you have the required things installed
         -- online, please don't ask me how to install them :)

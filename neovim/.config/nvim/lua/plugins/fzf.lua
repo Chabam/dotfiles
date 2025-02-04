@@ -9,6 +9,7 @@ return {
                 backdrop = false
             }
         })
+        fzf.register_ui_select()
 
         vim.keymap.set("n", "<leader>sh", fzf.helptags, { desc = "[S]earch [H]elp" })
         vim.keymap.set("n", "<leader>sk", fzf.keymaps, { desc = "[S]earch [K]eymaps" })
