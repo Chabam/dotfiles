@@ -7,11 +7,16 @@ return {
             "ibhagwan/fzf-lua",
         },
         config = true,
-        opts = {
-            kind = "auto",
-            integrations = {
-                diffview = true,
-            },
-        }
+        init = function()
+            local neogit = require("neogit")
+
+            vim.keymap.set("n", "<leader>g", neogit.open, { desc = "Open Neo[G]it" })
+            neogit.setup({
+                kind = "auto",
+                integrations = {
+                    diffview = true,
+                },
+            })
+        end
     }
 }
