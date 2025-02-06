@@ -38,10 +38,22 @@ return {
                     end
                     local fzf = require("fzf-lua")
 
-                    map("gd", fzf.lsp_definitions, "[G]oto [D]efinition")
-                    map("gr", fzf.lsp_references, "[G]oto [R]eferences")
-                    map("gI", fzf.lsp_implementations, "[G]oto [I]mplementation")
-                    map("<leader>D", fzf.lsp_typedefs, "Type [D]efinition")
+                    local lsp_fzf_opts = {
+                        jump_to_single_result = true
+                    }
+
+                    map("gd", function()
+                        fzf.lsp_definitions(lsp_fzf_opts)
+                    end, "[G]oto [D]efinition")
+                    map("gr", function()
+                        fzf.lsp_references(lsp_fzf_opts)
+                    end, "[G]oto [R]eferences")
+                    map("gI", function()
+                        fzf.lsp_implementations(lsp_fzf_opts)
+                    end, "[G]oto [I]mplementation")
+                    map("<leader>D", function()
+                        fzf.lsp_typedefs(lsp_fzf_opts)
+                    end, "Type [D]efinition")
                     map("<leader>ds", fzf.lsp_document_symbols, "[D]ocument [S]ymbols")
                     map("<leader>ws", fzf.lsp_workspace_symbols, "[W]orkspace [S]ymbols")
 
@@ -134,7 +146,8 @@ return {
                 handlers = {
                     function(server_name)
                         local server_config = servers[server_name] or {}
-                        server_config.capabilities = vim.tbl_deep_extend("force", {}, capabilities, server_config.capabilities or {})
+                        server_config.capabilities = vim.tbl_deep_extend("force", {}, capabilities,
+                            server_config.capabilities or {})
 
                         local server = require("lspconfig")[server_name]
                         server.setup(server_config)
