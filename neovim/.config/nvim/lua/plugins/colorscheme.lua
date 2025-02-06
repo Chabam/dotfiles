@@ -105,6 +105,9 @@ return {
 
                     TreesitterContext = { bg = "palette.bg3" },
                     TreesitterContextLineNumberBottom = { bg = "palette.bg1" },
+
+                    NeogitDiffHeader = { fg = "palette.fg1", bg = "palette.sel1" },
+                    NeogitDiffContext = { fg = "palette.comment", bg = "palette.sel1" }
                 },
             },
             inverse = {
