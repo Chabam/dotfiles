@@ -16,6 +16,7 @@ return {
                 integrations = {
                     diffview = true,
                 },
+                disable_context_highlighting = true
             })
         end
     }

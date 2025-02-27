@@ -105,9 +105,16 @@ return {
 					TreesitterContext = { bg = "palette.bg3" },
 					TreesitterContextLineNumberBottom = { bg = "palette.bg1" },
 
-					NeogitDiffContextCursor = { fg = "palette.fg1", bg = "palette.sel1" },
-					NeogitDiffHeader = { fg = "palette.fg1", bg = "palette.sel1" },
-					NeogitDiffContext = { fg = "palette.comment", bg = "palette.sel1" },
+					NeogitChangeModified = { fg = "palette.blue" },
+					NeogitChangeDeleted = { fg = "palette.red" },
+					NeogitChangeAdded = { fg = "palette.green" },
+					NeogitSectionHeader = { fg = "palette.magenta" },
+					NeogitDiffAddCursor = { bg = "NONE" },
+					NeogitDiffDeleteCursor = { bg = "NONE" },
+					NeogitDiffContext = { bg = "NONE" },
+					NeogitDiffContextCursor = { bg = "NONE" },
+
+					LspSignatureActiveParameter = { bg = "palette.sel1", fg = "NONE" }
 				},
 			},
 			inverse = {
