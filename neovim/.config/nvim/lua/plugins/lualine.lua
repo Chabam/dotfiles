@@ -14,6 +14,9 @@ return {
             lualine_y = { 'progress' },
             lualine_z = { 'location' }
         },
+        inactive_sections = {
+            lualine_c = { { 'filename', path = 1 } },
+        },
         tabline = {
             lualine_a = { { 'filename', path = 1, shorting_target = 0 } },
             lualine_y = { 'searchcount', 'selectioncount' },
