@@ -37,7 +37,7 @@ require("lazy").setup({
     require("plugins.indent_line"),
     require("plugins.lsp"),
     require("plugins.lualine"),
-    require("plugins.neogit"),
+    require("plugins.diffview"),
     require("plugins.oil"),
     require("plugins.treesitter"),
     require("plugins.vimtex"),
