@@ -110,12 +110,12 @@ return {
 				ltex = {
 					settings = {
 						ltex = {
-							language = "fr",
+							language = "auto",
 							completionEnabled = true,
 						},
 					},
-					filetypes = { "tex", "markdown" },
-					enabled = { "tex", "markdown" },
+					filetypes = { "tex", "markdown", "text" },
+					enabled = { "tex", "markdown", "text" },
 				},
 				pyright = {
 					filetypes = { "python" },
