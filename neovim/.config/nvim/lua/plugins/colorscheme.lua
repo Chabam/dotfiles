@@ -3,108 +3,115 @@ return {
 		"EdenEast/nightfox.nvim",
 		priority = 1000,
 		lazy = false,
-		opts = {
-			options = {
-				terminal_colors = false,
-				inverse = {
-					match_paren = true,
-				},
-			},
-			palettes = {
-				dawnfox = {
-					bg1 = "#ffffff",
-				},
-				carbonfox = {
-					bg1 = "#1e1e1e",
-				},
-			},
-			groups = {
-				all = {
-					FloatBorder = { fg = "palette.bg0", bg = "palette.bg0" },
+        config = function()
+            local Color = require("nightfox.lib.color")
+            local palette = require("nightfox.palette").load("carbonfox")
+            require("nightfox").setup({
+                options = {
+                    terminal_colors = false,
+                    inverse = {
+                        match_paren = true,
+                    },
+                },
+                palettes = {
+                    dawnfox = {
+                        bg1 = "#ffffff",
+                    },
+                    carbonfox = {
+                        bg1 = "#1e1e1e",
+                    },
+                },
+                groups = {
+                    carbonfox = {
+                        visual = { bg = Color.from_hex(palette.blue.dim):blend(Color.from_hex(palette.bg1), 0.7) }
+                    },
+                    all = {
+                        FloatBorder = { fg = "palette.bg0", bg = "palette.bg0" },
 
-					Pmenu = { fg = "palette.comment", bg = "palette.bg2" },
-					PmenuSel = { bg = "palette.bg3", style = "bold" },
-					PmenuSbar = { bg = "palette.sel1" },
-					PmenuThumb = { bg = "palette.fg3" },
+                        Pmenu = { fg = "palette.comment", bg = "palette.bg2" },
+                        PmenuSel = { bg = "palette.bg3", style = "bold" },
+                        PmenuSbar = { bg = "palette.sel1" },
+                        PmenuThumb = { bg = "palette.fg3" },
 
-					FzfLuaNormal = { fg = "palette.fg1", bg = "palette.bg0" },
-					FzfLuaPreviewNormal = { fg = "palette.fg1", bg = "palette.bg0" },
-					FzfLuaDirPart = { fg = "palette.magenta" },
-					FzfLuaFilePart = { fg = "palette.fg1" },
-					FzfLuaLivePrompt = { fg = "palette.fg1", bg = "palette.bg0" },
-					FzfLuaBorder = { fg = "palette.bg0", bg = "palette.bg0" },
-					FzfLuaTitle = { fg = "palette.bg0", bg = "palette.green.bright" },
-					FzfLuaPreviewTitle = { fg = "palette.bg0", bg = "palette.pink" },
-					FzfLuaCursor = { fg = "palette.fg1", bg = "palette.bg0" },
-					FzfLuaCursorLineNr = { fg = "palette.red", bg = "palette.bg0" },
-					FzfLuaCursorLine = { bg = "palette.bg1" },
-					FzfLuaScrollBorderEmpty = { bg = "palette.bg1" },
-					FzfLuaScrollBorderFull = { bg = "palette.bg2" },
-					FzfLuaBufNr = { fg = "palette.green" },
-					FzfLuaBufLineNr = { fg = "palette.blue" },
-					FzfLuaBufFlagCur = { fg = "palette.pink" },
+                        FzfLuaNormal = { fg = "palette.fg1", bg = "palette.bg0" },
+                        FzfLuaPreviewNormal = { fg = "palette.fg1", bg = "palette.bg0" },
+                        FzfLuaDirPart = { fg = "palette.magenta" },
+                        FzfLuaFilePart = { fg = "palette.fg1" },
+                        FzfLuaLivePrompt = { fg = "palette.fg1", bg = "palette.bg0" },
+                        FzfLuaBorder = { fg = "palette.bg0", bg = "palette.bg0" },
+                        FzfLuaTitle = { fg = "palette.bg0", bg = "palette.green.bright" },
+                        FzfLuaPreviewTitle = { fg = "palette.bg0", bg = "palette.pink" },
+                        FzfLuaCursor = { fg = "palette.fg1", bg = "palette.bg0" },
+                        FzfLuaCursorLineNr = { fg = "palette.red", bg = "palette.bg0" },
+                        FzfLuaCursorLine = { bg = "palette.bg1" },
+                        FzfLuaScrollBorderEmpty = { bg = "palette.bg1" },
+                        FzfLuaScrollBorderFull = { bg = "palette.bg2" },
+                        FzfLuaBufNr = { fg = "palette.green" },
+                        FzfLuaBufLineNr = { fg = "palette.blue" },
+                        FzfLuaBufFlagCur = { fg = "palette.pink" },
 
-					FzfLuaFzfMatch = { fg = "palette.fg1", bg = "palette.bg0" },
-					FzfLuaFzfHeader = { fg = "palette.fg1", bg = "palette.bg0" },
-					FzfLuaFzfGutter = { bg = "palette.bg0" },
-					FzfLuaFzfNormal = { fg = "palette.fg1" },
-					FzfLuaFzfQuery = { fg = "palette.fg1" },
-					FzfLuaFzfMarker = { fg = "palette.pink" },
-					FzfLuaFzfPrompt = { fg = "palette.pink" },
-					FzfLuaHeaderBind = { fg = "palette.blue" },
+                        FzfLuaFzfMatch = { fg = "palette.fg1", bg = "palette.bg0" },
+                        FzfLuaFzfHeader = { fg = "palette.fg1", bg = "palette.bg0" },
+                        FzfLuaFzfGutter = { bg = "palette.bg0" },
+                        FzfLuaFzfNormal = { fg = "palette.fg1" },
+                        FzfLuaFzfQuery = { fg = "palette.fg1" },
+                        FzfLuaFzfMarker = { fg = "palette.pink" },
+                        FzfLuaFzfPrompt = { fg = "palette.pink" },
+                        FzfLuaHeaderBind = { fg = "palette.blue" },
 
-					CmpDocumentation = { fg = "palette.fg1", bg = "palette.bg0" },
-					CmpDocumentationBorder = { fg = "palette.bg2", bg = "palette.bg0" },
-					CmpItemAbbr = { fg = "palette.comment" },
-					CmpItemAbbrDeprecated = { fg = "syntax.dep", style = "strikethrough" },
-					CmpItemAbbrMatch = { fg = "palette.fg1" },
-					CmpItemAbbrMatchFuzzy = { fg = "palette.fg1" },
+                        CmpDocumentation = { fg = "palette.fg1", bg = "palette.bg0" },
+                        CmpDocumentationBorder = { fg = "palette.bg2", bg = "palette.bg0" },
+                        CmpItemAbbr = { fg = "palette.comment" },
+                        CmpItemAbbrDeprecated = { fg = "syntax.dep", style = "strikethrough" },
+                        CmpItemAbbrMatch = { fg = "palette.fg1" },
+                        CmpItemAbbrMatchFuzzy = { fg = "palette.fg1" },
 
-					CmpItemKind = { link = "CmpItemKindFunction" },
-					CmpItemKindDefault = { fg = "palette.fg2" },
+                        CmpItemKind = { link = "CmpItemKindFunction" },
+                        CmpItemKindDefault = { fg = "palette.fg2" },
 
-					CmpItemKindKeyword = { fg = "palette.bg0", bg = "palette.fg1" },
+                        CmpItemKindKeyword = { fg = "palette.bg0", bg = "palette.fg1" },
 
-					CmpItemKindVariable = { fg = "palette.bg0", bg = "syntax.variable" },
-					CmpItemKindConstant = { fg = "palette.bg0", bg = "syntax.const" },
-					CmpItemKindReference = { fg = "palette.bg0", bg = "syntax.keyword" },
-					CmpItemKindValue = { fg = "palette.bg0", bg = "syntax.keyword" },
+                        CmpItemKindVariable = { fg = "palette.bg0", bg = "syntax.variable" },
+                        CmpItemKindConstant = { fg = "palette.bg0", bg = "syntax.const" },
+                        CmpItemKindReference = { fg = "palette.bg0", bg = "syntax.keyword" },
+                        CmpItemKindValue = { fg = "palette.bg0", bg = "syntax.keyword" },
 
-					CmpItemKindFunction = { fg = "palette.bg0", bg = "syntax.func" },
-					CmpItemKindMethod = { fg = "palette.bg0", bg = "syntax.func" },
-					CmpItemKindConstructor = { fg = "palette.bg0", bg = "syntax.func" },
+                        CmpItemKindFunction = { fg = "palette.bg0", bg = "syntax.func" },
+                        CmpItemKindMethod = { fg = "palette.bg0", bg = "syntax.func" },
+                        CmpItemKindConstructor = { fg = "palette.bg0", bg = "syntax.func" },
 
-					CmpItemKindInterface = { fg = "palette.bg0", bg = "syntax.const" },
-					CmpItemKindEvent = { fg = "palette.bg0", bg = "syntax.const" },
-					CmpItemKindEnum = { fg = "palette.bg0", bg = "syntax.const" },
-					CmpItemKindUnit = { fg = "palette.bg0", bg = "syntax.const" },
+                        CmpItemKindInterface = { fg = "palette.bg0", bg = "syntax.const" },
+                        CmpItemKindEvent = { fg = "palette.bg0", bg = "syntax.const" },
+                        CmpItemKindEnum = { fg = "palette.bg0", bg = "syntax.const" },
+                        CmpItemKindUnit = { fg = "palette.bg0", bg = "syntax.const" },
 
-					CmpItemKindClass = { fg = "palette.bg0", bg = "syntax.type" },
-					CmpItemKindStruct = { fg = "palette.bg0", bg = "syntax.type" },
+                        CmpItemKindClass = { fg = "palette.bg0", bg = "syntax.type" },
+                        CmpItemKindStruct = { fg = "palette.bg0", bg = "syntax.type" },
 
-					CmpItemKindModule = { fg = "palette.bg0", bg = "syntax.ident" },
+                        CmpItemKindModule = { fg = "palette.bg0", bg = "syntax.ident" },
 
-					CmpItemKindProperty = { fg = "palette.bg0", bg = "syntax.ident" },
-					CmpItemKindField = { fg = "palette.bg0", bg = "syntax.ident" },
-					CmpItemKindTypeParameter = { fg = "palette.bg0", bg = "syntax.ident" },
-					CmpItemKindEnumMember = { fg = "palette.bg0", bg = "syntax.ident" },
-					CmpItemKindOperator = { fg = "palette.bg0", bg = "syntax.operator" },
-					CmpItemKindSnippet = { fg = "palette.fg2" },
+                        CmpItemKindProperty = { fg = "palette.bg0", bg = "syntax.ident" },
+                        CmpItemKindField = { fg = "palette.bg0", bg = "syntax.ident" },
+                        CmpItemKindTypeParameter = { fg = "palette.bg0", bg = "syntax.ident" },
+                        CmpItemKindEnumMember = { fg = "palette.bg0", bg = "syntax.ident" },
+                        CmpItemKindOperator = { fg = "palette.bg0", bg = "syntax.operator" },
+                        CmpItemKindSnippet = { fg = "palette.fg2" },
 
-					LspReferenceText = { bg = "palette.sel1" },
-					LspReferenceRead = { link = "LspReferenceText" },
-					LspReferenceWrite = { link = "LspReferenceText" },
+                        LspReferenceText = { bg = "palette.sel1" },
+                        LspReferenceRead = { link = "LspReferenceText" },
+                        LspReferenceWrite = { link = "LspReferenceText" },
 
-					TreesitterContext = { bg = "palette.bg3" },
-					TreesitterContextLineNumberBottom = { bg = "palette.bg1" },
+                        TreesitterContext = { bg = "palette.bg3" },
+                        TreesitterContextLineNumberBottom = { bg = "palette.bg1" },
 
-					LspSignatureActiveParameter = { bg = "palette.sel1", fg = "NONE" }
-				},
-			},
-			inverse = {
-				match_paren = true,
-			},
-		},
+                        LspSignatureActiveParameter = { bg = "palette.sel1", fg = "NONE" }
+                    },
+                },
+                inverse = {
+                    match_paren = true,
+                },
+            })
+        end,
 		init = function()
 			vim.g.terminal_color_0 = "#241f31"
 			vim.g.terminal_color_1 = "#c01c28"
