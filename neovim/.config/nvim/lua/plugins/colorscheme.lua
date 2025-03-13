@@ -8,8 +8,6 @@ return {
 				terminal_colors = false,
 				inverse = {
 					match_paren = true,
-					visual = true,
-					search = true,
 				},
 			},
 			palettes = {
@@ -22,11 +20,6 @@ return {
 			},
 			groups = {
 				all = {
-
-					Visual = { bg = "palette.sel1", style = "reverse" },
-
-					MultiCursor = { link = "Visual" },
-					MultiCursorMain = { link = "Visual" },
 					FloatBorder = { fg = "palette.bg0", bg = "palette.bg0" },
 
 					Pmenu = { fg = "palette.comment", bg = "palette.bg2" },
