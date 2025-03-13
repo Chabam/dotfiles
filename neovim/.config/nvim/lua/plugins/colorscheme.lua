@@ -23,9 +23,14 @@ return {
                 },
                 groups = {
                     carbonfox = {
-                        visual = { bg = Color.from_hex(palette.blue.dim):blend(Color.from_hex(palette.bg1), 0.7) }
+                        Visual = { bg = Color.from_hex(palette.blue.dim):blend(Color.from_hex(palette.bg1), 0.7) }
                     },
                     all = {
+                        Search = { link = "Visual" },
+                        IncSearch = { link = "Visual" },
+                        CurSearch = { style = "reverse" },
+
+                        Substitute = { link = "Visual" },
                         FloatBorder = { fg = "palette.bg0", bg = "palette.bg0" },
 
                         Pmenu = { fg = "palette.comment", bg = "palette.bg2" },
@@ -97,7 +102,7 @@ return {
                         CmpItemKindOperator = { fg = "palette.bg0", bg = "syntax.operator" },
                         CmpItemKindSnippet = { fg = "palette.fg2" },
 
-                        LspReferenceText = { bg = "palette.sel1" },
+                        LspReferenceText = { link = "Visual" },
                         LspReferenceRead = { link = "LspReferenceText" },
                         LspReferenceWrite = { link = "LspReferenceText" },
 
