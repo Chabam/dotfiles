@@ -4,8 +4,6 @@ return {
 		priority = 1000,
 		lazy = false,
         config = function()
-            local Color = require("nightfox.lib.color")
-            local palette = require("nightfox.palette").load("carbonfox")
             require("nightfox").setup({
                 options = {
                     terminal_colors = false,
@@ -23,12 +21,16 @@ return {
                 },
                 groups = {
                     carbonfox = {
-                        Visual = { bg = Color.from_hex(palette.blue.dim):blend(Color.from_hex(palette.bg1), 0.7) }
+                        Visual = { bg = "#2C394E" },
+                        CurSearch = { bg = "#5F84C4" },
+                    },
+                    dawnfox = {
+                        Visual = { bg = "#DDEAFF" },
+                        CurSearch = { bg = "#9ABFFF" },
                     },
                     all = {
                         Search = { link = "Visual" },
                         IncSearch = { link = "Visual" },
-                        CurSearch = { style = "reverse" },
 
                         Substitute = { link = "Visual" },
                         FloatBorder = { fg = "palette.bg0", bg = "palette.bg0" },
