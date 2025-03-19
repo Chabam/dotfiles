@@ -17,7 +17,7 @@ return {
             notify_on_error = false,
             formatters_by_ft = {
                 lua = { "stylua" },
-                cpp = { "clangformat" },
+                cpp = { "clang_format" },
             },
             formatters = {
                 stylua = {
@@ -26,6 +26,9 @@ return {
                         "Spaces",
                     },
                 },
+                clang_format = {
+                    prepend_args = { "--style=file", "--fallback-style=Microsoft"}
+                }
             },
         },
     },

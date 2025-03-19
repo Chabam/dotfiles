@@ -93,6 +93,10 @@ return {
                 program = function()
                   return vim.fn.input('Path to executable: ', vim.fn.getcwd() .. '/', 'file')
                 end,
+                args = function ()
+                  local args_string = vim.fn.input("Arguments: ")
+                  return vim.split(args_string, " ")
+                end,
                 cwd = '${workspaceFolder}',
               },
               {
