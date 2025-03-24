@@ -30,7 +30,7 @@ return {
                     },
                     all = {
                         Search = { link = "Visual" },
-                        IncSearch = { link = "Visual" },
+                        IncSearch = { link = "CurSearch" },
 
                         Substitute = { link = "Visual" },
                         FloatBorder = { fg = "palette.bg0", bg = "palette.bg0" },
