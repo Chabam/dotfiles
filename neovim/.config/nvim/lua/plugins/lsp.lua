@@ -5,16 +5,6 @@ return {
 		opts = {},
 	},
 	{
-		"ray-x/lsp_signature.nvim",
-		event = "VeryLazy",
-		opts = {
-			hint_enable = false,
-		},
-		config = function(_, opts)
-			require("lsp_signature").setup(opts)
-		end,
-	},
-	{
 		"neovim/nvim-lspconfig",
 		dependencies = {
 			{ "williamboman/mason.nvim", config = true },
@@ -28,7 +18,6 @@ return {
 					},
 				},
 			},
-			"hrsh7th/cmp-nvim-lsp",
 		},
 		config = function()
 			vim.api.nvim_create_autocmd("LspAttach", {
@@ -101,10 +90,6 @@ return {
 				end,
 			})
 
-			local capabilities = vim.lsp.protocol.make_client_capabilities()
-			capabilities = vim.tbl_deep_extend("force", capabilities, require("cmp_nvim_lsp").default_capabilities())
-			capabilities.textDocument.completion.completionItem.snippetSupport = false
-
 			local servers = {
 				clangd = {},
 				ltex = {
@@ -135,6 +120,7 @@ return {
 				},
 			}
 
+			local blink_cmp = require('blink.cmp')
 			require("mason").setup()
 			require("mason-lspconfig").setup({
 				automatic_installation = false,
@@ -148,8 +134,7 @@ return {
 				handlers = {
 					function(server_name)
 						local server_config = servers[server_name] or {}
-						server_config.capabilities =
-							vim.tbl_deep_extend("force", {}, capabilities, server_config.capabilities or {})
+						server_config.capabilities = blink_cmp.get_lsp_capabilities(server_config.capabilities)
 
 						local server = require("lspconfig")[server_name]
 						server.setup(server_config)

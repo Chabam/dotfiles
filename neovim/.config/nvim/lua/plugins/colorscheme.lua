@@ -66,43 +66,43 @@ return {
                         FzfLuaFzfPrompt = { fg = "palette.pink" },
                         FzfLuaHeaderBind = { fg = "palette.blue" },
 
-                        CmpDocumentation = { fg = "palette.fg1", bg = "palette.bg0" },
-                        CmpDocumentationBorder = { fg = "palette.bg2", bg = "palette.bg0" },
-                        CmpItemAbbr = { fg = "palette.comment" },
-                        CmpItemAbbrDeprecated = { fg = "syntax.dep", style = "strikethrough" },
-                        CmpItemAbbrMatch = { fg = "palette.fg1" },
-                        CmpItemAbbrMatchFuzzy = { fg = "palette.fg1" },
+                        BlinkCmpDoc = { fg = "palette.fg1", bg = "palette.bg0" },
+                        BlinkDocBorder = { fg = "palette.bg2", bg = "palette.bg0" },
+                        BlinkCmpAbbr = { fg = "palette.comment" },
+                        BlinkCmpAbbrDeprecated = { fg = "syntax.dep", style = "strikethrough" },
+                        BlinkCmpAbbrMatch = { fg = "palette.fg1" },
+                        BlinkCmpAbbrMatchFuzzy = { fg = "palette.fg1" },
 
-                        CmpItemKind = { link = "CmpItemKindFunction" },
-                        CmpItemKindDefault = { fg = "palette.fg2" },
+                        BlinkCmpKind = { link = "CmpItemKindFunction" },
+                        BlinkCmpKindDefault = { fg = "palette.fg2" },
 
-                        CmpItemKindKeyword = { fg = "palette.bg0", bg = "palette.fg1" },
+                        BlinkCmpKindKeyword = { fg = "palette.fg1" },
 
-                        CmpItemKindVariable = { fg = "palette.bg0", bg = "syntax.variable" },
-                        CmpItemKindConstant = { fg = "palette.bg0", bg = "syntax.const" },
-                        CmpItemKindReference = { fg = "palette.bg0", bg = "syntax.keyword" },
-                        CmpItemKindValue = { fg = "palette.bg0", bg = "syntax.keyword" },
+                        BlinkCmpKindVariable = { fg = "syntax.variable" },
+                        BlinkCmpKindConstant = { fg = "syntax.const" },
+                        BlinkCmpKindReference = { fg = "syntax.keyword" },
+                        BlinkCmpKindValue = { fg = "syntax.keyword" },
 
-                        CmpItemKindFunction = { fg = "palette.bg0", bg = "syntax.func" },
-                        CmpItemKindMethod = { fg = "palette.bg0", bg = "syntax.func" },
-                        CmpItemKindConstructor = { fg = "palette.bg0", bg = "syntax.func" },
+                        BlinkCmpKindFunction = { fg = "syntax.func" },
+                        BlinkCmpKindMethod = { fg = "syntax.func" },
+                        BlinkCmpKindConstructor = { fg = "syntax.func" },
 
-                        CmpItemKindInterface = { fg = "palette.bg0", bg = "syntax.const" },
-                        CmpItemKindEvent = { fg = "palette.bg0", bg = "syntax.const" },
-                        CmpItemKindEnum = { fg = "palette.bg0", bg = "syntax.const" },
-                        CmpItemKindUnit = { fg = "palette.bg0", bg = "syntax.const" },
+                        BlinkCmpKindInterface = { fg = "syntax.const" },
+                        BlinkCmpKindEvent = { fg = "syntax.const" },
+                        BlinkCmpKindEnum = { fg = "syntax.const" },
+                        BlinkCmpKindUnit = { fg = "syntax.const" },
 
-                        CmpItemKindClass = { fg = "palette.bg0", bg = "syntax.type" },
-                        CmpItemKindStruct = { fg = "palette.bg0", bg = "syntax.type" },
+                        BlinkCmpKindClass = { fg = "syntax.type" },
+                        BlinkCmpKindStruct = { fg = "syntax.type" },
 
-                        CmpItemKindModule = { fg = "palette.bg0", bg = "syntax.ident" },
+                        BlinkCmpKindModule = { fg = "syntax.ident" },
 
-                        CmpItemKindProperty = { fg = "palette.bg0", bg = "syntax.ident" },
-                        CmpItemKindField = { fg = "palette.bg0", bg = "syntax.ident" },
-                        CmpItemKindTypeParameter = { fg = "palette.bg0", bg = "syntax.ident" },
-                        CmpItemKindEnumMember = { fg = "palette.bg0", bg = "syntax.ident" },
-                        CmpItemKindOperator = { fg = "palette.bg0", bg = "syntax.operator" },
-                        CmpItemKindSnippet = { fg = "palette.fg2" },
+                        BlinkCmpKindProperty = { fg = "syntax.ident" },
+                        BlinkCmpKindField = { fg = "syntax.ident" },
+                        BlinkCmpKindTypeParameter = { fg = "syntax.ident" },
+                        BlinkCmpKindEnumMember = { fg = "syntax.ident" },
+                        BlinkCmpKindOperator = { fg = "syntax.operator" },
+                        BlinkCmpKindSnippet = { fg = "palette.fg2" },
 
                         LspReferenceText = { link = "Visual" },
                         LspReferenceRead = { link = "LspReferenceText" },
@@ -110,8 +110,6 @@ return {
 
                         TreesitterContext = { bg = "palette.bg3" },
                         TreesitterContextLineNumberBottom = { bg = "palette.bg1" },
-
-                        LspSignatureActiveParameter = { bg = "palette.sel1", fg = "NONE" }
                     },
                 },
                 inverse = {
