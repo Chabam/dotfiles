@@ -119,8 +119,8 @@ return {
 					filetypes = { "lua" },
 				},
 			}
+			local blink_cmp = require("blink-cmp")
 
-			local blink_cmp = require('blink.cmp')
 			require("mason").setup()
 			require("mason-lspconfig").setup({
 				automatic_installation = false,
@@ -135,6 +135,7 @@ return {
 					function(server_name)
 						local server_config = servers[server_name] or {}
 						server_config.capabilities = blink_cmp.get_lsp_capabilities(server_config.capabilities)
+						server_config.capabilities.textDocument.completion.completionItem.snippetSupport = false
 
 						local server = require("lspconfig")[server_name]
 						server.setup(server_config)
