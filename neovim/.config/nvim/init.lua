@@ -27,6 +27,7 @@ require("lazy").setup({
     },
 
     require("plugins.fzf"),
+    require("plugins.snippets"),
     require("plugins.autocomplete"),
     require("plugins.autoformat"),
     require("plugins.autopairs"),
