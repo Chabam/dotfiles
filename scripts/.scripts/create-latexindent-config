@@ -1,0 +1,6 @@
+#!/bin/bash
+
+cat <<EOF > $HOME/.indentconfig
+paths:
+- $HOME/.config/latexindent.yaml
+EOF
