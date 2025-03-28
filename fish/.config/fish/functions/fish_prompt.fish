@@ -4,6 +4,7 @@ function fish_prompt --description 'Write out the prompt'
     set -l status_color (set_color brgreen)
     set -l cwd_color (set_color brblue)
     set -l prompt_status ""
+    set -l container_color (set_color brmagenta)
     set -g __fish_git_prompt_show_informative_status true
     set -g __fish_git_prompt_showcolorhints true
     set -g __fish_git_prompt_showuntrackedfiles true
@@ -21,12 +22,16 @@ function fish_prompt --description 'Write out the prompt'
         set suffix '#'
     end
 
+    if string length --quiet $CONTAINER_ID
+        set container_part "$container_color.$CONTAINER_ID"
+    end
+
     # Color the prompt in red on error
     if test $last_status -ne 0
         set status_color (set_color $fish_color_error)
         set prompt_status $status_color "[" $last_status "]" $normal
     end
 
-    echo -s (prompt_login) ' ' $cwd_color (prompt_pwd) $normal (fish_vcs_prompt) $normal ' ' $prompt_status
+    echo -s (prompt_login) $container_part ' ' $cwd_color (prompt_pwd) $normal (fish_vcs_prompt) $normal ' ' $prompt_status
     echo -n -s $status_color $suffix ' ' $normal
 end
