@@ -39,7 +39,6 @@ require("lazy").setup({
     require("plugins.indent_line"),
     require("plugins.lsp"),
     require("plugins.lualine"),
-    require("plugins.neorg"),
     require("plugins.oil"),
     require("plugins.snippets"),
     require("plugins.treesitter"),
