@@ -1,48 +1,12 @@
 (load-file "~/.emacs.d/chabam-light-theme.el")
 (load-file "~/.emacs.d/chabam-dark-theme.el")
 
-(use-package vertico
-  :custom
-  (vertico-count 10)
-  :init
-  (vertico-mode))
-
-(use-package marginalia
-  :bind (:map minibuffer-local-map
-         ("M-A" . marginalia-cycle))
-  :init
-  (marginalia-mode))
-
-;; Persist history over Emacs restarts. Vertico sorts by history position.
-(use-package savehist
-  :init
-  (savehist-mode))
-
-(use-package better-jumper
-  :bind (("M-<right>" . 'better-jumper-jump-forward)
-         ("M-<left>" . 'better-jumper-jump-backward))
-  :config
-  (setq better-jumper-context 'window
-        better-jumper-new-window-behavior 'copy
-        better-jumper-add-jump-behavior 'replace
-        better-jumper-max-length 100)
-  ;; Functions that should add a mark
-  (dolist (cmd '(next-line previous-line
-                 forward-paragraph backward-paragraph
-                 beginning-of-defun end-of-defun
-                 forward-word backward-word
-                 scroll-up-command scroll-down-command
-                 recenter-top-bottom move-to-window-line-top-bottom
-                 goto-line))
-    (advice-add cmd :before (lambda (&rest _) (better-jumper-set-jump))))
-  :init (better-jumper-mode +1))
-
 (defun chbm-set-fonts ()
   "Set fonts for frame and after theme"
   (when (display-graphic-p)
-    (set-face-attribute 'default nil :family "Iosevka" :height 120)
-    (set-face-attribute 'fixed-pitch nil :family "Iosevka")
-    (set-face-attribute 'variable-pitch nil :family "Iosevka")))
+    (set-face-attribute 'default nil :family "Adwaita Mono" :height 110)
+    (set-face-attribute 'fixed-pitch nil :family "Adwaita Mono")
+    (set-face-attribute 'variable-pitch nil :family "Adwaita Mono")))
 
 (use-package emacs
   :bind (("C-." . duplicate-line)
@@ -51,6 +15,7 @@
          ("S-M-<down>" . windmove-swap-states-down)
          ("S-M-<left>" . windmove-swap-states-left)
          ("S-M-<right>" . windmove-swap-states-right))
+  :ensure nil
   :custom
   (custom-file "~/.emacs.d/custom.el")
   ;; Support opening new minibuffers from inside existing minibuffers.
@@ -78,13 +43,12 @@
          ((org-mode text-mode) . auto-fill-mode))
   :config (require 'ansi-color)
   :init
+  (setq use-package-always-ensure t)
+  (require 'package)
+  (add-to-list 'package-archives '("melpa" . "https://melpa.org/packages/") t)
+  (package-initialize)
 
   ;; Putting files somewhere else
-  (require 'no-littering)
-  (no-littering-theme-backups)
-  (let ((dir (no-littering-expand-var-file-name "lock-files/")))
-    (make-directory dir t)
-    (setq lock-file-name-transforms `((".*" ,dir t))))
   (setq custom-file (expand-file-name "custom.el" user-emacs-directory))
   (unless (file-exists-p custom-file)
     (write-region "" nil custom-file))
@@ -105,7 +69,7 @@
         tab-bar-close-button-show nil
         tab-bar-new-button-show nil
         tab-bar-show 1
-        default-frame-alist '((font . "Iosevka-12")
+        default-frame-alist '((font . "AdwaitaMono-11")
                               (width . 100)
                               (height . 40)
                               (vertical-scroll-bars . nil)))
@@ -114,18 +78,65 @@
   (setq-default standard-indent 4
                 tab-width 4
                 indent-tabs-mode nil)
+  
   ;; Trying to properly set fonts
   (chbm-set-fonts)
   (advice-add 'load-theme :after #'chbm-set-fonts)
   (add-hook 'after-make-frame-functions
-            (lambda (f) (with-selected-frame f (chbm-set-fonts))))
-  )
+            (lambda (f) (with-selected-frame f (chbm-set-fonts)))))
+
+(use-package no-littering
+  :init
+  (require 'no-littering)
+  (no-littering-theme-backups)
+  (let ((dir (no-littering-expand-var-file-name "lock-files/")))
+    (make-directory dir t)
+    (setq lock-file-name-transforms `((".*" ,dir t)))))
+
+(use-package vertico
+  :custom
+  (vertico-count 10)
+  :init
+  (vertico-mode))
+
+(use-package marginalia
+  :bind (:map minibuffer-local-map
+         ("M-A" . marginalia-cycle))
+  :init
+  (marginalia-mode))
+
+;; Persist history over Emacs restarts. Vertico sorts by history position.
+(use-package savehist
+  :ensure nil
+  :init
+  (savehist-mode))
+
+(use-package better-jumper
+  :bind (("M-<right>" . 'better-jumper-jump-forward)
+         ("M-<left>" . 'better-jumper-jump-backward))
+  :config
+  (setq better-jumper-context 'window
+        better-jumper-new-window-behavior 'copy
+        better-jumper-add-jump-behavior 'replace
+        better-jumper-max-length 100)
+  ;; Functions that should add a mark
+  (dolist (cmd '(next-line previous-line
+                 forward-paragraph backward-paragraph
+                 beginning-of-defun end-of-defun
+                 forward-word backward-word
+                 scroll-up-command scroll-down-command
+                 recenter-top-bottom move-to-window-line-top-bottom
+                 goto-line))
+    (advice-add cmd :before (lambda (&rest _) (better-jumper-set-jump))))
+  :init (better-jumper-mode +1))
 
 (use-package compile
+  :ensure nil
   :init
   (add-hook 'compilation-filter-hook 'ansi-color-compilation-filter))
 
 (use-package flymake
+  :ensure nil
   :config (setq flymake-indicator-type 'margins))
 
 (use-package corfu
@@ -150,6 +161,7 @@
   (corfu-popupinfo-mode))
 
 (use-package org-mode
+  :ensure nil
   :mode "\\.org\\'"
   :init
   (require 'org-tempo))
@@ -164,6 +176,7 @@
   (completion-matching-styles '(orderless-regexp)))
 
 (use-package dired
+  :ensure nil
   :commands (dired dired-jump)
   :hook (dired-mode . (lambda () (dired-hide-details-mode 1)))
   :custom
@@ -177,6 +190,7 @@
   (setq-default treesit-font-lock-level 4))
 
 (use-package c-ts-mode
+  :ensure nil
   :bind ("C-c o" . ff-find-other-file)
   :preface
   (defun chbm-indent-style()
@@ -211,6 +225,7 @@
   (diff-hl-flydiff-mode))
 
 (use-package eglot
+  :ensure nil
   :hook ((c++-ts-mode nix-mode python-ts-mode org-mode LaTeX-mode cmake-ts-mode) . eglot-ensure)
   :bind (("C-x C-a" . eglot-code-actions)
          ("C-x C-r" . eglot-rename))
@@ -254,20 +269,8 @@
   :custom (auto-dark-themes '((chabam-dark) (chabam-light))))
 
 ;; Various modes
-(use-package nix-mode
-  :mode "\\.nix\\'")
-
 (use-package racket-mode
-  :mode "\\.rkt\\'"
-  :bind (:map racket-mode-map
-              ("C-c C-p" . nil))
-  :hook ((racket-mode . (lambda ()
-                          (direnv-update-environment)
-                          (racket-xp-mode)))))
-
-(use-package direnv
-  :config
-  (direnv-mode))
+  :mode "\\.rkt\\'")
 
 (use-package auctex
   :init
@@ -279,6 +282,7 @@
   :mode "\\.hs\\'")
 
 (use-package tramp
+  :ensure nil
   :config
   (setopt tramp-verbose 1)
   (add-to-list 'tramp-remote-path 'tramp-own-remote-path))
