@@ -11,7 +11,7 @@ export LATEXINDENT_CONFIG="~/.config/latexindent.yaml"
 export SCRIPTS="~/.scripts"
 
 export BROWSER="firefox"
-export EDITOR="nvim"
+export EDITOR="emacs"
 export PAGER="less"
 export SCRIPTS="$HOME/.scripts"
 export SCRIPTS_PRIVATE="$HOME/.scripts/private"
