@@ -78,7 +78,7 @@
   (setq-default standard-indent 4
                 tab-width 4
                 indent-tabs-mode nil)
-  
+
   ;; Trying to properly set fonts
   (chbm-set-fonts)
   (advice-add 'load-theme :after #'chbm-set-fonts)
@@ -241,6 +241,8 @@
                                                :\\lstdefinelanguage{}{} "ignore"
                                                :\\lstinputlisting{} "ignore"))
                             :disabledRules (:fr ["FRENCH_WHITESPACE"]))))))
+
+(use-package direnv)
 
 (use-package eglot-inactive-regions
   :custom
