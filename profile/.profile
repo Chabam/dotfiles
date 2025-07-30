@@ -3,3 +3,4 @@ export VISUAL="emacsclient -c"
 export EDITOR="nvim"
 export PAGER="less --use-color"
 export PATH="$HOME/.local/bin:$PATH"
+systemctl --user import-environment PATH
