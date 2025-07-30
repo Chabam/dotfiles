@@ -4,9 +4,9 @@
 (defun chbm-set-fonts ()
   "Set fonts for frame and after theme"
   (when (display-graphic-p)
-    (set-face-attribute 'default nil :family "Adwaita Mono" :height 110)
-    (set-face-attribute 'fixed-pitch nil :family "Adwaita Mono")
-    (set-face-attribute 'variable-pitch nil :family "Adwaita Mono")))
+    (set-face-attribute 'default nil :family "Iosevka" :height 120)
+    (set-face-attribute 'fixed-pitch nil :family "Iosevka")
+    (set-face-attribute 'variable-pitch nil :family "Iosevka")))
 
 (use-package emacs
   :bind (("C-." . duplicate-line)
@@ -69,7 +69,7 @@
         tab-bar-close-button-show nil
         tab-bar-new-button-show nil
         tab-bar-show 1
-        default-frame-alist '((font . "AdwaitaMono-11")
+        default-frame-alist '((font . "Iosevka-12")
                               (width . 100)
                               (height . 40)
                               (vertical-scroll-bars . nil)))
@@ -230,6 +230,7 @@
   :bind (("C-x C-a" . eglot-code-actions)
          ("C-x C-r" . eglot-rename))
   :config
+  (setq eglot-autoshutdown t)
   (add-to-list 'eglot-ignored-server-capabilities :inlayHintProvider)
   (add-to-list 'eglot-server-programs
                '((org-mode (LaTeX-mode :language-id "latex")) . ("ltex-ls-plus" "--server-type" "TcpSocket" "--port" :autoport)))

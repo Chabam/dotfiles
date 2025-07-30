@@ -6,8 +6,6 @@ if [ -f ~/.bashrc ]; then
 fi
 
 # User specific environment and startup programs
-export TEXINPUTS="~/Cours/Common/Latex:"
-export LATEXINDENT_CONFIG="~/.config/latexindent.yaml"
 export SCRIPTS="~/.scripts"
 
 export BROWSER="firefox"
