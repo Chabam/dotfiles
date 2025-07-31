@@ -245,7 +245,8 @@
                                                :\\lstinputlisting{} "ignore"))
                             :disabledRules (:fr ["FRENCH_WHITESPACE"]))))))
 
-(use-package direnv)
+(use-package direnv
+  :init (direnv-mode))
 
 (use-package eglot-inactive-regions
   :custom
