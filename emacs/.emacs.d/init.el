@@ -226,7 +226,7 @@
 
 (use-package eglot
   :ensure nil
-  :hook ((c++-ts-mode nix-mode python-ts-mode org-mode LaTeX-mode cmake-ts-mode) . eglot-ensure)
+  :hook ((c++-ts-mode nix-mode python-ts-mode org-mode LaTeX-mode cmake-ts-mode racket-mode) . eglot-ensure)
   :bind (("C-x C-a" . eglot-code-actions)
          ("C-x C-r" . eglot-rename))
   :config
