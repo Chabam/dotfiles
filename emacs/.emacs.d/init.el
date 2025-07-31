@@ -218,8 +218,7 @@
   (setq-default c-ts-mode-indent-offset 4)
   (setq-default c-ts-mode-indent-style #'chbm-indent-style))
 
-(use-package magit
-  :commands (magit-status))
+(use-package magit)
 
 (use-package diff-hl
   :hook ((dired-mode . diff-hl-dired-mode)
