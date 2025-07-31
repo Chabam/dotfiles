@@ -72,7 +72,9 @@
         default-frame-alist '((font . "Iosevka-12")
                               (width . 100)
                               (height . 40)
-                              (vertical-scroll-bars . nil)))
+                              (vertical-scroll-bars . nil)
+                              ;; Fix for auto-dark mode, make the "default theme" light
+                              (background-color . "white")))
   (setq whitespace-style '(face indentation tabs tab-mark spaces space-mark
                                 newline newline-mark trailing))
   (setq-default standard-indent 4
@@ -265,8 +267,14 @@
 
 (use-package vterm)
 
+(defun set-auto-dark (f)
+  (auto-dark-mode)
+  (remove-hook 'after-make-frame-functions #'set-auto-dark))
+
 (use-package auto-dark
-  :init (auto-dark-mode)
+  :init (if (daemonp)
+            (add-hook 'after-make-frame-functions #'set-auto-dark)
+            (auto-dark-mode))
   :hook ((auto-dark-dark-mode . chbm-set-fonts)
          (auto-dark-light-mode . chbm-set-fonts))
   :custom (auto-dark-themes '((chabam-dark) (chabam-light))))
