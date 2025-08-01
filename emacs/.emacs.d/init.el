@@ -270,13 +270,12 @@
 (use-package vterm)
 
 (defun set-auto-dark (f)
-  (auto-dark-mode)
-  (remove-hook 'after-make-frame-functions #'set-auto-dark))
+  (auto-dark-mode))
 
 (use-package auto-dark
   :init (if (daemonp)
             (add-hook 'after-make-frame-functions #'set-auto-dark)
-            (auto-dark-mode))
+            (auto-dark-mode t))
   :hook ((auto-dark-dark-mode . chbm-set-fonts)
          (auto-dark-light-mode . chbm-set-fonts))
   :custom (auto-dark-themes '((chabam-dark) (chabam-light))))
