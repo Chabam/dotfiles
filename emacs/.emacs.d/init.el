@@ -69,6 +69,7 @@
         tab-bar-close-button-show nil
         tab-bar-new-button-show nil
         tab-bar-show 1
+        set-mark-command-repeat-pop t
         default-frame-alist '((font . "Iosevka-12")
                               (width . 100)
                               (height . 40)
@@ -110,25 +111,6 @@
   :ensure nil
   :init
   (savehist-mode))
-
-(use-package better-jumper
-  :bind (("M-<right>" . 'better-jumper-jump-forward)
-         ("M-<left>" . 'better-jumper-jump-backward))
-  :config
-  (setq better-jumper-context 'window
-        better-jumper-new-window-behavior 'copy
-        better-jumper-add-jump-behavior 'replace
-        better-jumper-max-length 100)
-  ;; Functions that should add a mark
-  (dolist (cmd '(next-line previous-line
-                 forward-paragraph backward-paragraph
-                 beginning-of-defun end-of-defun
-                 forward-word backward-word
-                 scroll-up-command scroll-down-command
-                 recenter-top-bottom move-to-window-line-top-bottom
-                 goto-line))
-    (advice-add cmd :before (lambda (&rest _) (better-jumper-set-jump))))
-  :init (better-jumper-mode +1))
 
 (use-package compile
   :ensure nil
