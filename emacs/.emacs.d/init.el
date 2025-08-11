@@ -11,6 +11,7 @@
 (use-package emacs
   :bind (("C-." . duplicate-line)
          ("M-o" . other-window)
+         ("C-x C-b" . ibuffer)
          ("S-M-<up>" . windmove-swap-states-up)
          ("S-M-<down>" . windmove-swap-states-down)
          ("S-M-<left>" . windmove-swap-states-left)
@@ -70,11 +71,12 @@
         tab-bar-new-button-show nil
         tab-bar-show 1
         set-mark-command-repeat-pop t
+        vc-handled-backends '(Git)
         default-frame-alist '((font . "Iosevka-12")
                               (width . 100)
                               (height . 40)
-                              (vertical-scroll-bars . nil)))
-  (setq whitespace-style '(face indentation tabs tab-mark spaces space-mark
+                              (vertical-scroll-bars . nil))
+		whitespace-style '(face indentation tabs tab-mark spaces space-mark
                                 newline newline-mark trailing))
   (setq-default standard-indent 4
                 tab-width 4
@@ -209,7 +211,7 @@
 
 (use-package eglot
   :ensure nil
-  :hook ((c++-ts-modenix-mode python-ts-mode org-mode
+  :hook ((c++-ts-mode python-ts-mode org-mode
           LaTeX-mode cmake-ts-mode racket-mode haskell-mode)
          . eglot-ensure)
   :bind (("C-x C-a" . eglot-code-actions)
@@ -280,5 +282,22 @@
 (use-package tramp
   :ensure nil
   :config
-  (setopt tramp-verbose 1)
-  (add-to-list 'tramp-remote-path 'tramp-own-remote-path))
+  (setq remote-file-name-inhibit-locks t
+        tramp-use-scp-direct-remote-copying t
+        remote-file-name-inhibit-auto-save-visited t
+        tramp-copy-size-limit (* 1024 1024) ;; 1MB
+        tramp-verbose 2)
+
+  (connection-local-set-profile-variables
+   'remote-direct-async-process
+   '((tramp-direct-async-process . t)))
+
+  (connection-local-set-profiles
+   '(:application tramp :protocol "scp")
+   'remote-direct-async-process)
+
+  (setq magit-tramp-pipe-stty-settings 'pty)
+  (with-eval-after-load 'tramp
+    (with-eval-after-load 'compile
+      (remove-hook 'compilation-mode-hook #'tramp-compile-disable-ssh-controlmaster-options)))
+  )
