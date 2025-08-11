@@ -52,6 +52,7 @@
    `(highlight                          ((t (:background ,chabam-purple-bg))))
    `(region                             ((t (:background ,chabam-dark-grey))))
    `(match                              ((t (:background ,chabam-purple-bg))))
+   `(secondary-selection                ((t (:inherit lazy-highlight))))
    `(mode-line                          ((t (:foreground ,chabam-foreground :background ,chabam-electric-blue))))
    `(mode-line-inactive                 ((t (:foreground ,chabam-light-grey :background ,chabam-dark-bg))))
    `(tab-bar                            ((t (:background ,chabam-dark-bg))))
