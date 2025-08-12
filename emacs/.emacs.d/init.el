@@ -7,9 +7,9 @@
     (set-face-attribute 'default nil :family "Iosevka" :height 120)
     (set-face-attribute 'fixed-pitch nil :family "Iosevka")
     (set-face-attribute 'variable-pitch nil :family "Iosevka")
-    (set-face-attribute 'tab-bar nil :inherit nil :height 1.0)
-    (set-face-attribute 'tab-bar-tab nil :inherit nil :height 1.0)
-    (set-face-attribute 'tab-bar-tab-inactive nil :inherit nil :height 1.0)))
+    (set-face-attribute 'tab-bar nil :height 120)
+    (set-face-attribute 'tab-bar-tab nil :height 120)
+    (set-face-attribute 'tab-bar-tab-inactive nil :height 120)))
 
 (use-package emacs
   :bind (("C-." . duplicate-line)
