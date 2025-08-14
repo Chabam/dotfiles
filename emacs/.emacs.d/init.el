@@ -280,7 +280,8 @@
   (setq-default Tex-master nil))
 
 (use-package haskell-mode
-  :mode "\\.hs\\'")
+  :mode "\\.hs\\'"
+  :hook (haskell-mode . interactive-haskell-mode))
 
 (use-package tramp
   :ensure nil
