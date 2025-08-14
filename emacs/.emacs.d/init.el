@@ -120,7 +120,8 @@
 (use-package compile
   :ensure nil
   :init
-  (add-hook 'compilation-filter-hook 'ansi-color-compilation-filter))
+  (add-hook 'compilation-filter-hook 'ansi-color-compilation-filter)
+  (setq compilation-skip-threshold 2))
 
 (use-package flymake
   :ensure nil
@@ -243,6 +244,7 @@
   :config
   (eglot-inactive-regions-mode 1))
 
+(use-package wgrep)
 
 (use-package expand-region
   :bind ("C-=" . 'er/expand-region))
@@ -303,5 +305,4 @@
   (setq magit-tramp-pipe-stty-settings 'pty)
   (with-eval-after-load 'tramp
     (with-eval-after-load 'compile
-      (remove-hook 'compilation-mode-hook #'tramp-compile-disable-ssh-controlmaster-options)))
-  )
+      (remove-hook 'compilation-mode-hook #'tramp-compile-disable-ssh-controlmaster-options))))
