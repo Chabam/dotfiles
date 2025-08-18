@@ -179,11 +179,7 @@
   (global-treesit-auto-mode)
   (setq-default treesit-font-lock-level 4))
 
-(use-package c-ts-mode
-  :ensure nil
-  :bind ("C-c o" . ff-find-other-file)
-  :preface
-  (defun chbm-indent-style()
+(defun chbm-indent-style()
     "Override the built-in BSD indentation style with some additional rules"
     `(
       ((node-is ")") parent-bol 0)
@@ -191,6 +187,7 @@
       ((node-is "}") parent-bol 0)
       ((node-is "{") parent-bol 0)
       ((n-p-gp nil nil "namespace_definition") grand-parent 0)
+      ((node-is "preproc") column-0 0)
       ((node-is "access_specifier") parent-bol 2)
       ((node-is "field_initializer_list") parent-bol 4)
       ((node-is "field_initializer") (nth-sibling 1) 0)
@@ -200,6 +197,10 @@
       ((parent-is "argument_list") parent-bol 4)
 
       ,@(alist-get 'bsd (c-ts-mode--indent-styles 'cpp))))
+
+(use-package c-ts-mode
+  :ensure nil
+  :bind ("C-c o" . ff-find-other-file)
   :init
   (setq-default c-ts-mode-indent-offset 4)
   (setq-default c-ts-mode-indent-style #'chbm-indent-style))
@@ -226,7 +227,7 @@
   (add-to-list 'eglot-server-programs
                '((org-mode (LaTeX-mode :language-id "latex")) . ("ltex-ls-plus" "--server-type" "TcpSocket" "--port" :autoport)))
   (setq-default eglot-workspace-configuration
-                '((:ltex . (:language "fr"
+                '((:ltex . (:language "auto"
                             :completionEnabled t
                             :latex (:environments (:lstlisting "ignore" :circuitikz "ignore" )
                                     :commands (:\\lstset{} "ignore"
