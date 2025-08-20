@@ -84,6 +84,7 @@
   (setq-default standard-indent 4
                 tab-width 4
                 indent-tabs-mode nil)
+  (which-key-mode)
 
   ;; Trying to properly set fonts
   (chbm-set-fonts)
