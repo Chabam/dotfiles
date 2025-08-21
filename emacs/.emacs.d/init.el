@@ -308,3 +308,8 @@
   (with-eval-after-load 'tramp
     (with-eval-after-load 'compile
       (remove-hook 'compilation-mode-hook #'tramp-compile-disable-ssh-controlmaster-options))))
+
+(use-package gud
+  :ensure nil
+  :init
+  (setq gdb-debuginfod-enable-setting nil))
