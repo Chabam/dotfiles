@@ -160,7 +160,7 @@
   :mode "\\.org\\'"
   :bind (("C-c l" . org-store-link)
          ("C-c a" . org-agenda)
-         ("C-c t" . org-capture))
+         ("C-c c" . org-capture))
   :init
   (require 'org-tempo)
   (setq org-directory "~/Notes"
@@ -177,6 +177,9 @@
   :config
   (setq org-roam-directory (concat org-directory "/Roam/"))
   (org-roam-db-autosync-mode))
+
+(use-package org-alert
+  :config (setq alert-default-style 'libnotify))
 
 (use-package orderless
   :custom

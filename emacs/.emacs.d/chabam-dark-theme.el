@@ -154,6 +154,7 @@
    `(org-imminent-deadline              ((t (:foreground ,chabam-purple))))
    `(org-upcoming-deadline              ((t (:foreground ,chabam-turquoise))))
    `(org-upcoming-distant-deadline      ((t (:foreground ,chabam-dark-turquoise))))
+   `(org-scheduled                      ((t (:foreground ,chabam-dark-turquoise))))
    `(org-scheduled-today                ((t (:foreground ,chabam-light-pink))))
    `(org-time-grid                      ((t (:foreground ,chabam-light-grey))))
 
