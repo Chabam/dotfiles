@@ -14,6 +14,9 @@
 (use-package emacs
   :bind (("C-." . duplicate-line)
          ("C-x C-b" . ibuffer))
+  :hook (after-init . (lambda ()
+                        (org-agenda-list)
+                        (delete-other-windows)))
   :ensure nil
   :custom
   (custom-file "~/.emacs.d/custom.el")
@@ -80,6 +83,7 @@
                 tab-width 4
                 indent-tabs-mode nil)
   (which-key-mode)
+  (recentf-mode)
 
   ;; Trying to properly set fonts
   (chbm-set-fonts)
@@ -91,7 +95,7 @@
 
 (use-package ace-window
   :bind ("M-o" . ace-window)
-  :init
+  :config
   (set-face-attribute 'aw-leading-char-face nil :height 420))
 
 (use-package no-littering
@@ -154,12 +158,17 @@
 (use-package org-mode
   :ensure nil
   :mode "\\.org\\'"
+  :bind (("C-c l" . org-store-link)
+         ("C-c a" . org-agenda)
+         ("C-c c" . org-capture))
   :init
   (require 'org-tempo)
-  (setq org-directory "~/Notes")
-  (setq org-agenda-files (list "agenda.org"))
-  (setq org-todo-keywords
-        '((sequence "TODO" "IN-PROGRESS" "WAITING" "DONE")))
+  (setq org-directory "~/Notes"
+        org-default-notes-file (expand-file-name "captures.org" org-directory)
+        org-agenda-files (directory-files-recursively (concat org-directory "/Agendas/") "\\.org$")
+        org-archive-location (concat org-directory "/archive.org::datetree/")
+        org-attach-id-dir (concat org-directory "/data/")
+        org-todo-keywords '((sequence "TODO(t)" "IN-PROGRESS(p)" "WAITING(w)" "DONE(d)")))
   )
 
 (use-package orderless
