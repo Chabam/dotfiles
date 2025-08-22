@@ -151,6 +151,7 @@
    `(org-level-4                        ((t (:foreground ,chabam-orange))))
    `(org-level-6                        ((t (:foreground ,chabam-light-blue))))
    `(org-agenda-structure               ((t (:foreground ,chabam-green))))
+   `(org-agenda-done                    ((t (:foreground ,chabam-dark-green-bg))))
    `(org-imminent-deadline              ((t (:foreground ,chabam-purple))))
    `(org-upcoming-deadline              ((t (:foreground ,chabam-turquoise))))
    `(org-upcoming-distant-deadline      ((t (:foreground ,chabam-dark-turquoise))))
