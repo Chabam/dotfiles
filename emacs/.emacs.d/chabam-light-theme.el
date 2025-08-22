@@ -138,6 +138,18 @@
    ;; Org mode
    `(org-block                          ((t (:background ,chabam-light-grey))))
    `(org-block-begin-line               ((t (:background ,chabam-light-grey :foreground ,chabam-foreground))))
+   `(org-todo                           ((t (:foreground ,chabam-blue))))
+   `(org-done                           ((t (:foreground ,chabam-green))))
+   `(org-special-keyword                ((t (:foreground ,chabam-dark-grey))))
+   `(org-date-selected                  ((t (:background ,chabam-pink))))
+   `(org-date                           ((t (:foreground ,chabam-light-pink))))
+   `(org-headline-done                  ((t (:foreground ,chabam-dark-grey))))
+   `(org-level-1                        ((t (:foreground ,chabam-pink))))
+   `(org-level-2                        ((t (:foreground ,chabam-purple))))
+   `(org-level-3                        ((t (:foreground ,chabam-turquoise))))
+   `(org-level-4                        ((t (:foreground ,chabam-orange))))
+   `(org-level-6                        ((t (:foreground ,chabam-light-blue))))
+
 
    ;; LaTeX mode
    `(font-latex-bold-face               ((t (:foreground ,chabam-dark-turquoise :bold t))))

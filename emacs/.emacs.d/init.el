@@ -13,12 +13,7 @@
 
 (use-package emacs
   :bind (("C-." . duplicate-line)
-         ("M-o" . other-window)
-         ("C-x C-b" . ibuffer)
-         ("S-M-<up>" . windmove-swap-states-up)
-         ("S-M-<down>" . windmove-swap-states-down)
-         ("S-M-<left>" . windmove-swap-states-left)
-         ("S-M-<right>" . windmove-swap-states-right))
+         ("C-x C-b" . ibuffer))
   :ensure nil
   :custom
   (custom-file "~/.emacs.d/custom.el")
@@ -66,7 +61,7 @@
   (tool-bar-mode 0)
   (menu-bar-mode 0)
 
-  (windmove-default-keybindings)
+  ;; (windmove-default-keybindings)
   (winner-mode)
   (setq indent-line-function 'insert-tab
         tab-always-indent 'complete
@@ -91,6 +86,9 @@
   (advice-add 'load-theme :after #'chbm-set-fonts)
   (add-hook 'after-make-frame-functions
             (lambda (f) (with-selected-frame f (chbm-set-fonts)))))
+
+(use-package ace-window
+  :bind ("M-o" . ace-window))
 
 (use-package no-littering
   :init
@@ -153,7 +151,12 @@
   :ensure nil
   :mode "\\.org\\'"
   :init
-  (require 'org-tempo))
+  (require 'org-tempo)
+  (setq org-directory "~/Notes")
+  (setq org-agenda-files (list "agenda.org"))
+  (setq org-todo-keywords
+        '((sequence "TODO" "IN-PROGRESS" "WAITING" "DONE")))
+  )
 
 (use-package orderless
   :custom
@@ -217,8 +220,7 @@
 
 (use-package eglot
   :ensure nil
-  :hook ((c++-ts-mode python-ts-mode org-mode
-          LaTeX-mode cmake-ts-mode racket-mode haskell-mode)
+  :hook ((c++-ts-mode python-ts-mode cmake-ts-mode racket-mode haskell-mode)
          . eglot-ensure)
   :bind (("C-x C-a" . eglot-code-actions)
          ("C-x C-r" . eglot-rename))
