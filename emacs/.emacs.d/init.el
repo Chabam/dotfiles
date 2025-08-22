@@ -160,16 +160,23 @@
   :mode "\\.org\\'"
   :bind (("C-c l" . org-store-link)
          ("C-c a" . org-agenda)
-         ("C-c c" . org-capture))
+         ("C-c t" . org-capture))
   :init
   (require 'org-tempo)
   (setq org-directory "~/Notes"
-        org-default-notes-file (expand-file-name "captures.org" org-directory)
-        org-agenda-files (directory-files-recursively (concat org-directory "/Agendas/") "\\.org$")
+        org-agendas-directory (concat org-directory "/Agendas/")
+        org-default-notes-file (expand-file-name (concat org-agendas-directory "Misc.org") org-directory)
+        org-agenda-files (directory-files-recursively org-agendas-directory  "\\.org$")
         org-archive-location (concat org-directory "/archive.org::datetree/")
-        org-attach-id-dir (concat org-directory "/data/")
-        org-todo-keywords '((sequence "TODO(t)" "IN-PROGRESS(p)" "WAITING(w)" "DONE(d)")))
-  )
+        org-attach-id-dir (concat org-directory "/Data/")
+        org-todo-keywords '((sequence "TODO(t)" "IN-PROGRESS(p)" "WAITING(w)" "DONE(d)"))))
+
+(use-package org-roam
+  :bind (("C-c C-r c" . org-roam-capture)
+         ("C-c C-r f" . org-roam-node-find))
+  :config
+  (setq org-roam-directory (concat org-directory "/Roam/"))
+  (org-roam-db-autosync-mode))
 
 (use-package orderless
   :custom
