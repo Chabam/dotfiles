@@ -14,9 +14,13 @@
 (use-package emacs
   :bind (("C-." . duplicate-line)
          ("C-x C-b" . ibuffer))
-  :hook (after-init . (lambda ()
-                        (org-agenda-list)
-                        (delete-other-windows)))
+  :hook ((after-init . (lambda ()
+                         (org-agenda-list)
+                         (delete-other-windows)))
+         ((prog-mode text-mode) . (lambda () (setq show-trailing-whitespace t)
+                                    (column-number-mode)
+                                    (display-line-numbers-mode)))
+         ((org-mode text-mode) . auto-fill-mode))
   :ensure nil
   :custom
   (custom-file "~/.emacs.d/custom.el")
@@ -39,10 +43,7 @@
   (completion-styles '(basic substring partial-completion flex))
   (vc-follow-symlinks t)
   (read-extended-command-predicate #'command-completion-default-include-p)
-  :hook (((prog-mode text-mode) . (lambda () (setq show-trailing-whitespace t)
-                                    (column-number-mode)
-                                    (display-line-numbers-mode)))
-         ((org-mode text-mode) . auto-fill-mode))
+
   :config (require 'ansi-color)
   :init
   (setq use-package-always-ensure t)
@@ -84,6 +85,7 @@
                 indent-tabs-mode nil)
   (which-key-mode)
   (recentf-mode)
+  (desktop-save-mode 1)
 
   ;; Trying to properly set fonts
   (chbm-set-fonts)
