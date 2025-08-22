@@ -87,8 +87,12 @@
   (add-hook 'after-make-frame-functions
             (lambda (f) (with-selected-frame f (chbm-set-fonts)))))
 
+(use-package transpose-frame)
+
 (use-package ace-window
-  :bind ("M-o" . ace-window))
+  :bind ("M-o" . ace-window)
+  :init
+  (set-face-attribute 'aw-leading-char-face nil :height 420))
 
 (use-package no-littering
   :init
