@@ -1,6 +1,6 @@
 export BROWSER="firefox"
-export VISUAL="nvim"
-export EDITOR="nvim"
+export VISUAL="emacsclient -c"
+export EDITOR="emacsclient -t"
 export PAGER="less --use-color"
 
 [ -f "/home/chabam/.ghcup/env" ] && . "/home/chabam/.ghcup/env"

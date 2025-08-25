@@ -11,13 +11,14 @@
     (set-face-attribute 'tab-bar-tab nil :height 120)
     (set-face-attribute 'tab-bar-tab-inactive nil :height 120)))
 
+(defun chbm-start-with-agenda ()
+  (org-agenda-list)
+  (delete-other-windows))
+
 (use-package emacs
   :bind (("C-." . duplicate-line)
          ("C-x C-b" . ibuffer))
-  :hook ((after-init . (lambda ()
-                         (org-agenda-list)
-                         (delete-other-windows)))
-         ((prog-mode text-mode) . (lambda () (setq show-trailing-whitespace t)
+  :hook (((prog-mode text-mode) . (lambda () (setq show-trailing-whitespace t)
                                     (column-number-mode)
                                     (display-line-numbers-mode)))
          ((org-mode text-mode) . auto-fill-mode))
@@ -44,7 +45,6 @@
   (vc-follow-symlinks t)
   (read-extended-command-predicate #'command-completion-default-include-p)
 
-  :config (require 'ansi-color)
   :init
   (setq use-package-always-ensure t)
   (require 'package)
@@ -65,7 +65,6 @@
   (tool-bar-mode 0)
   (menu-bar-mode 0)
 
-  ;; (windmove-default-keybindings)
   (winner-mode)
   (setq indent-line-function 'insert-tab
         tab-always-indent 'complete
@@ -85,13 +84,15 @@
                 indent-tabs-mode nil)
   (which-key-mode)
   (recentf-mode)
-  (desktop-save-mode 1)
+  (require 'ansi-color)
 
   ;; Trying to properly set fonts
   (chbm-set-fonts)
   (advice-add 'load-theme :after #'chbm-set-fonts)
-  (add-hook 'after-make-frame-functions
-            (lambda (f) (with-selected-frame f (chbm-set-fonts)))))
+  (add-hook 'server-after-make-frame-hook
+            (lambda ()
+              (chbm-set-fonts)
+              (chbm-start-with-agenda))))
 
 (use-package transpose-frame)
 
