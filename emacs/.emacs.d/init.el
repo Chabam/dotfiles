@@ -182,7 +182,12 @@
   (org-roam-db-autosync-mode))
 
 (use-package org-alert
-  :config (setq alert-default-style 'libnotify))
+  :init
+  (org-alert-enable)
+  :config
+  (setq alert-default-style 'libnotify
+        org-alert-time-match-string "\\(?:SCHEDULED\\|DEADLINE\\):.*?<.*?\\([0-9]\\{2\\}:[0-9]\\{2\\}\\)\\(-[0-9]\\{2\\}:[0-9]\\{2\\}\\)?.*>"
+        org-alert-notify-after-event-cutoff 10))
 
 (use-package orderless
   :custom
