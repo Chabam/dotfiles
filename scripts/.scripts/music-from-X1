@@ -1,2 +1,0 @@
-#!/bin/bash
-rsync -ruv /media/chabam/X1/* "$HOME"/Music/ --delete
