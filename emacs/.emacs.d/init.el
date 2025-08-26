@@ -72,6 +72,7 @@
         tab-bar-new-button-show nil
         tab-bar-show 1
         set-mark-command-repeat-pop t
+        deleted-by-moving-to-trash t
         vc-handled-backends '(Git)
         default-frame-alist '((font . "Iosevka-12")
                               (width . 100)
@@ -182,9 +183,8 @@
   (org-roam-db-autosync-mode))
 
 (use-package org-alert
-  :init
-  (org-alert-enable)
   :config
+  (org-alert-enable)
   (setq alert-default-style 'libnotify
         org-alert-time-match-string "\\(?:SCHEDULED\\|DEADLINE\\):.*?<.*?\\([0-9]\\{2\\}:[0-9]\\{2\\}\\)\\(-[0-9]\\{2\\}:[0-9]\\{2\\}\\)?.*>"
         org-alert-notify-after-event-cutoff 10))
@@ -257,7 +257,7 @@
          ("C-x C-r" . eglot-rename))
   :config
   (setq eglot-autoshutdown t)
-  (add-to-list 'eglot-ignored-server-capabilities :inlayHintProvider)
+  (add-to-list 'eglot-ignored-server-capabilities :inlayHintProvider :documentOnTypeFormattingProvider)
   (add-to-list 'eglot-server-programs
                '((org-mode (LaTeX-mode :language-id "latex")) . ("ltex-ls-plus" "--server-type" "TcpSocket" "--port" :autoport)))
   (setq-default eglot-workspace-configuration
