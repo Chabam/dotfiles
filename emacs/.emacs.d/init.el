@@ -98,9 +98,7 @@
 (use-package transpose-frame)
 
 (use-package ace-window
-  :bind ("M-o" . ace-window)
-  :config
-  (set-face-attribute 'aw-leading-char-face nil :height 420))
+  :bind ("M-o" . ace-window))
 
 (use-package no-littering
   :init
@@ -230,8 +228,7 @@
       ((node-is "compound_statement") parent-bol 0)
       ((parent-is "parameter_list") parent-bol 4)
       ((parent-is "argument_list") parent-bol 4)
-      ((parent-is "initializer_list") parent-bol 0)
-
+      ((parent-is "initializer_list") grand-parent c-ts-mode-indent-offset)
 
       ,@(alist-get 'bsd (c-ts-mode--indent-styles 'cpp))))
 

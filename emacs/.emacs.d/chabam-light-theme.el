@@ -188,6 +188,9 @@
    `(corfu-current                      ((t (:inherit vertico-current :background ,chabam-background))))
 
    `(embrace-help-pair-face             ((t (:foreground ,chabam-pink))))
+
+   `(aw-background-face                 ((t (:foreground ,chabam-grey))))
+   `(aw-leading-char-face               ((t (:foreground ,chabam-light-pink))))
    ))
 
 (provide-theme 'chabam-light)
