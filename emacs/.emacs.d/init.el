@@ -230,6 +230,8 @@
       ((node-is "compound_statement") parent-bol 0)
       ((parent-is "parameter_list") parent-bol 4)
       ((parent-is "argument_list") parent-bol 4)
+      ((parent-is "initializer_list") parent-bol 0)
+
 
       ,@(alist-get 'bsd (c-ts-mode--indent-styles 'cpp))))
 
