@@ -100,6 +100,14 @@
 (use-package ace-window
   :bind ("M-o" . ace-window))
 
+(use-package project
+  :ensure nil
+  :init
+  (setq project-switch-commands '((project-find-file "Find file") (project-find-regexp "Find regexp")
+                                  (project-find-dir "Find directory") (magit-project-status "Magit" "m")
+                                  (project-any-command "Other")))
+  )
+
 (use-package no-littering
   :init
   (require 'no-littering)
