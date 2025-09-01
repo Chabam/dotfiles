@@ -12,8 +12,10 @@
     (set-face-attribute 'tab-bar-tab-inactive nil :height 120)))
 
 (defun chbm-start-with-agenda ()
-  (org-agenda-list)
-  (delete-other-windows))
+  (when (and (display-graphic-p)
+             (not (string-prefix-p " *" (buffer-name))))
+    (org-agenda-list)
+    (delete-other-windows)))
 
 (use-package emacs
   :bind (("C-." . duplicate-line)
@@ -86,16 +88,15 @@
   (which-key-mode)
   (recentf-mode)
   (require 'ansi-color)
+  (advice-add 'save-buffers-kill-terminal :before-while (lambda (_) (yes-or-no-p "Really quit Emacs? ")))
 
   ;; Trying to properly set fonts
   (chbm-set-fonts)
   (advice-add 'load-theme :after #'chbm-set-fonts)
   (add-hook 'server-after-make-frame-hook
             (lambda ()
-              (when (and (display-graphic-p)
-                         (not (string-prefix-p " *" (buffer-name))))
-                (chbm-set-fonts)
-                (chbm-start-with-agenda)))))
+              (chbm-set-fonts)
+              (chbm-start-with-agenda))))
 
 (use-package transpose-frame)
 
