@@ -15,12 +15,6 @@
   (org-agenda-list)
   (delete-other-windows))
 
-(define-advice delete-frame (:around (oldfun &rest args) confirm-frame-deletion)
-  "Confirm deleting the frame."
-  (interactive)
-  (when (y-or-n-p "Delete frame? ")
-    (apply oldfun args)))
-
 (use-package emacs
   :bind (("C-." . duplicate-line)
          ("C-x C-b" . ibuffer))
@@ -98,8 +92,10 @@
   (advice-add 'load-theme :after #'chbm-set-fonts)
   (add-hook 'server-after-make-frame-hook
             (lambda ()
-              (chbm-set-fonts)
-              (chbm-start-with-agenda))))
+              (when (and (display-graphic-p)
+                         (not (string-prefix-p " *" (buffer-name))))
+                (chbm-set-fonts)
+                (chbm-start-with-agenda)))))
 
 (use-package transpose-frame)
 
