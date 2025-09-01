@@ -15,6 +15,12 @@
   (org-agenda-list)
   (delete-other-windows))
 
+(define-advice delete-frame (:around (oldfun &rest args) confirm-frame-deletion)
+  "Confirm deleting the frame."
+  (interactive)
+  (when (y-or-n-p "Delete frame? ")
+    (apply oldfun args)))
+
 (use-package emacs
   :bind (("C-." . duplicate-line)
          ("C-x C-b" . ibuffer))
@@ -105,8 +111,7 @@
   :init
   (setq project-switch-commands '((project-find-file "Find file") (project-find-regexp "Find regexp")
                                   (project-find-dir "Find directory") (magit-project-status "Magit" "m")
-                                  (project-any-command "Other")))
-  )
+                                  (project-any-command "Other"))))
 
 (use-package no-littering
   :init
