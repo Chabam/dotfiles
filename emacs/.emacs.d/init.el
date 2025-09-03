@@ -68,6 +68,8 @@
   (menu-bar-mode 0)
 
   (winner-mode)
+  (electric-pair-mode)
+
   (setq indent-line-function 'insert-tab
         tab-always-indent 'complete
         tab-bar-close-button-show nil
@@ -75,6 +77,9 @@
         tab-bar-show 1
         set-mark-command-repeat-pop t
         deleted-by-moving-to-trash t
+        show-paren-when-point-in-periphery t
+        show-paren-when-point-inside-paren t
+        show-paren-context-when-offscreen t
         vc-handled-backends '(Git)
         default-frame-alist '((font . "Iosevka-12")
                               (width . 100)
