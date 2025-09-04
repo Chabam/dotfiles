@@ -134,7 +134,7 @@
    `(flymake-error-echo                 ((t (:foreground ,adwaita-red))))
    `(flymake-warning-echo               ((t (:foreground ,adwaita-yellow))))
    `(flymake-note-echo                  ((t (:foreground ,chabam-blue))))
-   `(eglot-highlight-symbol-face        ((t (:inherit lazy-highlight))))
+   `(eglot-highlight-symbol-face        ((t (:inherit region))))
    `(xref-file-header                   ((t (:foreground ,chabam-green :bold t :underline t))))
    `(compilation-info                   ((t (:foreground ,chabam-turquoise))))
 

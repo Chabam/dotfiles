@@ -68,6 +68,10 @@
   (menu-bar-mode 0)
 
   (winner-mode)
+
+  (minibuffer-depth-indicate-mode)
+  (minibuffer-electric-default-mode)
+
   (electric-pair-mode)
 
   (setq indent-line-function 'insert-tab
@@ -79,7 +83,8 @@
         deleted-by-moving-to-trash t
         show-paren-when-point-in-periphery t
         show-paren-when-point-inside-paren t
-        show-paren-context-when-offscreen t
+        show-paren-context-when-offscreen 'overlay
+        electric-pair-inhibit-predicate 'electric-pair-conservative-inhibit
         vc-handled-backends '(Git)
         default-frame-alist '((font . "Iosevka-12")
                               (width . 100)
@@ -295,50 +300,11 @@
 
 (use-package wgrep)
 
-(use-package expand-region
-  :bind ("C-=" . 'er/expand-region))
-
-(use-package vundo)
-
 (use-package vterm)
 
-(use-package smartparens
-  :hook (prog-mode text-mode org-mode)
-  ;; TODO: Figure out some good keybindings
-  ;; :bind (
-  ;;        ("C-M-f" . sp-forward-sexp)
-  ;;        ("C-M-b" . sp-backward-sexp)
-  ;;        ("C-M-d" . sp-down-sexp)
-  ;;        ("C-M-a" . sp-backward-down-sexp)
-  ;;        ("C-S-d" . sp-beginning-of-sexp)
-  ;;        ("C-S-a" . sp-end-of-sexp)
-  ;;        ("C-M-e" . sp-up-sexp)
-  ;;        ("C-M-u" . sp-backward-up-sexp)
-  ;;        ("C-M-n" . sp-next-sexp)
-  ;;        ("C-M-p" . sp-previous-sexp)
-  ;;        ("C-M-k" . sp-kill-sexp)
-  ;;        ("C-M-w" . sp-copy-sexp)
-  ;;        ("M-<delete>" . sp-unwrap-sexp)
-  ;;        ("M-<backspace>" . sp-backward-unwrap-sexp)
-  ;;        ("C-<right>" . sp-forward-slurp-sexp)
-  ;;        ("C-<left>" . sp-forward-barf-sexp)
-  ;;        ("C-M-<left>" . sp-backward-slurp-sexp)
-  ;;        ("C-M-<right>" . sp-backward-barf-sexp)
-  ;;        ("M-D" . sp-splice-sexp)
-  ;;        ("C-M-<delete>" . sp-splice-sexp-killing-forward)
-  ;;        ("C-M-<backspace>" . sp-splice-sexp-killing-backward)
-  ;;        ("C-S-<backspace>" . sp-splice-sexp-killing-around)
-  ;;        ("C-]" . sp-select-next-thing-exchange)
-  ;;        ("C-M-]" . sp-select-next-thing)
-  ;;        ("C-M-SPC" . sp-mark-sexp)
-  ;;        ("M-F" . sp-forward-symbol)
-  ;;        ("M-B" . sp-backward-symbol)
-  ;;        )
-  :config
-
-  ;; load default config
-  (require 'smartparens-config)
-)
+(use-package surround
+  :ensure t
+  :bind-keymap ("M-'" . surround-keymap))
 
 (defun set-auto-dark (f)
   (when (display-graphic-p f)
