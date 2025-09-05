@@ -1,7 +1,4 @@
-(load-file "~/.emacs.d/chabam-light-theme.el")
-(load-file "~/.emacs.d/chabam-dark-theme.el")
-
-(defun chbm-set-fonts ()
+(defun chbm-set-fonts (&rest _)
   "Set fonts for frame and after theme"
   (when (display-graphic-p)
     (set-face-attribute 'default nil :family "Iosevka" :height 120)
@@ -23,10 +20,140 @@
   :hook (((prog-mode text-mode) . (lambda () (setq show-trailing-whitespace t)
                                     (column-number-mode)
                                     (display-line-numbers-mode)))
-         ((org-mode text-mode) . auto-fill-mode))
+         ((org-mode text-mode) . auto-fill-mode)
+         (server-after-make-frame . (lambda ()
+                                      (chbm-set-fonts)
+                                      (chbm-start-with-agenda))))
   :ensure nil
+  :init
+  (require 'package)
+  (add-to-list 'package-archives '("melpa" . "https://melpa.org/packages/") t)
+  (package-initialize)
+
+  (unless (file-exists-p custom-file)
+    (write-region "" nil custom-file))
+
+  ;; Theming
+  (require-theme 'modus-themes)
+  (setq modus-themes-common-palette-overrides
+        `((cursor magenta-intense)
+          (bg-region bg-lavender)
+          (fg-region unspecified)
+
+	      (string green-cooler)
+	      (bg-changed-fringe bg-cyan-intense)
+
+	      ;; Blue modeline
+	      (bg-mode-line-active bg-blue-intense)
+	      (fg-mode-line-active fg-main)
+	      (border-mode-line-active unspecified)
+	      (border-mode-line-inactive unspecified)
+
+	      ;; Number line invisible
+	      (fringe unspecified)
+	      (fg-line-number-inactive comment)
+	      (fg-line-number-active cursor)
+	      (bg-line-number-inactive unspecified)
+	      (bg-line-number-active unspecified)
+
+          ;; Org mode
+          (fg-heading-0 blue-cooler)
+          (fg-heading-1 magenta-cooler)
+          (fg-heading-2 magenta-warmer)
+          (fg-heading-3 blue)
+          (fg-heading-4 cyan)
+          (fg-heading-5 green-warmer)
+          (fg-heading-6 yellow)
+          (fg-heading-7 red)
+          (fg-heading-8 magenta)
+
+          (bg-heading-0 unspecified)
+          (bg-heading-1 bg-magenta-nuanced)
+          (bg-heading-2 bg-red-nuanced)
+          (bg-heading-3 bg-blue-nuanced)
+          (bg-heading-4 bg-cyan-nuanced)
+          (bg-heading-5 bg-green-nuanced)
+          (bg-heading-6 bg-yellow-nuanced)
+          (bg-heading-7 bg-red-nuanced)
+          (bg-heading-8 bg-magenta-nuanced)
+
+          (overline-heading-0 unspecified)
+          (overline-heading-1 magenta-cooler)
+          (overline-heading-2 magenta-warmer)
+          (overline-heading-3 blue)
+          (overline-heading-4 cyan)
+          (overline-heading-5 green)
+          (overline-heading-6 yellow-cooler)
+          (overline-heading-7 red-cooler)
+          (overline-heading-8 magenta)
+
+          ;; Org agenda
+          (date-common cyan)
+          (date-deadline red-warmer)
+          (date-event magenta-warmer)
+          (date-holiday blue)
+          (date-now yellow-warmer)
+          (date-scheduled magenta-cooler)
+          (date-weekday cyan-cooler)
+          (date-weekend blue-faint)
+          ))
+  (setq modus-themes-italic-constructs t)
+  (setq modus-themes-bold-constructs t)
+  (setq modus-themes-mixed-fonts t)
+  :config
+
+  ;; Eabling various useful modes
+
+  ;; Displaying of ansi colors in buffers
+  (require 'ansi-color)
+
+  ;; Smooth scroll
+  (pixel-scroll-precision-mode)
+  (pixel-scroll-mode)
+
+  ;; Hiding ui elements
+  (scroll-bar-mode 0)
+  (tool-bar-mode 0)
+  (menu-bar-mode 0)
+
+  ;; Remembering previous window configuration
+  (winner-mode)
+
+  ;; Minibuffer improvements
+  (minibuffer-depth-indicate-mode)
+  (minibuffer-electric-default-mode)
+
+  ;; Auto insertion of pairs
+  (electric-pair-mode)
+
+  ;; Display key combination suggestions
+  (which-key-mode)
+
+  ;; List of recent files (persistent)
+  (recentf-mode)
+
+  ;; Confirm when killing emacs (for deamon mode)
+  (advice-add 'save-buffers-kill-terminal :before-while (lambda (_) (if (daemonp)
+                                                                        (yes-or-no-p "Really quit Emacs? ")
+                                                                      t)))
+  ;; Fix for auto-dark where
+  (advice-add 'load-theme :after #'chbm-set-fonts)
+
+  ;; Trying to properly set fonts
+  (chbm-set-fonts)
+
+  ;; Default indentation
+  (setq-default standard-indent 4
+                tab-width 4
+                indent-tabs-mode nil)
+
+  ;; Starting emacs with the agenda
+  (chbm-start-with-agenda)
+
   :custom
-  (custom-file "~/.emacs.d/custom.el")
+  (use-package-always-ensure t)
+  (custom-file (expand-file-name "custom.el" user-emacs-directory))
+
   ;; Support opening new minibuffers from inside existing minibuffers.
   (enable-recursive-minibuffers t)
   ;; Hide commands in M-x which do not work in the current mode.  Vertico
@@ -38,75 +165,51 @@
    '(read-only t cursor-intangible t face minibuffer-prompt))
   ;; Remove the bell
   (ring-bell-function 'ignore)
+
   ;; Remove splash screen
   (inhibit-startup-screen t)
 
+  ;; Completion stuff
   (text-mode-ispell-word-completion nil)
-
   (completion-styles '(basic substring partial-completion flex))
-  (vc-follow-symlinks t)
+
   (read-extended-command-predicate #'command-completion-default-include-p)
 
-  :init
-  (setq use-package-always-ensure t)
-  (require 'package)
-  (add-to-list 'package-archives '("melpa" . "https://melpa.org/packages/") t)
-  (package-initialize)
+  ;; Indentation
+  (indent-line-function 'insert-tab)
+  (tab-always-indent 'complete)
 
-  ;; Putting files somewhere else
-  (setq custom-file (expand-file-name "custom.el" user-emacs-directory))
-  (unless (file-exists-p custom-file)
-    (write-region "" nil custom-file))
+  ;; Tab bar options
+  (tab-bar-close-button-show nil)
+  (tab-bar-new-button-show nil)
+  (tab-bar-show 1)
 
-  ;; Smooth scroll
-  (pixel-scroll-precision-mode)
-  (pixel-scroll-mode)
+  ;; Popping the mark doesn't need `C-x'
+  (set-mark-command-repeat-pop t)
 
-  ;; Hiding ui elements
-  (scroll-bar-mode 0)
-  (tool-bar-mode 0)
-  (menu-bar-mode 0)
+  (deleted-by-moving-to-trash t)
 
-  (winner-mode)
+  ;; Show paren options
+  (show-paren-when-point-in-periphery t)
+  (show-paren-when-point-inside-paren t)
+  (show-paren-context-when-offscreen 'overlay)
 
-  (minibuffer-depth-indicate-mode)
-  (minibuffer-electric-default-mode)
+  ;; Electric pair mode better predicate
+  (electric-pair-inhibit-predicate 'electric-pair-conservative-inhibit)
 
-  (electric-pair-mode)
+  ;; Enable only git for VC
+  (vc-handled-backends '(Git))
 
-  (setq indent-line-function 'insert-tab
-        tab-always-indent 'complete
-        tab-bar-close-button-show nil
-        tab-bar-new-button-show nil
-        tab-bar-show 1
-        set-mark-command-repeat-pop t
-        deleted-by-moving-to-trash t
-        show-paren-when-point-in-periphery t
-        show-paren-when-point-inside-paren t
-        show-paren-context-when-offscreen 'overlay
-        electric-pair-inhibit-predicate 'electric-pair-conservative-inhibit
-        vc-handled-backends '(Git)
-        default-frame-alist '((font . "Iosevka-12")
-                              (width . 100)
-                              (height . 40)
-                              (vertical-scroll-bars . nil))
-		whitespace-style '(face indentation tabs tab-mark spaces space-mark
-                                newline newline-mark trailing))
-  (setq-default standard-indent 4
-                tab-width 4
-                indent-tabs-mode nil)
-  (which-key-mode)
-  (recentf-mode)
-  (require 'ansi-color)
-  (advice-add 'save-buffers-kill-terminal :before-while (lambda (_) (yes-or-no-p "Really quit Emacs? ")))
+  ;; Default frame options
+  (default-frame-alist '((font . "Iosevka-12")
+                         (width . 100)
+                         (height . 40)
+                         (vertical-scroll-bars . nil)
+                         (tab-bar-lines . 0)))
 
-  ;; Trying to properly set fonts
-  (chbm-set-fonts)
-  (advice-add 'load-theme :after #'chbm-set-fonts)
-  (add-hook 'server-after-make-frame-hook
-            (lambda ()
-              (chbm-set-fonts)
-              (chbm-start-with-agenda))))
+  ;; Whitespace
+  (whitespace-style '(face indentation tabs tab-mark spaces space-mark
+                           newline newline-mark trailing)))
 
 (use-package transpose-frame)
 
@@ -309,15 +412,17 @@
 (defun set-auto-dark (f)
   (when (display-graphic-p f)
     (with-selected-frame f
-      (auto-dark-mode t))))
+      (auto-dark-mode))))
 
 (use-package auto-dark
-  :init (if (daemonp)
-            (add-hook 'after-make-frame-functions #'set-auto-dark)
-            (auto-dark-mode t))
+  :after modus-themes
+  :init
+  (if (daemonp)
+      (add-hook 'after-make-frame-functions #'set-auto-dark)
+    (auto-dark-mode t))
   :hook ((auto-dark-dark-mode . chbm-set-fonts)
          (auto-dark-light-mode . chbm-set-fonts))
-  :custom (auto-dark-themes '((chabam-dark) (chabam-light))))
+  :custom (auto-dark-themes '((modus-vivendi) (modus-operandi))))
 
 ;; Various modes
 (use-package racket-mode

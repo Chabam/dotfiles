@@ -1,0 +1,8 @@
+[Desktop Entry]
+Type=Application
+Name=Emacs Daemon
+Comment=Start Emacs server in graphical session
+Exec=emacs --daemon
+X-GNOME-Autostart-enabled=true
+X-KDE-autostart-after=panel
+NoDisplay=true
