@@ -1,4 +1,3 @@
-
 ;; Custom functions ============================================================
 
 (defun chbm-set-fonts (&rest _)
@@ -181,6 +180,7 @@
           (date-weekday cyan-cooler)
           (date-weekend blue-faint)
           ))
+  (setq modus-themes-variable-pitch-ui t)
   (setq modus-themes-italic-constructs t)
   (setq modus-themes-bold-constructs t)
   (setq modus-themes-mixed-fonts t))
