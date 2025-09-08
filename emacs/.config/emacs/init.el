@@ -237,9 +237,7 @@
 (use-package project
   :ensure nil
   :config
-  (setq project-switch-commands '((project-find-file "Find file") (project-find-regexp "Find regexp")
-                                  (project-find-dir "Find directory") (magit-project-status "Magit" "m")
-                                  (project-any-command "Other"))))
+  (add-to-list project-switch-commands '(magit-project-status "Magit" "m")))
 
 ;; Minibuffer ==================================================================
 
