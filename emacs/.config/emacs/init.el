@@ -1,3 +1,4 @@
+
 ;; Custom functions ============================================================
 
 (defun chbm-set-fonts (&rest _)
@@ -23,16 +24,16 @@
          ("C-z" . nil)                  ; minimize
          ("C-x C-d" . nil)              ; list directory
          ("C-h h" . nil)                ; "hello" buffer
-         ("C-x C-c" . nil)              ; Closing emacs 🙂 (actually gets rebinded later)
+         ("C-x C-c" . nil)              ; Closing emacs 🙂 (actually gets rebound later)
          ("M-`" . nil)                  ; menu bar in the minibuffer
          ;; Rebinds
          ("C-x C-c C-c" . save-buffers-kill-emacs)
          ("C-x C-r" . restart-emacs)
-         ("M-z" . zap-up-to-char)
+         ("M-z" . zap-up-to-char)       ; zap-up-to-char instead of zap-to-char
          ("M-c" . capitalize-dwim)
          ("M-l" . downcase-dwim)
          ("M-u" . upcase-dwim)
-         ("C-." . duplicate-line)
+         ("C-S-d" . duplicate-line)
          ("C-x C-b" . ibuffer))
   :hook (((prog-mode text-mode) . (lambda ()
                                     (setq show-trailing-whitespace t)
@@ -44,15 +45,9 @@
                                       (chbm-start-with-agenda))))
   :ensure nil
   :init
-  (setq debug-on-error t)
   (require 'package)
   (add-to-list 'package-archives '("melpa" . "https://melpa.org/packages/") t)
   (package-initialize)
-
-  (setq custom-file (expand-file-name "custom.el" user-emacs-directory))
-  (unless (file-exists-p custom-file)
-    (write-region "" nil custom-file))
-
   :config
   ;; Eabling various useful modes
 
@@ -203,33 +198,35 @@
   :bind ("M-o" . ace-window))
 
 (use-package auto-dark
-  :init
-  (setq auto-dark-themes '((modus-vivendi) (modus-operandi)))
-  (auto-dark-mode)
   :hook ((auto-dark-dark-mode . chbm-set-fonts)
-         (auto-dark-light-mode . chbm-set-fonts)))
+         (auto-dark-light-mode . chbm-set-fonts)
+         (after-init . (lambda ()
+                         (setq auto-dark-themes '((modus-vivendi) (modus-operandi)))
+                         (auto-dark-mode)))))
 
 ;; Misc essential packages =====================================================
 
 (use-package which-key
   :ensure nil
-  :init
-  (which-key-mode 1))
+  :hook (after-init . which-key-mode))
 
 (use-package no-littering
-  :init
+  :demand t
+  :config
+  (setq custom-file (expand-file-name "custom.el" user-emacs-directory))
+  (unless (file-exists-p custom-file)
+    (write-region "" nil custom-file))
   (no-littering-theme-backups)
   (let ((dir (no-littering-expand-var-file-name "lock-files/")))
     (make-directory dir t)
     (setq lock-file-name-transforms `((".*" ,dir t)))))
 
 (use-package direnv
-  :init (direnv-mode 1))
+  :hook (after-init . direnv-mode))
 
 (use-package recentf
   :ensure nil
-  :init
-  (recentf-mode 1))
+  :hook (after-init . recentf-mode))
 
 (use-package bookmark
   :ensure nil
@@ -237,22 +234,26 @@
   (setq bookmark-fringe-mark nil)
   (setq bookmark-save-flag 1))
 
+(use-package project
+  :ensure nil
+  :config
+  (setq project-switch-commands '((project-find-file "Find file") (project-find-regexp "Find regexp")
+                                  (project-find-dir "Find directory") (magit-project-status "Magit" "m")
+                                  (project-any-command "Other"))))
+
 ;; Minibuffer ==================================================================
 
 (use-package vertico
-  :init
-  (vertico-mode 1)
+  :hook (after-init . vertico-mode)
   :config
   (setq vertico-count 10))
 
 (use-package marginalia
-  :init
-  (marginalia-mode 1))
+  :hook (after-init . marginalia-mode))
 
 (use-package savehist
   :ensure nil
-  :init
-  (savehist-mode 1)
+  :hook (after-init . savehist-mode)
   :config
   (setq savehist-additional-variables '(register-alist kill-ring)))
 
@@ -261,11 +262,10 @@
 (use-package corfu
   :bind (:map corfu-map
               ("RET" . nil))
-  :hook (inferior-python-mode . (lambda () (corfu-auto nil)))
-  :init
-  (global-corfu-mode 1)
-  (corfu-popupinfo-mode 1)
-    :config
+  :hook ((inferior-python-mode . (lambda () (corfu-auto nil)))
+         (after-init . global-corfu-mode)
+         (after-init . corfu-popupinfo-mode))
+  :config
   ;; Autocomplete settings
   (setq corfu-auto t)
   (setq corfu-auto-prefix 2)
@@ -288,12 +288,85 @@
   (setq completion-category-overrides '((file (styles basic partial-completion))))
   (setq completion-matching-styles '(orderless-regexp)))
 
-(use-package project
+;; Searching ===================================================================
+
+(use-package isearch
   :ensure nil
+  :config
+  (setq isearch-lazy-count t)
+  (setq isearch-lazy-count-prefix-format "%s/%s")
+  (setq isearch-lazy-count-suffix-format nil)
+  (setq isearch-whitespace-regex ".*?"))
+
+(use-package consult
+  :hook (completion-list-mode . consult-preview-at-point-mode)
+  :bind (("C-x M-:" . consult-complex-command)
+         ("C-x b" . consult-buffer)
+         ("C-x 4 b" . consult-buffer-other-window)
+         ("C-x 5 b" . consult-buffer-other-frame)
+         ("C-x t b" . consult-buffer-other-tab)
+         ("C-x r b" . consult-bookmark)
+         ("C-x p b" . consult-project-buffer)
+         ("M-y" . consult-yank-pop)
+         ;; M-g bindings in `goto-map'
+         ("M-g e" . consult-compile-error)
+         ("M-g r" . consult-grep-match)
+         ("M-g f" . consult-flymake)
+         ("M-g g" . consult-goto-line)
+         ("M-g M-g" . consult-goto-line)
+         ("M-g o" . consult-outline)
+         ("M-g m" . consult-mark)
+         ("M-g k" . consult-global-mark)
+         ("M-g i" . consult-imenu)
+         ("M-g I" . consult-imenu-multi)
+         ;; M-s bindings in `search-map'
+         ("M-s d" . consult-fd)
+         ("M-s c" . consult-locate)
+         ("M-s g" . consult-grep)
+         ("M-s G" . consult-git-grep)
+         ("M-s r" . consult-ripgrep)
+         ("M-s l" . consult-line)
+         ("M-s L" . consult-line-multi)
+         ("M-s k" . consult-keep-lines)
+         ("M-s u" . consult-focus-lines)
+         ("M-s e" . consult-isearch-history)
+         :map isearch-mode-map
+         ("M-s e" . consult-isearch-history)
+         ("M-s l" . consult-line)
+         ("M-s L" . consult-line-multi)
+         :map minibuffer-local-map
+         ("M-s" . consult-history)
+         ("M-r" . consult-history))
   :init
-  (setq project-switch-commands '((project-find-file "Find file") (project-find-regexp "Find regexp")
-                                  (project-find-dir "Find directory") (magit-project-status "Magit" "m")
-                                  (project-any-command "Other"))))
+  (advice-add #'register-preview :override #'consult-register-window)
+  (setq register-preview-delay 0.5)
+
+  ;; Use Consult to select xref locations with preview
+  (setq xref-show-xrefs-function #'consult-xref
+        xref-show-definitions-function #'consult-xref)
+  :config
+  (setq consult-preview-key "M-.")
+  (consult-customize
+   consult-theme :preview-key '(:debounce 0.2 any)
+   consult-ripgrep consult-git-grep consult-grep consult-man
+   consult-bookmark consult-recent-file consult-xref
+   consult--source-bookmark consult--source-file-register
+   consult--source-recent-file consult--source-project-recent-file
+   :preview-key '(:debounce 0.4 any))
+
+  (setq consult-narrow-key "<"))
+
+(use-package embark
+  :bind
+  (("C-." . embark-act)
+   ("C-;" . embark-dwim)
+   ("C-h B" . embark-bindings)
+   :map minibuffer-local-map
+   ("C-c C-c" . embark-collect)
+   ("C-c C-e" . embark-export)))
+
+(use-package embark-consult
+  :hook (embark-collect-mode . consult-preview-at-point-mode))
 
 ;; Useful buffer types =========================================================
 
@@ -323,7 +396,11 @@
 
 (use-package magit)
 
-(use-package wgrep)
+(use-package wgrep
+  :bind (:map grep-mode-map
+          ("e" . wgrep-change-to-wgrep-mode)
+          ("C-x C-q" . wgrep-change-to-wgrep-mode)
+          ("C-c C-c" . wgrep-finish-edit)))
 
 (use-package vterm)
 
@@ -353,10 +430,9 @@
 
 (use-package electric
   :ensure nil
-  :init
-  (electric-pair-mode 1)
-  (electric-indent-mode 1)
-  (electric-quote-mode -1)
+  :hook ((after-init . electric-pair-mode)
+         (after-init . electric-indent-mode)
+         (after-init . electric-quote-mode))
   :config
   (setq electric-pair-inhibit-predicate 'electric-pair-conservative-inhibit))
 
@@ -367,20 +443,11 @@
   (setq show-paren-when-point-inside-paren t)
   (setq show-paren-context-when-offscreen 'overlay))
 
-(use-package isearch
-  :ensure nil
-  :config
-  (setq isearch-lazy-count t)
-  (setq isearch-lazy-count-prefix-format "%s/%s")
-  (setq isearch-lazy-count-suffix-format nil)
-  (setq isearch-whitespace-regex ".*?"))
-
 (use-package diff-hl
   :hook ((dired-mode . diff-hl-dired-mode)
-         (magit-post-refresh . diff-hl-magit-post-refresh))
-  :init
-  (global-diff-hl-mode 1)
-  (diff-hl-flydiff-mode 1))
+         (magit-post-refresh . diff-hl-magit-post-refresh)
+         (after-init . global-diff-hl-mode)
+         (after-init . diff-hl-flydiff-mode)))
 
 (use-package flymake
   :ensure nil
@@ -389,7 +456,7 @@
 
 (use-package surround
   :ensure t
-  :bind-keymap ("M-'" . surround-keymap))
+  :bind-keymap ("C-c s" . surround-keymap))
 
 ;; Languages related modes =====================================================
 
