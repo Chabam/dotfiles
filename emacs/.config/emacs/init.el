@@ -49,11 +49,6 @@
   (add-to-list 'package-archives '("melpa" . "https://melpa.org/packages/") t)
   (package-initialize)
   :config
-  ;; Eabling various useful modes
-
-  ;; Displaying of ansi colors in buffers
-  (require 'ansi-color)
-
   ;; Smooth scroll
   (pixel-scroll-precision-mode 1)
   (pixel-scroll-mode 1)
@@ -237,7 +232,7 @@
 (use-package project
   :ensure nil
   :config
-  (add-to-list project-switch-commands '(magit-project-status "Magit" "m")))
+  (add-to-list 'project-switch-commands '(magit-project-status "Magit" "m")))
 
 ;; Minibuffer ==================================================================
 
@@ -368,10 +363,24 @@
 
 ;; Useful buffer types =========================================================
 
+(use-package comint                     ; Repls
+  :ensure nil
+  :hook
+  (comint-output-filter-functions . comint-osc-process-output)
+  :config
+  (setq ansi-color-for-comint-mode t)
+  (setq comint-prompt-read-only t)
+  (setq comint-completion-autolist t)
+  (setq comint-input-ignoredups t)
+  (setq-default comint-scroll-to-bottom-on-input t)
+  (setq-default comint-scroll-to-bottom-on-output nil)
+  (setq-default comint-input-autoexpand 'input))
+
 (use-package compile
   :ensure nil
-  :hook (compilation-filter ansi-color-compilation-filter)
+  :hook (compilation-filter . ansi-color-compilation-filter)
   :config
+  (setq ansi-color-for-compilation-mode t)
   (setq compilation-skip-threshold 2))
 
 (use-package ediff
