@@ -16,6 +16,16 @@
     (org-agenda-list)
     (delete-other-windows)))
 
+;; Thanks prot!
+(defun prot-spell-ispell-display-buffer (buffer)
+  "Function to override `ispell-display-buffer' for BUFFER.
+Use this as `advice-add' to override the aforementioned Ispell
+function.  Then you can control the buffer's specifics via
+`display-buffer-alist' (how it ought to be!)."
+  (pop-to-buffer buffer)
+  (set-window-point (get-buffer-window buffer) (point-min)))
+
+
 ;; Main emacs config  ==========================================================
 
 (use-package emacs
@@ -70,8 +80,6 @@
   ;; Trying to properly set fonts
   (chbm-set-fonts)
 
-  (chbm-start-with-agenda)
-
   ;; Default indentation
   (setq-default standard-indent 4
                 tab-width 4
@@ -83,10 +91,7 @@
   ;; Support opening new minibuffers from inside existing minibuffers.
   (setq enable-recursive-minibuffers t)
 
-  ;; Hide commands in M-x which do not work in the current mode.  Vertico
-  ;; commands are hidden in normal buffers. This setting is useful beyond
-  ;; Vertico.
-
+  ;; Hide commands in `M-x' which do not work in the current mode.
   (setq read-extended-command-predicate #'command-completion-default-include-p)
 
   ;; Do not allow the cursor in the minibuffer prompt
@@ -129,6 +134,36 @@
                               (height . (text-pixels . 600))
                               (vertical-scroll-bars . nil)
                               (tab-bar-lines . 0)))
+
+  (advice-add #'ispell-display-buffer :override #'prot-spell-ispell-display-buffer)
+
+  (setq window-combination-resize t)
+  (setq even-window-sizes 'height-only)
+  (setq window-sides-vertical nil)
+  (setq switch-to-buffer-in-dedicated-window 'pop)
+  (setq split-height-threshold 85)
+  (setq split-width-threshold 125)
+  (setq window-min-height 3)
+  (setq window-min-width 30)
+
+  (setq display-buffer-alist
+        '(;; Agenda at bottom
+          ("\\*\\(Org \\(Select\\|Note\\)\\|Agenda Commands\\)\\*"
+           (display-buffer-in-side-window)
+           (side . bottom)
+           (slot . 0)
+           (window-parameters . ((mode-line-format . none))))
+          ;; Embark at bottom
+          ("\\*Embark Actions\\*"
+           (display-buffer-below-selected)
+           (window-height . fit-window-to-buffer)
+           (window-parameters . ((no-other-window . t)
+                                 (mode-line-format . none))))
+          ;; ispell-word at bottom
+          ("\\*Choices\\*"
+           (display-buffer-below-selected)
+           (window-height . fit-window-to-buffer))
+          ))
 
   ;; Whitespace
   (setq whitespace-style '(face indentation tabs tab-mark spaces space-mark
@@ -401,7 +436,9 @@
   (setq dired-listing-switches "-aBhlv  --group-directories-first")
   (setq dired-dwim-target t))
 
-(use-package magit)
+(use-package magit
+  :config
+  (setq magit-display-buffer-function #'magit-display-buffer-same-window-except-diff-v1))
 
 (use-package wgrep
   :bind (:map grep-mode-map
@@ -438,8 +475,7 @@
 (use-package electric
   :ensure nil
   :hook ((after-init . electric-pair-mode)
-         (after-init . electric-indent-mode)
-         (after-init . electric-quote-mode))
+         (after-init . electric-indent-mode))
   :config
   (setq electric-pair-inhibit-predicate 'electric-pair-conservative-inhibit))
 
