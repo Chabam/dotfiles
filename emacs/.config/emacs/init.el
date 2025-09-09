@@ -324,7 +324,8 @@ function.  Then you can control the buffer's specifics via
   (setq isearch-lazy-count t)
   (setq isearch-lazy-count-prefix-format "%s/%s")
   (setq isearch-lazy-count-suffix-format nil)
-  (setq isearch-whitespace-regex ".*?"))
+  (setq isearch-lax-whitespace t)
+  (setq search-whitespace-regexp ".*?"))
 
 (use-package consult
   :hook (completion-list-mode . consult-preview-at-point-mode)
@@ -434,7 +435,8 @@ function.  Then you can control the buffer's specifics via
   :hook (dired-mode . (lambda () (dired-hide-details-mode 1)))
   :config
   (setq dired-listing-switches "-aBhlv  --group-directories-first")
-  (setq dired-dwim-target t))
+  (setq dired-dwim-target t)
+  (setq wdired-allow-to-change-permissions t))
 
 (use-package magit
   :config
