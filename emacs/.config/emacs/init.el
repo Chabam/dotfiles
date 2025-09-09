@@ -448,8 +448,6 @@ function.  Then you can control the buffer's specifics via
           ("C-x C-q" . wgrep-change-to-wgrep-mode)
           ("C-c C-c" . wgrep-finish-edit)))
 
-(use-package vterm)
-
 (use-package tramp
   :ensure nil
   :config
