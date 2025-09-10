@@ -165,7 +165,8 @@ function.  Then you can control the buffer's specifics via
 
   ;; Whitespace
   (setq whitespace-style '(face indentation tabs tab-mark spaces space-mark
-                                newline newline-mark trailing)))
+                                newline newline-mark trailing))
+  (setq use-short-answers t))
 
 ;; Theming  ====================================================================
 
@@ -221,19 +222,19 @@ function.  Then you can control the buffer's specifics via
 
 (defface chbm-modeline-green-bg
   (modus-themes-with-colors
-    `((t :inherit bold :foreground ,bg-green-nuanced :background ,bg-green-intense :box ,green-intense)))
+    `((t :inherit bold :foreground ,green :background ,bg-green-intense :box ,green)))
   "Face for modeline indicators with a background."
   :group 'chbm-modeline-faces)
 
 (defface chbm-modeline-magenta-bg
   (modus-themes-with-colors
-    `((t :inherit bold :foreground ,magenta-intense :background ,bg-magenta-nuanced :box ,magenta-intense)))
+    `((t :inherit bold :foreground ,magenta :background ,bg-magenta-intense :box ,magenta)))
   "Face for modeline indicators with a background."
   :group 'chbm-modeline-faces)
 
-(defface chbm-modeline-lavender-bg
+(defface chbm-modeline-red-bg
   (modus-themes-with-colors
-    `((t :inherit bold :foreground ,fg-lavender :background ,bg-lavender :box ,fg-lavender)))
+    `((t :inherit bold :foreground ,red :background ,bg-red-intense :box ,red)))
   "Face for modeline indicators with a background."
   :group 'chbm-modeline-faces)
 
@@ -294,7 +295,7 @@ face.  Let other buffers have no face.")
     '(:eval
       (when (file-remote-p default-directory)
         (propertize " @ "
-                    'face 'chbm-modeline-red
+                    'face 'chbm-modeline-magenta-bg
                     'mouse-face 'mode-line-highlight)))
   "Mode line construct for showing remote file name.")
 
@@ -302,7 +303,7 @@ face.  Let other buffers have no face.")
     '(:eval
       (when (window-dedicated-p)
         (propertize " = "
-                    'face 'chbm-modeline-lavender-bg
+                    'face 'chbm-modeline-red-bg
                     'mouse-face 'mode-line-highlight)))
   "Mode line construct for dedicated window indicator.")
 
@@ -466,7 +467,8 @@ than `split-width-threshold'."
          ("C-x M-<right>" . windmove-delete-right)
          ("C-x M-<down>" . windmove-delete-down)
          ("C-x M-<left>" . windmove-delete-left))
-  )
+    :config
+    (setq windmove-wrap-around t))
 
 (use-package auto-dark
   :hook ((auto-dark-dark-mode . chbm-set-fonts)
