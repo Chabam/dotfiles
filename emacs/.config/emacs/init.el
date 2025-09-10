@@ -172,7 +172,7 @@ function.  Then you can control the buffer's specifics via
 (use-package modus-themes
   :config
   (setq modus-themes-common-palette-overrides
-        `((cursor magenta-intense)
+        `((cursor magenta-warmer)
           (bg-region bg-lavender)
           (fg-region unspecified)
 
@@ -445,8 +445,7 @@ than `split-width-threshold'."
                 chbm-modeline-diagnostics
                 "  "
                 chbm-modeline-vc-branch
-                " %p %l:%c  "
-                ))
+                " %p %l:%c  "))
 
 ;; Frames and window utilities =================================================
 
@@ -462,7 +461,11 @@ than `split-width-threshold'."
          ("S-M-<up>" . windmove-swap-states-up)
          ("S-M-<right>" . windmove-swap-states-right) ; conflicts with `org-increase-number-at-point'
          ("S-M-<down>" . windmove-swap-states-down)
-         ("S-M-<left>" . windmove-swap-states-left))
+         ("S-M-<left>" . windmove-swap-states-left)
+         ("C-x M-<up>" . windmove-delete-up)
+         ("C-x M-<right>" . windmove-delete-right)
+         ("C-x M-<down>" . windmove-delete-down)
+         ("C-x M-<left>" . windmove-delete-left))
   )
 
 (use-package auto-dark
