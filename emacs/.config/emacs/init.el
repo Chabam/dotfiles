@@ -459,8 +459,8 @@ than `split-width-threshold'."
   :ensure nil
   :hook (after-init . windmove-mode)
   :config
-  (windmove-default-keybindings)
-  (windmove-swap-states-default-keybindings)
+  (windmove-default-keybindings 'ctrl)
+  (windmove-swap-states-default-keybindings '(ctrl shift))
   (windmove-delete-default-keybindings)
   (setq windmove-wrap-around t))
 
@@ -837,10 +837,6 @@ than `split-width-threshold'."
   :bind (("C-c l" . org-store-link)
          ("C-c a" . org-agenda)
          ("C-c c" . org-capture))
-  :hook ((org-shiftup-final windmove-up)
-         (org-shiftleft-final windmove-left)
-         (org-shiftdown-final windmove-down)
-         (org-shiftright-final windmove-right))
   :config
   (require 'org-tempo)
   (setq org-directory "~/Notes"
