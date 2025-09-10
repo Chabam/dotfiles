@@ -293,7 +293,8 @@ face.  Let other buffers have no face.")
 
 (defvar-local chbm-modeline-remote-status
     '(:eval
-      (when (file-remote-p default-directory)
+      (when (and (mode-line-window-selected-p)
+                 (file-remote-p default-directory))
         (propertize " @ "
                     'face 'chbm-modeline-magenta-bg
                     'mouse-face 'mode-line-highlight)))
@@ -301,7 +302,9 @@ face.  Let other buffers have no face.")
 
 (defvar-local chbm-modeline-window-dedicated-status
     '(:eval
-      (when (window-dedicated-p)
+      (when
+          (and (mode-line-window-selected-p)
+               (window-dedicated-p))
         (propertize " = "
                     'face 'chbm-modeline-red-bg
                     'mouse-face 'mode-line-highlight)))
@@ -455,20 +458,11 @@ than `split-width-threshold'."
 (use-package windmove
   :ensure nil
   :hook (after-init . windmove-mode)
-  :bind (("M-<up>" . windmove-up)
-         ("M-<right>" . windmove-right)
-         ("M-<down>" . windmove-down)
-         ("M-<left>" . windmove-left)
-         ("S-M-<up>" . windmove-swap-states-up)
-         ("S-M-<right>" . windmove-swap-states-right) ; conflicts with `org-increase-number-at-point'
-         ("S-M-<down>" . windmove-swap-states-down)
-         ("S-M-<left>" . windmove-swap-states-left)
-         ("C-x M-<up>" . windmove-delete-up)
-         ("C-x M-<right>" . windmove-delete-right)
-         ("C-x M-<down>" . windmove-delete-down)
-         ("C-x M-<left>" . windmove-delete-left))
-    :config
-    (setq windmove-wrap-around t))
+  :config
+  (windmove-default-keybindings)
+  (windmove-swap-states-default-keybindings)
+  (windmove-delete-default-keybindings)
+  (setq windmove-wrap-around t))
 
 (use-package auto-dark
   :hook ((auto-dark-dark-mode . chbm-set-fonts)
@@ -843,6 +837,10 @@ than `split-width-threshold'."
   :bind (("C-c l" . org-store-link)
          ("C-c a" . org-agenda)
          ("C-c c" . org-capture))
+  :hook ((org-shiftup-final windmove-up)
+         (org-shiftleft-final windmove-left)
+         (org-shiftdown-final windmove-down)
+         (org-shiftright-final windmove-right))
   :config
   (require 'org-tempo)
   (setq org-directory "~/Notes"
