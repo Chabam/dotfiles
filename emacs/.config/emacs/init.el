@@ -831,6 +831,12 @@ than `split-width-threshold'."
   (setq-default c-ts-mode-indent-offset 4)
   (setq-default c-ts-mode-indent-style #'chbm-indent-style))
 
+(use-package xml-mode
+  :ensure nil
+  :mode "\\.cts")
+
+;; Org =========================================================================
+
 (use-package org
   :ensure nil
   :demand t
