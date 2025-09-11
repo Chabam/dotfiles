@@ -840,6 +840,8 @@ than `split-width-threshold'."
   :config
   (require 'org-tempo)
   (setq org-directory "~/Notes"
+        org-icalendar-use-scheduled '(event-if-not-todo event-if-todo event-if-todo-not-done todo-start)
+        org-icalendar-use-deadline '(event-if-not-todo event-if-todo event-if-todo-not-done todo-due)
         org-agendas-directory (concat org-directory "/Agendas/")
         org-default-notes-file (expand-file-name (concat org-agendas-directory "Misc.org") org-directory)
         org-agenda-files (directory-files-recursively org-agendas-directory  "\\.org$")
@@ -853,10 +855,3 @@ than `split-width-threshold'."
   :config
   (setq org-roam-directory (concat org-directory "/Roam/"))
   (org-roam-db-autosync-mode 1))
-
-(use-package org-alert
-  :config
-  (org-alert-enable)
-  (setq alert-default-style 'libnotify
-        org-alert-time-match-string "\\(?:SCHEDULED\\|DEADLINE\\):.*?<.*?\\([0-9]\\{2\\}:[0-9]\\{2\\}\\)\\(-[0-9]\\{2\\}:[0-9]\\{2\\}\\)?.*>"
-        org-alert-notify-after-event-cutoff 10))
