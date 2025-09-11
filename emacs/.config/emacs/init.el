@@ -199,7 +199,8 @@ function.  Then you can control the buffer's specifics via
   ;; Whitespace
   (setq whitespace-style '(face indentation tabs tab-mark spaces space-mark
                                 newline newline-mark trailing))
-  (setq use-short-answers t))
+  (setq use-short-answers t)
+  (setq async-shell-command-buffer 'new-buffer))
 
 ;; Theming  ====================================================================
 
