@@ -58,6 +58,11 @@ function.  Then you can control the buffer's specifics via
   (interactive)
   (chbm-move-window-in-direction 'below))
 
+(defun ansi-colorize-buffer ()
+  (interactive)
+  (mark-whole-buffer)
+  (ansi-color-apply-on-region (point-min)
+                              (point-max)))
 
 ;; Main emacs config  ==========================================================
 
@@ -495,7 +500,7 @@ than `split-width-threshold'."
   :bind (("C-S-<right>" . chbm-move-window-right)
          ("C-S-<left>" . chbm-move-window-left)
          ("C-S-<up>" . chbm-move-window-above)
-         ("C-S-<>" . chbm-move-window-below))
+         ("C-S-<down>" . chbm-move-window-below))
   :config
   (windmove-default-keybindings 'ctrl)
   ;; (windmove-swap-states-default-keybindings '(ctrl shift))
