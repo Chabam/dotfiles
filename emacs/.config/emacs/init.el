@@ -260,26 +260,34 @@ function.  Then you can control the buffer's specifics via
 ;; Most stuff here comes from Prot
 
 (defface chbm-modeline-green-bg
-  (modus-themes-with-colors
-    `((t :inherit bold :foreground ,green :background ,bg-green-intense :box ,green)))
+  '((t ()))
   "Face for modeline indicators with a background."
   :group 'chbm-modeline-faces)
 
-(defface chbm-modeline-magenta-bg
+(defun chbm-update-modeline-colors ()
   (modus-themes-with-colors
-    `((t :inherit bold :foreground ,magenta :background ,bg-magenta-intense :box ,magenta)))
+    (face-spec-set 'chbm-modeline-green-bg
+                   `((t :inherit bold :foreground ,green :background ,bg-green-intense :box ,green)))
+    (face-spec-set 'chbm-modeline-magenta-bg
+                   `((t :inherit bold :foreground ,magenta :background ,bg-magenta-intense :box ,magenta)))
+    (face-spec-set 'chbm-modeline-red-bg
+                   `((t :inherit bold :foreground ,red :background ,bg-red-intense :box ,red)))
+    (face-spec-set 'chbm-modeline-red-fg
+                   `((t :foreground ,red)))))
+
+
+(defface chbm-modeline-magenta-bg
+  '((t ()))
   "Face for modeline indicators with a background."
   :group 'chbm-modeline-faces)
 
 (defface chbm-modeline-red-bg
-  (modus-themes-with-colors
-    `((t :inherit bold :foreground ,red :background ,bg-red-intense :box ,red)))
+  '((t ()))
   "Face for modeline indicators with a background."
   :group 'chbm-modeline-faces)
 
 (defface chbm-modeline-red-fg
-  (modus-themes-with-colors
-    `((t :foreground ,red)))
+  '((t ()))
   "Face for modeline indicators with a background."
   :group 'chbm-modeline-faces)
 
@@ -504,12 +512,13 @@ than `split-width-threshold'."
   :config
   (windmove-default-keybindings 'ctrl)
   ;; (windmove-swap-states-default-keybindings '(ctrl shift))
-  (windmove-delete-default-keybindings)
-  )
+  (windmove-delete-default-keybindings))
 
 (use-package auto-dark
   :hook ((auto-dark-dark-mode . chbm-set-fonts)
          (auto-dark-light-mode . chbm-set-fonts)
+         (auto-dark-dark-mode . chbm-update-modeline-colors)
+         (auto-dark-light-mode . chbm-update-modeline-colors)
          (after-init . (lambda ()
                          (setq auto-dark-themes '((modus-vivendi) (modus-operandi)))
                          (auto-dark-mode)))))
