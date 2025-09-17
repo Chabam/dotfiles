@@ -623,9 +623,7 @@ than `split-width-threshold'."
   :config
   (setq isearch-lazy-count t)
   (setq isearch-lazy-count-prefix-format "%s/%s")
-  (setq isearch-lazy-count-suffix-format nil)
-  (setq isearch-lax-whitespace t)
-  (setq search-whitespace-regexp ".*?"))
+  (setq isearch-lazy-count-suffix-format nil))
 
 (use-package consult
   :hook (completion-list-mode . consult-preview-at-point-mode)
