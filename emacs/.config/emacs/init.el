@@ -158,7 +158,7 @@ function.  Then you can control the buffer's specifics via
   (setq tab-bar-new-button-show nil)
   (setq tab-bar-show 1)
 
-  (setq deleted-by-moving-to-trash t)
+  (setq delete-by-moving-to-trash t)
 
   ;; Enable only git for VC
   (setq vc-handled-backends '(Git))
@@ -866,6 +866,8 @@ than `split-width-threshold'."
 (use-package xml-mode
   :ensure nil
   :mode "\\.cts")
+
+(use-package ess)
 
 ;; Org =========================================================================
 
