@@ -10,3 +10,11 @@ Terminal=false
 Categories=Development;TextEditor;
 StartupNotify=true
 StartupWMClass=Emacs
+
+[Desktop Action new-window]
+Name=New Window
+Exec=/usr/local/bin/emacsclient --alternate-editor="emacs" --create-frame %F
+
+[Desktop Action new-instance]
+Name=New Instance
+Exec=emacs %F

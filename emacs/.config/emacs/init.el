@@ -96,6 +96,9 @@ function.  Then you can control the buffer's specifics via
   (require 'package)
   (add-to-list 'package-archives '("melpa" . "https://melpa.org/packages/") t)
   (package-initialize)
+
+  (require 'server)
+  (when (not (server-running-p)) (server-start))
   :config
   ;; Smooth scroll
   (pixel-scroll-precision-mode 1)
