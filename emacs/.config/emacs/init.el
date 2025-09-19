@@ -851,8 +851,12 @@ than `split-width-threshold'."
 
 (use-package eglot
   :ensure nil
-  :hook ((c++-ts-mode python-ts-mode cmake-ts-mode racket-mode haskell-mode)
-         . eglot-ensure)
+  :hook ((c++-ts-mode . eglot-ensure)
+         (python-ts-mode . eglot-ensure)
+         (cmake-ts-mode . eglot-ensure)
+         (racket-mode . eglot-ensure)
+         (haskell-mode . eglot-ensure)
+         (ess-r-mode . eglot-ensure))
   :bind (("C-x C-a" . eglot-code-actions)
          ("C-x C-r" . eglot-rename))
   :config
