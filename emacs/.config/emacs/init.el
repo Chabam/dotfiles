@@ -240,6 +240,17 @@ before we send our 'ok' to the SessionManager."
           ("\\*Choices\\*"
            (display-buffer-below-selected)
            (window-height . fit-window-to-buffer))
+          ("*R Dired"
+           (display-buffer-reuse-window display-buffer-in-side-window)
+           (side . right)
+           (slot . -1)
+           (window-width . 0.33)
+           (reusable-frames . nil))
+          ("*R"
+           (display-buffer-reuse-window display-buffer-in-side-window)
+           (side . right)
+           (window-width . 0.5)
+           (reusable-frames . nil))
           ))
 
   ;; Whitespace
@@ -908,7 +919,15 @@ than `split-width-threshold'."
   :ensure nil
   :mode "\\.cts")
 
-(use-package ess)
+(use-package ess
+  :hook ((ess-r-mode . (lambda ()
+                         (setq-local ess-indent-offset 2
+                                     comment-column 0
+                                     standard-indent 2
+                                     tab-width 2
+                                     indent-tabs-mode nil))))
+  :config
+  (setq ess-use-ido nil))
 
 ;; Org =========================================================================
 
