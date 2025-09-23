@@ -324,6 +324,8 @@ before we send our 'ok' to the SessionManager."
                    `((t :inherit bold :foreground ,magenta :background ,bg-magenta-intense :box ,magenta)))
     (face-spec-set 'chbm-modeline-red-bg
                    `((t :inherit bold :foreground ,red :background ,bg-red-intense :box ,red)))
+    (face-spec-set 'chbm-modeline-cyan-bg
+                   `((t :inherit bold :foreground ,cyan :background ,bg-cyan-intense :box ,cyan)))
     (face-spec-set 'chbm-modeline-red-fg
                    `((t :foreground ,red)))))
 
@@ -339,6 +341,11 @@ before we send our 'ok' to the SessionManager."
   :group 'chbm-modeline-faces)
 
 (defface chbm-modeline-red-fg
+  '((t ()))
+  "Face for modeline indicators with a background."
+  :group 'chbm-modeline-faces)
+
+(defface chbm-modeline-cyan-bg
   '((t ()))
   "Face for modeline indicators with a background."
   :group 'chbm-modeline-faces)
@@ -369,6 +376,14 @@ Specific to the current window's mode line.")
       'italic)
      ((mode-line-window-selected-p)
       'mode-line-buffer-id))))
+
+(defvar-local chbm-modeline-narrow
+    '(:eval
+      (when (and (mode-line-window-selected-p)
+                 (buffer-narrowed-p)
+                 (not (derived-mode-p 'Info-mode 'help-mode 'special-mode 'message-mode)))
+        (propertize " Narrow " 'face 'chbm-modeline-cyan-bg)))
+  "Mode line construct to report the narrowed state of the current buffer.")
 
 (defvar-local chbm-modeline-buffer-identification
     '(:eval
@@ -523,6 +538,7 @@ than `split-width-threshold'."
 
 
 (dolist (construct '(chbm-modeline-kbd-macro
+                     chbm-modeline-narrow
                      chbm-modeline-remote-status
                      chbm-modeline-buffer-identification
                      chbm-modeline-window-dedicated-status
@@ -548,7 +564,9 @@ than `split-width-threshold'."
                 chbm-modeline-diagnostics
                 "  "
                 chbm-modeline-vc-branch
-                " %p %l:%c  "))
+                chbm-modeline-narrow
+                " %p %l:%c  ")
+              )
 
 ;; Frames and window utilities =================================================
 
