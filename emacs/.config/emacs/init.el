@@ -139,8 +139,8 @@ before we send our 'ok' to the SessionManager."
 
   :config
   ;; Smooth scroll
-  (pixel-scroll-precision-mode 1)
-  (pixel-scroll-mode 1)
+  ;; (pixel-scroll-precision-mode 1)
+  ;; (pixel-scroll-mode 1)
 
   ;; Hiding ui elements
   (scroll-bar-mode 0)
