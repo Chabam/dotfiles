@@ -99,10 +99,10 @@ before we send our 'ok' to the SessionManager."
          ("C-h h" . nil)                ; "hello" buffer
          ("C-x C-c" . nil)              ; Closing emacs 🙂 (actually gets rebound later)
          ("M-`" . nil)                  ; menu bar in the minibuffer
-         ;; Rebinds
+         ("C-x C-z" . nil)              ; Minimize
+         ;; rebinds
          ("M-o" . other-window)
          ("C-x C-c C-c" . save-buffers-kill-emacs)
-         ("C-x C-r" . restart-emacs)
          ("M-z" . zap-up-to-char)       ; zap-up-to-char instead of zap-to-char
          ("M-c" . capitalize-dwim)
          ("M-l" . downcase-dwim)
@@ -241,13 +241,13 @@ before we send our 'ok' to the SessionManager."
            (display-buffer-below-selected)
            (window-height . fit-window-to-buffer))
           ("*R Dired"
-           (display-buffer-reuse-window display-buffer-in-side-window)
+           (display-buffer-reuse-window display-buffer-same-window)
            (side . right)
            (slot . -1)
            (window-width . 0.33)
            (reusable-frames . nil))
           ("*R"
-           (display-buffer-reuse-window display-buffer-in-side-window)
+           (display-buffer-reuse-window display-buffer-same-window)
            (side . right)
            (window-width . 0.5)
            (reusable-frames . nil))
@@ -779,6 +779,11 @@ than `split-width-threshold'."
   (setq-default comint-scroll-to-bottom-on-input t)
   (setq-default comint-scroll-to-bottom-on-output nil)
   (setq-default comint-input-autoexpand 'input))
+
+(use-package eshell
+  :bind (:map eshell-hist-mode-map
+              ("C-<up>" . nil)
+              ("C-<down>" . nil)))
 
 (use-package compile
   :ensure nil
