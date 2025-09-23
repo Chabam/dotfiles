@@ -939,6 +939,7 @@ than `split-width-threshold'."
   :ensure nil
   :bind ("C-c o" . ff-find-other-file)
   :config
+  (clang-format-on-save-mode)
   (setq-default c-ts-mode-indent-offset 4)
   (setq-default c-ts-mode-indent-style #'chbm-indent-style))
 
