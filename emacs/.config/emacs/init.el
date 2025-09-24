@@ -551,6 +551,7 @@ than `split-width-threshold'."
 (setq-default mode-line-format
               '("%e"
                 chbm-modeline-kbd-macro
+                chbm-modeline-narrow
                 chbm-modeline-remote-status
                 chbm-modeline-window-dedicated-status
                 "  "
@@ -564,7 +565,6 @@ than `split-width-threshold'."
                 chbm-modeline-diagnostics
                 "  "
                 chbm-modeline-vc-branch
-                chbm-modeline-narrow
                 " %p %l:%c  ")
               )
 
