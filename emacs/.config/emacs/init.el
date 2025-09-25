@@ -513,7 +513,7 @@ than `split-width-threshold'."
 
 (defun chbm-modeline--vc-face (file backend)
   "Return VC state face for FILE with BACKEND."
-  (when-let* ((key (vc-state file backend)))
+  (when-let ((key (vc-state file backend)))
     (chbm-modeline--vc-get-face key)))
 
 (defvar-local chbm-modeline-vc-branch
@@ -781,9 +781,10 @@ than `split-width-threshold'."
   (setq-default comint-input-autoexpand 'input))
 
 (use-package eshell
-  :bind (:map eshell-hist-mode-map
-              ("C-<up>" . nil)
-              ("C-<down>" . nil)))
+  :ensure nil
+  :hook ((eshell-hist-mode . (lambda ()
+                               (define-key eshell-hist-mode-map (kbd "C-<up>") nil)
+                               (define-key eshell-hist-mode-map (kbd "C-<down>") nil)))))
 
 (use-package compile
   :ensure nil
@@ -915,33 +916,48 @@ than `split-width-threshold'."
   :mode "\\.hs\\'"
   :hook (haskell-mode . interactive-haskell-mode))
 
-(defun chbm-indent-style()
-    "Override the built-in BSD indentation style with some additional rules"
-    `(
-      ((node-is ")") parent-bol 0)
-      ((node-is "(") parent-bol 0)
-      ((node-is "}") parent-bol 0)
-      ((node-is "{") parent-bol 0)
-      ((n-p-gp nil nil "namespace_definition") grand-parent 0)
-      ((node-is "preproc") column-0 0)
-      ((node-is "access_specifier") parent-bol 2)
-      ((node-is "field_initializer_list") parent-bol 4)
-      ((node-is "field_initializer") (nth-sibling 1) 0)
-      ((parent-is "compound_statement") parent-bol c-ts-mode-indent-offset)
-      ((node-is "compound_statement") parent-bol 0)
-      ((parent-is "parameter_list") parent-bol 4)
-      ((parent-is "argument_list") parent-bol 4)
-      ((parent-is "initializer_list") grand-parent c-ts-mode-indent-offset)
+(defun chbm-set-c-style-indent ()
+  "Use clang-format instead of the default emacs indent"
+  (setq-local indent-region-function #'clang-format-region)
+  (setq-local indent-line-function (lambda ()
+                                     (clang-format-region (line-beginning-position)
+                                                          (line-end-position))))
+  (setq-default c-ts-mode-indent-offset 4)
+  (setq-default c-ts-mode-indent-style 'bsd))
 
-      ,@(alist-get 'bsd (c-ts-mode--indent-styles 'cpp))))
+(defun chbm-set-ff-search-dirs-project ()
+  "Adds likely locations to look for other files based on the project"
+  (when (project-current)
+    (let* ((project-root (caddr (project-current)))
+           (get-subdirs (lambda (dir)
+                          (when (file-directory-p dir)
+                            (seq-filter #'file-directory-p
+                                        (directory-files-recursively dir "" t)))))
+           (include-sub-dirs (funcall get-subdirs (file-name-concat project-root "include")))
+           (src-sub-dirs (funcall get-subdirs (file-name-concat project-root "src")))
+           (lib-sub-dirs (funcall get-subdirs (file-name-concat project-root "lib")))
+           (sub-dirs (append include-sub-dirs
+                             src-sub-dirs
+                             lib-sub-dirs)))
+      (setq-local cc-search-directories
+                  (append
+                   (list
+                    "."
+                    "/usr/include"
+                    "/usr/local/include/*")
+                   (mapcar (lambda (dir) (file-name-concat dir "*")) sub-dirs))))))
+
+(use-package c++-ts-mode
+  :ensure nil
+  :bind ("C-c o" . ff-find-other-file)
+  :hook ((c++-ts-mode . chbm-set-c-style-indent)
+         (ff-pre-find . chbm-set-ff-search-dirs-project)))
 
 (use-package c-ts-mode
   :ensure nil
   :bind ("C-c o" . ff-find-other-file)
-  :config
-  (clang-format-on-save-mode)
-  (setq-default c-ts-mode-indent-offset 4)
-  (setq-default c-ts-mode-indent-style #'chbm-indent-style))
+  :hook ((c-ts-mode . chbm-set-c-style-indent)
+         (ff-pre-find . chbm-set-ff-search-dirs-project)))
 
 (use-package xml-mode
   :ensure nil
