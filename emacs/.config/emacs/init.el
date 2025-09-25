@@ -90,6 +90,41 @@ before we send our 'ok' to the SessionManager."
         (add-hook 'kill-emacs-hook ,end-session-response t)
         (kill-emacs)))))
 
+(defun chbm-ff-find-other-file ()
+  (interactive)
+  (ff-find-other-file nil t))
+
+(defun chbm-set-c-style-indent ()
+  "Use clang-format instead of the default emacs indent"
+  (setq-local indent-region-function #'clang-format-region)
+  (setq-local indent-line-function (lambda ()
+                                     (clang-format-region (line-beginning-position)
+                                                          (line-end-position))))
+  (setq-default c-ts-mode-indent-offset 4)
+  (setq-default c-ts-mode-indent-style 'bsd))
+
+(defun chbm-set-cc-search-dirs-project ()
+  "Adds likely locations to look for other files based on the project"
+  (interactive)
+  (when (project-current)
+    (let* ((project-root (caddr (project-current)))
+           (get-subdirs (lambda (dir)
+                          (when (file-directory-p dir)
+                            (seq-filter #'file-directory-p
+                                        (directory-files-recursively dir "" t)))))
+           (include-sub-dirs (funcall get-subdirs (file-name-concat project-root "include")))
+           (src-sub-dirs (funcall get-subdirs (file-name-concat project-root "src")))
+           (lib-sub-dirs (funcall get-subdirs (file-name-concat project-root "lib")))
+           (sub-dirs (append include-sub-dirs
+                             src-sub-dirs
+                             lib-sub-dirs)))
+      (setq-local cc-search-directories
+                  (append
+                   (list
+                    "."
+                    "/usr/include"
+                    "/usr/local/include/*")
+                   (mapcar (lambda (dir) (file-name-concat dir "*")) sub-dirs))))))
 ;; Main emacs config  ==========================================================
 
 (use-package emacs
@@ -688,6 +723,10 @@ than `split-width-threshold'."
 
 ;; Searching ===================================================================
 
+(use-package find-file
+  :ensure nil
+  :bind (("C-c o" . chbm-ff-find-other-file)))
+
 (use-package isearch
   :ensure nil
   :config
@@ -916,48 +955,15 @@ than `split-width-threshold'."
   :mode "\\.hs\\'"
   :hook (haskell-mode . interactive-haskell-mode))
 
-(defun chbm-set-c-style-indent ()
-  "Use clang-format instead of the default emacs indent"
-  (setq-local indent-region-function #'clang-format-region)
-  (setq-local indent-line-function (lambda ()
-                                     (clang-format-region (line-beginning-position)
-                                                          (line-end-position))))
-  (setq-default c-ts-mode-indent-offset 4)
-  (setq-default c-ts-mode-indent-style 'bsd))
-
-(defun chbm-set-ff-search-dirs-project ()
-  "Adds likely locations to look for other files based on the project"
-  (when (project-current)
-    (let* ((project-root (caddr (project-current)))
-           (get-subdirs (lambda (dir)
-                          (when (file-directory-p dir)
-                            (seq-filter #'file-directory-p
-                                        (directory-files-recursively dir "" t)))))
-           (include-sub-dirs (funcall get-subdirs (file-name-concat project-root "include")))
-           (src-sub-dirs (funcall get-subdirs (file-name-concat project-root "src")))
-           (lib-sub-dirs (funcall get-subdirs (file-name-concat project-root "lib")))
-           (sub-dirs (append include-sub-dirs
-                             src-sub-dirs
-                             lib-sub-dirs)))
-      (setq-local cc-search-directories
-                  (append
-                   (list
-                    "."
-                    "/usr/include"
-                    "/usr/local/include/*")
-                   (mapcar (lambda (dir) (file-name-concat dir "*")) sub-dirs))))))
-
 (use-package c++-ts-mode
   :ensure nil
-  :bind ("C-c o" . ff-find-other-file)
   :hook ((c++-ts-mode . chbm-set-c-style-indent)
-         (ff-pre-find . chbm-set-ff-search-dirs-project)))
+         (ff-pre-find . chbm-set-cc-search-dirs-project)))
 
 (use-package c-ts-mode
   :ensure nil
-  :bind ("C-c o" . ff-find-other-file)
   :hook ((c-ts-mode . chbm-set-c-style-indent)
-         (ff-pre-find . chbm-set-ff-search-dirs-project)))
+         (ff-pre-find . chbm-set-cc-search-dirs-project)))
 
 (use-package xml-mode
   :ensure nil
