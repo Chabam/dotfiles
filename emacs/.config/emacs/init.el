@@ -95,11 +95,9 @@ before we send our 'ok' to the SessionManager."
   (ff-find-other-file nil t))
 
 (defun chbm-set-c-style-indent ()
-  "Use clang-format instead of the default emacs indent"
-  (setq-local indent-region-function #'clang-format-region)
-  (setq-local indent-line-function (lambda ()
-                                     (clang-format-region (line-beginning-position)
-                                                          (line-end-position))))
+  "Sets up clang-format if the proper file is there otherwise use the default treesit"
+  (when (locate-dominating-file default-directory ".clang-format")
+    (setq-local indent-region-function #'clang-format-region))
   (setq-default c-ts-mode-indent-offset 4)
   (setq-default c-ts-mode-indent-style 'bsd))
 
@@ -143,7 +141,9 @@ before we send our 'ok' to the SessionManager."
          ("M-l" . downcase-dwim)
          ("M-u" . upcase-dwim)
          ("C-S-d" . duplicate-line)
-         ("C-x C-b" . ibuffer))
+         ("C-x C-b" . ibuffer)
+         (:map prog-mode-map
+               (("RET" . newline-and-indent))))
   :hook (((prog-mode text-mode) . (lambda ()
                                     (setq show-trailing-whitespace t)
                                     (column-number-mode)
@@ -195,6 +195,9 @@ before we send our 'ok' to the SessionManager."
   ;; Trying to properly set fonts
   (chbm-set-fonts)
 
+  ;; Deleting selection when typing
+  (delete-selection-mode 1)
+
   ;; Default indentation
   (setq-default standard-indent 4
                 tab-width 4
@@ -222,12 +225,8 @@ before we send our 'ok' to the SessionManager."
   ;; Completion stuff
   (setq text-mode-ispell-word-completion nil)
   (setq completion-styles '(basic substring partial-completion flex))
-
-  (setq read-extended-command-predicate #'command-completion-default-include-p)
-
-  ;; Indentation
-  (setq indent-line-function 'insert-tab)
   (setq tab-always-indent 'complete)
+  (setq read-extended-command-predicate #'command-completion-default-include-p)
 
   ;; Tab bar options
   (setq tab-bar-close-button-show nil)
@@ -291,7 +290,9 @@ before we send our 'ok' to the SessionManager."
   ;; Whitespace
   (setq whitespace-style '(face indentation tabs tab-mark spaces space-mark
                                 newline newline-mark trailing))
+  ;; y or n instead of yes or no
   (setq use-short-answers t)
+  ;; Don't ask for creating new buffers on async commands
   (setq async-shell-command-buffer 'new-buffer))
 
 ;; Theming  ====================================================================
@@ -876,7 +877,7 @@ than `split-width-threshold'."
 (use-package electric
   :ensure nil
   :hook ((after-init . electric-pair-mode)
-         (after-init . electric-indent-mode))
+         (after-init . (lambda () (electric-indent-mode -1))))
   :config
   (setq electric-pair-inhibit-predicate 'electric-pair-conservative-inhibit))
 
@@ -924,7 +925,9 @@ than `split-width-threshold'."
          ("C-x C-r" . eglot-rename))
   :config
   (setq eglot-autoshutdown t)
-  (add-to-list 'eglot-ignored-server-capabilities :inlayHintProvider :documentOnTypeFormattingProvider)
+  (setq eglot-ignored-server-capabilities
+      (append eglot-ignored-server-capabilities
+              '(:inlayHintProvider :documentOnTypeFormattingProvider :documentOnTypeFormatting)))
   (add-to-list 'eglot-server-programs
                '((org-mode (LaTeX-mode :language-id "latex")) . ("ltex-ls-plus" "--server-type" "TcpSocket" "--port" :autoport)))
   (setq-default eglot-workspace-configuration
