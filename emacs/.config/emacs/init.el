@@ -274,17 +274,6 @@ before we send our 'ok' to the SessionManager."
           ("\\*Choices\\*"
            (display-buffer-below-selected)
            (window-height . fit-window-to-buffer))
-          ("*R Dired"
-           (display-buffer-reuse-window display-buffer-same-window)
-           (side . right)
-           (slot . -1)
-           (window-width . 0.33)
-           (reusable-frames . nil))
-          ("*R"
-           (display-buffer-reuse-window display-buffer-same-window)
-           (side . right)
-           (window-width . 0.5)
-           (reusable-frames . nil))
           ))
 
   ;; Whitespace
