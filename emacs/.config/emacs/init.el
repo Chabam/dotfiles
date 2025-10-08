@@ -819,6 +819,7 @@ than `split-width-threshold'."
   :ensure nil
   :hook (compilation-filter . ansi-color-compilation-filter)
   :config
+  (setq compilation-scroll-output t)
   (setq ansi-color-for-compilation-mode t)
   (setq compilation-skip-threshold 2))
 
