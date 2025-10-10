@@ -156,6 +156,10 @@ before we send our 'ok' to the SessionManager."
   :init
   (require 'package)
   (add-to-list 'package-archives '("melpa" . "https://melpa.org/packages/") t)
+  (setq package-archive-priorities
+        '(("gnu" . 3)
+          ("melpa" . 2)
+          ("nongnu" . 1)))
   (package-initialize)
 
   (require 'server)
