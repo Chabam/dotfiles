@@ -123,6 +123,14 @@ before we send our 'ok' to the SessionManager."
                     "/usr/include"
                     "/usr/local/include/*")
                    (mapcar (lambda (dir) (file-name-concat dir "*")) sub-dirs))))))
+
+(defun chbm-yank-copied-rectangle-as-lines ()
+  "Insert the last copied or killed rectangle as regular lines."
+  (interactive)
+  (when (not killed-rectangle)
+    (user-error "No rectangle to yank"))
+  (insert (mapconcat 'identity killed-rectangle "\n")))
+
 ;; Main emacs config  ==========================================================
 
 (use-package emacs
@@ -154,6 +162,9 @@ before we send our 'ok' to the SessionManager."
                                       (chbm-start-with-agenda))))
   :ensure nil
   :init
+  (when (file-exists-p custom-file)
+    (add-to-list 'load-path "/usr/share/emacs/site-lisp"))
+
   (require 'package)
   (add-to-list 'package-archives '("melpa" . "https://melpa.org/packages/") t)
   (setq package-archive-priorities
@@ -976,6 +987,12 @@ than `split-width-threshold'."
   :config
   (setq ess-use-ido nil))
 
+(use-package cmake-mode
+  :ensure nil)
+
+(use-package clang-format
+  :ensure nil)
+
 ;; Org =========================================================================
 
 (use-package org
@@ -999,6 +1016,7 @@ than `split-width-threshold'."
 (use-package org-roam
   :bind (("C-c C-r c" . org-roam-capture)
          ("C-c C-r f" . org-roam-node-find))
+  :after org
   :config
   (setq org-roam-directory (concat org-directory "/Roam/"))
   (org-roam-db-autosync-mode 1))

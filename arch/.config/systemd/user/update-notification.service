@@ -1,0 +1,10 @@
+[Unit]
+Description=Show when updates are available
+After=network.target
+
+[Service]
+Type=oneshot
+ExecStart=bash -c '/usr/bin/notify-send "$(checkupdates --nocolor | wc -l) updates available" -a "Arch Linux Updates"'
+
+[Install]
+WantedBy=default.target
