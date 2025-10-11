@@ -106,16 +106,20 @@ before we send our 'ok' to the SessionManager."
   (interactive)
   (when (project-current)
     (let* ((project-root (caddr (project-current)))
+           (is-not-hidden-p (lambda (f) (null (string-match "^\\." f))))
+           (is-not-build-dir-p (lambda (f) (null (string-match "build" f))))
+           (dir-recurse-p (lambda (p)
+                            (let ((f (file-name-nondirectory p)))
+                              (and (funcall is-not-build-dir-p f)
+                                   (funcall is-not-hidden-p f)))))
+           (exclude-p (lambda (f)
+                        (and (file-directory-p f)
+                             (funcall is-not-hidden-p f))))
            (get-subdirs (lambda (dir)
                           (when (file-directory-p dir)
-                            (seq-filter #'file-directory-p
-                                        (directory-files-recursively dir "" t)))))
-           (include-sub-dirs (funcall get-subdirs (file-name-concat project-root "include")))
-           (src-sub-dirs (funcall get-subdirs (file-name-concat project-root "src")))
-           (lib-sub-dirs (funcall get-subdirs (file-name-concat project-root "lib")))
-           (sub-dirs (append include-sub-dirs
-                             src-sub-dirs
-                             lib-sub-dirs)))
+                            (seq-filter exclude-p
+                                        (directory-files-recursively dir "" t dir-recurse-p)))))
+           (sub-dirs (funcall get-subdirs project-root)))
       (setq-local cc-search-directories
                   (append
                    (list
@@ -148,6 +152,7 @@ before we send our 'ok' to the SessionManager."
          ("M-c" . capitalize-dwim)
          ("M-l" . downcase-dwim)
          ("M-u" . upcase-dwim)
+         ("C-x r y" . chbm-yank-copied-rectangle-as-lines)
          ("C-S-d" . duplicate-line)
          ("C-x C-b" . ibuffer)
          (:map prog-mode-map
