@@ -167,8 +167,8 @@ before we send our 'ok' to the SessionManager."
                                       (chbm-start-with-agenda))))
   :ensure nil
   :init
-  (when (file-exists-p custom-file)
-    (add-to-list 'load-path "/usr/share/emacs/site-lisp"))
+  (when (file-exists-p "/usr/share/emacs/site-lisp")
+    (add-to-list 'load-path "/usr/share/emacs/site-lisp" t))
 
   (require 'package)
   (add-to-list 'package-archives '("melpa" . "https://melpa.org/packages/") t)
