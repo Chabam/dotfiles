@@ -1025,3 +1025,8 @@ than `split-width-threshold'."
   :config
   (setq org-roam-directory (concat org-directory "/Roam/"))
   (org-roam-db-autosync-mode 1))
+
+;; Abbrevs =====================================================================
+
+(abbrev-table-put global-abbrev-table :regexp "\\(?:^\\|[\t\s]+\\)\\(?1:[:_].*\\|.*\\)")
+(define-abbrev global-abbrev-table ":github:" "git@github.com:chabam/")
