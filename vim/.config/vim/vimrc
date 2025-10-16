@@ -1,0 +1,11 @@
+syntax on
+filetype plugin indent on
+
+set showcmd
+set showmatch
+set incsearch        
+set smartcase
+set number
+set tabstop=4
+set shiftwidth=4
+set expandtab
