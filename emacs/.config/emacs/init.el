@@ -860,6 +860,7 @@ than `split-width-threshold'."
   :config
   (setq dired-listing-switches "-aBhlv  --group-directories-first")
   (setq dired-dwim-target t)
+  (setq dired-vc-rename-file t)
   (setq wdired-allow-to-change-permissions t))
 
 (use-package magit
