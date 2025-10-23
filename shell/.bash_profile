@@ -5,4 +5,4 @@ export PAGER="less --use-color"
 
 [ -f "/home/chabam/.ghcup/env" ] && . "/home/chabam/.ghcup/env"
 
-export PATH="$PATH:$HOME/.local/bin"
+export PATH="$PATH:$HOME/.local/bin:$HOME/.scripts"

@@ -3,7 +3,7 @@ set $mod Mod4
 # Your preferred terminal emulator
 set $term foot
 # Your preferred application launcher
-set $menu wmenu-run
+set $menu wofi
 
 ### Output configuration
 #
@@ -21,10 +21,10 @@ output DP-3 pos 1920 -1200 res 3440x1440
 #
 # Example configuration:
 #
-# exec swayidle -w \
-#          timeout 300 'swaylock -f -c 000000' \
-#          timeout 600 'swaymsg "output * power off"' resume 'swaymsg "output * power on"' \
-#          before-sleep 'swaylock -f -c 000000'
+exec swayidle -w \
+         timeout 900 'swaylock -f -c 131313' \
+         timeout 10 'swaymsg "output * power off"' resume 'swaymsg "output * power on"' \
+         before-sleep 'swaylock -f -c 131313'
 #
 # This will lock your screen after 300 seconds of inactivity, then turn off
 # your displays after another 300 seconds, and turn your screens back on when
@@ -55,7 +55,8 @@ output DP-3 pos 1920 -1200 res 3440x1440
     bindsym $mod+Shift+q kill
 
     # Start your launcher
-    bindsym $mod+d exec $menu
+    bindsym $mod+d exec $menu --show run
+    bindsym $mod+Shift+d exec $menu --show drun --allow-images
 
     # Drag floating windows by holding down $mod and left mouse button.
     # Resize them with right mouse button + $mod.
@@ -69,6 +70,7 @@ output DP-3 pos 1920 -1200 res 3440x1440
 
     # Exit sway (logs you out of your Wayland session)
     bindsym $mod+Shift+e exec swaynag -t warning -m 'You pressed the exit shortcut. Do you really want to exit sway? This will end your Wayland session.' -B 'Yes, exit sway' 'swaymsg exit'
+    bindsym $mod+Shift+l exec swaylock -f -c 131313
 #
 # Moving around:
 #
@@ -207,5 +209,9 @@ bar {
         inactive_workspace #32323200 #32323200 #5c5c5c
     }
 }
+
+exec blueman-applet
+exec nm-applet
+exec mako
 
 include /etc/sway/config.d/*
