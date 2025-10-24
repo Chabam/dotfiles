@@ -684,6 +684,11 @@ than `split-width-threshold'."
   :config
   (add-to-list 'project-switch-commands '(magit-project-status "Magit" "m")))
 
+(use-package ispell
+  :ensure nil
+  :config
+  (setq ispell-program-name "hunspell"))
+
 ;; Minibuffer ==================================================================
 
 (use-package vertico
@@ -960,10 +965,12 @@ than `split-width-threshold'."
   :mode "\\.rkt\\'")
 
 (use-package auctex
+  :hook (LaTeX-mode . turn-on-reftex)
   :config
   (setq TeX-auto-save t)
   (setq TeX-parse-self t)
-  (setq-default Tex-master nil))
+  (setq-default Tex-master nil)
+  (setq reftex-plug-into-AUCTeX t))
 
 (use-package haskell-mode
   :mode "\\.hs\\'"
