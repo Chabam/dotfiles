@@ -149,6 +149,7 @@ before we send our 'ok' to the SessionManager."
          ("M-o" . other-window)
          ("C-x C-c C-c" . save-buffers-kill-emacs)
          ("M-z" . zap-up-to-char)       ; zap-up-to-char instead of zap-to-char
+         ("C-M-z" . delete-pair)
          ("M-c" . capitalize-dwim)
          ("M-l" . downcase-dwim)
          ("M-u" . upcase-dwim)
@@ -217,6 +218,9 @@ before we send our 'ok' to the SessionManager."
 
   ;; Deleting selection when typing
   (delete-selection-mode 1)
+
+  ;; Remove blinking for delete-pair
+  (setq delete-pair-blink-delay 0)
 
   ;; Default indentation
   (setq-default standard-indent 4
@@ -893,9 +897,7 @@ than `split-width-threshold'."
 (use-package electric
   :ensure nil
   :hook ((after-init . electric-pair-mode)
-         (after-init . (lambda () (electric-indent-mode -1))))
-  :config
-  (setq electric-pair-inhibit-predicate 'electric-pair-conservative-inhibit))
+         (after-init . (lambda () (electric-indent-mode -1)))))
 
 (use-package paren
   :ensure nil
@@ -915,10 +917,6 @@ than `split-width-threshold'."
   :config
   (setq flymake-indicator-type 'margins))
 
-(use-package surround
-  :ensure t
-  :bind-keymap ("C-c s" . surround-keymap))
-
 ;; Languages related modes =====================================================
 
 (use-package treesit-auto
@@ -931,14 +929,8 @@ than `split-width-threshold'."
 
 (use-package eglot
   :ensure nil
-  :hook ((c++-ts-mode . eglot-ensure)
-         (python-ts-mode . eglot-ensure)
-         (cmake-ts-mode . eglot-ensure)
-         (racket-mode . eglot-ensure)
-         (haskell-mode . eglot-ensure)
-         (ess-r-mode . eglot-ensure))
-  :bind (("C-x C-a" . eglot-code-actions)
-         ("C-x C-r" . eglot-rename))
+  :bind (("C-c e a" . eglot-code-actions)
+         ("C-c e r" . eglot-rename))
   :config
   (setq eglot-autoshutdown t)
   (setq eglot-ignored-server-capabilities
