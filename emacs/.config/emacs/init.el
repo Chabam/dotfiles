@@ -930,7 +930,8 @@ than `split-width-threshold'."
 (use-package eglot
   :ensure nil
   :bind (("C-c e a" . eglot-code-actions)
-         ("C-c e r" . eglot-rename))
+         ("C-c e r" . eglot-rename)
+         ("C-c e s" . eglot))
   :config
   (setq eglot-autoshutdown t)
   (setq eglot-ignored-server-capabilities
@@ -964,9 +965,7 @@ than `split-width-threshold'."
   (setq-default Tex-master nil)
   (setq reftex-plug-into-AUCTeX t))
 
-(use-package haskell-mode
-  :mode "\\.hs\\'"
-  :hook (haskell-mode . interactive-haskell-mode))
+(use-package haskell-mode)
 
 (use-package c++-ts-mode
   :ensure nil
