@@ -1008,8 +1008,14 @@ than `split-width-threshold'."
   :config
   (require 'org-tempo)
   (setq org-directory "~/Notes"
+
+        org-icalendar-exclude-tags '("noexport")
+        org-icalendar-combined-agenda-file (concat org-directory "/Agendas/org.ics")
         org-icalendar-use-scheduled '(event-if-not-todo event-if-todo event-if-todo-not-done todo-start)
         org-icalendar-use-deadline '(event-if-not-todo event-if-todo event-if-todo-not-done todo-due)
+        org-icalendar-scheduled-summary-prefix ""
+        org-icalendar-deadline-summary-prefix ""
+
         org-agendas-directory (concat org-directory "/Agendas/")
         org-default-notes-file (expand-file-name (concat org-agendas-directory "Misc.org") org-directory)
         org-agenda-files (directory-files-recursively org-agendas-directory  "\\.org$")
