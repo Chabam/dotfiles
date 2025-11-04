@@ -15,8 +15,7 @@ output * bg ~/Pictures/.bg fill
 #   output HDMI-A-1 resolution 1920x1080 position 1920,0
 #
 # You can get the names of your outputs by running: swaymsg -t get_outputs
-output eDP-2 pos 0 0 res 1920x1200
-output DP-3 pos 1920 -1200 res 3440x1440
+include ./monitors
 ### Idle configuration
 #
 # Example configuration:
