@@ -280,6 +280,7 @@ before we send our 'ok' to the SessionManager."
   (setq split-width-threshold 125)
   (setq window-min-height 3)
   (setq window-min-width 30)
+  (setq fit-window-to-buffer-horizontally t)
 
   (setq display-buffer-alist
         '(;; Agenda at bottom
