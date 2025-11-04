@@ -131,9 +131,10 @@ before we send our 'ok' to the SessionManager."
 (defun chbm-yank-copied-rectangle-as-lines ()
   "Insert the last copied or killed rectangle as regular lines."
   (interactive)
-  (when (not killed-rectangle)
-    (user-error "No rectangle to yank"))
-  (insert (mapconcat 'identity killed-rectangle "\n")))
+  (let ((rec (get-text-property 0 'yank-handler (car kill-ring))))
+    (when (not rec)
+      (user-error "No rectangle to yank"))
+    (insert (substring-no-properties (car kill-ring)))))
 
 ;; Main emacs config  ==========================================================
 
