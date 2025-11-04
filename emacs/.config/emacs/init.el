@@ -893,6 +893,11 @@ than `split-width-threshold'."
         tramp-verbose 2
         enable-remote-dir-locals t))
 
+(use-package pdf-tools
+  :mode (("\\.pdf\\'" . pdf-view-mode))
+  :config
+  (pdf-loader-install))
+
 ;; Editor enhancements =========================================================
 
 (use-package electric
