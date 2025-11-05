@@ -1023,6 +1023,9 @@ than `split-width-threshold'."
         org-icalendar-scheduled-summary-prefix ""
         org-icalendar-deadline-summary-prefix ""
 
+        org-export-with-toc nil
+        org-export-with-section-numbers nil
+
         org-agendas-directory (concat org-directory "/Agendas/")
         org-default-notes-file (expand-file-name (concat org-agendas-directory "Misc.org") org-directory)
         org-agenda-files (directory-files-recursively org-agendas-directory  "\\.org$")
