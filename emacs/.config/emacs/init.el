@@ -1004,6 +1004,10 @@ than `split-width-threshold'."
 (use-package clang-format
   :ensure nil)
 
+(use-package yaml-ts-mode
+  :ensure nil
+  :mode "\\.yml")
+
 ;; Org =========================================================================
 
 (use-package org

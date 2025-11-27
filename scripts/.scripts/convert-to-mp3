@@ -1,0 +1,34 @@
+#!/usr/bin/env bash
+
+# USAGE: convert-to-mp3 SRC/ DST/
+
+# DESCRIPTION: Converts the whole directory SRC to DST to MP3 while
+# keeping the structure
+
+SRC=$(realpath "$1")
+DST=$(realpath "$2")
+
+trap "echo 'Stopping'; kill 0; exit 1;" SIGINT
+shopt -s globstar nullglob
+
+for f in "$SRC"/**/*.flac;
+do
+    RELPATH=$(realpath "$f" --relative-to "$SRC")
+    FILENAME=$(basename "$RELPATH" ".flac")
+    DIRNAME=$(dirname "$RELPATH")
+    NEWDST="$DST/$DIRNAME"
+
+    if [ -e "$NEWDST/$FILENAME.mp3" ]; then
+        echo "Skipping: $NEWDST/$FILENAME.mp3 exists"
+        continue
+    fi
+
+    if [ ! -d "$NEWDST" ]; then
+        mkdir -p "$NEWDST"
+    fi
+
+    echo "Converting $f -> $NEWDST/$FILENAME.mp3"
+    ffmpeg -i "$f" -codec:a libmp3lame -b:a 320k -map 0:a -map 0:v -id3v2_version 3 \
+           -metadata:s:v title="Album cover" -metadata:s:v comment="Cover (front)" \
+           "$NEWDST/$FILENAME.mp3" -loglevel error
+done
