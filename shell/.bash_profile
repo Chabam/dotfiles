@@ -1,3 +1,5 @@
+[ -f "$HOME/.bashrc" ] && . "$HOME/.bashrc"
+
 export BROWSER="firefox"
 export VISUAL="emacsclient -c"
 export EDITOR="emacsclient -t"
