@@ -945,7 +945,7 @@ than `split-width-threshold'."
       (append eglot-ignored-server-capabilities
               '(:inlayHintProvider :documentOnTypeFormattingProvider :documentOnTypeFormatting)))
   (add-to-list 'eglot-server-programs
-               '((org-mode (LaTeX-mode :language-id "latex")) . ("ltex-ls-plus" "--server-type" "TcpSocket" "--port" :autoport)))
+               '((org-mode (LaTeX-mode :language-id "latex") text-mode) . ("ltex-ls-plus" "--server-type" "TcpSocket" "--port" :autoport)))
   (setq-default eglot-workspace-configuration
                 '((:ltex . (:language "auto"
                             :completionEnabled t
