@@ -623,7 +623,8 @@ than `split-width-threshold'."
 
 ;; Frames and window utilities =================================================
 
-(use-package transpose-frame)
+(use-package transpose-frame
+  :bind (("C-x 5 t" . transpose-frame)))
 
 (use-package windmove
   :ensure nil
