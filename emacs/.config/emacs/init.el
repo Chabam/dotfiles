@@ -313,7 +313,7 @@ before we send our 'ok' to the SessionManager."
 ;; Theming  ====================================================================
 
 (use-package modus-themes
-  :config
+  :init
   (setq modus-themes-common-palette-overrides
         `((cursor magenta-warmer)
           (bg-region bg-lavender)
@@ -328,7 +328,7 @@ before we send our 'ok' to the SessionManager."
 
 	      ;; Number line invisible
 	      (fringe unspecified)
-	      (fg-line-number-inactive comment)
+	      (fg-line-number-inactive fg-dim)
 	      (fg-line-number-active cursor)
 	      (bg-line-number-inactive unspecified)
 	      (bg-line-number-active unspecified)
@@ -357,7 +357,9 @@ before we send our 'ok' to the SessionManager."
   (setq modus-themes-variable-pitch-ui t)
   (setq modus-themes-italic-constructs t)
   (setq modus-themes-bold-constructs t)
-  (setq modus-themes-mixed-fonts t))
+  (setq modus-themes-mixed-fonts t)
+  (load-theme 'modus-vivendi :noconfirm)
+  (load-theme 'modus-operandi :noconfirm))
 
 ;; Modeline  ===================================================================
 ;; Most stuff here comes from Prot
@@ -1080,6 +1082,8 @@ than `split-width-threshold'."
   :config
   (setq org-roam-directory (concat org-directory "/Roam/"))
   (org-roam-db-autosync-mode 1))
+
+(use-package zig-mode)
 
 ;; Abbrevs =====================================================================
 
