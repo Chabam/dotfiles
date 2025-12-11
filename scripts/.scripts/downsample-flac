@@ -1,0 +1,10 @@
+#!/usr/bin/env bash
+
+mkdir "down"
+for i in *.flac; do
+    ffmpeg -i "$i" -sample_fmt s16 -ar 44000 "down/$i"
+done
+
+rm *.flac
+mv down/* .
+rm -r down

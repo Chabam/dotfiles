@@ -691,7 +691,8 @@ than `split-width-threshold'."
 (use-package project
   :ensure nil
   :config
-  (add-to-list 'project-switch-commands '(magit-project-status "Magit" "m")))
+  (add-to-list 'project-switch-commands '(magit-project-status "Magit" "m"))
+  (add-to-list 'project-switch-commands '(project-dired "Project Dired" "D")))
 
 (use-package ispell
   :ensure nil
