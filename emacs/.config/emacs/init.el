@@ -1,14 +1,16 @@
 ;;; Custom functions
 
-(defun chbm-set-fonts (&rest _)
+(defun chbm-set-fonts (&optional font-size &rest _)
   "Set fonts for frame and after theme"
+  (interactive (list (setq font-size (read-number "Font size: " 120))))
   (when (display-graphic-p)
-    (set-face-attribute 'default nil :family "Iosevka" :height 120)
-    (set-face-attribute 'fixed-pitch nil :family "Iosevka")
-    (set-face-attribute 'variable-pitch nil :family "Iosevka")
-    (set-face-attribute 'tab-bar nil :height 120)
-    (set-face-attribute 'tab-bar-tab nil :height 120)
-    (set-face-attribute 'tab-bar-tab-inactive nil :height 120)))
+    (let ((font-size (or font-size 120)))
+      (set-face-attribute 'default nil :family "Iosevka" :height font-size)
+      (set-face-attribute 'fixed-pitch nil :family "Iosevka")
+      (set-face-attribute 'variable-pitch nil :family "Iosevka")
+      (set-face-attribute 'tab-bar nil :height font-size)
+      (set-face-attribute 'tab-bar-tab nil :height font-size)
+      (set-face-attribute 'tab-bar-tab-inactive nil :height font-size))))
 
 (defun chbm-start-with-agenda ()
   (when (and (display-graphic-p)
