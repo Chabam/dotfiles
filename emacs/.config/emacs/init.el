@@ -1,4 +1,4 @@
-;; Custom functions ============================================================
+;;; Custom functions
 
 (defun chbm-set-fonts (&rest _)
   "Set fonts for frame and after theme"
@@ -136,7 +136,7 @@ before we send our 'ok' to the SessionManager."
       (user-error "No rectangle to yank"))
     (insert (substring-no-properties (car kill-ring)))))
 
-;; Main emacs config  ==========================================================
+;;; Main emacs config
 
 (use-package emacs
   :bind (;; Disabling some bindings
@@ -310,7 +310,7 @@ before we send our 'ok' to the SessionManager."
   ;; Don't ask for creating new buffers on async commands
   (setq async-shell-command-buffer 'new-buffer))
 
-;; Theming  ====================================================================
+;;; Theming
 
 (use-package modus-themes
   :init
@@ -361,7 +361,7 @@ before we send our 'ok' to the SessionManager."
   (load-theme 'modus-vivendi :noconfirm)
   (load-theme 'modus-operandi :noconfirm))
 
-;; Modeline  ===================================================================
+;;; Modeline
 ;; Most stuff here comes from Prot
 
 (defface chbm-modeline-green-bg
@@ -621,7 +621,7 @@ than `split-width-threshold'."
                 " %p %l:%c  ")
               )
 
-;; Frames and window utilities =================================================
+;;; Frames and window utilities
 
 (use-package transpose-frame
   :bind (("C-x 5 t" . transpose-frame)))
@@ -647,7 +647,7 @@ than `split-width-threshold'."
                          (setq auto-dark-themes '((modus-vivendi) (modus-operandi)))
                          (auto-dark-mode)))))
 
-;; Misc essential packages =====================================================
+;;; Misc essential packages
 
 (use-package which-key
   :ensure nil
@@ -699,7 +699,7 @@ than `split-width-threshold'."
   :config
   (setq ispell-program-name "hunspell"))
 
-;; Minibuffer ==================================================================
+;;; Minibuffer
 
 (use-package vertico
   :hook (after-init . vertico-mode)
@@ -715,7 +715,7 @@ than `split-width-threshold'."
   :config
   (setq savehist-additional-variables '(register-alist kill-ring)))
 
-;; Completion frameworks =======================================================
+;;; Completion frameworks
 
 (use-package corfu
   :bind (:map corfu-map
@@ -746,7 +746,9 @@ than `split-width-threshold'."
   (setq completion-category-overrides '((file (styles basic partial-completion))))
   (setq completion-matching-styles '(orderless-regexp)))
 
-;; Searching ===================================================================
+(use-package cape)
+
+;;; Searching
 
 (use-package find-file
   :ensure nil
@@ -829,7 +831,7 @@ than `split-width-threshold'."
 (use-package embark-consult
   :hook (embark-collect-mode . consult-preview-at-point-mode))
 
-;; Useful buffer types =========================================================
+;;; Useful buffer types
 
 (use-package comint                     ; Repls
   :ensure nil
@@ -918,11 +920,7 @@ than `split-width-threshold'."
   :config
   (setq magit-display-buffer-function #'magit-display-buffer-same-window-except-diff-v1))
 
-(use-package wgrep
-  :bind (:map grep-mode-map
-          ("e" . wgrep-change-to-wgrep-mode)
-          ("C-x C-q" . wgrep-change-to-wgrep-mode)
-          ("C-c C-c" . wgrep-finish-edit)))
+(use-package wgrep)
 
 (use-package tramp
   :ensure nil
@@ -939,7 +937,7 @@ than `split-width-threshold'."
   :config
   (pdf-loader-install))
 
-;; Editor enhancements =========================================================
+;;; Editor enhancements
 
 (use-package electric
   :ensure nil
@@ -964,7 +962,7 @@ than `split-width-threshold'."
   :config
   (setq flymake-indicator-type 'margins))
 
-;; Languages related modes =====================================================
+;;; Languages related modes
 
 (use-package treesit-auto
   :hook (after-init . (lambda () (global-treesit-auto-mode 1)))
@@ -1048,7 +1046,7 @@ than `split-width-threshold'."
   :ensure nil
   :mode "\\.yml")
 
-;; Org =========================================================================
+;;; Org
 
 (use-package org
   :ensure nil
@@ -1056,6 +1054,8 @@ than `split-width-threshold'."
   :bind (("C-c l" . org-store-link)
          ("C-c a" . org-agenda)
          ("C-c c" . org-capture))
+  :hook ((org-mode . (lambda ()
+                       (add-hook 'completion-at-point-functions #'cape-file nil t))))
   :config
   (require 'org-tempo)
   (setq org-directory "~/Notes"
@@ -1087,7 +1087,7 @@ than `split-width-threshold'."
 
 (use-package zig-mode)
 
-;; Abbrevs =====================================================================
+;;; Abbrevs
 
 (abbrev-table-put global-abbrev-table :regexp "\\(?:^\\|[\t\s]+\\)\\(?1:[:_].*\\|.*\\)")
 (define-abbrev global-abbrev-table ":github:" "git@github.com:chabam/")
