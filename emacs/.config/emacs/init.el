@@ -156,9 +156,7 @@ before we send our 'ok' to the SessionManager."
          ("M-u" . upcase-dwim)
          ("C-x r y" . chbm-yank-copied-rectangle-as-lines)
          ("C-S-d" . duplicate-line)
-         ("C-x C-b" . ibuffer)
-         (:map prog-mode-map
-               (("RET" . newline-and-indent))))
+         ("C-x C-b" . ibuffer))
   :hook (((prog-mode text-mode) . (lambda ()
                                     (setq show-trailing-whitespace t)
                                     (column-number-mode)
@@ -783,11 +781,10 @@ than `split-width-threshold'."
          ("M-g i" . consult-imenu)
          ("M-g I" . consult-imenu-multi)
          ;; M-s bindings in `search-map'
-         ("M-s d" . consult-fd)
+         ("M-s d" . consult-find)
          ("M-s c" . consult-locate)
          ("M-s g" . consult-grep)
          ("M-s G" . consult-git-grep)
-         ("M-s r" . consult-ripgrep)
          ("M-s l" . consult-line)
          ("M-s L" . consult-line-multi)
          ("M-s k" . consult-keep-lines)
@@ -941,8 +938,7 @@ than `split-width-threshold'."
 
 (use-package electric
   :ensure nil
-  :hook ((after-init . electric-pair-mode)
-         (after-init . (lambda () (electric-indent-mode -1)))))
+  :hook ((after-init . electric-pair-mode)))
 
 (use-package paren
   :ensure nil
