@@ -100,6 +100,7 @@ before we send our 'ok' to the SessionManager."
   "Override the built-in BSD indentation style with some additional rules"
   `(
     ((match "compound_statement" "for_range_loop") standalone-parent 0)
+    
     ,@(alist-get 'bsd (c-ts-mode--indent-styles 'cpp))
     ))
 
@@ -658,7 +659,12 @@ than `split-width-threshold'."
 
 (use-package which-key
   :ensure nil
-  :hook (after-init . which-key-mode))
+  :hook (after-init . which-key-mode)
+  :config
+  (setq which-key-max-display-columns 3)
+  (setq which-key-add-column-padding 1)
+  (setq which-key-prefix-prefix "... ")
+  (setq which-key-separator "  "))
 
 (use-package repeat
   :ensure nil
