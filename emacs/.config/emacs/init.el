@@ -96,12 +96,19 @@ before we send our 'ok' to the SessionManager."
   (interactive)
   (ff-find-other-file nil t))
 
+(defun chbm-bsd-style-indent ()
+  "Override the built-in BSD indentation style with some additional rules"
+  `(
+    ((match "compound_statement" "for_range_loop") standalone-parent 0)
+    ,@(alist-get 'bsd (c-ts-mode--indent-styles 'cpp))
+    ))
+
 (defun chbm-set-c-style-indent ()
   "Sets up clang-format if the proper file is there otherwise use the default treesit"
   (when (locate-dominating-file default-directory ".clang-format")
     (setq-local indent-region-function #'clang-format-region))
-  (setq-default c-ts-mode-indent-offset 4)
-  (setq-default c-ts-mode-indent-style 'bsd))
+  (setq-local c-ts-mode-indent-offset 4)
+  (c-ts-mode-set-style 'chbm-bsd-style-indent))
 
 (defun chbm-set-cc-search-dirs-project ()
   "Adds likely locations to look for other files based on the project"
