@@ -1,3 +1,4 @@
+;; -*- lexical-binding: t -*-
 ;;; Custom functions
 
 (defun chbm-set-fonts (&optional font-size &rest _)
@@ -96,13 +97,39 @@ before we send our 'ok' to the SessionManager."
   (interactive)
   (ff-find-other-file nil t))
 
+(defun chbm-is-first-sibling (&optional node-t parent-node-t)
+  (lambda (node parent &rest _)
+    (and (or (not node-t)
+             (string-match-p
+              node-t (treesit-node-type node)))
+         (or (not parent-node-t)
+             (string-match-p
+              parent-node-t (treesit-node-type parent)))
+         (not (treesit-node-prev-sibling node t)))))
+
+(defun chbm-is-last-sibling (&optional node-t parent-node-t)
+  (lambda (node parent &rest _)
+    (and (or (not node-t)
+             (string-match-p
+              node-t (treesit-node-type node)))
+         (or (not parent-node-t)
+             (string-match-p
+              parent-node-t (treesit-node-type parent)))
+         (not (treesit-node-next-sibling node t)))))
+
 (defun chbm-bsd-style-indent ()
   "Override the built-in BSD indentation style with some additional rules"
   `(
+    ((n-p-gp nil "declaration_list" "namespace_definition") parent-bol 0)
     ((match "compound_statement" "for_range_loop") standalone-parent 0)
-    
-    ,@(alist-get 'bsd (c-ts-mode--indent-styles 'cpp))
-    ))
+    ((node-is "access_specifier") parent-bol 2)
+    ((chbm-is-first-sibling "parameter_declaration" "parameter_list") standalone-parent c-ts-mode-indent-offset)
+    ((chbm-is-first-sibling nil "argument_list") standalone-parent c-ts-mode-indent-offset)
+    ((chbm-is-last-sibling ")" "parameter_list") standalone-parent 0)
+    ((chbm-is-last-sibling ")" "argument_list") standalone-parent 0)
+    ((parent-is "argument_list") prev-sibling 0)
+    ((parent-is "parameter_list") prev-sibling 0)
+    ,@(alist-get 'bsd (c-ts-mode--indent-styles 'cpp))))
 
 (defun chbm-set-c-style-indent ()
   "Sets up clang-format if the proper file is there otherwise use the default treesit"
@@ -981,7 +1008,6 @@ than `split-width-threshold'."
   (setq treesit-auto-install 'prompt)
   (setq treesit-auto-add-to-auto-mode-alist 'all)
   (setq-default treesit-font-lock-level 4))
-
 
 (use-package eglot
   :ensure nil
