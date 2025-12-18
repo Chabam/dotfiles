@@ -99,7 +99,9 @@ before we send our 'ok' to the SessionManager."
 
 (defun chbm-is-first-sibling (&optional node-t parent-node-t)
   (lambda (node parent &rest _)
-    (and (or (not node-t)
+    (and node
+         parent
+         (or (not node-t)
              (string-match-p
               node-t (treesit-node-type node)))
          (or (not parent-node-t)
@@ -109,7 +111,9 @@ before we send our 'ok' to the SessionManager."
 
 (defun chbm-is-last-sibling (&optional node-t parent-node-t)
   (lambda (node parent &rest _)
-    (and (or (not node-t)
+    (and node
+         parent
+         (or (not node-t)
              (string-match-p
               node-t (treesit-node-type node)))
          (or (not parent-node-t)
