@@ -1087,6 +1087,8 @@ than `split-width-threshold'."
   :ensure nil
   :mode "\\.yml")
 
+(use-package zig-mode)
+
 ;;; Org
 
 (use-package org
@@ -1126,7 +1128,9 @@ than `split-width-threshold'."
   (setq org-roam-directory (concat org-directory "/Roam/"))
   (org-roam-db-autosync-mode 1))
 
-(use-package zig-mode)
+(use-package org-download
+  :hook ((dired-mode . org-download-enable)
+         (org-mode . org-download-enable)))
 
 ;;; Abbrevs
 
