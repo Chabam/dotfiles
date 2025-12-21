@@ -1,7 +1,7 @@
 [ -f "$HOME/.bashrc" ] && . "$HOME/.bashrc"
 
 export BROWSER="firefox"
-export VISUAL="emacsclient -c"
+export VISUAL="emacsclient -r"
 export EDITOR="emacsclient -t"
 export PAGER="less --use-color"
 
