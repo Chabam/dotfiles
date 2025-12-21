@@ -205,7 +205,8 @@ before we send our 'ok' to the SessionManager."
          ((org-mode text-mode) . auto-fill-mode)
          (server-after-make-frame . (lambda ()
                                       (chbm-set-fonts)
-                                      (chbm-start-with-agenda))))
+                                      (chbm-start-with-agenda)
+                                      )))
   :ensure nil
   :init
   (when (file-exists-p "/usr/share/emacs/site-lisp")
@@ -1093,7 +1094,6 @@ than `split-width-threshold'."
 
 (use-package org
   :ensure nil
-  :demand t
   :bind (("C-c l" . org-store-link)
          ("C-c a" . org-agenda)
          ("C-c c" . org-capture))
@@ -1119,18 +1119,6 @@ than `split-width-threshold'."
         org-archive-location (concat org-directory "/archive.org::datetree/")
         org-attach-id-dir (concat org-directory "/Data/")
         org-todo-keywords '((sequence "TODO(t)" "IN-PROGRESS(p)" "WAITING(w)" "DONE(d)"))))
-
-(use-package org-roam
-  :bind (("C-c C-r c" . org-roam-capture)
-         ("C-c C-r f" . org-roam-node-find))
-  :after org
-  :config
-  (setq org-roam-directory (concat org-directory "/Roam/"))
-  (org-roam-db-autosync-mode 1))
-
-(use-package org-download
-  :hook ((dired-mode . org-download-enable)
-         (org-mode . org-download-enable)))
 
 ;;; Abbrevs
 
