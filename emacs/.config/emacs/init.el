@@ -1090,8 +1090,6 @@ than `split-width-threshold'."
 
 (use-package zig-mode)
 
-;;; Org
-
 (use-package org
   :ensure nil
   :bind (("C-c l" . org-store-link)
@@ -1114,7 +1112,7 @@ than `split-width-threshold'."
         org-export-with-section-numbers nil
 
         org-agendas-directory (concat org-directory "/Agendas/")
-        org-default-notes-file (expand-file-name (concat org-agendas-directory "Misc.org") org-directory)
+        org-default-notes-file (expand-file-name (concat org-agendas-directory "À Classer.org") org-directory)
         org-agenda-files (directory-files-recursively org-agendas-directory  "\\.org$")
         org-archive-location (concat org-directory "/archive.org::datetree/")
         org-attach-id-dir (concat org-directory "/Data/")
