@@ -1118,6 +1118,11 @@ than `split-width-threshold'."
         org-attach-id-dir (concat org-directory "/Data/")
         org-todo-keywords '((sequence "TODO(t)" "IN-PROGRESS(p)" "WAITING(w)" "DONE(d)"))))
 
+(use-package org-download
+  :hook ((org-mode . (lambda ()
+                       (require 'org-download)))
+         (dired-mode . org-download-enable)))
+
 ;;; Abbrevs
 
 (abbrev-table-put global-abbrev-table :regexp "\\(?:^\\|[\t\s]+\\)\\(?1:[:_].*\\|.*\\)")
