@@ -1111,6 +1111,8 @@ than `split-width-threshold'."
         org-icalendar-use-deadline '(event-if-not-todo event-if-todo event-if-todo-not-done todo-due)
         org-icalendar-scheduled-summary-prefix ""
         org-icalendar-deadline-summary-prefix ""
+        org-icalendar-timezone "America/Toronto"
+        org-icalendar-date-time-format ";TZID=%Z:%Y%m%dT%H%M%S"
 
         org-export-with-toc nil
         org-export-with-section-numbers nil
