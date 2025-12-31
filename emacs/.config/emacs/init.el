@@ -1103,10 +1103,12 @@ than `split-width-threshold'."
                        (add-hook 'completion-at-point-functions #'cape-file nil t))))
   :config
   (require 'org-tempo)
-  (setq org-directory "~/Notes"
+  (require 'ox-publish)
+  (setq org-directory "~/documents/org"
+        org-agendas-directory (concat org-directory "/agendas/")
 
         org-icalendar-exclude-tags '("noexport")
-        org-icalendar-combined-agenda-file (concat org-directory "/Agendas/org.ics")
+        org-icalendar-combined-agenda-file (concat org-directory "/agendas/org.ics")
         org-icalendar-use-scheduled '(event-if-not-todo event-if-todo event-if-todo-not-done todo-start)
         org-icalendar-use-deadline '(event-if-not-todo event-if-todo event-if-todo-not-done todo-due)
         org-icalendar-scheduled-summary-prefix ""
@@ -1114,20 +1116,32 @@ than `split-width-threshold'."
         org-icalendar-timezone "America/Toronto"
         org-icalendar-date-time-format ";TZID=%Z:%Y%m%dT%H%M%S"
 
+        org-babel-load-languages '((C . t) (emacs-lisp . t) (R . t) (shell . t) (python . t))
+
         org-export-with-toc nil
         org-export-with-section-numbers nil
 
-        org-agendas-directory (concat org-directory "/Agendas/")
-        org-default-notes-file (expand-file-name (concat org-agendas-directory "À Classer.org") org-directory)
+        org-attach-use-inheritance t
+        org-attach-auto-tag nil
+
+        org-link-descriptive nil
+
+        org-default-notes-file (expand-file-name (concat org-agendas-directory "a-classer.org") org-directory)
         org-agenda-files (directory-files-recursively org-agendas-directory  "\\.org$")
         org-archive-location (concat org-directory "/archive.org::datetree/")
-        org-attach-id-dir (concat org-directory "/Data/")
+        org-attach-id-dir (concat org-directory "/data/")
         org-todo-keywords '((sequence "TODO(t)" "IN-PROGRESS(p)" "WAITING(w)" "DONE(d)"))))
 
 (use-package org-download
   :hook ((org-mode . (lambda ()
                        (require 'org-download)))
-         (dired-mode . org-download-enable)))
+         (dired-mode . org-download-enable))
+  :config
+  (setq org-download-image-dir "./images"
+        org-download-heading-lvl nil))
+
+(use-package htmlize
+  :commands (org-export-dispatch))
 
 ;;; Abbrevs
 
