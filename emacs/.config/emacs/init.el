@@ -194,16 +194,37 @@ before we send our 'ok' to the SessionManager."
                           });
                         });</script>"
            ;; Overriding some styles
-           "<style>.tag, .timestamp {
-                       font-size: 0.5em;
-                       font-size: 1rem;
-                       font-family: var(--mono-font);
-                       padding: 0.5em;
-                       border-radius: var(--standard-border-radius);
-                       box-shadow: none;
-                       max-width: 100%;
-                       background-color: var(--accent-bg);
-                     }
+           "<style>
+                 :root {
+                   --faire: #A60000;
+                   --fait: #006800;
+                 }
+                 @media (prefers-color-scheme: dark) {
+                   :root {
+                     --faire: #FF5F59;
+                     --fait: #44BC44;
+                   }
+                 }
+                 .tag, .timestamp {
+                   font-size: 1rem;
+                   font-family: var(--mono-font);
+                   padding: 0.5em;
+                   border-radius: var(--standard-border-radius);
+                   box-shadow: none;
+                   max-width: 100%;
+                   background-color: var(--accent-bg);
+                 }
+
+                 .todo, .done {
+                   font-size: 1rem;
+                   font-family: var(--mono-font);
+                 }
+                 .FAIT {
+                   color: var(--fait);
+                 }
+                 .FAIRE, .COURS, .ATTENTE {
+                   color: var(--faire);
+                 }
             </style>"))
   "The headers used for my website")
 
@@ -1172,7 +1193,7 @@ than `split-width-threshold'."
         org-agenda-files (directory-files-recursively org-agendas-directory  "\\.org$")
         org-archive-location (concat org-directory "/archive.org::datetree/")
         org-attach-id-dir (concat org-directory "/data/")
-        org-todo-keywords '((sequence "TODO(t)" "IN-PROGRESS(p)" "WAITING(w)" "DONE(d)"))))
+        org-todo-keywords '((sequence "FAIRE(f)" "COURS(c)" "ATTENTE(a)" "FAIT(F)"))))
 
 (use-package org-download
   :hook ((org-mode . (lambda ()
