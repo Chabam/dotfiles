@@ -181,6 +181,44 @@ before we send our 'ok' to the SessionManager."
       (user-error "No rectangle to yank"))
     (insert (substring-no-properties (car kill-ring)))))
 
+(defconst chabam-ca-headers
+  (apply 'concat
+         '(;; Styling with simplecss
+           "<link rel=\"stylesheet\" href=\"https://cdn.simplecss.org/simple.min.css\" />"
+           ;; Syntax hightlighting with highlight.js
+           "<link rel=\"stylesheet\" href=\"https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.11.1/styles/atom-one-dark.min.css\">"
+           "<script src=\"https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.11.1/highlight.min.js\"></script>"
+           "<script>document.addEventListener('DOMContentLoaded', () => {
+                          document.querySelectorAll('pre.src').forEach((block) => {
+                            hljs.highlightElement(block);
+                          });
+                        });</script>"
+           ;; Overriding some styles
+           "<style>.tag, .timestamp {
+                       font-size: 0.5em;
+                       font-size: 1rem;
+                       font-family: var(--mono-font);
+                       padding: 0.5em;
+                       border-radius: var(--standard-border-radius);
+                       box-shadow: none;
+                       max-width: 100%;
+                       background-color: var(--accent-bg);
+                     }
+            </style>"))
+  "The headers used for my website")
+
+(defun chbm-change-org-publish-location (dest)
+  (interactive (list (setq dest (read-directory-name "New location: "))))
+  (mapc (lambda (conf)
+          (plist-put (cdr conf) ':publishing-directory (concat dest (car conf))))
+        org-publish-project-alist))
+
+(defun chbm-set-website-config ()
+  (let ((conf (locate-dominating-file default-directory "site-config.el")))
+    (when conf
+      (load-file (concat conf "site-config.el"))
+      (message "org-publish site config loaded!"))))
+
 ;;; Main emacs config
 
 (use-package emacs
@@ -1100,7 +1138,8 @@ than `split-width-threshold'."
          ("C-c a" . org-agenda)
          ("C-c c" . org-capture))
   :hook ((org-mode . (lambda ()
-                       (add-hook 'completion-at-point-functions #'cape-file nil t))))
+                       (add-hook 'completion-at-point-functions #'cape-file nil t)))
+         (org-mode . chbm-set-website-config))
   :config
   (require 'org-tempo)
   (require 'ox-publish)
@@ -1120,11 +1159,14 @@ than `split-width-threshold'."
 
         org-export-with-toc nil
         org-export-with-section-numbers nil
+        org-export-headline-levels 7
+        org-export-with-date nil
+        org-export-with-author nil
+
+        org-html-validation-link nil
 
         org-attach-use-inheritance t
         org-attach-auto-tag nil
-
-        org-link-descriptive nil
 
         org-default-notes-file (expand-file-name (concat org-agendas-directory "a-classer.org") org-directory)
         org-agenda-files (directory-files-recursively org-agendas-directory  "\\.org$")
@@ -1137,11 +1179,8 @@ than `split-width-threshold'."
                        (require 'org-download)))
          (dired-mode . org-download-enable))
   :config
-  (setq org-download-image-dir "./images"
-        org-download-heading-lvl nil))
-
-(use-package htmlize
-  :commands (org-export-dispatch))
+  (setq-default org-download-image-dir "./images"
+                org-download-heading-lvl nil))
 
 ;;; Abbrevs
 
