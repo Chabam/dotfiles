@@ -2,3 +2,5 @@
 !early-init.el
 !init.el
 !.gitignore
+!chabam-ca-assets
+!chabam-ca-assets/*

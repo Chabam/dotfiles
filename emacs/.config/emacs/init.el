@@ -183,49 +183,15 @@ before we send our 'ok' to the SessionManager."
 
 (defconst chabam-ca-headers
   (apply 'concat
-         '(;; Styling with simplecss
+         `(;; Styling with simplecss
            "<link rel=\"stylesheet\" href=\"https://cdn.simplecss.org/simple.min.css\" />"
-           ;; Syntax hightlighting with highlight.js
-           "<link rel=\"stylesheet\" href=\"https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.11.1/styles/atom-one-dark.min.css\">"
-           "<script src=\"https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.11.1/highlight.min.js\"></script>"
-           "<script>document.addEventListener('DOMContentLoaded', () => {
-                          document.querySelectorAll('pre.src').forEach((block) => {
-                            hljs.highlightElement(block);
-                          });
-                        });</script>"
-           ;; Overriding some styles
-           "<style>
-                 :root {
-                   --faire: #A60000;
-                   --fait: #006800;
-                 }
-                 @media (prefers-color-scheme: dark) {
-                   :root {
-                     --faire: #FF5F59;
-                     --fait: #44BC44;
-                   }
-                 }
-                 .tag, .timestamp {
-                   font-size: 1rem;
-                   font-family: var(--mono-font);
-                   padding: 0.5em;
-                   border-radius: var(--standard-border-radius);
-                   box-shadow: none;
-                   max-width: 100%;
-                   background-color: var(--accent-bg);
-                 }
-
-                 .todo, .done {
-                   font-size: 1rem;
-                   font-family: var(--mono-font);
-                 }
-                 .FAIT {
-                   color: var(--fait);
-                 }
-                 .FAIRE, .COURS, .ATTENTE {
-                   color: var(--faire);
-                 }
-            </style>"))
+           ,(concat "<style>"
+                    (with-temp-buffer
+                      (insert-file-contents
+                       (concat user-emacs-directory
+                               "chabam-ca-assets/style.css"))
+                      (buffer-string))
+             "</style>")))
   "The headers used for my website")
 
 (defun chbm-change-org-publish-location (dest)
@@ -239,6 +205,9 @@ before we send our 'ok' to the SessionManager."
     (when conf
       (load-file (concat conf "site-config.el"))
       (message "org-publish site config loaded!"))))
+
+(defalias 'org-emphasize-accronym
+   (kmacro "C-SPC C-f C-c C-x C-f * C-d C-x 8 <return> z e r o <return> M-f C-f"))
 
 ;;; Main emacs config
 
@@ -1164,6 +1133,7 @@ than `split-width-threshold'."
   :config
   (require 'org-tempo)
   (require 'ox-publish)
+
   (setq org-directory "~/documents/org"
         org-agendas-directory (concat org-directory "/agendas/")
 
@@ -1176,14 +1146,33 @@ than `split-width-threshold'."
         org-icalendar-timezone "America/Toronto"
         org-icalendar-date-time-format ";TZID=%Z:%Y%m%dT%H%M%S"
 
-        org-babel-load-languages '((C . t) (emacs-lisp . t) (R . t) (shell . t) (python . t))
+        org-src-lang-modes `(("C" . c-ts)
+                             ("C++" . c++-ts)
+                             ("asymptote" . asy)
+                             ("beamer" . latex)
+                             ("calc" . fundamental)
+                             ("cpp" . c++-ts)
+                             ("ditaa" . artist)
+                             ("desktop" . conf-desktop)
+                             ("dot" . fundamental)
+                             ("elisp" . emacs-lisp)
+                             ("ocaml" . tuareg)
+                             ("screen" . shell-script)
+                             ("sqlite" . sql)
+                             ("toml" . toml-ts)
+                             ("shell" . sh)
+                             ,@(org-src--get-known-shells))
 
         org-export-with-toc nil
         org-export-with-section-numbers nil
         org-export-headline-levels 7
         org-export-with-date nil
         org-export-with-author nil
+        org-export-time-stamp-file nil
 
+        org-html-head chabam-ca-headers
+        org-html-style-default nil
+        org-html-htmlize-output-type 'css
         org-html-validation-link nil
 
         org-attach-use-inheritance t
@@ -1193,7 +1182,16 @@ than `split-width-threshold'."
         org-agenda-files (directory-files-recursively org-agendas-directory  "\\.org$")
         org-archive-location (concat org-directory "/archive.org::datetree/")
         org-attach-id-dir (concat org-directory "/data/")
-        org-todo-keywords '((sequence "FAIRE(f)" "COURS(c)" "ATTENTE(a)" "FAIT(F)"))))
+        org-todo-keywords '((sequence "FAIRE(f)" "COURS(c)" "ATTENTE(a)" "FAIT(F)")))
+  (org-babel-do-load-languages
+   'org-babel-load-languages '((C . t)
+                               (emacs-lisp . t)
+                               (R . t)
+                               (shell . t)
+                               (python . t))))
+
+(use-package htmlize
+  :commands (org-export-dispatch))
 
 (use-package org-download
   :hook ((org-mode . (lambda ()

@@ -1,0 +1,340 @@
+:root {
+    --faire: #A60000;
+    --fait: #006800;
+}
+
+@media (prefers-color-scheme: dark) {
+    :root {
+        --faire: #FF5F59;
+        --fait: #44BC44;
+    }
+}
+
+.tag, .timestamp {
+    font-size: 1rem;
+    font-family: var(--mono-font);
+    padding: 0.5em;
+    border-radius: var(--standard-border-radius);
+    box-shadow: none;
+    max-width: 100%;
+    background-color: var(--accent-bg);
+}
+
+.todo, .done {
+    font-size: 1rem;
+    font-family: var(--mono-font);
+}
+.FAIT {
+    color: var(--fait);
+}
+.FAIRE, .COURS, .ATTENTE {
+    color: var(--faire);
+}
+
+/* Syntax highlighting styles */a
+/* Generated from org-htmlize-generate-css and the modus-operandi theme */
+.org-bracket {
+  color: #000000;
+}
+.org-builtin {
+  color: #8f0075;
+  font-weight: bold;
+}
+.org-comment {
+  color: #595959;
+  font-style: italic;
+}
+.org-comment-delimiter {
+  color: #595959;
+  font-style: italic;
+}
+.org-constant {
+  color: #0000b0;
+}
+.org-delimiter {
+  color: #000000;
+}
+.org-doc {
+  color: #2a5045;
+  font-style: italic;
+}
+.org-doc-markup {
+  color: #7c318f;
+  font-style: italic;
+}
+.org-elisp-shorthand-font-lock {
+  color: #a0132f;
+  font-style: italic;
+}
+.org-escape {
+  color: #721045;
+  font-weight: bold;
+}
+.org-function-call {
+  color: #7b435c;
+}
+.org-function-name {
+  color: #721045;
+}
+.org-keyword {
+  color: #531ab6;
+  font-weight: bold;
+}
+.org-misc-punctuation {
+  color: #000000;
+}
+.org-negation-char {
+  color: #a60000;
+}
+.org-number {
+  color: #000000;
+}
+.org-operator {
+  color: #000000;
+}
+.org-preprocessor {
+  color: #a0132f;
+}
+.org-property-name {
+  color: #005e8b;
+}
+.org-property-use {
+  color: #005e8b;
+}
+.org-punctuation {
+  color: #000000;
+}
+.org-regexp {
+  color: #00663f;
+}
+.org-regexp-grouping-backslash {
+  color: #721045;
+  font-weight: bold;
+}
+.org-regexp-grouping-construct {
+  color: #00663f;
+  font-weight: bold;
+}
+.org-string {
+  color: #00663f;
+}
+.org-type {
+  color: #005f5f;
+  font-weight: bold;
+}
+.org-variable-name {
+  color: #005e8b;
+}
+.org-variable-use {
+  color: #2f3f83;
+}
+.org-warning-1 {
+  color: #884900;
+  font-weight: bold;
+}
+
+@media (prefers-color-scheme: dark) {
+    /* Generated from org-htmlize-generate-css and the modus-vivendi theme */
+    .org-bracket {
+        color: #ffffff;
+    }
+    .org-bracket {
+        color: #ffffff;
+    }
+    .org-builtin {
+        color: #f78fe7;
+        font-weight: bold;
+    }
+    .org-comment {
+        color: #989898;
+        font-style: italic;
+    }
+    .org-comment-delimiter {
+        color: #989898;
+        font-style: italic;
+    }
+    .org-constant {
+        color: #00bcff;
+    }
+    .org-delimiter {
+        color: #ffffff;
+    }
+    .org-doc {
+        color: #9ac8e0;
+        font-style: italic;
+    }
+    .org-doc-markup {
+        color: #caa6df;
+        font-style: italic;
+    }
+    .org-elisp-shorthand-font-lock {
+        color: #ff7f86;
+        font-style: italic;
+    }
+    .org-escape {
+        color: #feacd0;
+        font-weight: bold;
+    }
+    .org-function-call {
+        color: #d09dc0;
+    }
+    .org-function-name {
+        color: #feacd0;
+    }
+    .org-keyword {
+        color: #b6a0ff;
+        font-weight: bold;
+    }
+    .org-misc-punctuation {
+        color: #ffffff;
+    }
+    .org-negation-char {
+        color: #ff5f59;
+    }
+    .org-number {
+        color: #ffffff;
+    }
+    .org-operator {
+        color: #ffffff;
+    }
+    .org-preprocessor {
+        color: #ff7f86;
+    }
+    .org-property-name {
+        color: #00d3d0;
+    }
+    .org-property-use {
+        color: #00d3d0;
+    }
+    .org-punctuation {
+        color: #ffffff;
+    }
+    .org-bracket {
+        color: #ffffff;
+    }
+    .org-builtin {
+        color: #f78fe7;
+        font-weight: bold;
+    }
+    .org-comment {
+        color: #989898;
+        font-style: italic;
+    }
+    .org-comment-delimiter {
+        color: #989898;
+        font-style: italic;
+    }
+    .org-constant {
+        color: #00bcff;
+    }
+    .org-delimiter {
+        color: #ffffff;
+    }
+    .org-doc {
+        color: #9ac8e0;
+        font-style: italic;
+    }
+    .org-doc-markup {
+        color: #caa6df;
+        font-style: italic;
+    }
+    .org-bracket {
+        color: #ffffff;
+    }
+    .org-builtin {
+        color: #f78fe7;
+        font-weight: bold;
+    }
+    .org-comment {
+        color: #989898;
+        font-style: italic;
+    }
+    .org-comment-delimiter {
+        color: #989898;
+        font-style: italic;
+    }
+    .org-constant {
+        color: #00bcff;
+    }
+    .org-delimiter {
+        color: #ffffff;
+    }
+    .org-doc {
+        color: #9ac8e0;
+        font-style: italic;
+    }
+    .org-doc-markup {
+        color: #caa6df;
+        font-style: italic;
+    }
+    .org-elisp-shorthand-font-lock {
+        color: #ff7f86;
+        font-style: italic;
+    }
+    .org-escape {
+        color: #feacd0;
+        font-weight: bold;
+    }
+    .org-function-call {
+        color: #d09dc0;
+    }
+    .org-function-name {
+        color: #feacd0;
+    }
+    .org-keyword {
+        color: #b6a0ff;
+        font-weight: bold;
+    }
+    .org-misc-punctuation {
+        color: #ffffff;
+    }
+    .org-negation-char {
+        color: #ff5f59;
+    }
+    .org-number {
+        color: #ffffff;
+    }
+    .org-operator {
+        color: #ffffff;
+    }
+    .org-preprocessor {
+        color: #ff7f86;
+    }
+    .org-property-name {
+        color: #00d3d0;
+    }
+    .org-property-use {
+        color: #00d3d0;
+    }
+    .org-punctuation {
+        color: #ffffff;
+    }
+    .org-regexp {
+        color: #00c06f;
+    }
+    .org-regexp-grouping-backslash {
+        color: #feacd0;
+        font-weight: bold;
+    }
+    .org-regexp-grouping-construct {
+        color: #00c06f;
+        font-weight: bold;
+    }
+    .org-string {
+        color: #00c06f;
+    }
+    .org-type {
+        color: #6ae4b9;
+        font-weight: bold;
+    }
+    .org-variable-name {
+        color: #00d3d0;
+    }
+    .org-variable-use {
+        color: #76afbf;
+    }
+    .org-warning-1 {
+        color: #fec43f;
+        font-weight: bold;
+    }
+}
