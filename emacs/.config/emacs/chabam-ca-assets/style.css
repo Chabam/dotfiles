@@ -24,14 +24,38 @@
     font-size: 1rem;
     font-family: var(--mono-font);
 }
-.FAIT {
+
+.done {
     color: var(--fait);
 }
-.FAIRE, .COURS, .ATTENTE {
+
+.todo {
     color: var(--faire);
 }
 
-/* Syntax highlighting styles */a
+h1:has(.done),
+h2:has(.done),
+h3:has(.done),
+h4:has(.done),
+h5:has(.done),
+h6:has(.done),
+h7:has(.done)
+{
+    color: var(--text-light)
+}
+
+h1:has(.done) + *,
+h2:has(.done) + *,
+h3:has(.done) + *,
+h4:has(.done) + *,
+h5:has(.done) + *,
+h6:has(.done) + *,
+h7:has(.done) + *
+{
+    color: var(--text-light)
+}
+
+/* Syntax highlighting styles */
 /* Generated from org-htmlize-generate-css and the modus-operandi theme */
 .org-bracket {
   color: #000000;

@@ -1,7 +1,7 @@
 ;; -*- lexical-binding: t -*-
 ;;; Custom functions
 
-(defun chbm-set-fonts (&optional font-size &rest _)
+(defun chbm/set-fonts (&optional font-size &rest _)
   "Set fonts for frame and after theme"
   (interactive (list (setq font-size (read-number "Font size: " 120))))
   (when (display-graphic-p)
@@ -13,10 +13,10 @@
       (set-face-attribute 'tab-bar-tab nil :height font-size)
       (set-face-attribute 'tab-bar-tab-inactive nil :height font-size))))
 
-(defun chbm-start-with-agenda ()
+(defun chbm/start-with-agenda ()
   (when (and (display-graphic-p)
              (not (string-prefix-p " *" (buffer-name))))
-    (org-agenda-list)
+    (org-agenda nil "n")
     (delete-other-windows)))
 
 ;; Thanks Prot!
@@ -28,7 +28,7 @@ function.  Then you can control the buffer's specifics via
   (pop-to-buffer buffer)
   (set-window-point (get-buffer-window buffer) (point-min)))
 
-(defun chbm-move-window-in-direction (dir)
+(defun chbm/move-window-in-direction (dir)
   (condition-case error
       (windmove-swap-states-in-direction dir)
     (user-error
@@ -45,21 +45,21 @@ function.  Then you can control the buffer's specifics via
            (delete-window sel-win)
            (select-window new-win)))))))
 
-(defun chbm-move-window-right ()
+(defun chbm/move-window-right ()
   (interactive)
-  (chbm-move-window-in-direction 'right))
+  (chbm/move-window-in-direction 'right))
 
-(defun chbm-move-window-left ()
+(defun chbm/move-window-left ()
   (interactive)
-  (chbm-move-window-in-direction 'left))
+  (chbm/move-window-in-direction 'left))
 
-(defun chbm-move-window-above ()
+(defun chbm/move-window-above ()
   (interactive)
-  (chbm-move-window-in-direction 'above))
+  (chbm/move-window-in-direction 'above))
 
-(defun chbm-move-window-below ()
+(defun chbm/move-window-below ()
   (interactive)
-  (chbm-move-window-in-direction 'below))
+  (chbm/move-window-in-direction 'below))
 
 (defun ansi-colorize-buffer ()
   (interactive)
@@ -93,11 +93,11 @@ before we send our 'ok' to the SessionManager."
         (add-hook 'kill-emacs-hook ,end-session-response t)
         (kill-emacs)))))
 
-(defun chbm-ff-find-other-file ()
+(defun chbm/ff-find-other-file ()
   (interactive)
   (ff-find-other-file nil t))
 
-(defun chbm-is-first-sibling (&optional node-t parent-node-t)
+(defun chbm/is-first-sibling (&optional node-t parent-node-t)
   (lambda (node parent &rest _)
     (and node
          parent
@@ -109,7 +109,7 @@ before we send our 'ok' to the SessionManager."
               parent-node-t (treesit-node-type parent)))
          (not (treesit-node-prev-sibling node t)))))
 
-(defun chbm-is-last-sibling (&optional node-t parent-node-t)
+(defun chbm/is-last-sibling (&optional node-t parent-node-t)
   (lambda (node parent &rest _)
     (and node
          parent
@@ -121,7 +121,7 @@ before we send our 'ok' to the SessionManager."
               parent-node-t (treesit-node-type parent)))
          (not (treesit-node-next-sibling node t)))))
 
-(defun chbm-bsd-style-indent ()
+(defun chbm/bsd-style-indent ()
   "Override the built-in BSD indentation style with some additional rules"
   `(
     ((n-p-gp nil "declaration_list" "namespace_definition") parent-bol 0)
@@ -131,22 +131,22 @@ before we send our 'ok' to the SessionManager."
     ((match "compound_statement" "lambda_expression") parent-bol c-ts-mode-indent-offset)
     ((node-is "field_initializer_list") parent-bol c-ts-mode-indent-offset)
     ((parent-is "field_initializer_list") grand-parent c-ts-mode-indent-offset)
-    ((chbm-is-first-sibling "parameter_declaration" "parameter_list") standalone-parent c-ts-mode-indent-offset)
-    ((chbm-is-first-sibling nil "argument_list") standalone-parent c-ts-mode-indent-offset)
-    ((chbm-is-last-sibling ")" "parameter_list") standalone-parent 0)
-    ((chbm-is-last-sibling ")" "argument_list") standalone-parent 0)
+    ((chbm/is-first-sibling "parameter_declaration" "parameter_list") standalone-parent c-ts-mode-indent-offset)
+    ((chbm/is-first-sibling nil "argument_list") standalone-parent c-ts-mode-indent-offset)
+    ((chbm/is-last-sibling ")" "parameter_list") standalone-parent 0)
+    ((chbm/is-last-sibling ")" "argument_list") standalone-parent 0)
     ((parent-is "argument_list") prev-sibling 0)
     ((parent-is "parameter_list") prev-sibling 0)
     ,@(alist-get 'bsd (c-ts-mode--indent-styles 'cpp))))
 
-(defun chbm-set-c-style-indent ()
+(defun chbm/set-c-style-indent ()
   "Sets up clang-format if the proper file is there otherwise use the default treesit"
   (when (locate-dominating-file default-directory ".clang-format")
     (setq-local indent-region-function #'clang-format-region))
   (setq-local c-ts-mode-indent-offset 4)
-  (c-ts-mode-set-style 'chbm-bsd-style-indent))
+  (c-ts-mode-set-style 'chbm/bsd-style-indent))
 
-(defun chbm-set-cc-search-dirs-project ()
+(defun chbm/set-cc-search-dirs-project ()
   "Adds likely locations to look for other files based on the project"
   (interactive)
   (when (project-current)
@@ -173,7 +173,7 @@ before we send our 'ok' to the SessionManager."
                     "/usr/local/include/*")
                    (mapcar (lambda (dir) (file-name-concat dir "*")) sub-dirs))))))
 
-(defun chbm-yank-copied-rectangle-as-lines ()
+(defun chbm/yank-copied-rectangle-as-lines ()
   "Insert the last copied or killed rectangle as regular lines."
   (interactive)
   (let ((rec (get-text-property 0 'yank-handler (car kill-ring))))
@@ -194,20 +194,20 @@ before we send our 'ok' to the SessionManager."
              "</style>")))
   "The headers used for my website")
 
-(defun chbm-change-org-publish-location (dest)
+(defun chbm/change-org-publish-location (dest)
   (interactive (list (setq dest (read-directory-name "New location: "))))
   (mapc (lambda (conf)
           (plist-put (cdr conf) ':publishing-directory (concat dest (car conf))))
         org-publish-project-alist))
 
-(defun chbm-set-website-config ()
+(defun chbm/set-website-config ()
   (let ((conf (locate-dominating-file default-directory "site-config.el")))
     (when conf
       (load-file (concat conf "site-config.el"))
       (message "org-publish site config loaded!"))))
 
 (defalias 'org-emphasize-accronym
-   (kmacro "C-SPC C-f C-c C-x C-f * C-d C-x 8 <return> z e r o <return> M-f C-f"))
+  (kmacro "C-SPC C-f C-c C-x C-f * C-d C-x 8 <return> z e r o <return> M-f C-f"))
 
 ;;; Main emacs config
 
@@ -227,7 +227,7 @@ before we send our 'ok' to the SessionManager."
          ("M-c" . capitalize-dwim)
          ("M-l" . downcase-dwim)
          ("M-u" . upcase-dwim)
-         ("C-x r y" . chbm-yank-copied-rectangle-as-lines)
+         ("C-x r y" . chbm/yank-copied-rectangle-as-lines)
          ("C-S-d" . duplicate-line)
          ("C-x C-b" . ibuffer))
   :hook (((prog-mode text-mode) . (lambda ()
@@ -236,8 +236,8 @@ before we send our 'ok' to the SessionManager."
                                     (display-line-numbers-mode)))
          ((org-mode text-mode) . auto-fill-mode)
          (server-after-make-frame . (lambda ()
-                                      (chbm-set-fonts)
-                                      (chbm-start-with-agenda)
+                                      (chbm/set-fonts)
+                                      (chbm/start-with-agenda)
                                       )))
   :ensure nil
   :init
@@ -284,10 +284,10 @@ before we send our 'ok' to the SessionManager."
   (minibuffer-electric-default-mode 1)
 
   ;; Fix for auto-dark where
-  (advice-add 'load-theme :after #'chbm-set-fonts)
+  (advice-add 'load-theme :after #'chbm/set-fonts)
 
   ;; Trying to properly set fonts
-  (chbm-set-fonts)
+  (chbm/set-fonts)
 
   ;; Deleting selection when typing
   (delete-selection-mode 1)
@@ -436,61 +436,61 @@ before we send our 'ok' to the SessionManager."
 ;;; Modeline
 ;; Most stuff here comes from Prot
 
-(defface chbm-modeline-green-bg
+(defface chbm/modeline-green-bg
   '((t ()))
   "Face for modeline indicators with a background."
-  :group 'chbm-modeline-faces)
+  :group 'chbm/modeline-faces)
 
-(defun chbm-update-modeline-colors ()
+(defun chbm/update-modeline-colors ()
   (modus-themes-with-colors
-    (face-spec-set 'chbm-modeline-green-bg
+    (face-spec-set 'chbm/modeline-green-bg
                    `((t :inherit bold :foreground ,green :background ,bg-green-intense :box ,green)))
-    (face-spec-set 'chbm-modeline-magenta-bg
+    (face-spec-set 'chbm/modeline-magenta-bg
                    `((t :inherit bold :foreground ,magenta :background ,bg-magenta-intense :box ,magenta)))
-    (face-spec-set 'chbm-modeline-red-bg
+    (face-spec-set 'chbm/modeline-red-bg
                    `((t :inherit bold :foreground ,red :background ,bg-red-intense :box ,red)))
-    (face-spec-set 'chbm-modeline-cyan-bg
+    (face-spec-set 'chbm/modeline-cyan-bg
                    `((t :inherit bold :foreground ,cyan :background ,bg-cyan-intense :box ,cyan)))
-    (face-spec-set 'chbm-modeline-red-fg
+    (face-spec-set 'chbm/modeline-red-fg
                    `((t :foreground ,red)))))
 
 
-(defface chbm-modeline-magenta-bg
+(defface chbm/modeline-magenta-bg
   '((t ()))
   "Face for modeline indicators with a background."
-  :group 'chbm-modeline-faces)
+  :group 'chbm/modeline-faces)
 
-(defface chbm-modeline-red-bg
+(defface chbm/modeline-red-bg
   '((t ()))
   "Face for modeline indicators with a background."
-  :group 'chbm-modeline-faces)
+  :group 'chbm/modeline-faces)
 
-(defface chbm-modeline-red-fg
+(defface chbm/modeline-red-fg
   '((t ()))
   "Face for modeline indicators with a background."
-  :group 'chbm-modeline-faces)
+  :group 'chbm/modeline-faces)
 
-(defface chbm-modeline-cyan-bg
+(defface chbm/modeline-cyan-bg
   '((t ()))
   "Face for modeline indicators with a background."
-  :group 'chbm-modeline-faces)
+  :group 'chbm/modeline-faces)
 
-(defvar-local chbm-modeline-kbd-macro
+(defvar-local chbm/modeline-kbd-macro
     '(:eval
       (when (and (mode-line-window-selected-p) defining-kbd-macro)
-        (propertize " KMacro " 'face 'chbm-modeline-green-bg)))
+        (propertize " KMacro " 'face 'chbm/modeline-green-bg)))
   "Mode line construct displaying `mode-line-defining-kbd-macro'.
 Specific to the current window's mode line.")
 
-(defun chbm-modeline-buffer-name ()
+(defun chbm/modeline-buffer-name ()
   "Return buffer name, with read-only indicator if relevant."
   (let ((name (buffer-name)))
     (if buffer-read-only
         (format "%s %s" (char-to-string #xE0A2) name)
       name)))
 
-(defun chbm-modeline-buffer-identification-face ()
-  "Return appropriate face or face list for `chbm-modeline-buffer-identification'."
+(defun chbm/modeline-buffer-identification-face ()
+  "Return appropriate face or face list for `chbm/modeline-buffer-identification'."
   (let ((file (buffer-file-name)))
     (cond
      ((and (mode-line-window-selected-p)
@@ -502,26 +502,26 @@ Specific to the current window's mode line.")
      ((mode-line-window-selected-p)
       'mode-line-buffer-id))))
 
-(defvar-local chbm-modeline-narrow
+(defvar-local chbm/modeline-narrow
     '(:eval
       (when (and (mode-line-window-selected-p)
                  (buffer-narrowed-p)
                  (not (derived-mode-p 'Info-mode 'help-mode 'special-mode 'message-mode)))
-        (propertize " Narrow " 'face 'chbm-modeline-cyan-bg)))
+        (propertize " Narrow " 'face 'chbm/modeline-cyan-bg)))
   "Mode line construct to report the narrowed state of the current buffer.")
 
-(defvar-local chbm-modeline-buffer-identification
+(defvar-local chbm/modeline-buffer-identification
     '(:eval
-      (propertize (chbm-modeline-buffer-name)
-                  'face (chbm-modeline-buffer-identification-face)
+      (propertize (chbm/modeline-buffer-name)
+                  'face (chbm/modeline-buffer-identification-face)
                   'mouse-face 'mode-line-highlight
-                  'help-echo (chbm-modeline-buffer-name-help-echo)))
+                  'help-echo (chbm/modeline-buffer-name-help-echo)))
   "Mode line construct for identifying the buffer being displayed.
 Propertize the current buffer with the `mode-line-buffer-id'
 face.  Let other buffers have no face.")
 
-(defun chbm-modeline-buffer-name-help-echo ()
-  "Return `help-echo' value for `chbm-modeline-buffer-identification'."
+(defun chbm/modeline-buffer-name-help-echo ()
+  "Return `help-echo' value for `chbm/modeline-buffer-identification'."
   (concat
    (propertize (buffer-name) 'face 'mode-line-buffer-id)
    "\n"
@@ -530,26 +530,26 @@ face.  Let other buffers have no face.")
         (format "No underlying file.\nDirectory is: %s" default-directory))
     'face 'font-lock-doc-face)))
 
-(defvar-local chbm-modeline-remote-status
+(defvar-local chbm/modeline-remote-status
     '(:eval
       (when (and (mode-line-window-selected-p)
                  (file-remote-p default-directory))
         (propertize " @ "
-                    'face 'chbm-modeline-magenta-bg
+                    'face 'chbm/modeline-magenta-bg
                     'mouse-face 'mode-line-highlight)))
   "Mode line construct for showing remote file name.")
 
-(defvar-local chbm-modeline-window-dedicated-status
+(defvar-local chbm/modeline-window-dedicated-status
     '(:eval
       (when
           (and (mode-line-window-selected-p)
                (window-dedicated-p))
         (propertize " = "
-                    'face 'chbm-modeline-red-bg
+                    'face 'chbm/modeline-red-bg
                     'mouse-face 'mode-line-highlight)))
   "Mode line construct for dedicated window indicator.")
 
-(defun chbm-modeline-major-mode-indicator ()
+(defun chbm/modeline-major-mode-indicator ()
   "Return appropriate propertized mode line indicator for the major mode."
   (let ((indicator (cond
                     ((derived-mode-p 'text-mode) "§")
@@ -558,32 +558,32 @@ face.  Let other buffers have no face.")
                     (t "◦"))))
     (propertize indicator 'face 'shadow)))
 
-(defun chbm-modeline-major-mode-name ()
+(defun chbm/modeline-major-mode-name ()
   "Return capitalized `major-mode' without the -mode suffix."
   (capitalize (string-replace "-mode" "" (symbol-name major-mode))))
 
-(defun chbm-modeline-major-mode-help-echo ()
-  "Return `help-echo' value for `chbm-modeline-major-mode'."
+(defun chbm/modeline-major-mode-help-echo ()
+  "Return `help-echo' value for `chbm/modeline-major-mode'."
   (if-let* ((parent (get major-mode 'derived-mode-parent)))
       (format "Symbol: `%s'.  Derived from: `%s'" major-mode parent)
     (format "Symbol: `%s'." major-mode)))
 
-(defvar-local chbm-modeline-major-mode
+(defvar-local chbm/modeline-major-mode
     (list
-     (propertize "%[" 'face 'chbm-modeline-red-fg)
+     (propertize "%[" 'face 'chbm/modeline-red-fg)
      '(:eval
        (propertize (concat
-                    (chbm-modeline-major-mode-indicator)
+                    (chbm/modeline-major-mode-indicator)
                     " "
-                    (chbm-modeline-major-mode-name))
+                    (chbm/modeline-major-mode-name))
                    'mouse-face 'mode-line-highlight
-                   'help-echo (chbm-modeline-major-mode-help-echo)))
-     (propertize "%]" 'face 'chbm-modeline-red-fg))
+                   'help-echo (chbm/modeline-major-mode-help-echo)))
+     (propertize "%]" 'face 'chbm/modeline-red-fg))
   "Mode line construct for displaying major modes.")
 
 (declare-function vc-git--symbolic-ref "vc-git" (file))
 
-(defun chbm-modeline--vc-branch-name (file backend)
+(defun chbm/modeline--vc-branch-name (file backend)
   "Return capitalized VC branch name for FILE with BACKEND."
   (when-let* ((rev (vc-working-revision file backend))
               (branch (or (vc-git--symbolic-ref file)
@@ -592,19 +592,19 @@ face.  Let other buffers have no face.")
 
 (declare-function vc-git-working-revision "vc-git" (file))
 
-(defvar chbm-modeline-vc-map
+(defvar chbm/modeline-vc-map
   (let ((map (make-sparse-keymap)))
     (define-key map [mode-line down-mouse-1] 'vc-diff)
     (define-key map [mode-line down-mouse-3] 'vc-root-diff)
     map)
   "Keymap to display on VC indicator.")
 
-(defun chbm-modeline--vc-help-echo (file)
+(defun chbm/modeline--vc-help-echo (file)
   "Return `help-echo' message for FILE tracked by VC."
   (format "Revision: %s\nmouse-1: `vc-diff'\nmouse-3: `vc-root-diff'"
           (vc-working-revision file)))
 
-(defun chbm-modeline--vc-text (file branch &optional face)
+(defun chbm/modeline--vc-text (file branch &optional face)
   "Prepare text for Git controlled FILE, given BRANCH.
 With optional FACE, use it to propertize the BRANCH."
   (concat
@@ -613,16 +613,16 @@ With optional FACE, use it to propertize the BRANCH."
    (propertize branch
                'face face
                'mouse-face 'mode-line-highlight
-               'help-echo (chbm-modeline--vc-help-echo file)
-               'local-map chbm-modeline-vc-map)))
+               'help-echo (chbm/modeline--vc-help-echo file)
+               'local-map chbm/modeline-vc-map)))
 
-(defun chbm-modeline--vc-details (file branch &optional face)
+(defun chbm/modeline--vc-details (file branch &optional face)
   "Return Git BRANCH details for FILE, truncating it if necessary.
 The string is truncated if the width of the window is smaller
 than `split-width-threshold'."
-  (chbm-modeline--vc-text file branch face))
+  (chbm/modeline--vc-text file branch face))
 
-(defvar chbm-modeline--vc-faces
+(defvar chbm/modeline--vc-faces
   '((added . vc-locally-added-state)
     (edited . vc-edited-state)
     (removed . vc-removed-state)
@@ -632,26 +632,26 @@ than `split-width-threshold'."
     (up-to-date . vc-up-to-date-state))
   "VC state faces.")
 
-(defun chbm-modeline--vc-get-face (key)
-  "Get face from KEY in `chbm-modeline--vc-faces'."
-  (alist-get key chbm-modeline--vc-faces 'vc-up-to-date-state))
+(defun chbm/modeline--vc-get-face (key)
+  "Get face from KEY in `chbm/modeline--vc-faces'."
+  (alist-get key chbm/modeline--vc-faces 'vc-up-to-date-state))
 
-(defun chbm-modeline--vc-face (file backend)
+(defun chbm/modeline--vc-face (file backend)
   "Return VC state face for FILE with BACKEND."
   (when-let ((key (vc-state file backend)))
-    (chbm-modeline--vc-get-face key)))
+    (chbm/modeline--vc-get-face key)))
 
-(defvar-local chbm-modeline-vc-branch
+(defvar-local chbm/modeline-vc-branch
     '(:eval
       (when-let* (((mode-line-window-selected-p))
                   (file (or buffer-file-name default-directory))
                   (backend (or (vc-backend file) 'Git))
-                  (branch (chbm-modeline--vc-branch-name file backend))
-                  (face (chbm-modeline--vc-face file backend)))
-        (chbm-modeline--vc-details file branch face)))
+                  (branch (chbm/modeline--vc-branch-name file backend))
+                  (face (chbm/modeline--vc-face file backend)))
+        (chbm/modeline--vc-details file branch face)))
   "Mode line construct to return propertized VC branch.")
 
-(defvar-local chbm-modeline-diagnostics
+(defvar-local chbm/modeline-diagnostics
     '(:eval
       (when-let* (((mode-line-window-selected-p))
                   (eglot '(eglot--managed-mode ("[" eglot--mode-line-format "]")))
@@ -662,34 +662,34 @@ than `split-width-threshold'."
       "Mode line construct to return propertized buffer diagnostics."))
 
 
-(dolist (construct '(chbm-modeline-kbd-macro
-                     chbm-modeline-narrow
-                     chbm-modeline-remote-status
-                     chbm-modeline-buffer-identification
-                     chbm-modeline-window-dedicated-status
-                     chbm-modeline-major-mode
-                     chbm-modeline-vc-branch
-                     chbm-modeline-diagnostics
+(dolist (construct '(chbm/modeline-kbd-macro
+                     chbm/modeline-narrow
+                     chbm/modeline-remote-status
+                     chbm/modeline-buffer-identification
+                     chbm/modeline-window-dedicated-status
+                     chbm/modeline-major-mode
+                     chbm/modeline-vc-branch
+                     chbm/modeline-diagnostics
                      ))
   (put construct 'risky-local-variable t))
 
 (setq-default mode-line-format
               '("%e"
-                chbm-modeline-kbd-macro
-                chbm-modeline-narrow
-                chbm-modeline-remote-status
-                chbm-modeline-window-dedicated-status
+                chbm/modeline-kbd-macro
+                chbm/modeline-narrow
+                chbm/modeline-remote-status
+                chbm/modeline-window-dedicated-status
                 "  "
-                chbm-modeline-buffer-identification
+                chbm/modeline-buffer-identification
                 "  "
-                chbm-modeline-major-mode
+                chbm/modeline-major-mode
                 mode-line-process
 
                 mode-line-format-right-align
 
-                chbm-modeline-diagnostics
+                chbm/modeline-diagnostics
                 "  "
-                chbm-modeline-vc-branch
+                chbm/modeline-vc-branch
                 " %p %l:%c  ")
               )
 
@@ -701,20 +701,20 @@ than `split-width-threshold'."
 (use-package windmove
   :ensure nil
   :hook (after-init . windmove-mode)
-  :bind (("C-S-<right>" . chbm-move-window-right)
-         ("C-S-<left>" . chbm-move-window-left)
-         ("C-S-<up>" . chbm-move-window-above)
-         ("C-S-<down>" . chbm-move-window-below))
+  :bind (("C-S-<right>" . chbm/move-window-right)
+         ("C-S-<left>" . chbm/move-window-left)
+         ("C-S-<up>" . chbm/move-window-above)
+         ("C-S-<down>" . chbm/move-window-below))
   :config
   (windmove-default-keybindings 'ctrl)
   ;; (windmove-swap-states-default-keybindings '(ctrl shift))
   (windmove-delete-default-keybindings))
 
 (use-package auto-dark
-  :hook ((auto-dark-dark-mode . chbm-set-fonts)
-         (auto-dark-light-mode . chbm-set-fonts)
-         (auto-dark-dark-mode . chbm-update-modeline-colors)
-         (auto-dark-light-mode . chbm-update-modeline-colors)
+  :hook ((auto-dark-dark-mode . chbm/set-fonts)
+         (auto-dark-light-mode . chbm/set-fonts)
+         (auto-dark-dark-mode . chbm/update-modeline-colors)
+         (auto-dark-light-mode . chbm/update-modeline-colors)
          (after-init . (lambda ()
                          (setq auto-dark-themes '((modus-vivendi) (modus-operandi)))
                          (auto-dark-mode)))))
@@ -829,7 +829,7 @@ than `split-width-threshold'."
 
 (use-package find-file
   :ensure nil
-  :bind (("C-c o" . chbm-ff-find-other-file)))
+  :bind (("C-c o" . chbm/ff-find-other-file)))
 
 (use-package isearch
   :ensure nil
@@ -1088,13 +1088,13 @@ than `split-width-threshold'."
 
 (use-package c++-ts-mode
   :ensure nil
-  :hook ((c++-ts-mode . chbm-set-c-style-indent)
-         (ff-pre-find . chbm-set-cc-search-dirs-project)))
+  :hook ((c++-ts-mode . chbm/set-c-style-indent)
+         (ff-pre-find . chbm/set-cc-search-dirs-project)))
 
 (use-package c-ts-mode
   :ensure nil
-  :hook ((c-ts-mode . chbm-set-c-style-indent)
-         (ff-pre-find . chbm-set-cc-search-dirs-project)))
+  :hook ((c-ts-mode . chbm/set-c-style-indent)
+         (ff-pre-find . chbm/set-cc-search-dirs-project)))
 
 (use-package xml-mode
   :ensure nil
@@ -1129,7 +1129,7 @@ than `split-width-threshold'."
          ("C-c c" . org-capture))
   :hook ((org-mode . (lambda ()
                        (add-hook 'completion-at-point-functions #'cape-file nil t)))
-         (org-mode . chbm-set-website-config))
+         (org-mode . chbm/set-website-config))
   :config
   (require 'org-tempo)
   (require 'ox-publish)
@@ -1169,6 +1169,7 @@ than `split-width-threshold'."
         org-export-with-date nil
         org-export-with-author nil
         org-export-time-stamp-file nil
+        org-export-allow-bind-keywords t
 
         org-html-head chabam-ca-headers
         org-html-style-default nil
@@ -1183,12 +1184,23 @@ than `split-width-threshold'."
         org-archive-location (concat org-directory "/archive.org::datetree/")
         org-attach-id-dir (concat org-directory "/data/")
         org-todo-keywords '((sequence "FAIRE(f)" "COURS(c)" "ATTENTE(a)" "FAIT(F)")))
+  ;; babel
   (org-babel-do-load-languages
    'org-babel-load-languages '((C . t)
                                (emacs-lisp . t)
                                (R . t)
                                (shell . t)
-                               (python . t))))
+                               (python . t)))
+  ;; calendar
+  (add-to-list 'org-agenda-custom-commands
+             '("W" "Weekend"
+               ((agenda ""))
+               ((org-agenda-overriding-header "Weekend")
+                (org-agenda-span 2)
+                (org-agenda-start-day "Saturday")
+                (org-agenda-show-all-dates t)
+                (org-agenda-include-empty-dates t)))
+             t))
 
 (use-package htmlize
   :commands (org-export-dispatch))
@@ -1199,7 +1211,8 @@ than `split-width-threshold'."
          (dired-mode . org-download-enable))
   :config
   (setq-default org-download-image-dir "./images"
-                org-download-heading-lvl nil))
+                org-download-heading-lvl nil)
+  (add-hook 'dired-mode-hook 'org-download-enable))
 
 ;;; Abbrevs
 
