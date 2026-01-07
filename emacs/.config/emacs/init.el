@@ -266,6 +266,12 @@ before we send our 'ok' to the SessionManager."
    "org.gnome.SessionManager" "RegisterClient" 'emacs-wiki-register-signals
    "Emacs server" (getenv "DESKTOP_AUTOSTART_ID"))
 
+  (setq custom-file (expand-file-name "custom.el" user-emacs-directory))
+
+  (if (file-exists-p custom-file)
+      (load-file custom-file)
+    (write-region "" nil custom-file))
+
   :config
   ;; Smooth scroll
   ;; (pixel-scroll-precision-mode 1)
@@ -380,7 +386,9 @@ before we send our 'ok' to the SessionManager."
   ;; y or n instead of yes or no
   (setq use-short-answers t)
   ;; Don't ask for creating new buffers on async commands
-  (setq async-shell-command-buffer 'new-buffer))
+  (setq async-shell-command-buffer 'new-buffer)
+
+  (setq package-install-upgrade-built-in t))
 
 ;;; Theming
 
@@ -744,9 +752,6 @@ than `split-width-threshold'."
 (use-package no-littering
   :demand t
   :config
-  (setq custom-file (expand-file-name "custom.el" user-emacs-directory))
-  (unless (file-exists-p custom-file)
-    (write-region "" nil custom-file))
   (no-littering-theme-backups)
   (let ((dir (no-littering-expand-var-file-name "lock-files/")))
     (make-directory dir t)
@@ -1034,6 +1039,10 @@ than `split-width-threshold'."
 
 (use-package flymake
   :ensure nil
+  :bind (("C-c f d" . flymake-show-buffer-diagnostics)
+         ("C-c f D" . flymake-show-project-diagnostics)
+         ("C-c f n" . flymake-goto-next-error)
+         ("C-c f p" . flymake-goto-prev-error))
   :config
   (setq flymake-indicator-type 'margins))
 
@@ -1145,6 +1154,9 @@ than `split-width-threshold'."
         org-icalendar-deadline-summary-prefix ""
         org-icalendar-timezone "America/Toronto"
         org-icalendar-date-time-format ";TZID=%Z:%Y%m%dT%H%M%S"
+
+        icalendar-export-sexp-enumerate-all t
+        icalendar-export-sexp-enumeration-days 365
 
         org-src-lang-modes `(("C" . c-ts)
                              ("C++" . c++-ts)
