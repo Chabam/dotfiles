@@ -4,3 +4,6 @@
 !.gitignore
 !chabam-ca-assets
 !chabam-ca-assets/*
+!snippets
+!snippets/*
+!snippets/**

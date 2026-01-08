@@ -1,0 +1,11 @@
+# -*- mode: snippet -*-
+# name: Include Guard
+# key: <ig
+# --
+
+#ifndef ${1:$$(upcase yas-text)}
+#define $1
+
+$0
+
+#endif // $1

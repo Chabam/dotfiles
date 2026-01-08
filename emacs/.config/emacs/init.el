@@ -781,6 +781,14 @@ than `split-width-threshold'."
   :config
   (setq ispell-program-name "hunspell"))
 
+;;; Snippets
+
+(use-package yasnippet
+  :hook ((after-init . (lambda () (yas-global-mode 1))))
+  :config
+  (setq yas-snippet-dirs (list
+                          (expand-file-name "snippets" user-emacs-directory))))
+
 ;;; Minibuffer
 
 (use-package vertico
@@ -1140,7 +1148,6 @@ than `split-width-threshold'."
                        (add-hook 'completion-at-point-functions #'cape-file nil t)))
          (org-mode . chbm/set-website-config))
   :config
-  (require 'org-tempo)
   (require 'ox-publish)
 
   (setq org-directory "~/documents/org"
