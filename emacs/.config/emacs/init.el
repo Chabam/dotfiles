@@ -1069,10 +1069,11 @@ than `split-width-threshold'."
          ("C-c e r" . eglot-rename)
          ("C-c e s" . eglot))
   :config
-  (setq eglot-autoshutdown t)
-  (setq eglot-ignored-server-capabilities
-      (append eglot-ignored-server-capabilities
-              '(:inlayHintProvider :documentOnTypeFormattingProvider :documentOnTypeFormatting)))
+  (setq eglot-autoshutdown t
+        eglot-stay-out-of '("yasnippet") ; Might activate later
+        eglot-ignored-server-capabilities
+        (append eglot-ignored-server-capabilities
+                '(:inlayHintProvider :documentOnTypeFormattingProvider :documentOnTypeFormatting)))
   (add-to-list 'eglot-server-programs
                '((org-mode (LaTeX-mode :language-id "latex") text-mode) . ("ltex-ls-plus" "--server-type" "TcpSocket" "--port" :autoport)))
   (setq-default eglot-workspace-configuration
