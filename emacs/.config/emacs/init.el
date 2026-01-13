@@ -1186,8 +1186,6 @@ than `split-width-threshold'."
                              ("shell" . sh)
                              ,@(org-src--get-known-shells))
 
-        org-export-with-toc nil
-        org-export-with-section-numbers nil
         org-export-headline-levels 7
         org-export-with-date nil
         org-export-with-author nil
