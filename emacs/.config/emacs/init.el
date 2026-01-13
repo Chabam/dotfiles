@@ -126,6 +126,9 @@ before we send our 'ok' to the SessionManager."
   `(
     ((n-p-gp nil "declaration_list" "namespace_definition") parent-bol 0)
     ((match "compound_statement" "for_range_loop") standalone-parent 0)
+    ((match "compound_statement" "try_statement") standalone-parent 0)
+    ((match "compound_statement" "catch_clause") standalone-parent 0)
+    ((node-is "catch_clause") parent-bol 0)
     ((node-is "access_specifier") parent-bol 2)
     ((match "field_declaration_list" "struct_specifier") parent-bol 0)
     ((match "compound_statement" "lambda_expression") parent-bol c-ts-mode-indent-offset)
