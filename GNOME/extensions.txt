@@ -1,0 +1,8 @@
+appindicatorsupport@rgcjonas.gmail.com
+clipboard-indicator@tudmotu.com
+caffeine@patapon.info
+pip-on-top@rafostar.github.com
+fullscreen-avoider@noobsai.github.com
+legacyschemeautoswitcher@joshimukul29.gmail.com
+media-progress@krypion17
+dim-completed-calendar-events@marcinjahn.com
