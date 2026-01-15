@@ -1161,8 +1161,6 @@ than `split-width-threshold'."
         org-icalendar-combined-agenda-file (concat org-directory "/agendas/org.ics")
         org-icalendar-use-scheduled '(event-if-not-todo event-if-todo event-if-todo-not-done todo-start)
         org-icalendar-use-deadline '(event-if-not-todo event-if-todo event-if-todo-not-done todo-due)
-        org-icalendar-scheduled-summary-prefix ""
-        org-icalendar-deadline-summary-prefix ""
         org-icalendar-timezone "America/Toronto"
         org-icalendar-date-time-format ";TZID=%Z:%Y%m%dT%H%M%S"
 
@@ -1186,7 +1184,6 @@ than `split-width-threshold'."
                              ("shell" . sh)
                              ,@(org-src--get-known-shells))
 
-        org-export-headline-levels 7
         org-export-with-date nil
         org-export-with-author nil
         org-export-time-stamp-file nil
