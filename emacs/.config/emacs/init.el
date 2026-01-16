@@ -292,9 +292,6 @@ before we send our 'ok' to the SessionManager."
   (minibuffer-depth-indicate-mode 1)
   (minibuffer-electric-default-mode 1)
 
-  ;; Fix for auto-dark where
-  (advice-add 'load-theme :after #'chbm/set-fonts)
-
   ;; Trying to properly set fonts
   (chbm/set-fonts)
 
@@ -722,9 +719,7 @@ than `split-width-threshold'."
   (windmove-delete-default-keybindings))
 
 (use-package auto-dark
-  :hook ((auto-dark-dark-mode . chbm/set-fonts)
-         (auto-dark-light-mode . chbm/set-fonts)
-         (auto-dark-dark-mode . chbm/update-modeline-colors)
+  :hook ((auto-dark-dark-mode . chbm/update-modeline-colors)
          (auto-dark-light-mode . chbm/update-modeline-colors)
          (after-init . (lambda ()
                          (setq auto-dark-themes '((modus-vivendi) (modus-operandi)))
