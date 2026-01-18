@@ -1,8 +1,9 @@
+always-indicator@martin.zurowietz.de
 appindicatorsupport@rgcjonas.gmail.com
-clipboard-indicator@tudmotu.com
 caffeine@patapon.info
-pip-on-top@rafostar.github.com
+clipboard-indicator@tudmotu.com
+dim-completed-calendar-events@marcinjahn.com
 fullscreen-avoider@noobsai.github.com
 legacyschemeautoswitcher@joshimukul29.gmail.com
 media-progress@krypion17
-dim-completed-calendar-events@marcinjahn.com
+pip-on-top@rafostar.github.com
