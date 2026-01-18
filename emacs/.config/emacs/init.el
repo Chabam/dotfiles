@@ -388,7 +388,10 @@ before we send our 'ok' to the SessionManager."
   ;; Don't ask for creating new buffers on async commands
   (setq async-shell-command-buffer 'new-buffer)
 
-  (setq package-install-upgrade-built-in t))
+  (setq package-install-upgrade-built-in t)
+
+  ;; Fix for dape
+  (setq window-sides-vertical t))
 
 ;;; Theming
 
@@ -1082,6 +1085,11 @@ than `split-width-threshold'."
                                                :\\lstdefinelanguage{}{} "ignore"
                                                :\\lstinputlisting{} "ignore"))
                             :disabledRules (:fr ["FRENCH_WHITESPACE"]))))))
+
+(use-package dape
+  :config
+  (setq dape-buffer-window-arrangement 'right)
+  (dape-breakpoint-global-mode +1))
 
 (use-package eglot-inactive-regions
   :hook (after-init . (lambda () (eglot-inactive-regions-mode 1)))
