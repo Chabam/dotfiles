@@ -1209,9 +1209,10 @@ than `split-width-threshold'."
   (org-babel-do-load-languages
    'org-babel-load-languages '((C . t)
                                (emacs-lisp . t)
+                               (haskell . t)
+                               (python . t)
                                (R . t)
-                               (shell . t)
-                               (python . t)))
+                               (shell . t)))
   ;; calendar
   (add-to-list 'org-agenda-custom-commands
              '("W" "Weekend"
