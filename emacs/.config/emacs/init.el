@@ -757,6 +757,15 @@ than `split-width-threshold'."
         repeat-check-key t
         set-mark-command-repeat-pop t))
 
+(use-package browse-url
+  :ensure nil
+  :config
+
+  (when chbm/emacs-containerized
+    (setq browse-url-browser-function
+          (lambda (url &optional _)
+            (start-process "browse-url-browser" nil "flatpak-xdg-open" url)))))
+
 (use-package no-littering
   :demand t
   :config
@@ -1225,12 +1234,13 @@ than `split-width-threshold'."
         org-archive-location (concat org-directory "/archive.org::datetree/")
         org-attach-id-dir (concat org-directory "/data/")
         org-todo-keywords '((sequence "FAIRE(f)" "COURS(c)" "ATTENTE(a)" "FAIT(F)")))
+
   (when chbm/emacs-containerized
-    (setq '((auto-mode . emacs)
-            (directory . emacs)
-            ("\\.mm\\'" . "flatpak-xdg-open %s")
-            ("\\.x?html?\\'" . "flatpak-xdg-open %s")
-            ("\\.pdf\\'" . "flatpak-xdg-open %s"))))
+    (setq org-file-apps '((auto-mode . emacs)
+                          (directory . emacs)
+                          ("\\.mm\\'" . "flatpak-xdg-open %s")
+                          ("\\.x?html?\\'" . "flatpak-xdg-open %s")
+                          ("\\.pdf\\'" . "flatpak-xdg-open %s"))))
   ;; babel
   (org-babel-do-load-languages
    'org-babel-load-languages '((C . t)
