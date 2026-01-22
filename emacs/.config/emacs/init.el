@@ -1112,6 +1112,7 @@ than `split-width-threshold'."
 
 (use-package pascal
   :ensure nil
+  :config
   (setq pascal-font-lock-keywords '(("\\_<\\(function\\|pro\\(cedure\\|gram\\)\\)[ 	]+\\([[:alpha:]][[:alnum:]_]*\\)" (1 font-lock-keyword-face) (3 font-lock-function-name-face))
                                     ("\\_<\\(array\\|boolean\\|c\\(har\\|onst\\)\\|file\\|integer\\|re\\(al\\|cord\\)\\|type\\|var\\)\\_>" . font-lock-type-face)
                                     ("\\_<\\(label\\|external\\|forward\\)\\_>" . font-lock-constant-face)
