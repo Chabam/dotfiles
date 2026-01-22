@@ -209,8 +209,15 @@ before we send our 'ok' to the SessionManager."
       (load-file (concat conf "site-config.el"))
       (message "org-publish site config loaded!"))))
 
+;; TODO: convert to a proper function
 (defalias 'org-emphasize-accronym
   (kmacro "C-SPC C-f C-c C-x C-f * C-d C-x 8 <return> z e r o <return> M-f C-f"))
+
+(defcustom chbm/emacs-containerized
+  nil
+  "Sets some stuff so that this Emacs works under a container (most likely
+   a toolbox container)"
+  :type 'boolean)
 
 ;;; Main emacs config
 
@@ -903,8 +910,9 @@ than `split-width-threshold'."
    consult-theme :preview-key '(:debounce 0.2 any)
    consult-ripgrep consult-git-grep consult-grep consult-man
    consult-bookmark consult-recent-file consult-xref
-   consult--source-bookmark consult--source-file-register
-   consult--source-recent-file consult--source-project-recent-file
+   consult-source-bookmark consult-source-file-register
+   consult-source-recent-file consult-source-project-recent-file
+   ;; :preview-key "M-."
    :preview-key '(:debounce 0.4 any))
 
   (setq consult-narrow-key "<"))
@@ -1004,7 +1012,9 @@ than `split-width-threshold'."
   (setq dired-listing-switches "-aBhlv  --group-directories-first")
   (setq dired-dwim-target t)
   (setq dired-vc-rename-file t)
-  (setq wdired-allow-to-change-permissions t))
+  (setq wdired-allow-to-change-permissions t)
+  (when chbm/emacs-containerized
+    (setq shell-command-guess-open "flatpak-xdg-open")))
 
 (use-package magit
   :config
@@ -1167,7 +1177,7 @@ than `split-width-threshold'."
   :config
   (require 'ox-publish)
 
-  (setq org-directory "~/documents/org"
+  (setq org-directory "~/Documents/Org"
         org-agendas-directory (concat org-directory "/agendas/")
 
         org-icalendar-exclude-tags '("noexport")
@@ -1215,6 +1225,12 @@ than `split-width-threshold'."
         org-archive-location (concat org-directory "/archive.org::datetree/")
         org-attach-id-dir (concat org-directory "/data/")
         org-todo-keywords '((sequence "FAIRE(f)" "COURS(c)" "ATTENTE(a)" "FAIT(F)")))
+  (when chbm/emacs-containerized
+    (setq '((auto-mode . emacs)
+            (directory . emacs)
+            ("\\.mm\\'" . "flatpak-xdg-open %s")
+            ("\\.x?html?\\'" . "flatpak-xdg-open %s")
+            ("\\.pdf\\'" . "flatpak-xdg-open %s"))))
   ;; babel
   (org-babel-do-load-languages
    'org-babel-load-languages '((C . t)
@@ -1225,14 +1241,14 @@ than `split-width-threshold'."
                                (shell . t)))
   ;; calendar
   (add-to-list 'org-agenda-custom-commands
-             '("W" "Weekend"
-               ((agenda ""))
-               ((org-agenda-overriding-header "Weekend")
-                (org-agenda-span 2)
-                (org-agenda-start-day "Saturday")
-                (org-agenda-show-all-dates t)
-                (org-agenda-include-empty-dates t)))
-             t))
+               '("W" "Weekend"
+                 ((agenda ""))
+                 ((org-agenda-overriding-header "Weekend")
+                  (org-agenda-span 2)
+                  (org-agenda-start-day "Saturday")
+                  (org-agenda-show-all-dates t)
+                  (org-agenda-include-empty-dates t)))
+               t))
 
 (use-package htmlize
   :commands (org-export-dispatch))
