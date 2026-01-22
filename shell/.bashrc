@@ -15,8 +15,17 @@ fi
 # Commands that should be applied only for interactive shells.
 [[ $- == *i* ]] || return
 
+function container_prompt() {
+    if [ -f "/run/.toolboxenv" ]
+    then
+        TOOLBOX_NAME=$(cat /run/.containerenv | grep -oP "(?<=name=\")[^\";]+")
+        echo "\033[35m⬢ ${TOOLBOX_NAME} "
+    fi
+}
+
 # Stolen stuff from debian
-PS1=$'\[\033[01;32m\]\u@\h\[\033[00m\]:\[\033[01;34m\]\w\[\033[00m\]\$ '
+export PS1="`container_prompt`\[\033[01;32m\]\u@\h\[\033[00m\]:\[\033[01;34m\]\w\[\033[00m\]\$ "
+
 if [ -x /usr/bin/dircolors ]; then
     test -r ~/.dircolors && eval "$(dircolors -b ~/.dircolors)" || eval "$(dircolors -b)"
     alias ls='ls --color=auto'
@@ -47,4 +56,6 @@ PROMPT_DIRTRIM=3
 # Disable Ctrl+S behavior
 stty -ixon
 
-eval "$(direnv hook bash)"
+if [ -f /usr/bin/direnv ]; then
+    eval "$(direnv hook bash)"
+fi
