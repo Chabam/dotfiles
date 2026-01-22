@@ -16,7 +16,7 @@
 (defun chbm/start-with-agenda ()
   (when (and (display-graphic-p)
              (not (string-prefix-p " *" (buffer-name))))
-    (org-agenda nil "n")
+    (org-agenda nil "d")
     (delete-other-windows)))
 
 ;; Thanks Prot!
@@ -1173,6 +1173,8 @@ than `split-width-threshold'."
   :ensure nil
   :mode "\\.yml")
 
+(use-package markdown-mode)
+
 (use-package zig-mode)
 
 (use-package org
@@ -1258,6 +1260,12 @@ than `split-width-threshold'."
                   (org-agenda-start-day "Saturday")
                   (org-agenda-show-all-dates t)
                   (org-agenda-include-empty-dates t)))
+               t)
+
+  (add-to-list 'org-agenda-custom-commands
+               '("d" "Aujourd'hui - à faire"
+                 ((agenda "" ((org-agenda-span 'day)))
+                  (alltodo "")))
                t))
 
 (use-package htmlize
