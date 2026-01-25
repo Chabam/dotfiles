@@ -3,8 +3,8 @@
 # key: <s
 # --
 
-#+BEGIN_SRC ${1:lang}
+#+begin_src ${1:lang}
 
 $0
 
-#+END_SRC
+#+end_src

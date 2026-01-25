@@ -1218,6 +1218,8 @@ than `split-width-threshold'."
                              ("shell" . sh)
                              ,@(org-src--get-known-shells))
 
+        org-babel-results-keyword "results"
+
         org-export-with-date nil
         org-export-with-author nil
         org-export-time-stamp-file nil
