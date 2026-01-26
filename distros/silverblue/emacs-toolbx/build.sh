@@ -1,3 +1,3 @@
 #!/usr/bin/env bash
 
-podman build --squash --tag emacs-devenv .
+podman build --tag emacs-devenv .
