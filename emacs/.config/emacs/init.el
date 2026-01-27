@@ -219,6 +219,23 @@ before we send our 'ok' to the SessionManager."
    a toolbox container)"
   :type 'boolean)
 
+(defun chbm/xdg-open-host (file &rest _)
+  (call-process "flatpak-spawn" nil 0 nil "--host" "xdg-open" file))
+
+(defun chbm/dired-do-open-containerized (&optional arg)
+  "Does the same as `dired-do-open' but approprietly
+calls `flatpak-spawn --host xdg-open'"
+  (interactive "P" dired-mode)
+  (let ((files (if (mouse-event-p last-nonmenu-event)
+                   (save-excursion
+                     (mouse-set-point last-nonmenu-event)
+                     (dired-get-marked-files nil arg))
+                 (dired-get-marked-files nil arg))))
+
+    ;; This is never going to be on other system than GNU/Linux, so no
+    ;; need to do the same gymnastic as the original `dired-do-open'
+    (mapc #'chbm/xdg-open-host files)))
+
 ;;; Main emacs config
 
 (use-package emacs
@@ -1022,8 +1039,11 @@ than `split-width-threshold'."
   (setq dired-dwim-target t)
   (setq dired-vc-rename-file t)
   (setq wdired-allow-to-change-permissions t)
-  (when chbm/emacs-containerized
-    (setq shell-command-guess-open "flatpak-xdg-open")))
+  (define-key dired-mode-map
+              (kbd "E")
+              (if chbm/emacs-containerized
+                  #'chbm/dired-do-open-containerized
+                #'dired-do-open)))
 
 (use-package magit
   :config
@@ -1242,9 +1262,9 @@ than `split-width-threshold'."
   (when chbm/emacs-containerized
     (setq org-file-apps '((auto-mode . emacs)
                           (directory . emacs)
-                          ("\\.mm\\'" . "flatpak-xdg-open %s")
-                          ("\\.x?html?\\'" . "flatpak-xdg-open %s")
-                          ("\\.pdf\\'" . "flatpak-xdg-open %s"))))
+                          ("\\.mm\\'" . chbm/xdg-open-host)
+                          ("\\.x?html?\\'" . chbm/xdg-open-host)
+                          ("\\.pdf\\'" . chbm/xdg-open-host))))
   ;; babel
   (org-babel-do-load-languages
    'org-babel-load-languages '((C . t)
