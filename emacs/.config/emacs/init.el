@@ -1111,19 +1111,21 @@ than `split-width-threshold'."
   :config
   (setq eglot-autoshutdown t
         eglot-stay-out-of '("yasnippet") ; Might activate later
-        eglot-ignored-server-capabilities
-        (append eglot-ignored-server-capabilities
-                '(:inlayHintProvider :documentOnTypeFormattingProvider :documentOnTypeFormatting)))
+        eglot-ignored-server-capabilities (append eglot-ignored-server-capabilities
+                                                  '(:inlayHintProvider
+                                                    :documentOnTypeFormattingProvider
+                                                    :documentOnTypeFormatting))
+        eglot-sync-connect nil
+        eglot-events-buffer-config '(:size 0 :format full))
   (add-to-list 'eglot-server-programs
-               '((org-mode (LaTeX-mode :language-id "latex") text-mode) . ("ltex-ls-plus" "--server-type" "TcpSocket" "--port" :autoport)))
-  (setq-default eglot-workspace-configuration
-                '((:ltex . (:language "auto"
-                            :completionEnabled t
-                            :latex (:environments (:lstlisting "ignore" :circuitikz "ignore" )
-                                    :commands (:\\lstset{} "ignore"
-                                               :\\lstdefinelanguage{}{} "ignore"
-                                               :\\lstinputlisting{} "ignore"))
-                            :disabledRules (:fr ["FRENCH_WHITESPACE"]))))))
+               '((org-mode markdown-mode (LaTeX-mode :language-id "latex")) . ("ltex-ls-plus")))
+  (add-to-list 'eglot-server-programs
+               '((c-ts-mode c++-ts-mode) . ("clangd"
+                                            "--header-insertion=never"
+                                            "--clang-tidy=false"
+                                            "--background-index"
+                                            "--background-index-priority=low"
+                                            "--j=4"))))
 
 (use-package dape
   :config
