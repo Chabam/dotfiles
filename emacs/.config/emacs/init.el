@@ -422,23 +422,25 @@ calls `flatpak-spawn --host xdg-open'"
 (use-package modus-themes
   :init
   (setq modus-themes-common-palette-overrides
-        `((cursor magenta-warmer)
+        `(
+          (cursor magenta-warmer)
           (bg-region bg-lavender)
           (fg-region unspecified)
 
-	      (string green-cooler)
-	      (bg-changed-fringe bg-cyan-intense)
+          (string green-cooler)
+          (comment yellow-faint)
+          (bg-changed-fringe bg-cyan-intense)
 
-	      ;; Blue modeline
-	      (bg-mode-line-active bg-blue-intense)
-	      (fg-mode-line-active fg-main)
+          ;; Blue modeline
+          (bg-mode-line-active bg-blue-intense)
+          (fg-mode-line-active fg-main)
 
-	      ;; Number line invisible
-	      (fringe unspecified)
-	      (fg-line-number-inactive fg-dim)
-	      (fg-line-number-active cursor)
-	      (bg-line-number-inactive unspecified)
-	      (bg-line-number-active unspecified)
+          ;; Number line invisible
+          (fringe unspecified)
+          (fg-line-number-inactive fg-dim)
+          (fg-line-number-active cursor)
+          (bg-line-number-inactive unspecified)
+          (bg-line-number-active unspecified)
 
           ;; Org mode
           (fg-heading-0 blue-cooler)
@@ -461,10 +463,10 @@ calls `flatpak-spawn --host xdg-open'"
           (date-weekday cyan-cooler)
           (date-weekend blue-faint)
           ))
-  (setq modus-themes-variable-pitch-ui t)
-  (setq modus-themes-italic-constructs t)
-  (setq modus-themes-bold-constructs t)
-  (setq modus-themes-mixed-fonts t)
+  (setq modus-themes-variable-pitch-ui t
+        modus-themes-italic-constructs t
+        modus-themes-bold-constructs t
+        modus-themes-mixed-fonts t)
   (load-theme 'modus-vivendi :noconfirm)
   (load-theme 'modus-operandi :noconfirm))
 
