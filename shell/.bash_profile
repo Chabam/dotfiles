@@ -1,9 +1,19 @@
 [ -f "$HOME/.bashrc" ] && . "$HOME/.bashrc"
 
 export BROWSER="firefox"
-export VISUAL="emacsclient -r"
-export EDITOR="emacsclient -t"
 export PAGER="less --use-color"
+if [ -f /usr/bin/toolbox ];
+then
+    export VISUAL="toolbox run -c emacs emacsclient -c"
+else
+    if [ -f /usr/bin/emacs ]; then
+        export VISUAL="emacs emacsclient -c"
+    else
+        export VISUAL="vi"
+    fi
+fi
+
+export EDITOR="$VISUAL"
 
 # Haskell
 [ -f "$HOME/.ghcup/env" ] && . "$HOME/.ghcup/env"
