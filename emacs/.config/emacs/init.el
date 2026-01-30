@@ -203,6 +203,14 @@ before we send our 'ok' to the SessionManager."
           (plist-put (cdr conf) ':publishing-directory (concat dest (car conf))))
         org-publish-project-alist))
 
+(defun chbm/org-set-id-from-title ()
+  "Sets a custom_id based on the title of the current heading"
+  (interactive)
+  (org-back-to-heading)
+  (let* ((title (nth 4 (org-heading-components)))
+         (custom-id (replace-regexp-in-string "-\\{2,\\}" "-" (string-replace " " "-" (downcase title)))))
+    (org-set-property "CUSTOM_ID" custom-id)))
+
 (defun chbm/set-website-config ()
   (let ((conf (locate-dominating-file default-directory "site-config.el")))
     (when conf
@@ -1200,6 +1208,12 @@ than `split-width-threshold'."
 (use-package markdown-mode)
 
 (use-package zig-mode)
+
+(use-package citar
+  :hook (org-load . (lambda ()
+                      (setq org-cite-insert-processor 'citar
+                            org-cite-follow-processor 'citar
+                            org-cite-activate-processor 'citar))))
 
 (use-package org
   :ensure nil
