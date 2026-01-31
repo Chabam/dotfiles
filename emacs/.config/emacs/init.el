@@ -437,6 +437,7 @@ calls `flatpak-spawn --host xdg-open'"
 
           (string green-cooler)
           (comment yellow-faint)
+          (docstring yellow-warmer)
           (bg-changed-fringe bg-cyan-intense)
 
           ;; Blue modeline
