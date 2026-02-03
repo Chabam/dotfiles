@@ -423,6 +423,8 @@ calls `flatpak-spawn --host xdg-open'"
 
   (setq package-install-upgrade-built-in t)
 
+  (setq vc-follow-symlinks t)
+
   ;; Fix for dape
   (setq window-sides-vertical t))
 
