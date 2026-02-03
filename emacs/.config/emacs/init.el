@@ -1155,6 +1155,8 @@ than `split-width-threshold'."
 (use-package racket-mode
   :mode "\\.rkt\\'")
 
+(use-package glsl-mode)
+
 (use-package auctex
   :hook (LaTeX-mode . turn-on-reftex)
   :config
