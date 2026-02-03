@@ -1103,7 +1103,9 @@ than `split-width-threshold'."
          ("C-c f n" . flymake-goto-next-error)
          ("C-c f p" . flymake-goto-prev-error))
   :config
-  (setq flymake-indicator-type 'margins))
+  (setq flymake-indicator-type 'margins
+        flymake-no-changes-timeout 1.0)
+  )
 
 ;;; Languages related modes
 
@@ -1126,6 +1128,7 @@ than `split-width-threshold'."
                                                   '(:inlayHintProvider
                                                     :documentOnTypeFormattingProvider
                                                     :documentOnTypeFormatting))
+        eglot-send-changes-idle-time 0.6
         eglot-sync-connect nil
         eglot-events-buffer-config '(:size 0 :format full))
   (add-to-list 'eglot-server-programs
@@ -1134,6 +1137,7 @@ than `split-width-threshold'."
                '((c-ts-mode c++-ts-mode) . ("clangd"
                                             "--header-insertion=never"
                                             "--clang-tidy=false"
+                                            "--completion-style=detailed"
                                             "--background-index"
                                             "--background-index-priority=low"
                                             "--j=4"))))
