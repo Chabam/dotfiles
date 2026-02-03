@@ -417,6 +417,7 @@ calls `flatpak-spawn --host xdg-open'"
                                 newline newline-mark trailing))
   ;; y or n instead of yes or no
   (setq use-short-answers t)
+
   ;; Don't ask for creating new buffers on async commands
   (setq async-shell-command-buffer 'new-buffer)
 
@@ -436,8 +437,6 @@ calls `flatpak-spawn --host xdg-open'"
           (fg-region unspecified)
 
           (string green-cooler)
-          (comment yellow-faint)
-          (docstring yellow-warmer)
           (bg-changed-fringe bg-cyan-intense)
 
           ;; Blue modeline
@@ -473,7 +472,7 @@ calls `flatpak-spawn --host xdg-open'"
           (date-weekend blue-faint)
           ))
   (setq modus-themes-variable-pitch-ui t
-        modus-themes-italic-constructs t
+        modus-themes-italic-constructs nil
         modus-themes-bold-constructs t
         modus-themes-mixed-fonts t)
   (load-theme 'modus-vivendi :noconfirm)
