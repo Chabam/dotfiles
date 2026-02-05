@@ -757,6 +757,10 @@ than `split-width-threshold'."
   ;; (windmove-swap-states-default-keybindings '(ctrl shift))
   (windmove-delete-default-keybindings))
 
+(use-package undelete-frame-mode
+  :ensure nil
+  :hook (after-init . undelete-frame-mode))
+
 (use-package auto-dark
   :hook ((auto-dark-dark-mode . chbm/update-modeline-colors)
          (auto-dark-light-mode . chbm/update-modeline-colors)
