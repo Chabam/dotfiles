@@ -138,6 +138,7 @@ before we send our 'ok' to the SessionManager."
     ((chbm/is-first-sibling nil "argument_list") standalone-parent c-ts-mode-indent-offset)
     ((chbm/is-last-sibling ")" "parameter_list") standalone-parent 0)
     ((chbm/is-last-sibling ")" "argument_list") standalone-parent 0)
+    ((parent-is "binary_expression") prev-sibling c-ts-mode-indent-offset)
     ((parent-is "argument_list") prev-sibling 0)
     ((parent-is "parameter_list") prev-sibling 0)
     ,@(alist-get 'bsd (c-ts-mode--indent-styles 'cpp))))
