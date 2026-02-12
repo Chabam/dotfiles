@@ -1047,6 +1047,11 @@ than `split-width-threshold'."
   (setq ediff-merge-revisions-with-ancestor t)
   (setq ediff-show-clashes-only t))
 
+(use-package man
+  :ensure nil
+  :config
+  (setq Man-notify-method 'thrifty))
+
 (use-package dired
   :ensure nil
   :commands (dired dired-jump)
