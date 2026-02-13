@@ -1,9 +1,10 @@
-app.eduroam.geteduroam/x86_64/stable
 ca.desrt.dconf-editor/x86_64/stable
+com.bitwarden.desktop/x86_64/stable
 com.discordapp.Discord/x86_64/stable
 com.github.finefindus.eyedropper/x86_64/stable
 com.github.neithern.g4music/x86_64/stable
 com.github.tchx84.Flatseal/x86_64/stable
+com.github.tenderowl.frog/x86_64/stable
 com.github.zocker_160.SyncThingy/x86_64/stable
 com.mattjakeman.ExtensionManager/x86_64/stable
 com.obsproject.Studio/x86_64/stable
@@ -35,11 +36,11 @@ org.gnome.Weather/x86_64/stable
 org.gnome.World.PikaBackup/x86_64/stable
 org.gnome.baobab/x86_64/stable
 org.gnome.clocks/x86_64/stable
+org.gnome.dspy/x86_64/stable
 org.gnome.font-viewer/x86_64/stable
-org.jellyfin.JellyfinDesktop/x86_64/stable
 org.kde.kdenlive/x86_64/stable
-org.keepassxc.KeePassXC/x86_64/stable
 org.libreoffice.LibreOffice/x86_64/stable
+org.mozilla.firefox/x86_64/stable
 org.musicbrainz.Picard/x86_64/stable
 org.pulseaudio.pavucontrol/x86_64/stable
 org.remmina.Remmina/x86_64/stable
