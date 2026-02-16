@@ -250,7 +250,6 @@ calls `flatpak-spawn --host xdg-open'"
 (use-package emacs
   :bind (;; Disabling some bindings
          ("C-z" . nil)                  ; minimize
-         ("C-x C-d" . nil)              ; list directory
          ("C-h h" . nil)                ; "hello" buffer
          ("C-x C-c" . nil)              ; Closing emacs 🙂 (actually gets rebound later)
          ("M-`" . nil)                  ; menu bar in the minibuffer
@@ -263,6 +262,8 @@ calls `flatpak-spawn --host xdg-open'"
          ("M-c" . capitalize-dwim)
          ("M-l" . downcase-dwim)
          ("M-u" . upcase-dwim)
+         ("C-x C-d l" . list-directory)
+         ("C-c SPC d" . delete-trailing-whitespace)
          ("C-x r y" . chbm/yank-copied-rectangle-as-lines)
          ("C-S-d" . duplicate-line)
          ("C-x C-b" . ibuffer))
