@@ -1032,6 +1032,7 @@ than `split-width-threshold'."
 (use-package compile
   :ensure nil
   :hook (compilation-filter . ansi-color-compilation-filter)
+  :bind (("C-x c" . compile))
   :config
   (setq compilation-scroll-output t)
   (setq ansi-color-for-compilation-mode t)
