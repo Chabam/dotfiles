@@ -1,7 +1,0 @@
-[Desktop Entry]
-Type=Application
-Name=Firefox
-GenericName=Browser web
-Icon=org.mozilla.firefox
-Exec=/usr/bin/flatpak run --branch=stable --arch=x86_64 --command=firefox --file-forwarding org.mozilla.firefox @@u %u @@
-NoDisplay=true
