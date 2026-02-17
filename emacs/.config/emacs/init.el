@@ -262,7 +262,7 @@ calls `flatpak-spawn --host xdg-open'"
          ("M-c" . capitalize-dwim)
          ("M-l" . downcase-dwim)
          ("M-u" . upcase-dwim)
-         ("C-x C-d l" . list-directory)
+         ("C-c d l" . list-directory)
          ("C-c SPC d" . delete-trailing-whitespace)
          ("C-x r y" . chbm/yank-copied-rectangle-as-lines)
          ("C-S-d" . duplicate-line)
