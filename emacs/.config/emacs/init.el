@@ -772,15 +772,6 @@ than `split-width-threshold'."
 
 ;;; Misc essential packages
 
-(use-package which-key
-  :ensure nil
-  :hook (after-init . which-key-mode)
-  :config
-  (setq which-key-max-display-columns 3)
-  (setq which-key-add-column-padding 1)
-  (setq which-key-prefix-prefix "... ")
-  (setq which-key-separator "  "))
-
 (use-package repeat
   :ensure nil
   :hook (after-init . repeat-mode)
