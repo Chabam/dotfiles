@@ -46,6 +46,7 @@ RUN dnf -y install \
     clang-tools-extra \
     cmake \
     g++ \
+    bear \
     && dnf clean all
 
 # Python tooling
