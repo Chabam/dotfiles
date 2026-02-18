@@ -1216,6 +1216,10 @@ than `split-width-threshold'."
   :ensure nil
   :mode "\\.yml")
 
+(use-package dockerfile-ts-mode
+  :ensure nil
+  :mode "Containerfile")
+
 (use-package markdown-mode)
 
 (use-package zig-mode)
