@@ -255,6 +255,7 @@ calls `flatpak-spawn --host xdg-open'"
          ("M-`" . nil)                  ; menu bar in the minibuffer
          ("C-x C-z" . nil)              ; Minimize
          ;; rebinds
+         ("C-x g" . grep)
          ("M-o" . other-window)
          ("C-x C-c C-c" . save-buffers-kill-emacs)
          ("M-z" . zap-up-to-char)       ; zap-up-to-char instead of zap-to-char
@@ -816,8 +817,14 @@ than `split-width-threshold'."
 (use-package project
   :ensure nil
   :config
-  (add-to-list 'project-switch-commands '(magit-project-status "Magit" "m"))
-  (add-to-list 'project-switch-commands '(project-dired "Project Dired" "D")))
+  (setq project-switch-commands
+        '((project-find-file "Find file")
+          (project-find-regexp "Find regexp")
+          (project-find-dir "Find directory")
+          (project-dired "Project Dired" "D")
+          (project-vc-dir "VC-Dir")
+          (project-eshell "Eshell")
+          (project-any-command "Other"))))
 
 (use-package ispell
   :ensure nil
@@ -1060,10 +1067,6 @@ than `split-width-threshold'."
                   #'chbm/dired-do-open-containerized
                 #'dired-do-open)))
 
-(use-package magit
-  :config
-  (setq magit-display-buffer-function #'magit-display-buffer-same-window-except-diff-v1))
-
 (use-package wgrep)
 
 (use-package tramp
@@ -1202,7 +1205,9 @@ than `split-width-threshold'."
                                      comment-column 0
                                      standard-indent 2
                                      tab-width 2
-                                     indent-tabs-mode nil))))
+                                     indent-tabs-mode nil)
+                         ; Don't add random R package to project list please...
+                         (remove-hook 'project-find-functions #'ess-r-project 'local))))
   :config
   (setq ess-use-ido nil))
 
