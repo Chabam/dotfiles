@@ -1206,8 +1206,15 @@ than `split-width-threshold'."
                                      standard-indent 2
                                      tab-width 2
                                      indent-tabs-mode nil)
-                         ; Don't add random R package to project list please...
-                         (remove-hook 'project-find-functions #'ess-r-project 'local))))
+                                        ; Don't add random R package
+                                        ; to the project list
+                                        ; please...
+                         (add-hook 'project-find-functions #'project-try-vc nil 'local)))
+         (ess-r-package-enter . (lambda ()
+                                        ; Don't add random R package
+                                        ; to the project list
+                                        ; please...
+                                  (add-hook 'project-find-functions #'project-try-vc nil 'local))))
   :config
   (setq ess-use-ido nil))
 
