@@ -458,7 +458,7 @@ calls `flatpak-spawn --host xdg-open'"
           ;; Org mode
           (fg-heading-0 blue-cooler)
           (fg-heading-1 magenta-cooler)
-          (fg-heading-2 magenta-warmer)
+          (fg-heading-2 magenta-faint)
           (fg-heading-3 blue)
           (fg-heading-4 cyan)
           (fg-heading-5 green-warmer)
