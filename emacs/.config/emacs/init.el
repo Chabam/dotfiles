@@ -257,6 +257,7 @@ calls `flatpak-spawn --host xdg-open'"
          ;; rebinds
          ("C-x g" . grep)
          ("M-o" . other-window)
+         ("C-M-o" . other-frame)
          ("C-x C-c C-c" . save-buffers-kill-emacs)
          ("M-z" . zap-up-to-char)       ; zap-up-to-char instead of zap-to-char
          ("C-M-z" . delete-pair)
