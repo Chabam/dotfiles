@@ -1,3 +1,3 @@
 #!/usr/bin/env bash
 
-flatpak list --app --columns=ref | tail -n +2 > flatpaks.txt
+flatpak list --app --columns=ref,installation | tail -n +1 > flatpaks.txt

@@ -1,46 +1,45 @@
-ca.desrt.dconf-editor/x86_64/stable
-com.bitwarden.desktop/x86_64/stable
-com.discordapp.Discord/x86_64/stable
-com.github.finefindus.eyedropper/x86_64/stable
-com.github.neithern.g4music/x86_64/stable
-com.github.tchx84.Flatseal/x86_64/stable
-com.github.tenderowl.frog/x86_64/stable
-com.github.zocker_160.SyncThingy/x86_64/stable
-com.mattjakeman.ExtensionManager/x86_64/stable
-com.obsproject.Studio/x86_64/stable
-com.valvesoftware.Steam/x86_64/stable
-io.github.nozwock.Packet/x86_64/stable
-me.dusansimic.DynamicWallpaper/x86_64/stable
-net.davidotek.pupgui2/x86_64/stable
-net.sourceforge.Klavaro/x86_64/stable
-org.blender.Blender/x86_64/stable
-org.cloudcompare.CloudCompare/x86_64/stable
-org.gimp.GIMP/x86_64/stable
-org.gnome.Calculator/x86_64/stable
-org.gnome.Calendar/x86_64/stable
-org.gnome.Characters/x86_64/stable
-org.gnome.Contacts/x86_64/stable
-org.gnome.Decibels/x86_64/stable
-org.gnome.Evince/x86_64/stable
-org.gnome.Evolution/x86_64/stable
-org.gnome.Extensions/x86_64/stable
-org.gnome.Logs/x86_64/stable
-org.gnome.Loupe/x86_64/stable
-org.gnome.Maps/x86_64/stable
-org.gnome.NautilusPreviewer/x86_64/stable
-org.gnome.Showtime/x86_64/stable
-org.gnome.Snapshot/x86_64/stable
-org.gnome.SoundRecorder/x86_64/stable
-org.gnome.TextEditor/x86_64/stable
-org.gnome.Weather/x86_64/stable
-org.gnome.World.PikaBackup/x86_64/stable
-org.gnome.baobab/x86_64/stable
-org.gnome.clocks/x86_64/stable
-org.gnome.dspy/x86_64/stable
-org.gnome.font-viewer/x86_64/stable
-org.kde.kdenlive/x86_64/stable
-org.libreoffice.LibreOffice/x86_64/stable
-org.mozilla.firefox/x86_64/stable
-org.musicbrainz.Picard/x86_64/stable
-org.pulseaudio.pavucontrol/x86_64/stable
-org.remmina.Remmina/x86_64/stable
+ca.desrt.dconf-editor/x86_64/stable	user
+com.bitwarden.desktop/x86_64/stable	user
+com.discordapp.Discord/x86_64/stable	user
+com.github.finefindus.eyedropper/x86_64/stable	user
+com.github.neithern.g4music/x86_64/stable	user
+com.github.tchx84.Flatseal/x86_64/stable	user
+com.github.tenderowl.frog/x86_64/stable	user
+com.github.zocker_160.SyncThingy/x86_64/stable	user
+com.mattjakeman.ExtensionManager/x86_64/stable	user
+com.obsproject.Studio/x86_64/stable	user
+com.valvesoftware.Steam/x86_64/stable	user
+io.github.nozwock.Packet/x86_64/stable	user
+me.dusansimic.DynamicWallpaper/x86_64/stable	user
+net.davidotek.pupgui2/x86_64/stable	user
+net.sourceforge.Klavaro/x86_64/stable	user
+org.blender.Blender/x86_64/stable	user
+org.cloudcompare.CloudCompare/x86_64/stable	user
+org.gimp.GIMP/x86_64/stable	user
+org.gnome.Calculator/x86_64/stable	system
+org.gnome.Calendar/x86_64/stable	system
+org.gnome.Characters/x86_64/stable	system
+org.gnome.Contacts/x86_64/stable	system
+org.gnome.Decibels/x86_64/stable	system
+org.gnome.Evince/x86_64/stable	system
+org.gnome.Extensions/x86_64/stable	system
+org.gnome.Logs/x86_64/stable	system
+org.gnome.Loupe/x86_64/stable	system
+org.gnome.Maps/x86_64/stable	system
+org.gnome.NautilusPreviewer/x86_64/stable	system
+org.gnome.Showtime/x86_64/stable	system
+org.gnome.Snapshot/x86_64/stable	system
+org.gnome.SoundRecorder/x86_64/stable	system
+org.gnome.TextEditor/x86_64/stable	system
+org.gnome.Weather/x86_64/stable	system
+org.gnome.World.PikaBackup/x86_64/stable	user
+org.gnome.baobab/x86_64/stable	system
+org.gnome.clocks/x86_64/stable	system
+org.gnome.dspy/x86_64/stable	user
+org.gnome.font-viewer/x86_64/stable	system
+org.kde.kdenlive/x86_64/stable	user
+org.libreoffice.LibreOffice/x86_64/stable	system
+org.mozilla.firefox/x86_64/stable	user
+org.musicbrainz.Picard/x86_64/stable	user
+org.pulseaudio.pavucontrol/x86_64/stable	system
+org.remmina.Remmina/x86_64/stable	user

@@ -1,3 +1,3 @@
 #!/usr/bin/env bash
 
-awk '{ system("flatpak install "$1) }' flatpaks.txt
+awk '{ system("flatpak --$2 install "$1) }' flatpaks.txt
