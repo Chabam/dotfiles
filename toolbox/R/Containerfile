@@ -1,0 +1,18 @@
+FROM registry.fedoraproject.org/fedora-toolbox:43
+RUN dnf -y upgrade \
+    && dnf clean all
+
+RUN dnf -y install \
+    R \
+    geos-devel \
+    proj-devel \
+    libpng-devel \
+    libtool \
+    abseil-cpp-devel \
+    gdal-devel \
+    gdal \
+    openssl-devel \
+    udunits2-devel \
+    && dnf clean all
+
+RUN Rscript -e 'install.packages(c("lidR", "ggplot2"))'
