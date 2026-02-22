@@ -1,3 +1,4 @@
+be.alexandervanhee.gradia/x86_64/stable	system
 ca.desrt.dconf-editor/x86_64/stable	user
 com.bitwarden.desktop/x86_64/stable	user
 com.discordapp.Discord/x86_64/stable	user
