@@ -362,3 +362,8 @@ h7:has(.done) + *
         font-weight: bold;
     }
 }
+
+body
+{
+    margin-bottom: 50%;
+}
