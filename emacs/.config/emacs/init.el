@@ -1122,6 +1122,7 @@ than `split-width-threshold'."
   :config
   (setq treesit-auto-install 'prompt)
   (setq treesit-auto-add-to-auto-mode-alist 'all)
+  (delete 'glsl treesit-auto-langs)
   (setq-default treesit-font-lock-level 4))
 
 (use-package eglot
@@ -1164,7 +1165,8 @@ than `split-width-threshold'."
 (use-package racket-mode
   :mode "\\.rkt\\'")
 
-(use-package glsl-mode)
+(use-package glsl-mode
+  :hook ((glsl-mode . (lambda () (c-set-style "k&r")))))
 
 (use-package auctex
   :hook (LaTeX-mode . turn-on-reftex)
