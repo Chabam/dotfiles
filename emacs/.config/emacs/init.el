@@ -255,7 +255,8 @@ calls `flatpak-spawn --host xdg-open'"
          ("M-`" . nil)                  ; menu bar in the minibuffer
          ("C-x C-z" . nil)              ; Minimize
          ;; rebinds
-         ("C-x g" . grep)
+         ("C-x M-g" . grep)
+         ("C-x M-e" . eshell)
          ("M-o" . other-window)
          ("C-M-o" . other-frame)
          ("C-x C-c C-c" . save-buffers-kill-emacs)
@@ -1041,7 +1042,7 @@ than `split-width-threshold'."
 (use-package compile
   :ensure nil
   :hook (compilation-filter . ansi-color-compilation-filter)
-  :bind (("C-x c" . compile))
+  :bind (("C-x M-c" . compile))
   :config
   (setq compilation-scroll-output t)
   (setq ansi-color-for-compilation-mode t)
