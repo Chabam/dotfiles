@@ -144,9 +144,7 @@ before we send our 'ok' to the SessionManager."
     ,@(alist-get 'bsd (c-ts-mode--indent-styles 'cpp))))
 
 (defun chbm/set-c-style-indent ()
-  "Sets up clang-format if the proper file is there otherwise use the default treesit"
-  (when (locate-dominating-file default-directory ".clang-format")
-    (setq-local indent-region-function #'clang-format-region))
+  "Sets up indentation with my treesit indent style"
   (setq-local c-ts-mode-indent-offset 4)
   (c-ts-mode-set-style 'chbm/bsd-style-indent))
 
@@ -948,6 +946,9 @@ than `split-width-threshold'."
          ("M-s l" . consult-line)
          ("M-s L" . consult-line-multi)
          :map minibuffer-local-map
+         ("M-s" . consult-history)
+         ("M-r" . consult-history)
+         :map eshell-hist-mode-map
          ("M-s" . consult-history)
          ("M-r" . consult-history))
   :init
