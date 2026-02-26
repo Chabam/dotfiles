@@ -4,7 +4,7 @@ export BROWSER="firefox"
 export PAGER="less --use-color"
 if [ -f /usr/bin/toolbox ];
 then
-    export VISUAL="toolbox run -c emacs emacsclient -c"
+    export VISUAL="toolbox run -c dev emacsclient -c"
 else
     if [ -f /usr/bin/emacs ]; then
         export VISUAL="emacs emacsclient -c"
