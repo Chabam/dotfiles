@@ -947,9 +947,6 @@ than `split-width-threshold'."
          ("M-s L" . consult-line-multi)
          :map minibuffer-local-map
          ("M-s" . consult-history)
-         ("M-r" . consult-history)
-         :map eshell-hist-mode-map
-         ("M-s" . consult-history)
          ("M-r" . consult-history))
   :init
   (advice-add #'register-preview :override #'consult-register-window)
@@ -997,6 +994,12 @@ than `split-width-threshold'."
   (setq-default comint-scroll-to-bottom-on-input t)
   (setq-default comint-scroll-to-bottom-on-output nil)
   (setq-default comint-input-autoexpand 'input))
+
+(use-package em-hist
+  :ensure nil
+  :bind (:map eshell-hist-mode-map
+              ("M-r" . consult-history)
+              ("M-s" . consult-history)))
 
 (use-package eshell
   :ensure nil
