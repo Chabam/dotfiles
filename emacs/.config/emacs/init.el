@@ -832,6 +832,7 @@ than `split-width-threshold'."
           (project-find-dir "Find directory")
           (project-dired "Project Dired" "D")
           (project-vc-dir "VC-Dir")
+          (magit-project-status "Magit" "m")
           (project-eshell "Eshell")
           (project-any-command "Other"))))
 
@@ -1048,9 +1049,11 @@ than `split-width-threshold'."
   :hook (compilation-filter . ansi-color-compilation-filter)
   :bind (("C-x M-c" . compile))
   :config
-  (setq compilation-scroll-output t)
-  (setq ansi-color-for-compilation-mode t)
-  (setq compilation-skip-threshold 2))
+  (setq compilation-scroll-output t
+        compilation-max-output-line-length nil
+        compilation-auto-jump-to-first-error t
+        ansi-color-for-compilation-mode t
+        compilation-skip-threshold 2))
 
 (use-package ediff
   :ensure nil
@@ -1081,6 +1084,10 @@ than `split-width-threshold'."
               (if chbm/emacs-containerized
                   #'chbm/dired-do-open-containerized
                 #'dired-do-open)))
+
+(use-package magit
+  :config
+  (setq magit-display-buffer-function #'magit-display-buffer-same-window-except-diff-v1))
 
 (use-package wgrep)
 
