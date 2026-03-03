@@ -429,7 +429,10 @@ calls `flatpak-spawn --host xdg-open'"
   (setq vc-follow-symlinks t)
 
   ;; Fix for dape
-  (setq window-sides-vertical t))
+  (setq window-sides-vertical t)
+
+  ;; Enabling some disabled commands
+  (put 'narrow-to-region 'disabled nil))
 
 ;;; Theming
 
@@ -1051,7 +1054,6 @@ than `split-width-threshold'."
   :config
   (setq compilation-scroll-output t
         compilation-max-output-line-length nil
-        compilation-auto-jump-to-first-error t
         ansi-color-for-compilation-mode t
         compilation-skip-threshold 2))
 
