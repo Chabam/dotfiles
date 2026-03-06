@@ -1075,7 +1075,6 @@ than `split-width-threshold'."
 (use-package dired
   :ensure nil
   :commands (dired dired-jump)
-  :hook (dired-mode . (lambda () (dired-hide-details-mode 1)))
   :config
   (setq dired-listing-switches "-aBhlv  --group-directories-first")
   (setq dired-dwim-target t)
