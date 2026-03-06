@@ -22,7 +22,7 @@ then
 fi
 
 # Stolen stuff from debian
-export PS1="${TOOLBOX_PROMPT}\[\033[01;32m\]\u@\h\[\033[00m\]:\[\033[01;34m\]\w\[\033[00m\]\$ "
+export PS1="${TOOLBOX_PROMPT}\[\033[01;32m\]\u@\h\[\033[00m\]:\[\033[01;34m\]\w\[\033[00m\]\n\$ "
 
 if [ -x /usr/bin/dircolors ]; then
     test -r ~/.dircolors && eval "$(dircolors -b ~/.dircolors)" || eval "$(dircolors -b)"
@@ -48,8 +48,6 @@ shopt -s checkjobs
 
 alias ll='ls -l'
 alias lla='ls -la'
-
-PROMPT_DIRTRIM=3
 
 # Disable Ctrl+S behavior
 stty -ixon
