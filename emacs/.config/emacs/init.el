@@ -1,6 +1,8 @@
 ;; -*- lexical-binding: t -*-
 ;;; Custom functions
 
+(defun eshell/clear () (eshell/clear-scrollback))
+
 (defun chbm/set-fonts (&optional font-size &rest _)
   "Set fonts for frame and after theme"
   (interactive (list (setq font-size (read-number "Font size: " 120))))
@@ -1009,7 +1011,17 @@ than `split-width-threshold'."
   :ensure nil
   :hook ((eshell-hist-mode . (lambda ()
                                (define-key eshell-hist-mode-map (kbd "C-<up>") nil)
-                               (define-key eshell-hist-mode-map (kbd "C-<down>") nil)))))
+                               (define-key eshell-hist-mode-map (kbd "C-<down>") nil))))
+  :config
+  (setq eshell-prompt-function
+        (lambda ()
+          (modus-themes-with-colors
+            (concat (propertize (abbreviate-file-name (eshell/pwd)) 'face `(:foreground ,cyan))
+                    (unless (eshell-exit-success-p)
+                      (propertize (format " [%d]" eshell-last-command-status)
+                                  'face `(:foreground ,red)))
+                    "\n"
+                    (if (= (file-user-uid) 0) "# " "$ "))))))
 
 (use-package eat
   :config
