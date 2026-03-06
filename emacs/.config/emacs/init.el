@@ -245,6 +245,12 @@ calls `flatpak-spawn --host xdg-open'"
     ;; need to do the same gymnastic as the original `dired-do-open'
     (mapc #'chbm/xdg-open-host files)))
 
+(defun chbm/copy-pwd (&optional abrev)
+  (interactive "P")
+  (kill-new (if abrev
+                (abbreviate-file-name default-directory)
+              default-directory)))
+
 ;;; Main emacs config
 
 (use-package emacs
@@ -265,8 +271,8 @@ calls `flatpak-spawn --host xdg-open'"
          ("M-c" . capitalize-dwim)
          ("M-l" . downcase-dwim)
          ("M-u" . upcase-dwim)
-         ("C-c d l" . list-directory)
-         ("C-c SPC d" . delete-trailing-whitespace)
+         ("C-c t d" . delete-trailing-whitespace)
+         ("C-c k p" . chbm/copy-pwd)
          ("C-x r y" . chbm/yank-copied-rectangle-as-lines)
          ("C-S-d" . duplicate-line)
          ("C-x C-b" . ibuffer))
