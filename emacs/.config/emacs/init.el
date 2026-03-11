@@ -1193,8 +1193,7 @@ than `split-width-threshold'."
 
 (use-package dape
   :config
-  (setq dape-buffer-window-arrangement 'right)
-  (dape-breakpoint-global-mode +1))
+  (setq dape-buffer-window-arrangement 'right))
 
 (use-package eglot-inactive-regions
   :hook (after-init . (lambda () (eglot-inactive-regions-mode 1)))
@@ -1274,6 +1273,10 @@ than `split-width-threshold'."
 (use-package dockerfile-ts-mode
   :ensure nil
   :mode "Containerfile")
+
+(use-package systemd
+  :mode (("\\.container\\'" . systemd-mode)
+         ("\\.pod\\'" . systemd-mode)))
 
 (use-package markdown-mode)
 
