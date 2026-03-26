@@ -7,6 +7,10 @@ if [ -f /etc/bash.bashrc ]; then
     . /etc/bash.bashrc
 fi
 
+if [ -f /etc/profile.d ]; then
+    source /etc/profile.d/*.sh
+fi
+
 if [[ "$TERM" == "dumb" ]]; then
    HISTFILE="$HOME/.tramp-histfile"
    return
