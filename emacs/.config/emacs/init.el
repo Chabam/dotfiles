@@ -1205,6 +1205,9 @@ than `split-width-threshold'."
   :mode "\\.rkt\\'")
 
 (use-package glsl-mode
+  :mode (("\\.vs\\'" . glsl-mode)
+         ("\\.fs\\'" . glsl-mode)
+         ("\\.cs\\'" . glsl-mode))
   :hook ((glsl-mode . (lambda () (c-set-style "k&r")))))
 
 (use-package auctex
