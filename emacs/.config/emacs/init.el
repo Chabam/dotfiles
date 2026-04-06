@@ -251,6 +251,20 @@ calls `flatpak-spawn --host xdg-open'"
                 (abbreviate-file-name default-directory)
               default-directory)))
 
+(defun chbm/recompile-dwim (&optional display-buf)
+  "Recompile using the last compilation-mode buffer"
+  (interactive "P")
+  (let ((comp-buf (get-buffer "*compilation*")))
+    (if (and comp-buf (buffer-live-p comp-buf))
+        (with-current-buffer comp-buf
+          (if display-buf
+              (recompile)
+            (let ((display-buffer-alist
+                   '(("\\*compilation\\*" (display-buffer-no-window)))))
+              (recompile))
+            ))
+      (message "No active compilation buffer found."))))
+
 ;;; Main emacs config
 
 (use-package emacs
@@ -1068,7 +1082,8 @@ than `split-width-threshold'."
 (use-package compile
   :ensure nil
   :hook (compilation-filter . ansi-color-compilation-filter)
-  :bind (("C-x M-c" . compile))
+  :bind (("C-x M-c" . compile)
+         ("<f5>" . chbm/recompile-dwim))
   :config
   (setq compilation-scroll-output t
         compilation-max-output-line-length nil
