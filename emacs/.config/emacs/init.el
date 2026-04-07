@@ -725,7 +725,7 @@ than `split-width-threshold'."
 (defvar-local chbm/modeline-diagnostics
     '(:eval
       (when-let* (((mode-line-window-selected-p))
-                  (eglot '(eglot--managed-mode ("[" eglot--mode-line-format "]")))
+                  (eglot '(eglot--managed-mode ("[" eglot-mode-line-format "]")))
                   (flymake (if (bound-and-true-p flymake-mode)
                                '(flymake-mode-line-exception flymake-mode-line-counters)
                              nil)))
