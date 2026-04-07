@@ -800,6 +800,7 @@ than `split-width-threshold'."
   :config
   (setq which-key-max-display-columns 3)
   (setq which-key-add-column-padding 1)
+  (setq which-key-max-description-length nil)
   (setq which-key-prefix-prefix "... ")
   (setq which-key-separator "  "))
 
