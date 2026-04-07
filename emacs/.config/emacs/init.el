@@ -1197,11 +1197,10 @@ than `split-width-threshold'."
   (add-to-list 'eglot-server-programs
                '((c-ts-mode c++-ts-mode) . ("clangd"
                                             "--header-insertion=never"
-                                            "--clang-tidy=false"
                                             "--completion-style=detailed"
+                                            "--log=error"
                                             "--background-index"
-                                            "--background-index-priority=low"
-                                            "--j=4"))))
+                                            "--background-index-priority=background"))))
 
 (use-package dape
   :config
