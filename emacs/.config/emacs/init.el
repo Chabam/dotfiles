@@ -297,10 +297,12 @@ calls `flatpak-spawn --host xdg-open'"
          ((org-mode text-mode) . auto-fill-mode)
          (server-after-make-frame . (lambda ()
                                       (chbm/set-fonts)
-                                      (chbm/start-with-agenda)
-                                      )))
+                                      (chbm/start-with-agenda))))
   :ensure nil
   :init
+  (setq load-prefer-newer t)
+  (setq package-enable-at-startup t)
+
   (when (file-exists-p "/usr/share/emacs/site-lisp")
     (add-to-list 'load-path "/usr/share/emacs/site-lisp" t))
 
@@ -1198,6 +1200,7 @@ than `split-width-threshold'."
                '((c-ts-mode c++-ts-mode) . ("clangd"
                                             "--header-insertion=never"
                                             "--completion-style=detailed"
+                                            "--clang-tidy=false"
                                             "--log=error"
                                             "--background-index"
                                             "--background-index-priority=background"))))
@@ -1301,13 +1304,12 @@ than `split-width-threshold'."
 (use-package zig-mode)
 
 (use-package citar
-  :hook (org-load . (lambda ()
+  :hook (org-mode . (lambda ()
                       (setq org-cite-insert-processor 'citar
                             org-cite-follow-processor 'citar
                             org-cite-activate-processor 'citar))))
 
 (use-package org
-  :ensure nil
   :bind (("C-c l" . org-store-link)
          ("C-c a" . org-agenda)
          ("C-c c" . org-capture))
