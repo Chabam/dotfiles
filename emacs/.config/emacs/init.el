@@ -296,8 +296,7 @@ calls `flatpak-spawn --host xdg-open'"
                                     (display-line-numbers-mode)))
          ((org-mode text-mode) . auto-fill-mode)
          (server-after-make-frame . (lambda ()
-                                      (chbm/set-fonts)
-                                      (chbm/start-with-agenda))))
+                                      (chbm/set-fonts))))
   :ensure nil
   :init
   (setq load-prefer-newer t)
