@@ -1201,8 +1201,7 @@ than `split-width-threshold'."
                                             "--completion-style=detailed"
                                             "--clang-tidy=false"
                                             "--log=error"
-                                            "--background-index"
-                                            "--background-index-priority=background"))))
+                                            "--background-index"))))
 
 (use-package dape
   :config
