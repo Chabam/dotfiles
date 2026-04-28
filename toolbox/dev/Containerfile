@@ -1,4 +1,4 @@
-FROM registry.fedoraproject.org/fedora-toolbox:43
+FROM registry.fedoraproject.org/fedora-toolbox:44
 RUN dnf -y upgrade \
     && dnf clean all
 
@@ -33,7 +33,7 @@ RUN dnf -y copr enable peterwu/iosevka \
     && dnf -y install \
     emacs-pgtk \
     flatpak-xdg-open \
-    gnome-themes-extra \
+    adw-gtk3-theme \
     google-noto-color-emoji-fonts \
     iosevka-fonts \
     wl-clipboard \
