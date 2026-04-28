@@ -1413,6 +1413,13 @@ than `split-width-threshold'."
                 org-download-heading-lvl nil)
   (add-hook 'dired-mode-hook 'org-download-enable))
 
+(use-package org-caldav
+  :config
+  (setq org-caldav-url "http://caldav.minus/dav.php/calendars/chabam")
+  (setq org-caldav-calendar-id "default")
+  (setq org-caldav-inbox (concat org-agendas-directory "caldav.org"))
+  (setq org-caldav-files nil))
+
 ;;; Abbrevs
 
 (abbrev-table-put global-abbrev-table :regexp "\\(?:^\\|[\t\s]+\\)\\(?1:[:_].*\\|.*\\)")
