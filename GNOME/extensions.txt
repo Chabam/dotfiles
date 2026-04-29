@@ -7,3 +7,4 @@ fullscreen-avoider@noobsai.github.com
 legacyschemeautoswitcher@joshimukul29.gmail.com
 media-progress@krypion17
 pip-on-top@rafostar.github.com
+steal-my-focus-window@steal-my-focus-window
