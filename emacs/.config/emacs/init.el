@@ -1253,7 +1253,9 @@ than `split-width-threshold'."
 
 (use-package c-ts-mode
   :ensure nil
-  :hook ((c-ts-mode . chbm/set-c-style-indent)
+  :hook ((c-ts-mode . (lambda ()
+                        (setq c-ts-mode-indent-offset 4)
+                        (c-ts-mode-set-style 'bsd)))
          (ff-pre-find . chbm/set-cc-search-dirs-project)))
 
 (use-package xml-mode
