@@ -35,6 +35,7 @@ RUN dnf -y copr enable peterwu/iosevka \
     flatpak-xdg-open \
     adw-gtk3-theme \
     google-noto-color-emoji-fonts \
+    gdk-pixbuf2-modules-extra \
     iosevka-fonts \
     wl-clipboard \
     && dnf clean all
