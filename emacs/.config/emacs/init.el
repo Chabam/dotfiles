@@ -1155,7 +1155,14 @@ than `split-width-threshold'."
   :hook ((dired-mode . diff-hl-dired-mode)
          (magit-post-refresh . diff-hl-magit-post-refresh)
          (after-init . global-diff-hl-mode)
-         (after-init . diff-hl-flydiff-mode)))
+         (after-init . diff-hl-flydiff-mode))
+  :config
+  (setq diff-hl-update-async 'thread)
+  (setq diff-hl-flydiff-delay 0.5)
+  (setq diff-hl-global-modes '(not
+			                   image-mode
+			                   pdf-view-mode
+			                   nov-mode))
 
 (use-package flymake
   :ensure nil
