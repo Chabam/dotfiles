@@ -857,7 +857,8 @@ than `split-width-threshold'."
           (project-vc-dir "VC-Dir")
           (magit-project-status "Magit" "m")
           (project-eshell "Eshell")
-          (project-any-command "Other"))))
+          (project-any-command "Other")))
+  (setq project-compilation-buffer-name-function 'project-prefixed-buffer-name))
 
 (use-package ispell
   :ensure nil
