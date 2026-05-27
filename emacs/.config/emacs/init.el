@@ -300,12 +300,12 @@ calls `flatpak-spawn --host xdg-open'"
   :ensure nil
   :init
   (setq load-prefer-newer t)
-  (setq package-enable-at-startup t)
 
   (when (file-exists-p "/usr/share/emacs/site-lisp")
     (add-to-list 'load-path "/usr/share/emacs/site-lisp" t))
 
   (require 'package)
+  (setq package-enable-at-startup nil)
   (add-to-list 'package-archives '("melpa" . "https://melpa.org/packages/") t)
   (package-initialize)
 
@@ -1040,7 +1040,8 @@ than `split-width-threshold'."
                       (propertize (format " [%d]" eshell-last-command-status)
                                   'face `(:foreground ,red)))
                     "\n"
-                    (if (= (file-user-uid) 0) "# " "$ "))))))
+                    (if (= (file-user-uid) 0) "# " "$ ")))))
+  (add-hook 'eshell-preoutput-filter-functions  #'ansi-color-apply))
 
 (use-package eat
   :config
@@ -1163,7 +1164,7 @@ than `split-width-threshold'."
   (setq diff-hl-global-modes '(not
 			                   image-mode
 			                   pdf-view-mode
-			                   nov-mode))
+			                   nov-mode)))
 
 (use-package flymake
   :ensure nil
