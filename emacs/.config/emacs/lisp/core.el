@@ -224,8 +224,7 @@
         tramp-use-scp-direct-remote-copying t
         remote-file-name-inhibit-auto-save-visited t
         tramp-copy-size-limit (* 1024 1024) ;; 1mb
-        tramp-verbose 2
-        enable-remote-dir-locals t))
+        tramp-verbose 2))
 
 ;;; Keybinds
 

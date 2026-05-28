@@ -66,8 +66,8 @@
          (after-init . corfu-popupinfo-mode))
   :config
   (setq corfu-auto t)
-  (setq corfu-auto-prefix 2)
-  (setq corfu-auto-delay 0.2)
+  (setq corfu-auto-prefix 3)
+  (setq corfu-auto-delay 0.3)
   (setq corfu-quit-no-match 'separator)
   (setq corfu-quit-at-boundary t)
   (setq corfu-preview-current nil)

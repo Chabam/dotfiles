@@ -15,12 +15,13 @@
 (use-package consult
   :hook (completion-list-mode . consult-preview-at-point-mode)
   :bind (("C-x M-:" . consult-complex-command)
-         ("C-x b" . consult-buffer)
-         ("C-x 4 b" . consult-buffer-other-window)
-         ("C-x 5 b" . consult-buffer-other-frame)
-         ("C-x t b" . consult-buffer-other-tab)
-         ("C-x r b" . consult-bookmark)
-         ("C-x p b" . consult-project-buffer)
+         ;; Retiring this, seems a bit on the heavy side
+         ;; ("C-x b" . consult-buffer)
+         ;; ("C-x 4 b" . consult-buffer-other-window)
+         ;; ("C-x 5 b" . consult-buffer-other-frame)
+         ;; ("C-x t b" . consult-buffer-other-tab)
+         ;; ("C-x r b" . consult-bookmark)
+         ;; ("C-x p b" . consult-project-buffer)
          ("M-y" . consult-yank-pop)
          ;; M-g bindings in `goto-map'
          ("M-g e" . consult-compile-error)
