@@ -64,3 +64,6 @@
   :hook ((after-init . (lambda ()
                          (setq auto-dark-themes '((modus-vivendi) (modus-operandi)))
                          (auto-dark-mode)))))
+
+(when (member "Segoe UI Emoji" (font-family-list))
+  (set-fontset-font t 'emoji (font-spec :family "Segoe UI Emoji") nil 'prepend))
