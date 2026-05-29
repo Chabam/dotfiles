@@ -267,6 +267,7 @@
           (magit-project-status "Magit" "m")
           (project-eshell "Eshell")
           (project-any-command "Other")))
+  (setq project-mode-line t)
   (setq project-compilation-buffer-name-function 'project-prefixed-buffer-name))
 
 ;;; Buffers and files quick access
