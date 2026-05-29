@@ -1,4 +1,4 @@
-(add-to-list 'load-path "~/.config/emacs/lisp" t)
+(add-to-list 'load-path (concat user-emacs-directory "lisp") t)
 
 (load "theming")
 (load "containerized")
