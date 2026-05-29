@@ -12,3 +12,7 @@
 (load "prog-modes")
 (load "org-and-friends")
 (load "abbreviations")
+
+;; If I ever get forced to use this proprietary garbage
+(when (eq system-type 'windows-nt)
+  (load "ms-windows"))
