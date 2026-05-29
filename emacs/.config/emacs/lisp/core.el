@@ -56,8 +56,6 @@
 
   (require 'server)
   (when (not (server-running-p)) (server-start))
-  ;;; save & shutdown when we get an "end of session" signal on dbus
-  (require 'dbus)
 
   (setq custom-file (expand-file-name "custom.el" user-emacs-directory))
 
@@ -87,6 +85,9 @@
 
   ;; Deleting selection when typing
   (delete-selection-mode 1)
+
+  ;; Killing Emacs? Why would you?
+  (setq confirm-kill-emacs 'y-or-n-p)
 
   ;; Remove blinking for delete-pair
   (setq delete-pair-blink-delay 0)
