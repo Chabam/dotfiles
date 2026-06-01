@@ -134,11 +134,6 @@
 
   ;; Frame options
   (setq frame-resize-pixelwise t)
-  (setq default-frame-alist '((font . "Iosevka-12")
-                              (width . (text-pixels . 800))
-                              (height . (text-pixels . 600))
-                              (vertical-scroll-bars . nil)
-                              (tab-bar-lines . 0)))
 
   (advice-add #'ispell-display-buffer :override #'prot-spell-ispell-display-buffer)
 
