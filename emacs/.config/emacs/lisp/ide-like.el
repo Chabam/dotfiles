@@ -37,8 +37,7 @@
          ("C-c f n" . flymake-goto-next-error)
          ("C-c f p" . flymake-goto-prev-error))
   :config
-  (setq flymake-indicator-type 'margins
-        flymake-no-changes-timeout 1.0))
+  (setq flymake-no-changes-timeout 1.0))
 
 ;; Debugs
 

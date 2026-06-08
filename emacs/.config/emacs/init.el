@@ -5,6 +5,7 @@
 (load "core")
 (load "frame-and-windows")
 (load "minibuffer-enhancements")
+(load "modeline")
 (load "editor-enhancements")
 (load "source-control")
 (load "ide-like")

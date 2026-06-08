@@ -237,25 +237,30 @@ than `split-width-threshold'."
                      ))
   (put construct 'risky-local-variable t))
 
-(setq-default mode-line-format
-              '("%e"
-                chbm/modeline-kbd-macro
-                chbm/modeline-narrow
-                chbm/modeline-remote-status
-                chbm/modeline-window-dedicated-status
-                "  "
-                chbm/modeline-buffer-identification
-                "  "
-                chbm/modeline-major-mode
-                mode-line-process
+;; Old custom modeline, sticking with the default one for now
+;; (setq-default mode-line-format
+;;               '("%e"
+;;                 chbm/modeline-kbd-macro
+;;                 chbm/modeline-narrow
+;;                 chbm/modeline-remote-status
+;;                 chbm/modeline-window-dedicated-status
+;;                 "  "
+;;                 chbm/modeline-buffer-identification
+;;                 "  "
+;;                 chbm/modeline-major-mode
+;;                 mode-line-process
 
-                mode-line-format-right-align
+;;                 mode-line-format-right-align
 
-                chbm/modeline-diagnostics
-                "  "
-                chbm/modeline-vc-branch
-                " %p %l:%c  ")
-              )
+;;                 chbm/modeline-diagnostics
+;;                 "  "
+;;                 chbm/modeline-vc-branch
+;;                 " %p %l:%c  ")
+;;               )
 
 (add-hook #'auto-dark-dark-mode-hook 'chbm/update-modeline-colors)
 (add-hook #'auto-dark-light-mode-hook 'chbm/update-modeline-colors)
+
+(use-package keycast
+  :config
+  (setq keycast-mode-line-remove-tail-elements nil))
