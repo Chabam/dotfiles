@@ -109,8 +109,7 @@
               (recompile)
             (let ((display-buffer-alist
                    '(("\\*compilation\\*" (display-buffer-no-window)))))
-              (recompile))
-            ))
+              (recompile))))
       (message "No active compilation buffer found."))))
 
 (use-package compile
