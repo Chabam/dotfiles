@@ -84,7 +84,7 @@
   "Adds likely locations to look for other files (headers) based on the project"
   (interactive)
   (when (project-current)
-    (let* ((xproject-root (caddr (project-current)))
+    (let* ((project-root (caddr (project-current)))
            (is-not-hidden-p (lambda (f) (null (string-match "^\\." f))))
            (is-not-build-dir-p (lambda (f) (null (string-match "build" f))))
            (dir-recurse-p (lambda (p)
