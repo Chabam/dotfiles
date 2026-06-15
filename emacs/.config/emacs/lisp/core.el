@@ -33,7 +33,7 @@
          ("C-c t d" . delete-trailing-whitespace)
          ("C-c k p" . chbm/copy-pwd)
          ("C-x r y" . chbm/yank-copied-rectangle-as-lines)
-         ("C-S-d" . duplicate-line)
+         ("C-S-d" . duplicate-dwim)
          ("C-x C-b" . ibuffer))
   :hook (((prog-mode text-mode) . (lambda ()
                                     (setq show-trailing-whitespace t)
