@@ -102,13 +102,16 @@
 (defun chbm/recompile-dwim (&optional display-buf)
   "Recompile using the last compilation-mode buffer"
   (interactive "P")
-  (let ((comp-buf (get-buffer "*compilation*")))
+  (let* ((buf-name (if (project-current)
+                       (project-prefixed-buffer-name "compilation")
+                     "*compilation*"))
+         (comp-buf (get-buffer buf-name)))
     (if (and comp-buf (buffer-live-p comp-buf))
         (with-current-buffer comp-buf
           (if display-buf
               (recompile)
             (let ((display-buffer-alist
-                   '(("\\*compilation\\*" (display-buffer-no-window)))))
+                   `((,(replace-regexp-in-string "\\*" "\\\\*" buf-name) (display-buffer-no-window)))))
               (recompile))))
       (message "No active compilation buffer found."))))
 
