@@ -1,8 +1,8 @@
 (add-to-list 'load-path (concat user-emacs-directory "lisp") t)
 
 (load "theming")
-(load "containerized")
 (load "core")
+(load "containerized")
 (load "frame-and-windows")
 (load "minibuffer-enhancements")
 (load "modeline")
