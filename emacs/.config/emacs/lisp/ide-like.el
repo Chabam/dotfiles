@@ -102,10 +102,16 @@
 (defun chbm/recompile-dwim (&optional display-buf)
   "Recompile using the last compilation-mode buffer"
   (interactive "P")
-  (let* ((buf-name (if (project-current)
+  (let* ((default-buf-name "*compilation*")
+         (buf-name (if (project-current)
                        (project-prefixed-buffer-name "compilation")
-                     "*compilation*"))
+                     default-buf-name))
          (comp-buf (get-buffer buf-name)))
+    ;; If the compilation buffer for the project is not found, use the
+    ;; default one instead
+    (when (and (not comp-buf)
+               (project-current))
+      (setq comp-buf (get-buffer default-buf-name)))
     (if (and comp-buf (buffer-live-p comp-buf))
         (with-current-buffer comp-buf
           (if display-buf
@@ -124,4 +130,4 @@
   (setq compilation-max-output-line-length nil)
   (setq ansi-color-for-compilation-mode t)
   (setq compilation-scroll-output 'first-error)
-  (setq compilation-skip-threshold 2)
+  (setq compilation-skip-threshold 2))

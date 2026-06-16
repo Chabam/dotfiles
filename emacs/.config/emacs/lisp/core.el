@@ -232,7 +232,6 @@
   (setq dired-vc-rename-file t)
   (setq dired-vc-rename-file t)
   (setq wdired-allow-to-change-permissions t)
-  (setq dired-deletion-confirmer 'y-or-no-p)
   (setq dired-movement-style 'bounded-files)
 
   (when chbm/emacs-containerized
