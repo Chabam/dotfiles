@@ -4,6 +4,7 @@
   (comint-output-filter-functions . comint-osc-process-output)
   :config
   (setq ansi-color-for-comint-mode t)
+  (setq comint-buffer-maximum-size (* 4 1024))
   (setq comint-prompt-read-only t)
   (setq comint-completion-autolist t)
   (setq comint-input-ignoredups t)

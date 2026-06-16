@@ -54,9 +54,6 @@
   (add-to-list 'package-archives '("melpa" . "https://melpa.org/packages/") t)
   (package-initialize)
 
-  (require 'server)
-  (when (not (server-running-p)) (server-start))
-
   (setq custom-file (expand-file-name "custom.el" user-emacs-directory))
 
   (if (file-exists-p custom-file)
@@ -65,23 +62,51 @@
 
   :config
   ;; Smooth scroll
-  ;; (pixel-scroll-precision-mode 1)
-  ;; (pixel-scroll-mode 1)
+  (pixel-scroll-precision-mode 1)
+  (pixel-scroll-mode 1)
+
+  ;; Prettify diffs by putting +/- in the fringe
+  (setq diff-font-lock-prettify t)
+
+  ;; Enables faster scrolling. This may result in brief periods of inaccurate
+  ;; syntax highlighting, which should quickly self-correct.
+  (setq fast-but-imprecise-scrolling t)
+
+  (setq-default display-line-numbers-width 3)
+  (setq-default display-line-numbers-widen t)
+
 
   ;; Hiding ui elements
   (scroll-bar-mode 0)
   (tool-bar-mode 0)
   (menu-bar-mode 0)
 
-  ;; Remembering previous window configuration
-  (winner-mode 1)
+  (setq undo-limit (* 13 160000))
+  (setq undo-strong-limit (* 13 240000))
+  (setq undo-outer-limit (* 13 24000000))
+
+  ;; Disable ellipsis when printing s-expressions in the message buffer
+  (setq eval-expression-print-length nil)
+  (setq eval-expression-print-level nil)
+
+  ;; This directs gpg-agent to use the minibuffer for passphrase entry
+  (setq epg-pinentry-mode 'loopback)
 
   ;; Minibuffer improvements
   (minibuffer-depth-indicate-mode 1)
   (minibuffer-electric-default-mode 1)
 
+  ;; Keep the cursor out of the read-only portions of the.minibuffer
+  (setq minibuffer-prompt-properties
+        '(read-only t intangible t cursor-intangible t face minibuffer-prompt))
+  (add-hook 'minibuffer-setup-hook #'cursor-intangible-mode)
+
   ;; Trying to properly set fonts
   (chbm/set-fonts)
+
+  ;; Disable fontification during user input to reduce lag in large buffers.
+  ;; Also helps marginally with scrolling performance.
+  (setq redisplay-skip-fontification-on-input t)
 
   ;; Deleting selection when typing
   (delete-selection-mode 1)
@@ -134,6 +159,7 @@
 
   ;; Frame options
   (setq frame-resize-pixelwise t)
+  (setq frame-inhibit-implied-resize t)
 
   (advice-add #'ispell-display-buffer :override #'prot-spell-ispell-display-buffer)
 
@@ -204,23 +230,27 @@
   (setq dired-listing-switches "-aBhlv  --group-directories-first")
   (setq dired-dwim-target t)
   (setq dired-vc-rename-file t)
+  (setq dired-vc-rename-file t)
   (setq wdired-allow-to-change-permissions t)
-  (define-key dired-mode-map
-              (kbd "E")
-              (if chbm/emacs-containerized
-                  #'chbm/dired-do-open-containerized
-                #'dired-do-open)))
+  (setq dired-deletion-confirmer 'y-or-no-p)
+  (setq dired-movement-style 'bounded-files)
+
+  (when chbm/emacs-containerized
+    (define-key dired-mode-map (kbd "E") #'chbm/dired-do-open-containerized)))
 
 ;;; Remote access
 
 (use-package tramp
   :ensure nil
   :config
-  (setq remote-file-name-inhibit-locks t
-        tramp-use-scp-direct-remote-copying t
-        remote-file-name-inhibit-auto-save-visited t
-        tramp-copy-size-limit (* 1024 1024) ;; 1mb
-        tramp-verbose 2))
+  (setq remote-file-name-inhibit-locks t)
+  (setq tramp-use-scp-direct-remote-copying t)
+  (setq remote-file-name-inhibit-auto-save-visited t)
+  (setq tramp-copy-size-limit (* 1024 1024)) ;; 1mb
+  (setq remote-file-name-inhibit-cache 50)
+  (setq remote-file-name-inhibit-locks t)
+  (setq remote-file-name-inhibit-delete-by-moving-to-trash t)
+  (setq tramp-verbose 1))
 
 ;;; Keybinds
 
@@ -269,7 +299,17 @@
 
 (use-package recentf
   :ensure nil
-  :hook (after-init . recentf-mode))
+  :hook (after-init . recentf-mode)
+  :config
+  (setq recentf-max-saved-items 300)
+  (setq recentf-max-menu-items 15))
+
+(use-package saveplace
+  :ensure nil
+  :commands (save-place-mode save-place-local-mode)
+  :hook (after-init . save-place-mode)
+  :init
+  (setq save-place-limit 400))
 
 (use-package bookmark
   :ensure nil
@@ -304,3 +344,6 @@ function.  Then you can control the buffer's specifics via
   :ensure nil
   :config
   (setq ispell-program-name "hunspell"))
+
+(use-package winner
+  :hook (after-init . (lambda () (winner-mode 1))))

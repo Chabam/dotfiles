@@ -121,6 +121,7 @@
   :bind (("C-x M-c" . compile)
          ("<f5>" . chbm/recompile-dwim))
   :config
-  (setq compilation-max-output-line-length nil
-        ansi-color-for-compilation-mode t
-        compilation-skip-threshold 2))
+  (setq compilation-max-output-line-length nil)
+  (setq ansi-color-for-compilation-mode t)
+  (setq compilation-scroll-output 'first-error)
+  (setq compilation-skip-threshold 2)

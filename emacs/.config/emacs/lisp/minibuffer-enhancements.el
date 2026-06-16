@@ -10,12 +10,15 @@
   :ensure nil
   :hook (after-init . savehist-mode)
   :config
-  (setq savehist-additional-variables '(register-alist kill-ring)))
+  (setq savehist-additional-variables
+        '(register-alist kill-ring
+          mark-ring global-mark-ring
+          search-ring regexp-search-ring)))
 
 (use-package consult
   :hook (completion-list-mode . consult-preview-at-point-mode)
   :bind (("C-x M-:" . consult-complex-command)
-         ;; Retiring this, seems a bit on the heavy side
+         ;; Retiring these, seems a bit on the heavy side
          ;; ("C-x b" . consult-buffer)
          ;; ("C-x 4 b" . consult-buffer-other-window)
          ;; ("C-x 5 b" . consult-buffer-other-frame)
