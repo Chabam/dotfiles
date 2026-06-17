@@ -60,8 +60,7 @@
 (use-package corfu
   :bind (:map corfu-map
               ("RET" . nil))
-  :hook ((inferior-python-mode . (lambda () (corfu-auto nil)))
-         (after-init . global-corfu-mode)
+  :hook ((after-init . global-corfu-mode)
          (after-init . corfu-popupinfo-mode))
   :config
   (setq corfu-auto t)
