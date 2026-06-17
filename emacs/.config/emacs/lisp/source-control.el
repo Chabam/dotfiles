@@ -10,7 +10,9 @@
 
 (use-package magit
   :config
-  (setq magit-display-buffer-function #'magit-display-buffer-same-window-except-diff-v1))
+  (setq magit-display-buffer-function #'magit-display-buffer-same-window-except-diff-v1)
+  ;; For tramp
+  (setq magit-tramp-pipe-stty-settings 'pty))
 
 ;; Retiring this because it gets pretty slow
 ;; (use-package diff-hl

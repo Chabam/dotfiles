@@ -241,6 +241,7 @@
 (use-package tramp
   :ensure nil
   :config
+  ;; https://coredumped.dev/2025/06/18/making-tramp-go-brrrr./
   (setq remote-file-name-inhibit-locks t)
   (setq tramp-use-scp-direct-remote-copying t)
   (setq remote-file-name-inhibit-auto-save-visited t)
@@ -248,8 +249,18 @@
   (setq remote-file-name-inhibit-cache 50)
   (setq remote-file-name-inhibit-locks t)
   (setq remote-file-name-inhibit-delete-by-moving-to-trash t)
-  (setq tramp-verbose 1))
+  (setq tramp-verbose 1)
 
+  (connection-local-set-profile-variables
+   'remote-direct-async-process
+   '((tramp-direct-async-process . t)))
+
+  (connection-local-set-profiles
+   '(:application tramp :protocol "scp")
+   'remote-direct-async-process)
+
+  (with-eval-after-load 'compile
+    (remove-hook 'compilation-mode-hook #'tramp-compile-disable-ssh-controlmaster-options)))
 ;;; Keybinds
 
 (use-package which-key
