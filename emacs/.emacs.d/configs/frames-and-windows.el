@@ -53,4 +53,8 @@
 
 (setq frame-resize-pixelwise t)
 
+(use-package winner
+  :ensure nil
+  :hook (after-init . winner-mode))
+
 (provide 'frames-and-windows)

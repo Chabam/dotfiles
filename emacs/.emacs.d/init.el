@@ -7,3 +7,6 @@
 (require 'appearance)
 (require 'frames-and-windows)
 (require 'minibuf)
+(require 'searching)
+(require 'editing)
+(require 'project-management)

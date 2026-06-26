@@ -20,7 +20,7 @@
        `(variable-pitch ((t (:family "Iosevka"))))
        `(tab-bar ((t (:height ,font-size))))
        `(tab-bar-tab ((t (:height ,font-size))))
-       `(tab-bar-tab-inactive ((t (:height ,font-size)))))))
+       `(tab-bar-tab-inactive ((t (:height ,font-size))))))))
 
 (chbm/set-fonts)
 
