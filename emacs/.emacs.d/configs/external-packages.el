@@ -1,14 +1,10 @@
-(setq package-archives '(("melpa"        . "https://melpa.org/packages/")
-                         ("gnu"          . "https://elpa.gnu.org/packages/")
-                         ("nongnu"       . "https://elpa.nongnu.org/nongnu/")
-                         ("melpa-stable" . "https://stable.melpa.org/packages/")))
-(setq package-archive-priorities '(("gnu"    . 99)
-                                   ("nongnu" . 80)
-                                   ("melpa"  . 70)
-                                   ("melpa-stable" . 50)))
+(setq package-quickstart t)
+(setq package-install-upgrade-built-in t)
 
-;; (package-initialize)
-;; (unless package-archives
-;;   (package-refresh-contents))
+(add-to-list 'package-archives '("melpa" . "https://melpa.org/packages/") t)
+
+(package-initialize)
+(unless package-archives
+  (package-refresh-contents))
 
 (provide 'external-packages)

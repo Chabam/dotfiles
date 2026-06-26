@@ -5,6 +5,7 @@
 			    (vertical-scroll-bars)
 			    (horizontal-scroll-bars)))
 
+
 (setq default-frame-scroll-bars 'right)
 (setq scroll-bar-mode nil)
 
@@ -13,12 +14,13 @@
   (interactive (list (setq font-size (read-number "Font size: " 120))))
   (when (display-graphic-p)
     (let ((font-size (or font-size 120)))
-      (set-face-attribute 'default nil :family "Iosevka" :height font-size)
-      (set-face-attribute 'fixed-pitch nil :family "Iosevka")
-      (set-face-attribute 'variable-pitch nil :family "Iosevka")
-      (set-face-attribute 'tab-bar nil :height font-size)
-      (set-face-attribute 'tab-bar-tab nil :height font-size)
-      (set-face-attribute 'tab-bar-tab-inactive nil :height font-size))))
+      (custom-set-faces
+       `(default ((t (:family "Iosevka" :height ,font-size))))
+       `(fixed-pitch ((t (:family "Iosevka"))))
+       `(variable-pitch ((t (:family "Iosevka"))))
+       `(tab-bar ((t (:height ,font-size))))
+       `(tab-bar-tab ((t (:height ,font-size))))
+       `(tab-bar-tab-inactive ((t (:height ,font-size)))))))
 
 (chbm/set-fonts)
 
@@ -76,5 +78,37 @@
   :init (auto-dark-mode)
   :custom
   (auto-dark-themes '((modus-vivendi) (modus-operandi))))
+
+(advice-add #'ispell-display-buffer :override #'prot-spell-ispell-display-buffer)
+
+(setq window-combination-resize t)
+(setq even-window-sizes 'height-only)
+(setq window-sides-vertical nil)
+(setq switch-to-buffer-in-dedicated-window 'pop)
+(setq split-height-threshold 85)
+(setq split-width-threshold 125)
+(setq window-min-height 3)
+(setq window-min-width 30)
+(setq fit-window-to-buffer-horizontally t)
+
+(setq display-buffer-alist
+      '(;; Agenda at bottom
+        ("\\*\\(Org \\(Select\\|Note\\)\\|Agenda Commands\\)\\*"
+         (display-buffer-in-side-window)
+         (side . bottom)
+         (slot . 0)
+         (window-parameters . ((mode-line-format . none))))
+        ;; Embark at bottom
+        ("\\*Embark Actions\\*"
+         (display-buffer-below-selected)
+         (window-height . fit-window-to-buffer)
+         (window-parameters . ((no-other-window . t)
+                               (mode-line-format . none))))
+        ;; ispell-word at bottom
+        ("\\*Choices\\*"
+         (display-buffer-below-selected)
+         (window-height . fit-window-to-buffer))
+        ))
+
 
 (provide 'appearance)

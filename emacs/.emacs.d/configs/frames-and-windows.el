@@ -51,4 +51,6 @@
   :ensure nil
   :hook (after-init . undelete-frame-mode))
 
+(setq frame-resize-pixelwise t)
+
 (provide 'frames-and-windows)
