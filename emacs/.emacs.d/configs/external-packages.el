@@ -1,3 +1,4 @@
+(setq use-package-always-defer t)
 (setq package-quickstart t)
 (setq package-install-upgrade-built-in t)
 
