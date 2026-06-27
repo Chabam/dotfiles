@@ -1,3 +1,8 @@
+if [[ "$TERM" == "dumb" ]]; then
+   HISTFILE="$HOME/.tramp-histfile"
+   return
+fi
+
 # Source global definitions
 if [ -f /etc/bashrc ]; then
     . /etc/bashrc
@@ -9,11 +14,6 @@ fi
 
 if [ -f /etc/profile.d ]; then
     source /etc/profile.d/*.sh
-fi
-
-if [[ "$TERM" == "dumb" ]]; then
-   HISTFILE="$HOME/.tramp-histfile"
-   return
 fi
 
 # Commands that should be applied only for interactive shells.
