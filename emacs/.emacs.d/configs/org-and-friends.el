@@ -40,6 +40,7 @@
     (delete-other-windows)))
 
 (use-package org
+  :ensure nil
   :bind (("C-c l" . org-store-link)
          ("C-c a" . org-agenda)
          ("C-c c" . org-capture))
@@ -132,15 +133,18 @@
                t))
 
 (use-package citar
+  :ensure t
   :hook (org-mode . (lambda ()
                       (setq org-cite-insert-processor 'citar
                             org-cite-follow-processor 'citar
                             org-cite-activate-processor 'citar))))
 
 (use-package htmlize
+  :ensure t
   :commands (org-export-dispatch))
 
 (use-package org-download
+  :ensure t
   :hook ((org-mode . (lambda ()
                        (require 'org-download)))
          (dired-mode . org-download-enable))
@@ -149,13 +153,15 @@
                 org-download-heading-lvl nil)
   (add-hook 'dired-mode-hook 'org-download-enable))
 
-(use-package org-caldav
-  :config
-  (setq org-caldav-url "http://caldav.minus/dav.php/calendars/chabam")
-  (setq org-caldav-calendar-id "default")
-  (setq org-caldav-inbox (concat org-agendas-directory "caldav.org"))
-  (setq org-caldav-files nil))
+;; (use-package org-caldav
+;;   :config
+;;   (setq org-caldav-url "http://caldav.minus/dav.php/calendars/chabam")
+;;   (setq org-caldav-calendar-id "default")
+;;   (setq org-caldav-inbox (concat org-agendas-directory "caldav.org"))
+;;   (setq org-caldav-files nil))
 
 ;; TODO: convert to a proper function
 (defalias 'org-emphasize-accronym
   (kmacro "C-SPC C-f C-c C-x C-f * C-d C-x 8 <return> z e r o <return> M-f C-f"))
+
+(provide 'org-and-friends)

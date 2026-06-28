@@ -1,8 +1,7 @@
 ;; -*- lexical-binding: t -*-
 
-;; Language agnostic packages
-
 (use-package auctex
+  :ensure t
   :hook (LaTeX-mode . turn-on-reftex)
   :config
   (setq TeX-auto-save t)
@@ -13,7 +12,7 @@
     (setq TeX-view-program-list '(("xdg-open" "flatpak-spawn --host xdg-open %o"))))
   (setq TeX-view-program-selection '((output-pdf "xdg-open"))))
 
-(use-package haskell-mode)
+(use-package haskell-mode :ensure t)
 
 (use-package pascal
   :ensure nil
@@ -124,6 +123,7 @@
   :mode "\\.cts")
 
 (use-package ess
+  :ensure t
   :hook ((ess-r-mode . (lambda ()
                          (setq-local ess-indent-offset 2
                                      comment-column 0
@@ -142,9 +142,9 @@
   :config
   (setq ess-use-ido nil))
 
-(use-package cmake-mode)
+(use-package cmake-mode :ensure t)
 
-(use-package clang-format)
+(use-package clang-format :ensure t)
 
 (use-package yaml-ts-mode
   :ensure nil
@@ -155,23 +155,34 @@
   :mode "Containerfile")
 
 (use-package systemd
+  :ensure t
   :mode (("\\.container\\'" . systemd-mode)
          ("\\.pod\\'" . systemd-mode)))
 
-(use-package markdown-mode)
+(use-package markdown-mode :ensure t)
 
 (use-package make-mode
+  :ensure t
   :hook (makefile-gmake-mode . whitespace-mode))
 
 (use-package zig-mode
+  :ensure t
   :config
   (setq zig-format-on-save nil))
 
 (use-package racket-mode
+  :ensure t
   :mode "\\.rkt\\'")
 
 (use-package glsl-mode
+  :ensure t
   :mode (("\\.vs\\'" . glsl-mode)
          ("\\.fs\\'" . glsl-mode)
          ("\\.cs\\'" . glsl-mode))
   :hook ((glsl-mode . (lambda () (c-set-style "k&r")))))
+
+(use-package conf-mode
+  :ensure nil
+  :mode (("\\.desktop\\'" . conf-desktop-mode)))
+
+(provide 'programming-languages)

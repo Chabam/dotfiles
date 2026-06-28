@@ -1,4 +1,10 @@
-;; LSPs
+;; Default indentation
+(setq-default standard-indent 4
+              tab-width 4
+              indent-tabs-mode nil)
+
+(add-hook 'prog-mode-hook #'completion-preview-mode)
+
 (use-package eglot
   :ensure nil
   :bind (("C-c e a" . eglot-code-actions)
@@ -25,7 +31,11 @@
                                             "--background-index"))))
 
 (use-package eglot-inactive-regions
-  :hook (after-init . (lambda () (eglot-inactive-regions-mode 1)))
+  :ensure t
+  :hook (eglot-connect . (lambda (&rest _)
+			   (when (member major-mode '(c++-ts-mode c-ts-mode))
+			     (require 'eglot-inactive-regions)
+			     (eglot-inactive-regions-mode))))
   :config
   (setq eglot-inactive-regions-style 'darken-foreground)
   (setq eglot-inactive-regions-opacity 0.4))
@@ -39,60 +49,15 @@
   :config
   (setq flymake-no-changes-timeout 1.0))
 
-;; Debugs
-
-(use-package dape
-  :config
-  (setq dape-buffer-window-arrangement 'right))
-
-;; Syntax highligthing
-
 (use-package treesit-auto
+  :ensure t
+  :demand t
   :hook (after-init . (lambda () (global-treesit-auto-mode 1)))
   :config
   (setq treesit-auto-install 'prompt)
   (setq treesit-auto-add-to-auto-mode-alist 'all)
   (delete 'glsl treesit-auto-langs)
   (setq-default treesit-font-lock-level 4))
-
-;; Auto completion
-
-(use-package corfu
-  :bind (:map corfu-map
-              ("RET" . nil))
-  :hook ((after-init . global-corfu-mode)
-         (after-init . corfu-popupinfo-mode))
-  :config
-  (setq corfu-auto t)
-  (setq corfu-auto-prefix 3)
-  (setq corfu-auto-delay 0.3)
-  (setq corfu-quit-no-match 'separator)
-  (setq corfu-quit-at-boundary t)
-  (setq corfu-preview-current nil)
-
-  (setq corfu-cycle t)
-  (setq corfu-popupinfo-delay 0.5)
-  (setq corfu-left-margin-width 0)
-  (setq corfu-right-margin-width 0))
-
-(use-package orderless
-  :config
-  (setq completion-ignore-case t)
-  (setq read-file-name-completion-ignore-case t)
-  (setq read-buffer-completion-ignore-case t)
-  (setq completion-styles '(orderless basic))
-  (setq completion-category-overrides '((file (styles basic partial-completion))))
-  (setq completion-matching-styles '(orderless-regexp)))
-
-(use-package cape)
-
-;; Snippets
-
-(use-package yasnippet
-  :hook ((after-init . (lambda () (yas-global-mode 1))))
-  :config
-  (setq yas-snippet-dirs (list
-                          (expand-file-name "snippets" user-emacs-directory))))
 
 (use-package find-file
   :ensure nil
@@ -130,3 +95,34 @@
   (setq ansi-color-for-compilation-mode t)
   (setq compilation-scroll-output 'first-error)
   (setq compilation-skip-threshold 2))
+
+(use-package direnv
+  :ensure t
+  :hook (after-init . direnv-mode))
+
+(use-package corfu
+  :ensure t
+  :bind (:map corfu-map
+	      ("RET" . nil))
+  :hook ((after-init . global-corfu-mode)
+	 (after-init . corfu-popupinfo-mode))
+  :config
+  ;; (setq corfu-auto t)
+  ;; (setq corfu-auto-prefix 3)
+  ;; (setq corfu-auto-delay 0.3)
+  (setq corfu-quit-no-match 'separator)
+  (setq corfu-quit-at-boundary t)
+  (setq corfu-preview-current nil)
+
+  (setq corfu-cycle t)
+  (setq corfu-popupinfo-delay 0.5)
+  (setq corfu-left-margin-width 0)
+  (setq corfu-right-margin-width 0))
+
+;; Completion stuff
+(setq text-mode-ispell-word-completion nil)
+(setq completion-styles '(basic substring partial-completion flex))
+(setq tab-always-indent 'complete)
+
+
+(provide 'programming)

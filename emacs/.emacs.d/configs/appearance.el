@@ -5,24 +5,34 @@
 			    (vertical-scroll-bars)
 			    (horizontal-scroll-bars)))
 
+(cond ((find-font (font-spec :name "Iosevka"))
+       (add-to-list 'default-frame-alist '(font . "Iosevka-12")))
+      ((find-font (font-spec :name "Adwaita Mono"))
+       (add-to-list 'default-frame-alist '(font . "Adwaita-Mono-12"))))
+
 
 (setq default-frame-scroll-bars 'right)
 (setq scroll-bar-mode nil)
 
-(defun chbm/set-fonts (&optional font-size &rest _)
-  "Set fonts for frame and after theme"
-  (interactive (list (setq font-size (read-number "Font size: " 120))))
-  (when (display-graphic-p)
-    (let ((font-size (or font-size 120)))
-      (custom-set-faces
-       `(default ((t (:family "Iosevka" :height ,font-size))))
-       `(fixed-pitch ((t (:family "Iosevka"))))
-       `(variable-pitch ((t (:family "Iosevka"))))
-       `(tab-bar ((t (:height ,font-size))))
-       `(tab-bar-tab ((t (:height ,font-size))))
-       `(tab-bar-tab-inactive ((t (:height ,font-size))))))))
+(add-hook 'after-init-hook #'pixel-scroll-mode)
 
-(chbm/set-fonts)
+(setq diff-font-lock-prettify t)
+
+;; Enables faster scrolling. This may result in brief periods of inaccurate
+;; syntax highlighting, which should quickly self-correct.
+(setq fast-but-imprecise-scrolling t)
+
+;; Disable fontification during user input to reduce lag in large buffers.
+;; Also helps marginally with scrolling performance.
+(setq redisplay-skip-fontification-on-input t)
+
+(setq-default display-line-numbers-width 3)
+(setq-default display-line-numbers-widen t)
+
+;; Tab bar options
+(setq tab-bar-close-button-show nil)
+(setq tab-bar-new-button-show nil)
+(setq tab-bar-show 1)
 
 (require-theme 'modus-themes)
 
@@ -36,8 +46,8 @@
         (bg-changed-fringe bg-cyan-intense)
 
         ;; Blue modeline
-        ;; (bg-mode-line-active bg-blue-intense)
-        ;; (fg-mode-line-active fg-main)
+        (bg-mode-line-active bg-blue-intense)
+        (fg-mode-line-active fg-main)
 
         ;; Number line invisible
         (fringe unspecified)
@@ -75,9 +85,18 @@
 (use-package auto-dark
   :ensure t
   :defer t
-  :init (auto-dark-mode)
+  :hook (after-init . auto-dark-mode)
   :custom
   (auto-dark-themes '((modus-vivendi) (modus-operandi))))
+
+;; Thanks Prot!
+(defun prot-spell-ispell-display-buffer (buffer)
+  "Function to override `ispell-display-buffer' for BUFFER.
+Use this as `advice-add' to override the aforementioned Ispell
+function.  Then you can control the buffer's specifics via
+`display-buffer-alist' (how it ought to be!)."
+  (pop-to-buffer buffer)
+  (set-window-point (get-buffer-window buffer) (point-min)))
 
 (advice-add #'ispell-display-buffer :override #'prot-spell-ispell-display-buffer)
 
@@ -109,6 +128,10 @@
          (display-buffer-below-selected)
          (window-height . fit-window-to-buffer))
         ))
+
+;; Whitespace
+(setq whitespace-style '(face indentation tabs tab-mark spaces space-mark
+                              newline newline-mark trailing))
 
 
 (provide 'appearance)

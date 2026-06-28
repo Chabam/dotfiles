@@ -1,12 +1,27 @@
-(add-to-list 'load-path (expand-file-name "configs" user-emacs-directory))
+(let ((load-path (append load-path
+			 (list (expand-file-name "configs" user-emacs-directory)))))
 
-;; Order is important here
-(require 'external-packages)
-(require 'basic)
-(require 'containerized)
-(require 'appearance)
-(require 'frames-and-windows)
-(require 'minibuf)
-(require 'searching)
-(require 'editing)
-(require 'project-management)
+  ;; Order is important here
+  (require 'external-packages)
+  (require 'containerized)
+
+  (require 'appearance)
+  (require 'basic)
+  (require 'frames-and-windows)
+
+  (require 'minibuf)
+  (require 'searching)
+
+  (require 'editing)
+  (require 'keybinds)
+  (require 'abbreviations)
+
+  (require 'project-management)
+  (require 'programming)
+  (require 'programming-languages)
+  (require 'interactive-modes)
+  (require 'org-and-friends)
+
+  ;; If I ever get forced to use this proprietary garbage
+  (when (eq system-type 'windows-nt)
+    (require 'ms-windows)))

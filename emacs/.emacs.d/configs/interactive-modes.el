@@ -38,6 +38,7 @@
               ("M-s" . consult-history)))
 
 (use-package eat
+  :ensure t
   :config
   (setq adwaita-black          "#241F31")
   (setq adwaita-red            "#C01C28")
@@ -72,3 +73,5 @@
   (set-face-attribute 'eat-term-color-13 nil :foreground adwaita-bright-magenta :background adwaita-bright-magenta)
   (set-face-attribute 'eat-term-color-14 nil :foreground adwaita-bright-cyan :background adwaita-bright-cyan)
   (set-face-attribute 'eat-term-color-15 nil :foreground adwaita-bright-grey :background adwaita-bright-grey))
+
+(provide 'interactive-modes)
