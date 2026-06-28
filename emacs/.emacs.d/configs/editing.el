@@ -28,7 +28,9 @@
   (setq show-paren-context-when-offscreen 'overlay))
 
 (use-package yasnippet
-  :hook ((after-init . (lambda () (yas-global-mode 1))))
+  :ensure t
+  :hook ((after-init . (lambda ()
+                         (yas-global-mode 1))))
   :config
   (setq yas-snippet-dirs (list
                           (expand-file-name "snippets" user-emacs-directory))))

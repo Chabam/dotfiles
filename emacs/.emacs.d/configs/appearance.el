@@ -34,9 +34,10 @@
 (setq tab-bar-new-button-show nil)
 (setq tab-bar-show 1)
 
-(require-theme 'modus-themes)
-
-(setq modus-themes-common-palette-overrides
+(use-package modus-themes
+  :ensure t
+  :init
+  (setq modus-themes-common-palette-overrides
       `(
         (cursor magenta-warmer)
         (bg-region bg-lavender)
@@ -77,10 +78,10 @@
         (date-weekday cyan-cooler)
         (date-weekend blue-faint)))
 
-(setq modus-themes-variable-pitch-ui t
+(setq modus-themes-variable-pitch-ui nil
       modus-themes-italic-constructs nil
       modus-themes-bold-constructs t
-      modus-themes-mixed-fonts t)
+      modus-themes-mixed-fonts nil))
 
 (use-package auto-dark
   :ensure t

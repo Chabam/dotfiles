@@ -18,7 +18,7 @@
   :ensure nil
   :commands (save-place-mode save-place-local-mode)
   :hook (after-init . save-place-mode)
-  :init
+  :config
   (setq save-place-limit 400))
 
 (use-package bookmark

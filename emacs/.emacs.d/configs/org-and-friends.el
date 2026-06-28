@@ -148,8 +148,7 @@
          (dired-mode . org-download-enable))
   :config
   (setq-default org-download-image-dir "./images"
-                org-download-heading-lvl nil)
-  (add-hook 'dired-mode-hook 'org-download-enable))
+                org-download-heading-lvl nil))
 
 (add-hook 'org-mode-hook #'auto-fill-mode)
 (add-hook 'text-mode-hook #'auto-fill-mode)
