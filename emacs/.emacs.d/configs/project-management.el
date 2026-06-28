@@ -1,3 +1,21 @@
+(setq delete-by-moving-to-trash t)
+(setq vc-follow-symlinks t)
+
+(use-package project
+  :ensure nil
+  :config
+  (setq project-switch-commands
+        '((project-find-file "Find file")
+          (project-find-regexp "Find regexp")
+          (project-find-dir "Find directory")
+          (project-dired "Project Dired" "D")
+          (project-vc-dir "VC-Dir")
+          (magit-project-status "Magit" "m")
+          (project-eshell "Eshell")
+          (project-any-command "Other")))
+  (setq project-mode-line t)
+  (setq project-compilation-buffer-name-function 'project-prefixed-buffer-name))
+
 (use-package ediff
   :ensure nil
   :config
@@ -9,6 +27,7 @@
   (setq ediff-show-clashes-only t))
 
 (use-package magit
+  :ensure t
   :config
   (setq magit-display-buffer-function #'magit-display-buffer-same-window-except-diff-v1)
   ;; For tramp
@@ -28,3 +47,4 @@
 ;; 			                   pdf-view-mode
 ;; 			                   nov-mode)))
 
+(provide 'project-management)

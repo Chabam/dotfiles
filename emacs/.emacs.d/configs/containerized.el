@@ -21,11 +21,9 @@ calls `flatpak-spawn --host xdg-open'"
     ;; need to do the same gymnastic as the original `dired-do-open'
     (mapc #'chbm/xdg-open-host files)))
 
-(use-package browse-url
-  :ensure nil
-  :config
+(when chbm/emacs-containerized
+  (setq browse-url-browser-function
+        (lambda (url &optional _)
+          (start-process "browse-url-browser" nil "flatpak-xdg-open" url))))
 
-  (when chbm/emacs-containerized
-    (setq browse-url-browser-function
-          (lambda (url &optional _)
-            (start-process "browse-url-browser" nil "flatpak-xdg-open" url)))))
+(provide 'containerized)

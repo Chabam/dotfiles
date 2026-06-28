@@ -32,6 +32,7 @@
   (chbm/move-window-in-direction 'below))
 
 (use-package transpose-frame
+  :ensure t
   :bind (("C-x 5 t" . transpose-frame)))
 
 (use-package windmove
@@ -49,3 +50,14 @@
 (use-package undelete-frame-mode
   :ensure nil
   :hook (after-init . undelete-frame-mode))
+
+(setq frame-resize-pixelwise t)
+
+(use-package winner
+  :ensure nil
+  :hook (after-init . winner-mode))
+
+(global-set-key (kbd "M-o") 'other-window)
+(global-set-key (kbd "C-M-o") 'other-frame)
+
+(provide 'frames-and-windows)
