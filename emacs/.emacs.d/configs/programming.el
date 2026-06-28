@@ -117,12 +117,10 @@
   (setq corfu-cycle t)
   (setq corfu-popupinfo-delay 0.5)
   (setq corfu-left-margin-width 0)
-  (setq corfu-right-margin-width 0))
+  (setq corfu-right-margin-width 0)
+  (setq tab-always-indent 'complete))
 
 ;; Completion stuff
 (setq text-mode-ispell-word-completion nil)
-(setq completion-styles '(basic substring partial-completion flex))
-(setq tab-always-indent 'complete)
-
 
 (provide 'programming)

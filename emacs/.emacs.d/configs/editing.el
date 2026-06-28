@@ -27,6 +27,13 @@
   (setq show-paren-when-point-inside-paren t)
   (setq show-paren-context-when-offscreen 'overlay))
 
+(use-package yasnippet
+  :hook ((after-init . (lambda () (yas-global-mode 1))))
+  :config
+  (setq yas-snippet-dirs (list
+                          (expand-file-name "snippets" user-emacs-directory))))
+
+
 (defun chbm/buffer-lines-cols-whitespace ()
   (setq show-trailing-whitespace t)
   (column-number-mode)
