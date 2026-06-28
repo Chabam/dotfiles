@@ -12,10 +12,13 @@
     (setq TeX-view-program-list '(("xdg-open" "flatpak-spawn --host xdg-open %o"))))
   (setq TeX-view-program-selection '((output-pdf "xdg-open"))))
 
-(use-package haskell-mode :ensure t)
+(use-package haskell-mode
+  :ensure t
+  :mode "\\.hs'")
 
 (use-package pascal
   :ensure nil
+  :mode "\\.pas\\'"
   :config
   (setq pascal-font-lock-keywords '(("\\_<\\(function\\|pro\\(cedure\\|gram\\)\\)[ 	]+\\([[:alpha:]][[:alnum:]_]*\\)" (1 font-lock-keyword-face) (3 font-lock-function-name-face))
                                     ("\\_<\\(array\\|boolean\\|c\\(har\\|onst\\)\\|file\\|integer\\|re\\(al\\|cord\\)\\|type\\|var\\)\\_>" . font-lock-type-face)
@@ -124,6 +127,7 @@
 
 (use-package ess
   :ensure t
+  :mode ("\\.R\\'")
   :hook ((ess-r-mode . (lambda ()
                          (setq-local ess-indent-offset 2
                                      comment-column 0
@@ -142,9 +146,13 @@
   :config
   (setq ess-use-ido nil))
 
-(use-package cmake-mode :ensure t)
+(use-package cmake-mode
+  :ensure t
+  :mode ("\\.cmake\\'" "CMakeLists.txt\\'")
+  )
 
-(use-package clang-format :ensure t)
+(use-package clang-format
+  :ensure t)
 
 (use-package yaml-ts-mode
   :ensure nil
@@ -159,7 +167,9 @@
   :mode (("\\.container\\'" . systemd-mode)
          ("\\.pod\\'" . systemd-mode)))
 
-(use-package markdown-mode :ensure t)
+(use-package markdown-mode
+  :ensure t
+  :mode "\\.md\\'")
 
 (use-package make-mode
   :ensure t
@@ -167,6 +177,7 @@
 
 (use-package zig-mode
   :ensure t
+  :mode ("\\.zig\\'")
   :config
   (setq zig-format-on-save nil))
 

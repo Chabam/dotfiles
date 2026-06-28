@@ -132,6 +132,7 @@
 
 (use-package citar
   :ensure t
+  :after org
   :hook (org-mode . (lambda ()
                       (setq org-cite-insert-processor 'citar
                             org-cite-follow-processor 'citar

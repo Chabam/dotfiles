@@ -4,8 +4,8 @@
   :config
   (setq savehist-additional-variables
         '(register-alist kill-ring
-          mark-ring global-mark-ring
-          search-ring regexp-search-ring)))
+                         mark-ring global-mark-ring
+                         search-ring regexp-search-ring)))
 
 (use-package recentf
   :ensure nil
@@ -21,11 +21,8 @@
   :config
   (setq save-place-limit 400))
 
-(use-package bookmark
-  :ensure nil
-  :config
-  (setq bookmark-fringe-mark nil)
-  (setq bookmark-save-flag 1))
+(setq bookmark-fringe-mark nil)
+(setq bookmark-save-flag 1)
 
 (use-package orderless
   :ensure t
@@ -74,7 +71,9 @@
 	 ("M-s" . consult-history)
 	 ("M-r" . consult-history)))
 
-(use-package wgrep :ensure t)
+(use-package wgrep
+  :after grep
+  :ensure t)
 
 (use-package isearch
   :ensure nil

@@ -31,6 +31,7 @@
                                             "--background-index"))))
 
 (use-package eglot-inactive-regions
+  :after eglot
   :ensure t
   :hook (eglot-connect . (lambda (&rest _)
 			   (when (member major-mode '(c++-ts-mode c-ts-mode))
@@ -52,7 +53,7 @@
 (use-package treesit-auto
   :ensure t
   :demand t
-  :hook (after-init . (lambda () (global-treesit-auto-mode 1)))
+  :hook (after-init . global-treesit-auto-mode)
   :config
   (setq treesit-auto-install 'prompt)
   (setq treesit-auto-add-to-auto-mode-alist 'all)
@@ -102,10 +103,10 @@
 
 (use-package corfu
   :ensure t
-  :bind (:map corfu-map
-	      ("RET" . nil))
+  ;; :bind (:map corfu-map
+  ;;         ("RET" . nil))
   :hook ((after-init . global-corfu-mode)
-	 (after-init . corfu-popupinfo-mode))
+	     (after-init . corfu-popupinfo-mode))
   :config
   ;; (setq corfu-auto t)
   ;; (setq corfu-auto-prefix 3)

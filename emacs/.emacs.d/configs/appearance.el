@@ -8,7 +8,7 @@
 (cond ((find-font (font-spec :name "Iosevka"))
        (add-to-list 'default-frame-alist '(font . "Iosevka-12")))
       ((find-font (font-spec :name "Adwaita Mono"))
-       (add-to-list 'default-frame-alist '(font . "Adwaita-Mono-12"))))
+       (add-to-list 'default-frame-alist '(font . "Adwaita Mono-12"))))
 
 
 (setq default-frame-scroll-bars 'right)
@@ -37,6 +37,9 @@
 (use-package modus-themes
   :ensure t
   :init
+  (custom-set-faces
+   '(variable-pitch ((t (:family "Iosevka")))))
+
   (setq modus-themes-common-palette-overrides
       `(
         (cursor magenta-warmer)

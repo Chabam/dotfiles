@@ -43,28 +43,25 @@
   (when chbm/emacs-containerized
     (define-key dired-mode-map (kbd "E") #'chbm/dired-do-open-containerized)))
 
-(use-package tramp
-  :ensure nil
-  :config
-  ;; https://coredumped.dev/2025/06/18/making-tramp-go-brrrr./
-  (setq remote-file-name-inhibit-locks t)
-  (setq tramp-use-scp-direct-remote-copying t)
-  (setq remote-file-name-inhibit-auto-save-visited t)
-  (setq tramp-copy-size-limit (* 1024 1024)) ;; 1mb
-  (setq remote-file-name-inhibit-cache 50)
-  (setq remote-file-name-inhibit-locks t)
-  (setq remote-file-name-inhibit-delete-by-moving-to-trash t)
-  (setq tramp-verbose 1)
+;; https://coredumped.dev/2025/06/18/making-tramp-go-brrrr./
+(setq remote-file-name-inhibit-locks t)
+(setq tramp-use-scp-direct-remote-copying t)
+(setq remote-file-name-inhibit-auto-save-visited t)
+(setq tramp-copy-size-limit (* 1024 1024)) ;; 1mb
+(setq remote-file-name-inhibit-cache 50)
+(setq remote-file-name-inhibit-locks t)
+(setq remote-file-name-inhibit-delete-by-moving-to-trash t)
+(setq tramp-verbose 1)
 
+(with-eval-after-load 'tramp
   (connection-local-set-profile-variables
    'remote-direct-async-process
    '((tramp-direct-async-process . t)))
 
   (connection-local-set-profiles
    '(:application tramp :protocol "scp")
-   'remote-direct-async-process)
+   'remote-direct-async-process))
 
-  (with-eval-after-load 'compile
-    (remove-hook 'compilation-mode-hook #'tramp-compile-disable-ssh-controlmaster-options)))
-
+(with-eval-after-load 'compile
+  (remove-hook 'compilation-mode-hook #'tramp-compile-disable-ssh-controlmaster-options))
 (provide 'basic)

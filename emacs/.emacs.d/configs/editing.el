@@ -29,8 +29,8 @@
 
 (use-package yasnippet
   :ensure t
-  :hook ((after-init . (lambda ()
-                         (yas-global-mode 1))))
+  :hook ((prog-mode . yas-minor-mode)
+         (org-mode . yas-minor-mode))
   :config
   (setq yas-snippet-dirs (list
                           (expand-file-name "snippets" user-emacs-directory))))

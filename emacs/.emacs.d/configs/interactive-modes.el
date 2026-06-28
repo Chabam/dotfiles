@@ -16,6 +16,7 @@
 
 (use-package eshell
   :ensure nil
+  :commands (eshell)
   :hook ((eshell-hist-mode . (lambda ()
                                (define-key eshell-hist-mode-map (kbd "C-<up>") nil)
                                (define-key eshell-hist-mode-map (kbd "C-<down>") nil))))
@@ -39,6 +40,7 @@
 
 (use-package ghostel
   :ensure t
+  :commands (ghostel)
   :config
   (setq adwaita-black          "#241F31")
   (setq adwaita-red            "#C01C28")
