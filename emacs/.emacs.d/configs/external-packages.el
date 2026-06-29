@@ -9,7 +9,6 @@
         ("nongnu" . 2)
         ("melpa" . 1)))
 
-(setq package-install-upgrade-built-in t)
 (setq use-package-enable-imenu-support t)
 (setq use-package-compute-statistics t)
 
