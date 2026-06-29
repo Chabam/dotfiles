@@ -3,13 +3,8 @@
 			    (menu-bar-lines . 0)
 			    (tool-bar-lines . 0)
 			    (vertical-scroll-bars)
-			    (horizontal-scroll-bars)))
-
-(cond ((find-font (font-spec :name "Iosevka"))
-       (add-to-list 'default-frame-alist '(font . "Iosevka-12")))
-      ((find-font (font-spec :name "Adwaita Mono"))
-       (add-to-list 'default-frame-alist '(font . "Adwaita Mono-12"))))
-
+			    (horizontal-scroll-bars)
+                (font . "Iosevka-12")))
 
 (setq default-frame-scroll-bars 'right)
 (setq scroll-bar-mode nil)

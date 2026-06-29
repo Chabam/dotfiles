@@ -71,6 +71,10 @@
 	 ("M-s" . consult-history)
 	 ("M-r" . consult-history)))
 
+(use-package cape
+  :ensure t
+  :commands (cape-file))
+
 (use-package wgrep
   :after grep
   :ensure t)
