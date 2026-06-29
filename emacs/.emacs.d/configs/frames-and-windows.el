@@ -33,6 +33,7 @@
 
 (use-package transpose-frame
   :ensure t
+  :defer t
   :commands (transpose-frame)
   :bind (("C-x 5 t" . transpose-frame)))
 
