@@ -1,0 +1,31 @@
+;; -*- mode: lisp-data -*-
+
+c-ts-mode c++-ts-mode
+
+(guard "#ifndef " (p (upcase
+                    (replace-regexp-in-string
+                     "\\."
+                     "_"
+                     (file-name-nondirectory (or (buffer-file-name)
+                                                 (buffer-name)))))
+                   symbol) "\n"
+                   "#define " symbol "\n\n"
+                   q
+                   "\n\n#endif // " symbol)
+c-ts-mode
+
+(main "#include <stdio.h>\n\n"
+       "int main(int argc, char** argv)\n{\n"
+       > q
+       "\n}")
+
+c++-ts-mode
+
+(main "#include <iostream>\n\n"
+       "int main(int argc, char** argv)\n{\n"
+       > q
+       "\n}")
+
+org-mode
+
+(src "#+begin_src " p "\n" r "\n#+end_src\n")

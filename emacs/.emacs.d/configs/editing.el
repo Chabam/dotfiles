@@ -27,14 +27,18 @@
   (setq show-paren-when-point-inside-paren t)
   (setq show-paren-context-when-offscreen 'overlay))
 
-(use-package yasnippet
-  :ensure t
-  :hook ((prog-mode . yas-minor-mode)
-         (org-mode . yas-minor-mode))
-  :config
-  (setq yas-snippet-dirs (list
-                          (expand-file-name "snippets" user-emacs-directory))))
+(defun chbm/setup-tempel-capf ()
+  (setq-local completion-at-point-functions
+              (cons #'tempel-complete completion-at-point-functions)))
 
+(use-package tempel
+  :bind ((:map tempel-map
+               ("<tab>" . tempel-next)
+               ("<backtab>" . tempel-previous)))
+  :hook ((prog-mode . chbm/setup-tempel-capf)
+         (org-mode . chbm/setup-tempel-capf))
+  :config
+  (setq tempel-path (expand-file-name "templates" user-emacs-directory)))
 
 (defun chbm/buffer-lines-cols-whitespace ()
   (setq show-trailing-whitespace t)
