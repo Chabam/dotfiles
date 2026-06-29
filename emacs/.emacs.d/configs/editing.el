@@ -29,9 +29,10 @@
 
 (defun chbm/setup-tempel-capf ()
   (setq-local completion-at-point-functions
-              (cons #'tempel-complete completion-at-point-functions)))
+              (cons #'tempel-expand completion-at-point-functions)))
 
 (use-package tempel
+  :ensure t
   :bind ((:map tempel-map
                ("<tab>" . tempel-next)
                ("<backtab>" . tempel-previous)))
