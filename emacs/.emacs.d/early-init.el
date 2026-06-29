@@ -1,3 +1,5 @@
+;; -*- lexical-binding: t -*-
+
 (let ((default-gc-thresh gc-cons-threshold)
       (default-gc-percent gc-cons-percentage))
   (setq gc-cons-threshold most-positive-fixnum)

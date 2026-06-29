@@ -29,3 +29,7 @@ c++-ts-mode
 org-mode
 
 (src "#+begin_src " p "\n" r "\n#+end_src\n")
+
+emacs-lisp-mode
+
+(lexical-bind ";; -*- lexical-binding: t -*-")
