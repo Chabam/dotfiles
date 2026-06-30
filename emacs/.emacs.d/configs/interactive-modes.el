@@ -49,7 +49,7 @@
   (setq adwaita-blue           "#1E78E4")
   (setq adwaita-magenta        "#9841BB")
   (setq adwaita-cyan           "#0AB9DC")
-  (setq adwaita-white           "#C0BFBC")
+  (setq adwaita-white          "#C0BFBC")
   (setq adwaita-bright-black   "#5E5C64")
   (setq adwaita-bright-red     "#ED333B")
   (setq adwaita-bright-green   "#57E389")
@@ -57,7 +57,7 @@
   (setq adwaita-bright-blue    "#51A1FF")
   (setq adwaita-bright-magenta "#C061CB")
   (setq adwaita-bright-cyan    "#4FD2FD")
-  (setq adwaita-bright-white    "#F6F5F4")
+  (setq adwaita-bright-white   "#F6F5F4")
 
   (set-face-attribute 'ghostel-color-black nil :foreground adwaita-black :background adwaita-black)
   (set-face-attribute 'ghostel-color-red nil :foreground adwaita-red :background adwaita-red)

@@ -103,8 +103,8 @@
 
 (use-package corfu
   :ensure t
-  ;; :bind (:map corfu-map
-  ;;         ("RET" . nil))
+  :bind (:map corfu-map
+          ("RET" . nil))
   :hook ((after-init . global-corfu-mode)
 	     (after-init . corfu-popupinfo-mode))
   :config
@@ -123,5 +123,11 @@
 
 ;; Completion stuff
 (setq text-mode-ispell-word-completion nil)
+
+(use-package gdb-mi
+  :ensure nil
+  :commands (gdb gud-gdb)
+  :config
+  (setq gdb-debuginfod-enable-setting nil))
 
 (provide 'programming)
