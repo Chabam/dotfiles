@@ -27,16 +27,19 @@
   (setq show-paren-when-point-inside-paren t)
   (setq show-paren-context-when-offscreen 'overlay))
 
-(defun chbm/setup-tempel-capf ()
+(defun chbm/setup-tempel-capf (&rest _)
+  ;; Removing tempel-expand if it was already there first
   (setq-local completion-at-point-functions
-              (cons #'tempel-expand completion-at-point-functions)))
+              (cons #'tempel-expand (delete #'tempel-expand
+                                            completion-at-point-functions))))
 
 (use-package tempel
   :ensure t
   :bind ((:map tempel-map
                ("<tab>" . tempel-next)
                ("<backtab>" . tempel-previous)))
-  :hook ((prog-mode . chbm/setup-tempel-capf)
+  :hook ((eglot-managed-mode . chbm/setup-tempel-capf)
+         (prog-mode . chbm/setup-tempel-capf)
          (org-mode . chbm/setup-tempel-capf))
   :config
   (setq tempel-path (expand-file-name "templates" user-emacs-directory)))
