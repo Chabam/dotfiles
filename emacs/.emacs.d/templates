@@ -33,3 +33,10 @@ org-mode
 emacs-lisp-mode
 
 (lexical-bind ";; -*- lexical-binding: t -*-")
+
+python-ts-mode
+
+(main "def main() -> int:\n"
+      > q "return 0\n\n" >
+      "if __name__ == '__main__':\n"
+      > "sys.exit(main())\n")
