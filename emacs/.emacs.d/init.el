@@ -20,6 +20,8 @@
   (require 'programming)
   (require 'programming-languages)
   (require 'interactive-modes)
+
+  (require 'writing)
   (require 'org-and-friends)
 
   ;; If I ever get forced to use this proprietary garbage
