@@ -144,7 +144,7 @@ account c++14 digit separator"
 
 (use-package ess
   :ensure t
-  :mode ("\\.R\\'")
+  :mode ("\\.R\\'" . ess-r-mode)
   :hook ((ess-r-mode . (lambda ()
                          (setq-local ess-indent-offset 2
                                      comment-column 0
