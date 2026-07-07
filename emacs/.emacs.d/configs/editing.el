@@ -5,6 +5,8 @@
 
 (add-hook 'after-init-hook #'delete-selection-mode)
 
+(setq sentence-end-double-space nil)
+
 ;; Remove blinking for delete-pair
 (setq delete-pair-blink-delay 0)
 
@@ -57,9 +59,34 @@
 (global-set-key (kbd "M-l") 'downcase-dwim)
 (global-set-key (kbd "M-u") 'upcase-dwim)
 (global-set-key (kbd "C-c t d") 'delete-trailing-whitespace)
-(global-set-key (kbd "C-c k p") 'chbm/copy-pwd)
+(global-set-key (kbd "C-c /") 'pwd)
+(global-set-key (kbd "C-c C-/") 'cd)
+(global-set-key (kbd "C-c k /") 'chbm/copy-pwd)
 (global-set-key (kbd "C-x r y") 'chbm/yank-copied-rectangle-as-lines)
 (global-set-key (kbd "C-S-d") 'duplicate-dwim)
-(global-set-key (kbd "M-z") 'zap-up-to-char)       ; zap-up-to-char instead of zap-to-char
+(global-set-key (kbd "M-z") 'zap-up-to-char) ; zap-up-to-char instead of zap-to-char
+
+;; Useful keys stolen from oantolin
+(global-set-key (kbd "C-d") 'delete-forward-char)
+
+(global-set-key (kbd "M-F") 'forward-to-word)
+(global-set-key (kbd "M-B") 'backward-to-word)
+
+(global-set-key (kbd "C-M-<") 'mark-beginning-of-buffer)
+(global-set-key (kbd "C-M->") 'mark-end-of-buffer)
+
+(global-set-key (kbd "M-T") 'transpose-sentences)
+
+(global-set-key (kbd "C-x M-t") 'transpose-paragraphs)
+(global-set-key (kbd "M-H") 'mark-paragraph)
+(global-set-key (kbd "M-K") 'kill-paragraph)
+
+(global-set-key (kbd "C-z") 'repeat)
+
+(global-set-key (kbd "M-s f") 'flush-lines)
+(global-set-key (kbd "M-s k") 'keep-lines)
+
+(global-set-key (kbd "C-M-o") 'up-list)
+(global-set-key (kbd "M-R") 'kill-backward-up-list)
 
 (provide 'editing)

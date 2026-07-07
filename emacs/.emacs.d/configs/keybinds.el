@@ -33,9 +33,6 @@
 (global-set-key (kbd "C-h h") nil)
 ;; Closing emacs 🙂 (actually gets rebound later)
 (global-set-key (kbd "C-x C-c") nil)
-;; menu bar in the minibuffer
-(global-set-key (kbd "M-`") nil)
-
 
 ;; rebinds
 (global-set-key (kbd "C-x M-g") 'grep)
