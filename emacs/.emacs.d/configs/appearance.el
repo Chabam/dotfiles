@@ -45,8 +45,8 @@
         (bg-changed-fringe bg-cyan-intense)
 
         ;; Blue modeline
-        (bg-mode-line-active bg-blue-intense)
-        (fg-mode-line-active fg-main)
+        ;; (bg-mode-line-active bg-blue-intense)
+        ;; (fg-mode-line-active fg-main)
 
         ;; Number line invisible
         (fringe unspecified)
