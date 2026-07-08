@@ -43,6 +43,13 @@
   (when chbm/emacs-containerized
     (define-key dired-mode-map (kbd "E") #'chbm/dired-do-open-containerized)))
 
+(use-package browse-url
+  :if chbm/emacs-containerized
+  :config
+  (setq browse-url-browser-function
+        (lambda (url &optional _)
+          (start-process "browse-url-browser" nil "flatpak-xdg-open" url))))
+
 ;; https://coredumped.dev/2025/06/18/making-tramp-go-brrrr./
 (setq remote-file-name-inhibit-locks t)
 (setq tramp-use-scp-direct-remote-copying t)
