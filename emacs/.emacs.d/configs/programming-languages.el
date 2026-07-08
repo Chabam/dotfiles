@@ -109,9 +109,26 @@
                     "/usr/local/include/*")
                    (mapcar (lambda (dir) (file-name-concat dir "*")) sub-dirs))))))
 
+(defun chbm/c-ts-mode--syntax-propertize (beg end)
+  "Fixes over the original c-ts-mode--syntax-propertize to take into
+account c++14 digit separator"
+  (unless (c-ts-mode--syntax-propertize beg end)
+    (goto-char beg)
+    (while (search-forward "'" end t)
+      (when (string-equal (treesit-node-type
+                           (treesit-node-at (1- (point))))
+                          "number_literal")
+        (put-text-property (1- (point))
+                           (point)
+                           'syntax-table
+                           (string-to-syntax "."))))))
+
 (use-package c++-ts-mode
   :ensure nil
   :hook ((c++-ts-mode . chbm/set-c-style-indent)
+         (c++-ts-mode . (lambda ()
+                          (setq-local syntax-propertize-function
+                                      #'chbm/c-ts-mode--syntax-propertize)))
          (ff-pre-find . chbm/set-cc-search-dirs-project)))
 
 (use-package c-ts-mode
