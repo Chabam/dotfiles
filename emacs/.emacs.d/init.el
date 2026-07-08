@@ -12,8 +12,8 @@
   (require 'minibuf)
   (require 'searching)
 
-  (require 'editing)
   (require 'keybinds)
+  (require 'editing)
   (require 'abbreviations)
 
   (require 'project-management)
