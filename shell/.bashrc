@@ -1,8 +1,3 @@
-if [[ "$TERM" == "dumb" ]]; then
-   HISTFILE="$HOME/.tramp-histfile"
-   return
-fi
-
 # Source global definitions
 if [ -f /etc/bashrc ]; then
     . /etc/bashrc
