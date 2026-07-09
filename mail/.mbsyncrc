@@ -1,0 +1,52 @@
+IMAPAccount gmail
+Host imap.gmail.com
+User fchabot1337@gmail.com
+PassCmd "pizauth show gmail"
+AuthMechs XOAUTH2
+TLSType IMAPS
+
+IMAPStore gmail-remote
+Account gmail
+
+MaildirStore gmail-local
+Path ~/.mail/gmail/
+Inbox ~/.mail/gmail/INBOX
+SubFolders Verbatim
+
+Channel gmail
+Far :gmail-remote:
+Near :gmail-local:
+Patterns *
+Create Both
+SyncState *
+
+IMAPAccount udes
+Host outlook.office365.com
+Port 993
+User chaf2717@usherbrooke.ca
+PassCmd "pizauth show udes"
+AuthMechs XOAUTH2
+TLSType IMAPS
+
+IMAPStore udes-remote
+Account udes
+
+MaildirStore udes-local
+SubFolders Verbatim
+# The trailing "/" is important
+Path ~/.mail/udes/
+Inbox ~/.mail/udes/Inbox
+
+Channel udes
+Far :udes-remote:
+Near :udes-local:
+# Exclude everything under the internal [Gmail] folder, except the interesting folders
+Patterns * ![Udes]* "[Udes]/Sent Mail" "[Udes]/Starred" "[Udes]/All Mail"
+# Or include everything
+#Patterns *
+# Automatically create missing mailboxes, both locally and on the server
+Create Both
+# Sync the movement of messages between folders and deletions, add after making sure the sync works
+Expunge Both
+# Save the synchronization state files in the relevant directory
+SyncState *
