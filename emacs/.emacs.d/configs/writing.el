@@ -12,47 +12,70 @@ function.  Then you can control the buffer's specifics via
 (use-package mu4e
   :ensure nil
   :commands (mu4e)
-
+  :hook ((mu4e-compose-mode . (lambda ()
+                                (set-fill-column 72)
+                                (flyspell-mode)))
+         (dired-mode  . turn-on-gnus-dired-mode))
+  :bind (("C-c m" . mu4e-transient-menu))
   :config
+  (setq mu4e-contexts
+        (list (make-mu4e-context
+               :name "Gmail"
+               :vars '((user-mail-address . "fchabot1337@gmail.com")
+                       (user-full-name . "Félix Chabot")
+                       (smtpmail-smtp-server . "smtp.gmail.com")
+                       (smtpmail-stream-type . starttls)
+                       (smtpmail-smtp-service . 587)
+                       (mu4e-drafts-folder . "/gmail/[Gmail]/Drafts")
+                       (mu4e-sent-folder . "/gmail/[Gmail]/Sent Mail")
+                       (mu4e-refile-folder . "/gmail/[Gmail]/All Mail")
+                       (mu4e-trash-folder . "/gmail/[Gmail]/Trash")
+                       (mu4e-maildir-shortcuts . ((:name "Inbox"
+                                                         :maildir "/gmail/[Gmail]/All Mail"
+                                                         :key ?i)
+                                                  (:name "Sent"
+                                                         :maildir "/gmail/[Gmail]/Sent Mail"
+                                                         :key ?s)))))
+
+              (make-mu4e-context
+               :name "UdeS"
+               :vars '((user-mail-address . "chaf2717@usherbrooke.ca")
+                       (user-full-name . "Félix Chabot")
+                       (smtpmail-smtp-server . "smtp.office365.com")
+                       (smtpmail-stream-type . starttls)
+                       (smtpmail-smtp-service . 587)
+                       (mu4e-drafts-folder . "/udes/Brouillons")
+                       (mu4e-sent-folder . "/udes/Éléments envoyés")
+                       (mu4e-refile-folder . "/udes/Inbox")
+                       (mu4e-trash-folder . "/udes/Éléments supprimés")
+                       (mu4e-maildir-shortcuts . ((:name "Inbox"
+                                                   :maildir "/udes/Inbox"
+                                                   :key ?i)
+                                                  (:name "Sent"
+                                                   :maildir "/udes/Éléments envoyés"
+                                                   :key ?s)))))))
   (setq mu4e-maildir "~/.mail")
   (setq mu4e-completing-read-function 'completing-read)
-
-  (add-to-list 'mu4e-contexts
-               (make-mu4e-context
-                :name "Gmail"
-                :vars '((user-mail-address . "fchabot1337@gmail.com")
-                        (user-full-name . "Félix Chabot")
-                        (smtpmail-smtp-server . "smtp.gmail.com")
-                        (smtpmail-stream-type . starttls)
-                        (smtpmail-smtp-service . 587)
-                        (mu4e-drafts-folder . "/gmail/[Gmail]/Drafts")
-                        (mu4e-sent-folder . "/gmail/[Gmail]/Sent Mail")
-                        (mu4e-refile-folder . "/gmail/[Gmail]/All Mail")
-                        (mu4e-trash-folder . "/gmail/[Gmail]/Trash"))))
-
-  (add-to-list 'mu4e-contexts
-               (make-mu4e-context
-                :name "UdeS"
-                :vars '((user-mail-address . "chaf2717@usherbrooke.ca")
-                        (user-full-name . "Félix Chabot")
-                        (smtpmail-smtp-server . "smtp.office365.com")
-                        (smtpmail-stream-type . starttls)
-                        (smtpmail-smtp-service . 587)
-                        (mu4e-drafts-folder . "/udes/Brouillons")
-                        (mu4e-sent-folder . "/udes/Éléments envoyés")
-                        (mu4e-refile-folder . "/udes/Inbox")
-                        (mu4e-trash-folder . "/udes/Éléments supprimés"))))
-
+  (setq mu4e-index-lazy-check t)
+  (setq mu4e-update-interval 180)
   (setq mail-user-agent 'mu4e-user-agent)
+  (setq mu4e-attachment-dir "~/Downloads")
+  (setq mu4e-use-fancy-chars t)
 
   (setq mu4e-get-mail-command "mbsync -a")
-  (setq mu4e-update-interval 300)
 
   (setq message-send-mail-function 'message-send-mail-with-sendmail)
   (setq sendmail-program (executable-find "msmtp"))
   (setq message-sendmail-f-is-evil t)
   (setq message-sendmail-extra-arguments '("--read-envelope-from"))
   (setq message-sendmail-envelope-from 'header)
+  (setq message-signature "Félix Chabot")
+
+  ;; TODO: reeval?
+  ;; (with-eval-after-load "mm-decode"
+  ;;   (add-to-list 'mm-discouraged-alternatives "text/html")
+  ;;   (add-to-list 'mm-discouraged-alternatives "text/richtext")
+  ;;   (add-to-list 'mm-discouraged-alternatives "multipart/related"))
 
   (setq mu4e-change-filenames-when-moving t)
   (setq mu4e-compose-format-flowed t)
