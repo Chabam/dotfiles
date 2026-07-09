@@ -1,6 +1,11 @@
 ;; no startup screen
 (setq inhibit-startup-screen t)
 
+(setq initial-scratch-message nil)
+
+(setq mouse-yank-at-point t)
+(setq mouse-drag-copy-region t)
+
 ;; No bells
 (setq visible-bell nil)
 (setq ring-bell-function #'ignore)
@@ -13,6 +18,9 @@
       eval-expression-print-level nil)
 
 (setq read-process-output-max (* 4 1024 1024))
+
+;; I know how to work an Emacs client, thanks
+(setq server-client-instructions nil)
 
 ;; custom.el
 (setq custom-file (expand-file-name "custom.el" user-emacs-directory))
@@ -59,7 +67,7 @@
 (setq remote-file-name-inhibit-locks t)
 (setq remote-file-name-inhibit-delete-by-moving-to-trash t)
 (setq tramp-verbose 1)
-
+ 
 (with-eval-after-load 'tramp
   (connection-local-set-profile-variables
    'remote-direct-async-process
