@@ -66,6 +66,8 @@
 (global-set-key (kbd "C-S-d") 'duplicate-dwim)
 (global-set-key (kbd "M-z") 'zap-up-to-char) ; zap-up-to-char instead of zap-to-char
 
+(global-set-key (kbd "M-'") 'hippie-expand)
+
 ;; Useful keys stolen from oantolin
 (global-set-key (kbd "C-d") 'delete-forward-char)
 
