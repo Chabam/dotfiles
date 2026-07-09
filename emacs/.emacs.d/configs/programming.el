@@ -108,17 +108,10 @@
   :hook ((after-init . global-corfu-mode)
 	     (after-init . corfu-popupinfo-mode))
   :config
-  ;; (setq corfu-auto t)
-  ;; (setq corfu-auto-prefix 3)
-  ;; (setq corfu-auto-delay 0.3)
   (setq corfu-quit-no-match 'separator)
   (setq corfu-quit-at-boundary t)
-  (setq corfu-preview-current nil)
-
   (setq corfu-cycle t)
   (setq corfu-popupinfo-delay 0.5)
-  (setq corfu-left-margin-width 0)
-  (setq corfu-right-margin-width 0)
   (setq tab-always-indent 'complete))
 
 ;; Completion stuff
