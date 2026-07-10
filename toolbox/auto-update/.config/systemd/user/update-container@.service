@@ -1,0 +1,7 @@
+[Unit]
+Description=Update Toolbox %i
+
+[Service]
+Type=oneshot
+Environment=CONTAINER=%i
+ExecStart=toolbox -c "$CONTAINER" run sudo dnf upgrade --quiet --refresh -y
