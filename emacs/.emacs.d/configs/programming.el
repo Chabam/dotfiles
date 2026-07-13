@@ -21,7 +21,7 @@
         eglot-sync-connect nil
         eglot-events-buffer-config '(:size 0 :format full))
   (add-to-list 'eglot-server-programs
-               '((org-mode markdown-mode (LaTeX-mode :language-id "latex")) . ("ltex-ls-plus")))
+               '((org-mode markdown-mode message-mode (LaTeX-mode :language-id "latex")) . ("ltex-ls-plus")))
   (add-to-list 'eglot-server-programs
                '((c-ts-mode c++-ts-mode) . ("clangd"
                                             "--header-insertion=never"

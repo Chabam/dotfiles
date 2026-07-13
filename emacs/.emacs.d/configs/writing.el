@@ -13,8 +13,8 @@ function.  Then you can control the buffer's specifics via
   :ensure nil
   :commands (mu4e)
   :hook ((mu4e-compose-mode . (lambda ()
-                                (set-fill-column 72)
-                                (flyspell-mode)))
+                                (set-fill-column 72)))
+         (mu4e-thread-mode . mu4e-thread-fold-all)
          (dired-mode  . turn-on-gnus-dired-mode))
   :bind (("C-c m" . mu4e-transient-menu))
   :config
@@ -54,13 +54,35 @@ function.  Then you can control the buffer's specifics via
                                                   (:name "Sent"
                                                    :maildir "/udes/Éléments envoyés"
                                                    :key ?s)))))))
+  (setq mu4e-compose-context-policy 'ask-if-none)
   (setq mu4e-maildir "~/.mail")
   (setq mu4e-completing-read-function 'completing-read)
   (setq mu4e-index-lazy-check t)
   (setq mu4e-update-interval 180)
   (setq mail-user-agent 'mu4e-user-agent)
   (setq mu4e-attachment-dir "~/Downloads")
+
+  (setq mu4e-headers-fields
+      '((:human-date . 12)
+        (:from-or-to . 22)
+        (:subject)
+        (:flags)))
+
   (setq mu4e-use-fancy-chars t)
+  (setq mu4e-headers-attach-mark    '("a" . "📎")
+        mu4e-headers-calendar-mark  '("c" . "📅")
+        mu4e-headers-draft-mark     '("D" . "✏")
+        mu4e-headers-encrypted-mark '("x" . "🔒")
+        mu4e-headers-flagged-mark   '("F" . "🚩")
+        mu4e-headers-list-mark      '("l" . "🔈")
+        mu4e-headers-new-mark       '("N" . "✨")
+        mu4e-headers-passed-mark    '("P" . "↪")
+        mu4e-headers-personal-mark  '("p" . "🤙")
+        mu4e-headers-replied-mark   '("R" . "↩")
+        mu4e-headers-seen-mark      '("S" . "👀")
+        mu4e-headers-signed-mark    '("s" . "🔑")
+        mu4e-headers-trashed-mark   '("T" . "🗑️")
+        mu4e-headers-unread-mark    '("u" . "📩"))
 
   (setq mu4e-get-mail-command "mbsync -a")
 
@@ -72,10 +94,10 @@ function.  Then you can control the buffer's specifics via
   (setq message-signature "Félix Chabot")
 
   ;; TODO: reeval?
-  ;; (with-eval-after-load "mm-decode"
-  ;;   (add-to-list 'mm-discouraged-alternatives "text/html")
-  ;;   (add-to-list 'mm-discouraged-alternatives "text/richtext")
-  ;;   (add-to-list 'mm-discouraged-alternatives "multipart/related"))
+  (with-eval-after-load "mm-decode"
+    (add-to-list 'mm-discouraged-alternatives "text/html")
+    (add-to-list 'mm-discouraged-alternatives "text/richtext")
+    (add-to-list 'mm-discouraged-alternatives "multipart/related"))
 
   (setq mu4e-change-filenames-when-moving t)
   (setq mu4e-compose-format-flowed t)
