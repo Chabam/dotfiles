@@ -67,7 +67,7 @@
 (setq remote-file-name-inhibit-locks t)
 (setq remote-file-name-inhibit-delete-by-moving-to-trash t)
 (setq tramp-verbose 1)
- 
+
 (with-eval-after-load 'tramp
   (connection-local-set-profile-variables
    'remote-direct-async-process
