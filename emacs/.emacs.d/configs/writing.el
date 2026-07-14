@@ -77,7 +77,8 @@ function.  Then you can control the buffer's specifics via
         mu4e-headers-list-mark      '("l" . "🔈")
         mu4e-headers-new-mark       '("N" . "✨")
         mu4e-headers-passed-mark    '("P" . "↪")
-        mu4e-headers-personal-mark  '("p" . "🤙")
+        ;; Disabling cause, that's basically all my mail
+        mu4e-headers-personal-mark  '(""  .   "")
         mu4e-headers-replied-mark   '("R" . "↩")
         mu4e-headers-seen-mark      '("S" . "👀")
         mu4e-headers-signed-mark    '("s" . "🔑")
@@ -93,15 +94,11 @@ function.  Then you can control the buffer's specifics via
   (setq message-sendmail-envelope-from 'header)
   (setq message-signature "Félix Chabot")
 
-  ;; TODO: reeval?
   (with-eval-after-load "mm-decode"
     (add-to-list 'mm-discouraged-alternatives "text/html")
     (add-to-list 'mm-discouraged-alternatives "text/richtext")
     (add-to-list 'mm-discouraged-alternatives "multipart/related"))
 
-  (setq mu4e-change-filenames-when-moving t)
-  (setq mu4e-compose-format-flowed t)
-  (setq mu4e-view-show-images t)
-  (setq mu4e-view-show-addresses t))
+  (setq mu4e-change-filenames-when-moving t))
 
 (provide 'writing)
