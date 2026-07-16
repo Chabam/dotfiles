@@ -1,3 +1,3 @@
 #!/usr/bin/env bash
 
-podman build --tag dev-toolbox .
+podman build --tag emacs-box .

@@ -18,27 +18,51 @@ RUN dnf -y install \
     texlive-collection-xetex \
     texlive-collection-luatex \
     R \
-    racket \
+    racket-minimal \
     && dnf clean all
 
-ARG LTEX_LS_PLUS_URL="https://github.com/ltex-plus/ltex-ls-plus/releases/download/18.6.1/ltex-ls-plus-18.6.1-linux-x64.tar.gz"
+WORKDIR /tmp
+ARG LTEX_LS_PLUS_VERSION="18.7.0"
+ARG LTEX_LS_PLUS_URL="https://github.com/ltex-plus/ltex-ls-plus/releases/download/${LTEX_LS_PLUS_VERSION}/ltex-ls-plus-${LTEX_LS_PLUS_VERSION}-linux-x64.tar.gz"
 # ltex-ls-plus for grammar checking
-RUN curl -o /tmp/ltex-ls-plus.tar.gz -L ${LTEX_LS_PLUS_URL} \
-    && tar -xvf /tmp/ltex-ls-plus.tar.gz  -C /usr/local --no-same-owner --no-overwrite-dir \
+RUN curl -o ltex-ls-plus.tar.gz -L ${LTEX_LS_PLUS_URL} \
+    && tar -xvf ltex-ls-plus.tar.gz  -C /usr/local --no-same-owner --no-overwrite-dir \
     && ln -s /usr/local/ltex-ls-plus-*/bin/ltex-ls-plus /usr/local/bin/ltex-ls-plus \
-    && rm /tmp/ltex-ls-plus.tar.gz
+    && rm ltex-ls-plus.tar.gz
 
 # Core of this image: required stuff for emacs
-RUN dnf -y copr enable peterwu/iosevka \
-    && dnf -y install \
+RUN dnf -y install \
     emacs-pgtk \
     flatpak-xdg-open \
     adw-gtk3-theme \
     google-noto-color-emoji-fonts \
     gdk-pixbuf2-modules-extra \
-    iosevka-fonts \
+    jetbrains-mono-fonts-all \
     wl-clipboard \
     && dnf clean all
+
+# Mail in Emacs
+RUN dnf -y install \
+    mu \
+    isync \
+    msmtp
+
+WORKDIR /tmp
+# Installing cyrus-sasl-xoauth2 for oauth authentication
+RUN sudo dnf install -y cyrus-sasl-devel automake libtool && \
+    git clone https://github.com/moriyoshi/cyrus-sasl-xoauth2 && \
+    cd cyrus-sasl-xoauth2/ && \
+    ./autogen.sh && \
+    ./configure && \
+    sudo make install && \
+    sudo mv /usr/lib/sasl2/* /usr/lib64/sasl2/ && \
+    sudo rmdir /usr/lib/sasl2
+
+WORKDIR /tmp
+RUN sudo dnf install -y rustc cargo && \
+    git clone https://github.com/ltratt/pizauth && \
+    cd pizauth && \
+    sudo make install
 
 # Language tooling
 
@@ -61,7 +85,6 @@ RUN dnf -y install \
     gdb \
     hunspell-en \
     hunspell-fr \
-    enchant2-devel \
     locate \
     make \
     pandoc \

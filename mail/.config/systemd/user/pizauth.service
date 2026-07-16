@@ -5,8 +5,9 @@ Documentation=https://github.com/ltratt/pizauth/blob/master/README.md
 
 [Service]
 Type=simple
-ExecStart=toolbox -c dev run pizauth server -vvvv -d
-ExecStop=toolbox -c dev run pizauth shutdown
+Restart=always
+ExecStart=toolbox -c emacs-box run pizauth server -vvvv -d
+ExecStop=toolbox -c emacs-box run pizauth shutdown
 
 [Install]
 WantedBy=default.target
