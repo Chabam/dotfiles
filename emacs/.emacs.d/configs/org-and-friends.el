@@ -49,10 +49,8 @@
   (require 'ox-publish)
 
   (setq org-directory "~/Documents/Org"
-        org-agendas-directory (concat org-directory "/agendas/")
-
         org-icalendar-exclude-tags '("noexport")
-        org-icalendar-combined-agenda-file (concat org-directory "/agendas/org.ics")
+        org-icalendar-combined-agenda-file (file-name-concat org-directory "org.ics")
         org-icalendar-use-scheduled '(event-if-not-todo event-if-todo event-if-todo-not-done todo-start)
         org-icalendar-use-deadline '(event-if-not-todo event-if-todo event-if-todo-not-done todo-due)
         org-icalendar-timezone "America/Toronto"
@@ -84,6 +82,7 @@
         org-export-with-author nil
         org-export-time-stamp-file nil
         org-export-allow-bind-keywords t
+        org-export-with-broken-links t
 
         org-html-head chabam-ca-headers
         org-html-style-default nil
@@ -93,10 +92,14 @@
         org-attach-use-inheritance t
         org-attach-auto-tag nil
 
-        org-default-notes-file (expand-file-name (concat org-agendas-directory "a-classer.org") org-directory)
-        org-agenda-files (directory-files-recursively org-agendas-directory  "\\.org$")
+        org-default-notes-file (file-name-concat org-directory "inbox.org")
+        org-capture-templates '(("t" "Tâche" entry (file "")
+		                         "* FAIRE %?\n  %u\n  %a"))
+        org-agenda-files (list (file-name-concat org-directory "agenda.org")
+                               (file-name-concat org-directory "inbox.org")
+                               (file-name-concat org-directory "notes.org"))
         org-archive-location (concat org-directory "/archive.org::datetree/")
-        org-attach-id-dir (concat org-directory "/data/")
+        org-attach-id-dir (file-name-concat org-directory "data")
         org-todo-keywords '((sequence "FAIRE(f)" "COURS(c)" "ATTENTE(a)" "FAIT(F)")))
 
   (when chbm/emacs-containerized
@@ -131,13 +134,13 @@
                   (alltodo "")))
                t))
 
-(use-package citar
-  :ensure t
-  :after org
-  :hook (org-mode . (lambda ()
-                      (setq org-cite-insert-processor 'citar
-                            org-cite-follow-processor 'citar
-                            org-cite-activate-processor 'citar))))
+;; (use-package citar
+;;   :ensure t
+;;   :after org
+;;   :hook (org-mode . (lambda ()
+;;                       (setq org-cite-insert-processor 'citar
+;;                             org-cite-follow-processor 'citar
+;;                             org-cite-activate-processor 'citar))))
 
 (use-package htmlize
   :ensure t
@@ -155,12 +158,21 @@
 (add-hook 'org-mode-hook #'auto-fill-mode)
 (add-hook 'text-mode-hook #'auto-fill-mode)
 
-;; (use-package org-caldav
-;;   :config
-;;   (setq org-caldav-url "http://caldav.minus/dav.php/calendars/chabam")
-;;   (setq org-caldav-calendar-id "default")
-;;   (setq org-caldav-inbox (concat org-agendas-directory "caldav.org"))
-;;   (setq org-caldav-files nil))
+(use-package org-caldav
+  :ensure t
+  :commands (org-caldav-sync)
+  :config
+  (setq org-caldav-url "https://nextcloud.chabam.ca/remote.php/dav/calendars/")
+  (setq org-caldav-calendar-id "chabam/main")
+  (setq org-caldav-sync-todo t)
+  (setq org-icalendar-include-todo 'all)
+  (setq org-caldav-inbox (file-name-concat org-directory "inbox.org"))
+  (setq org-caldav-files (list org-caldav-inbox
+                               (file-name-concat org-directory "agenda.org")
+                               (file-name-concat org-directory "archive.org")))
+  (setq org-caldav-save-directory (file-name-concat org-directory ".org-caldav"))
+  (setq org-caldav-todo-percent-states
+        '((0 "FAIRE") (25 "COURS") (50 "ATTENTE") (100 "FAIT"))))
 
 ;; TODO: convert to a proper function
 (defalias 'org-emphasize-accronym
