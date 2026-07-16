@@ -4,7 +4,7 @@
 			    (tool-bar-lines . 0)
 			    (vertical-scroll-bars)
 			    (horizontal-scroll-bars)
-                (font . "Iosevka-12")))
+                (font . "Jetbrains Mono-12")))
 
 (setq default-frame-scroll-bars 'right)
 (setq scroll-bar-mode nil)
@@ -38,7 +38,7 @@
   :ensure t
   :init
   (custom-set-faces
-   '(variable-pitch ((t (:family "Iosevka")))))
+   '(variable-pitch ((t (:family "Jetbrains Mono")))))
 
   ;; From https://gitlab.gnome.org/chergert/ptyxis/-/blob/cbdee77429b8a4b70f1bea95af559eeddbb4ee17/src/palettes/gnome.palette
   (setq modus-vivendi-palette-overrides
@@ -151,9 +151,9 @@
         (date-weekend blue-faint)))
 
   (setq modus-themes-variable-pitch-ui nil
-      modus-themes-italic-constructs nil
-      modus-themes-bold-constructs t
-      modus-themes-mixed-fonts nil))
+        modus-themes-italic-constructs nil
+        modus-themes-bold-constructs t
+        modus-themes-mixed-fonts nil))
 
 (use-package auto-dark
   :ensure t
@@ -190,12 +190,6 @@ function.  Then you can control the buffer's specifics via
          (side . bottom)
          (slot . 0)
          (window-parameters . ((mode-line-format . none))))
-        ;; Embark at bottom
-        ("\\*Embark Actions\\*"
-         (display-buffer-below-selected)
-         (window-height . fit-window-to-buffer)
-         (window-parameters . ((no-other-window . t)
-                               (mode-line-format . none))))
         ;; ispell-word at bottom
         ("\\*Choices\\*"
          (display-buffer-below-selected)
