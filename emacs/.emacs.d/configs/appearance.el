@@ -31,6 +31,7 @@
 
 (use-package rainbow-mode
   :ensure nil
+  :commands (rainbow-mode)
   :config
   (setq rainbow-x-colors nil))
 
