@@ -13,6 +13,7 @@ function.  Then you can control the buffer's specifics via
   :ensure nil
   :commands (mu4e)
   :hook ((mu4e-compose-mode . (lambda ()
+                                (display-line-numbers-mode)
                                 (set-fill-column 72)))
          (mu4e-thread-mode . mu4e-thread-fold-all)
          (dired-mode  . turn-on-gnus-dired-mode))
