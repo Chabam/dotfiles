@@ -25,13 +25,13 @@ export PS1="${TOOLBOX_PROMPT}\[\033[01;32m\]\u@\h\[\033[00m\]:\[\033[01;34m\]\w\
 
 if [ -x /usr/bin/dircolors ]; then
     test -r ~/.dircolors && eval "$(dircolors -b ~/.dircolors)" || eval "$(dircolors -b)"
-    alias ls='ls --color=auto'
-    alias dir='dir --color=auto'
-    alias vdir='vdir --color=auto'
+    alias ls='TERM=ansi ls --color=auto'
+    alias dir='TERM=ansi dir --color=auto'
+    alias vdir='TERM=ansi vdir --color=auto'
 
-    alias grep='grep --color=auto'
-    alias fgrep='fgrep --color=auto'
-    alias egrep='egrep --color=auto'
+    alias grep='TERM=ansi grep --color=auto'
+    alias fgrep='TERM=ansi fgrep --color=auto'
+    alias egrep='TERM=ansi egrep --color=auto'
 fi
 
 HISTCONTROL=erasedups
