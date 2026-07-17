@@ -12,8 +12,6 @@
   (setq-default comint-scroll-to-bottom-on-output nil)
   (setq-default comint-input-autoexpand 'input))
 
-(defun eshell/clear () (eshell/clear-scrollback))
-
 (use-package eshell
   :ensure nil
   :commands (eshell)
