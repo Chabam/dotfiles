@@ -142,14 +142,10 @@
         (fg-heading-8 magenta)
 
         ;; Org agenda
-        (date-common cyan)
         (date-deadline red-warmer)
         (date-event magenta-warmer)
-        (date-holiday blue)
         (date-now yellow-warmer)
-        (date-scheduled magenta-cooler)
-        (date-weekday cyan-cooler)
-        (date-weekend blue-faint)))
+        (date-scheduled magenta-cooler)))
 
   (setq modus-themes-variable-pitch-ui nil
         modus-themes-italic-constructs nil
