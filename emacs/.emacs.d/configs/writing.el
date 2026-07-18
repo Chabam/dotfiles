@@ -15,8 +15,7 @@ function.  Then you can control the buffer's specifics via
   :hook ((mu4e-compose-mode . (lambda ()
                                 (display-line-numbers-mode)
                                 (set-fill-column 72)))
-         (mu4e-thread-mode . mu4e-thread-fold-all)
-         (dired-mode  . turn-on-gnus-dired-mode))
+         (mu4e-thread-mode . mu4e-thread-fold-all))
   :bind (("C-c m" . mu4e-transient-menu))
   :config
   (setq mu4e-contexts
@@ -100,6 +99,7 @@ function.  Then you can control the buffer's specifics via
     (add-to-list 'mm-discouraged-alternatives "text/richtext")
     (add-to-list 'mm-discouraged-alternatives "multipart/related"))
 
-  (setq mu4e-change-filenames-when-moving t))
+  (setq mu4e-change-filenames-when-moving t)
+  (add-hook 'dired-mode-hook #'turn-on-gnus-dired-mode))
 
 (provide 'writing)
