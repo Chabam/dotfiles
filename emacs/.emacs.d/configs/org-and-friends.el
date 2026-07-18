@@ -78,7 +78,7 @@
   :ensure nil
   :bind (("C-c a" . org-agenda))
   :config
-  (setq org-agenda-files '("agenda.org" "inbox.org" "notes.org"))
+  (setq org-agenda-files '("calendrier.org" "taches.org" "inbox.org"))
   (add-to-list 'org-agenda-custom-commands
                '("W" "Weekend"
                  ((agenda ""))
@@ -126,9 +126,9 @@
 
   (setq org-attach-use-inheritance t)
 
-  (setq org-default-notes-file "inbox.org")
-  (setq org-capture-templates '(("t" "Tâche" entry (file ""))
-		                         "* FAIRE %?\n%u\n%a"))
+  (setq org-default-notes-file (file-name-concat org-directory "inbox.org"))
+  (setq org-capture-templates '(("t" "Tâche" entry (file "")
+		                         "* FAIRE %?\n%u\n%a")))
 
   (setq org-archive-location "archive.org::datetree/")
   (setq org-attach-id-dir "data")
@@ -136,7 +136,7 @@
 
   (setq org-refile-use-outline-path 'file)
   (setq org-outline-path-complete-in-steps nil)
-  (setq org-refile-targets '((org-agenda-files :maxlevel . 3)))
+  (setq org-refile-targets `((,(remove "inbox.org" org-agenda-files) :maxlevel . 3)))
 
   (when chbm/emacs-containerized
     (setq org-file-apps '((auto-mode . emacs)
@@ -187,10 +187,8 @@
   (setq org-caldav-calendar-id "chabam/main")
   (setq org-caldav-sync-todo t)
   (setq org-icalendar-include-todo 'all)
-  (setq org-caldav-inbox "inbox.org")
-  (setq org-caldav-files (list org-caldav-inbox
-                               "agenda.org"
-                               "archive.org"))
+  (setq org-caldav-inbox (file-name-concat org-directory "inbox.org"))
+  (setq org-caldav-files (mapcar (lambda (f) (file-name-concat org-directory f)) org-agenda-files))
   (setq org-caldav-save-directory (file-name-concat org-directory ".org-caldav"))
   (setq org-caldav-todo-percent-states
         '((0 "FAIRE") (25 "COURS") (50 "ATTENTE") (100 "FAIT"))))
