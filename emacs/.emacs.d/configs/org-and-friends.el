@@ -188,7 +188,8 @@
   (setq org-caldav-sync-todo t)
   (setq org-icalendar-include-todo 'all)
   (setq org-caldav-inbox (file-name-concat org-directory "inbox.org"))
-  (setq org-caldav-files (mapcar (lambda (f) (file-name-concat org-directory f)) org-agenda-files))
+  (setq org-caldav-files (mapcar (lambda (f) (file-name-concat org-directory f))
+                                 (append '("archive.org") org-agenda-files)))
   (setq org-caldav-save-directory (file-name-concat org-directory ".org-caldav"))
   (setq org-caldav-todo-percent-states
         '((0 "FAIRE") (25 "COURS") (50 "ATTENTE") (100 "FAIT"))))
