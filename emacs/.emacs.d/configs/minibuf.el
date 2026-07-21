@@ -1,4 +1,5 @@
 (setq enable-recursive-minibuffers t)
+(setq read-minibuffer-restore-windows nil)
 
 (add-hook 'after-init-hook #'minibuffer-depth-indicate-mode)
 (add-hook 'after-init-hook #'minibuffer-electric-default-mode)
