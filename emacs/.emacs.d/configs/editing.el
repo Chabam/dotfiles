@@ -31,9 +31,10 @@
 
 (defun chbm/setup-tempel-capf (&rest _)
   ;; Removing tempel-expand if it was already there first
+  (setq-local corfu-auto-trigger "/")
   (setq-local completion-at-point-functions
-              (cons #'tempel-expand (delete #'tempel-expand
-                                            completion-at-point-functions))))
+              (cons (cape-capf-trigger #'tempel-complete ?/)
+                    completion-at-point-functions)))
 
 (use-package tempel
   :ensure t
@@ -65,8 +66,6 @@
 (global-set-key (kbd "C-x r y") 'chbm/yank-copied-rectangle-as-lines)
 (global-set-key (kbd "C-S-d") 'duplicate-dwim)
 (global-set-key (kbd "M-z") 'zap-up-to-char) ; zap-up-to-char instead of zap-to-char
-
-(global-set-key (kbd "M-/") 'hippie-expand)
 
 ;; Useful keys stolen from oantolin
 (global-set-key (kbd "C-d") 'delete-forward-char)
