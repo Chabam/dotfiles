@@ -174,8 +174,6 @@ function.  Then you can control the buffer's specifics via
 (setq even-window-sizes 'height-only)
 (setq window-sides-vertical nil)
 (setq switch-to-buffer-in-dedicated-window 'pop)
-(setq split-height-threshold 85)
-(setq split-width-threshold 125)
 (setq window-min-height 3)
 (setq window-min-width 30)
 (setq fit-window-to-buffer-horizontally t)
