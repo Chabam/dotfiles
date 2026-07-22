@@ -213,4 +213,4 @@ account c++14 digit separator"
   :ensure nil
   :mode (("\\.desktop\\'" . conf-desktop-mode)))
 
-(provide 'programming-languages)
+(provide 'chbm-prog-modes)

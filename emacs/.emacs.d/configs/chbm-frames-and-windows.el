@@ -60,4 +60,4 @@
 
 (global-set-key (kbd "M-o") 'other-window)
 
-(provide 'frames-and-windows)
+(provide 'chbm-frames-and-windows)

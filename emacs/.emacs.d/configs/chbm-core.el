@@ -79,4 +79,5 @@
 
 (with-eval-after-load 'compile
   (remove-hook 'compilation-mode-hook #'tramp-compile-disable-ssh-controlmaster-options))
-(provide 'basic)
+
+(provide 'chbm-core)

@@ -18,4 +18,4 @@
   :ensure t
   :hook (after-init . marginalia-mode))
 
-(provide 'minibuf)
+(provide 'chbm-minibuffer)

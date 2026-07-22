@@ -196,4 +196,4 @@
 (defalias 'org-emphasize-accronym
   (kmacro "C-SPC C-f C-c C-x C-f * C-d C-x 8 <return> z e r o <return> M-f C-f"))
 
-(provide 'org-and-friends)
+(provide 'chbm-org)

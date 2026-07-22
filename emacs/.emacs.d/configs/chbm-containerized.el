@@ -21,4 +21,4 @@ calls `flatpak-spawn --host xdg-open'"
     ;; need to do the same gymnastic as the original `dired-do-open'
     (mapc #'chbm/xdg-open-host files)))
 
-(provide 'containerized)
+(provide 'chbm-containerized)

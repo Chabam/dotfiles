@@ -3,8 +3,6 @@
               tab-width 4
               indent-tabs-mode nil)
 
-(add-hook 'prog-mode-hook #'completion-preview-mode)
-
 (use-package eglot
   :ensure nil
   :bind (("C-c e a" . eglot-code-actions)
@@ -101,24 +99,10 @@
   :ensure t
   :hook (after-init . direnv-mode))
 
-(use-package corfu
-  :ensure t
-  :bind (:map corfu-map
-          ("RET" . nil))
-  :hook ((after-init . global-corfu-mode)
-	     (after-init . corfu-popupinfo-mode))
-  :config
-  (setq corfu-cycle t)
-  (setq corfu-popupinfo-delay 0.5)
-  (setq tab-always-indent 'complete))
-
-;; Completion stuff
-(setq text-mode-ispell-word-completion nil)
-
 (use-package gdb-mi
   :ensure nil
   :commands (gdb gud-gdb)
   :config
   (setq gdb-debuginfod-enable-setting nil))
 
-(provide 'programming)
+(provide 'chbm-prog)

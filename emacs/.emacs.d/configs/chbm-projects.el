@@ -42,4 +42,4 @@
 ;; 			                   pdf-view-mode
 ;; 			                   nov-mode)))
 
-(provide 'project-management)
+(provide 'chbm-projects)

@@ -29,24 +29,6 @@
   (setq show-paren-when-point-inside-paren t)
   (setq show-paren-context-when-offscreen 'overlay))
 
-(defun chbm/setup-tempel-capf (&rest _)
-  ;; Removing tempel-expand if it was already there first
-  (setq-local corfu-auto-trigger "/")
-  (setq-local completion-at-point-functions
-              (cons (cape-capf-trigger #'tempel-complete ?/)
-                    completion-at-point-functions)))
-
-(use-package tempel
-  :ensure t
-  :bind ((:map tempel-map
-               ("<tab>" . tempel-next)
-               ("<backtab>" . tempel-previous)))
-  :hook ((eglot-managed-mode . chbm/setup-tempel-capf)
-         (prog-mode . chbm/setup-tempel-capf)
-         (org-mode . chbm/setup-tempel-capf))
-  :config
-  (setq tempel-path (expand-file-name "templates" user-emacs-directory)))
-
 (defun chbm/buffer-lines-cols-whitespace ()
   (setq show-trailing-whitespace t)
   (column-number-mode)
@@ -90,4 +72,4 @@
 (global-set-key (kbd "C-M-o") 'up-list)
 (global-set-key (kbd "M-R") 'kill-backward-up-list)
 
-(provide 'editing)
+(provide 'chbm-editing)

@@ -24,16 +24,6 @@
 (setq bookmark-fringe-mark nil)
 (setq bookmark-save-flag 1)
 
-(use-package orderless
-  :ensure t
-  :config
-  (setq completion-ignore-case t)
-  (setq read-file-name-completion-ignore-case t)
-  (setq read-buffer-completion-ignore-case t)
-  (setq completion-styles '(orderless basic))
-  (setq completion-category-overrides '((file (styles basic partial-completion))))
-  (setq completion-matching-styles '(orderless-regexp)))
-
 (use-package consult
   :ensure t
   :hook ((after-init . (lambda ()
@@ -71,10 +61,6 @@
 	 ("M-s" . consult-history)
 	 ("M-r" . consult-history)))
 
-(use-package cape
-  :ensure t
-  :commands (cape-file))
-
 (use-package wgrep
   :after grep
   :ensure t)
@@ -86,4 +72,4 @@
   (setq isearch-lazy-count-prefix-format "%s/%s")
   (setq isearch-lazy-count-suffix-format nil))
 
-(provide 'searching)
+(provide 'chbm-searching)

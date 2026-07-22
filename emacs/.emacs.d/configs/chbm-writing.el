@@ -9,13 +9,15 @@ function.  Then you can control the buffer's specifics via
 
 (advice-add #'ispell-display-buffer :override #'prot-spell-ispell-display-buffer)
 
+(add-hook 'text-mode-hook #'auto-fill-mode)
+
 (use-package mu4e
   :ensure nil
   :commands (mu4e)
   :hook ((mu4e-compose-mode . (lambda ()
                                 (display-line-numbers-mode)
                                 (set-fill-column 72)))
-         (mu4e-thread-mode . mu4e-thread-fold-all))
+x         (mu4e-thread-mode . mu4e-thread-fold-all))
   :bind (("C-c m" . mu4e-transient-menu))
   :config
   (setq mu4e-contexts
@@ -102,4 +104,4 @@ function.  Then you can control the buffer's specifics via
   (setq mu4e-change-filenames-when-moving t)
   (add-hook 'dired-mode-hook #'turn-on-gnus-dired-mode))
 
-(provide 'writing)
+(provide 'chbm-writing)

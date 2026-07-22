@@ -2,28 +2,29 @@
 			 (list (expand-file-name "configs" user-emacs-directory)))))
 
   ;; Order is important here
-  (require 'external-packages)
-  (require 'containerized)
+  (require 'chbm-packages)
+  (require 'chbm-containerized)
 
-  (require 'appearance)
-  (require 'basic)
-  (require 'frames-and-windows)
+  (require 'chbm-style)
+  (require 'chbm-core)
+  (require 'chbm-frames-and-windows)
 
-  (require 'minibuf)
-  (require 'searching)
+  (require 'chbm-minibuffer)
+  (require 'chbm-searching)
+  (require 'chbm-completion)
 
-  (require 'keybinds)
-  (require 'editing)
-  (require 'abbreviations)
+  (require 'chbm-keybindings)
+  (require 'chbm-editing)
+  (require 'chbm-abbrev)
 
-  (require 'project-management)
-  (require 'programming)
-  (require 'programming-languages)
-  (require 'interactive-modes)
+  (require 'chbm-projects)
+  (require 'chbm-prog)
+  (require 'chbm-prog-modes)
+  (require 'chbm-comint-modes)
 
-  (require 'writing)
-  (require 'org-and-friends)
+  (require 'chbm-writing)
+  (require 'chbm-org)
 
   ;; If I ever get forced to use this proprietary garbage
   (when (eq system-type 'windows-nt)
-    (require 'ms-windows)))
+    (require 'chbm-ms-windows)))

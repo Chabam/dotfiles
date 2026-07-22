@@ -20,4 +20,4 @@
   (package-refresh-contents))
 
 (require 'use-package)
-(provide 'external-packages)
+(provide 'chbm-packages)

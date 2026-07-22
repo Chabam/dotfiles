@@ -36,4 +36,4 @@
               ("M-r" . consult-history)
               ("M-s" . consult-history)))
 
-(provide 'interactive-modes)
+(provide 'chbm-comint-modes)

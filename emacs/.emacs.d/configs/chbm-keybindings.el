@@ -43,4 +43,4 @@
 ;; Enabling some disabled commands
 (put 'narrow-to-region 'disabled nil)
 
-(provide 'keybinds)
+(provide 'chbm-keybindings)

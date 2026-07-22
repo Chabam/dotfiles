@@ -9,4 +9,4 @@
 ;; Must install msys64!
 (setq find-program "C:\\msys64\\usr\\bin\\find.exe")
 
-(provide 'ms-windows)
+(provide 'chbm-ms-windows)
