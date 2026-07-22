@@ -59,6 +59,7 @@
   (setq org-icalendar-use-deadline '(event-if-not-todo event-if-todo event-if-todo-not-done todo-due))
   (setq org-icalendar-timezone "America/Toronto")
   (setq org-icalendar-date-time-format ";TZID=%Z:%Y%m%dT%H%M%S")
+  (setq org-icalendar-include-todo 'all)
 
   (setq icalendar-export-sexp-enumerate-all t)
   (setq icalendar-export-sexp-enumeration-days 365))
@@ -78,7 +79,6 @@
   :ensure nil
   :bind (("C-c a" . org-agenda))
   :config
-  (setq org-agenda-files '("calendrier.org" "taches.org" "inbox.org"))
   (add-to-list 'org-agenda-custom-commands
                '("W" "Weekend"
                  ((agenda ""))
@@ -99,11 +99,11 @@
   :ensure nil
   :bind (("C-c l" . org-store-link)
          ("C-c c" . org-capture))
-  :hook ((org-mode . (lambda ()
-                       (add-hook 'completion-at-point-functions #'cape-file nil t)))
+  :hook ((org-mode . auto-fill-mode)
          (org-mode . chbm/set-website-config))
   :config
 
+  (setq org-agenda-files '("calendrier.org" "taches.org" "inbox.org"))
   (setq org-directory "~/Documents/Org")
   (setq org-src-lang-modes `(("C" . c-ts)
                              ("C++" . c++-ts)
@@ -122,8 +122,6 @@
                              ("shell" . sh)
                              ,@(org-src--get-known-shells)))
 
-  (setq org-babel-results-keyword "results")
-
   (setq org-attach-use-inheritance t)
 
   (setq org-default-notes-file (file-name-concat org-directory "inbox.org"))
@@ -138,13 +136,18 @@
   (setq org-outline-path-complete-in-steps nil)
   (setq org-refile-targets `((,(remove "inbox.org" org-agenda-files) :maxlevel . 3)))
 
+
   (when chbm/emacs-containerized
     (setq org-file-apps '((auto-mode . emacs)
                           (directory . emacs)
                           ("\\.mm\\'" . chbm/xdg-open-host)
                           ("\\.x?html?\\'" . chbm/xdg-open-host)
-                          ("\\.pdf\\'" . chbm/xdg-open-host))))
-  ;; babel
+                          ("\\.pdf\\'" . chbm/xdg-open-host)))))
+
+(use-package ob
+  :ensure nil
+  :config
+  (setq org-babel-results-keyword "results")
   (org-babel-do-load-languages
    'org-babel-load-languages '((C . t)
                                (emacs-lisp . t)
@@ -168,16 +171,12 @@
 
 (use-package org-download
   :ensure t
-  :hook ((org-mode . (lambda ()
-                       (require 'org-download))))
+  :hook ((org-mode . org-download-enable))
   :commands (org-download-clipboard)
   :config
   (setq-default org-download-image-dir "./images"
                 org-download-heading-lvl nil)
   (add-hook 'dired-mode-hook #'org-download-enable))
-
-(add-hook 'org-mode-hook #'auto-fill-mode)
-(add-hook 'text-mode-hook #'auto-fill-mode)
 
 (use-package org-caldav
   :ensure t
@@ -186,7 +185,6 @@
   (setq org-caldav-url "https://nextcloud.chabam.ca/remote.php/dav/calendars/")
   (setq org-caldav-calendar-id "chabam/main")
   (setq org-caldav-sync-todo t)
-  (setq org-icalendar-include-todo 'all)
   (setq org-caldav-inbox (file-name-concat org-directory "inbox.org"))
   (setq org-caldav-files (mapcar (lambda (f) (file-name-concat org-directory f))
                                  (append '("archive.org") org-agenda-files)))
