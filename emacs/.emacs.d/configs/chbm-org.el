@@ -100,10 +100,14 @@
   :bind (("C-c l" . org-store-link)
          ("C-c c" . org-capture))
   :hook ((org-mode . auto-fill-mode)
-         (org-mode . chbm/set-website-config))
+         (org-mode . chbm/set-website-config)
+         (org-shiftmetaup-final . chbm/move-window-above)
+         (org-shiftmetaleft-final . chbm/move-window-left)
+         (org-shiftmetadown-final . chbm/move-window-below)
+         (org-shiftmetaright-final . chbm/move-window-right))
   :config
 
-  (setq org-agenda-files '("calendrier.org" "taches.org" "inbox.org"))
+  (setq org-agenda-files '("calendrier.org" "taches.org" "inbox.org" "projets.org"))
   (setq org-directory "~/Documents/Org")
   (setq org-src-lang-modes `(("C" . c-ts)
                              ("C++" . c++-ts)
@@ -187,7 +191,9 @@
   (setq org-caldav-sync-todo t)
   (setq org-caldav-inbox (file-name-concat org-directory "inbox.org"))
   (setq org-caldav-files (mapcar (lambda (f) (file-name-concat org-directory f))
-                                 (append '("archive.org") org-agenda-files)))
+                                 (append '("archive.org")
+                                         (remove "projets.org"
+                                                 org-agenda-files))))
   (setq org-caldav-save-directory (file-name-concat org-directory ".org-caldav"))
   (setq org-caldav-todo-percent-states
         '((0 "FAIRE") (25 "COURS") (50 "ATTENTE") (100 "FAIT"))))

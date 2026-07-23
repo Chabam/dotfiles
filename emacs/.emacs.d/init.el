@@ -5,7 +5,7 @@
   (require 'chbm-packages)
   (require 'chbm-containerized)
 
-  (require 'chbm-style)
+  (require 'chbm-appearance)
   (require 'chbm-core)
   (require 'chbm-frames-and-windows)
 

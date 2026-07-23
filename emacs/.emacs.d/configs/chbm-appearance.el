@@ -195,4 +195,4 @@ function.  Then you can control the buffer's specifics via
 (setq whitespace-style '(face indentation tabs tab-mark spaces space-mark
                               newline newline-mark trailing))
 
-(provide 'chbm-style)
+(provide 'chbm-appearance)
