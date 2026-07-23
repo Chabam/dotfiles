@@ -13,19 +13,20 @@
 
 
 (defun chbm/capf-prog-mode ()
-  (setq-local completion-at-point-functions
-              (list (cape-capf-super #'cape-dabbrev
-                                     #'cape-abbrev
-                                     #'cape-file
-                                     #'cape-keyword))))
+  (add-hook 'completion-at-point-functions
+            (cape-capf-super #'cape-file
+                             #'cape-keyword)
+            'append
+            'local))
 
 (defun chbm/capf-text-mode ()
-  (setq-local completion-at-point-functions
-              (list (cape-capf-super #'cape-dabbrev
-                                     #'cape-abbrev
-                                     #'cape-line
-                                     #'cape-dict
-                                     #'cape-file))))
+  (add-hook 'completion-at-point-functions
+            (cape-capf-super #'cape-line
+                             #'cape-dict
+                             #'cape-file)
+            'append
+            'local))
+
 (use-package cape
   :ensure t
   :hook ((prog-mode . chbm/capf-prog-mode)
@@ -45,10 +46,17 @@
 ;; Completion stuff
 (setq text-mode-ispell-word-completion nil)
 
+(defun chbm/completion-preview-only-local-mode ()
+  (if (file-remote-p default-directory)
+      (completion-preview-mode -1)
+    (completion-preview-mode 1)))
+
 (use-package completion-preview
   :hook ((prog-mode . completion-preview-mode)
          (text-mode . completion-preview-mode)
-         (comint-mode . completion-preview-mode))
+         (comint-mode . completion-preview-mode)
+         (eshell-mode . chbm/completion-preview-only-local-mode)
+         (eshell-directory-change . chbm/completion-preview-only-local-mode))
   :bind (:map completion-preview-active-mode-map
               ("M-n" . completion-preview-next-candidate)
               ("M-p" . completion-preview-previous-candidate)))
@@ -56,9 +64,10 @@
 (defun chbm/setup-tempel-capf (&rest _)
   ;; Removing tempel-expand if it was already there first
   (setq-local corfu-auto-trigger "/")
-  (setq-local completion-at-point-functions
-              (cons (cape-capf-trigger #'tempel-complete ?/)
-                    completion-at-point-functions)))
+  (add-hook 'completion-at-point-functions
+            (cape-capf-trigger #'tempel-complete ?/)
+            nil
+            'local))
 
 (use-package tempel
   :ensure t
