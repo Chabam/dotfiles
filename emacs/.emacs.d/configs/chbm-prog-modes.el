@@ -138,9 +138,9 @@ account c++14 digit separator"
                         (c-ts-mode-set-style 'bsd)))
          (ff-pre-find . chbm/set-cc-search-dirs-project)))
 
-(use-package xml-mode
+(use-package sgml-mode
   :ensure nil
-  :mode "\\.cts")
+  :mode ("\\.cts" "\\.doap"))
 
 (use-package ess
   :ensure t
