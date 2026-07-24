@@ -85,6 +85,7 @@ RUN dnf -y install \
     gdb \
     hunspell-en \
     hunspell-fr \
+    enchant2-devel \
     locate \
     make \
     pandoc \

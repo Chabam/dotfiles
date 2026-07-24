@@ -1,14 +1,3 @@
-;; Thanks Prot!
-(defun prot-spell-ispell-display-buffer (buffer)
-  "Function to override `ispell-display-buffer' for BUFFER.
-Use this as `advice-add' to override the aforementioned Ispell
-function.  Then you can control the buffer's specifics via
-`display-buffer-alist' (how it ought to be!)."
-  (pop-to-buffer buffer)
-  (set-window-point (get-buffer-window buffer) (point-min)))
-
-(advice-add #'ispell-display-buffer :override #'prot-spell-ispell-display-buffer)
-
 (add-hook 'text-mode-hook #'auto-fill-mode)
 
 (use-package mu4e
@@ -17,7 +6,7 @@ function.  Then you can control the buffer's specifics via
   :hook ((mu4e-compose-mode . (lambda ()
                                 (display-line-numbers-mode)
                                 (set-fill-column 72)))
-x         (mu4e-thread-mode . mu4e-thread-fold-all))
+         (mu4e-thread-mode . mu4e-thread-fold-all))
   :bind (("C-c m" . mu4e-transient-menu))
   :config
   (setq mu4e-contexts
@@ -33,11 +22,11 @@ x         (mu4e-thread-mode . mu4e-thread-fold-all))
                        (mu4e-refile-folder . "/gmail/[Gmail]/All Mail")
                        (mu4e-trash-folder . "/gmail/[Gmail]/Trash")
                        (mu4e-maildir-shortcuts . ((:name "Inbox"
-                                                         :maildir "/gmail/[Gmail]/All Mail"
-                                                         :key ?i)
+                                                   :maildir "/gmail/[Gmail]/All Mail"
+                                                   :key ?i)
                                                   (:name "Sent"
-                                                         :maildir "/gmail/[Gmail]/Sent Mail"
-                                                         :key ?s)))))
+                                                   :maildir "/gmail/[Gmail]/Sent Mail"
+                                                   :key ?s)))))
 
               (make-mu4e-context
                :name "UdeS"
@@ -65,10 +54,10 @@ x         (mu4e-thread-mode . mu4e-thread-fold-all))
   (setq mu4e-attachment-dir "~/Downloads")
 
   (setq mu4e-headers-fields
-      '((:human-date . 12)
-        (:from-or-to . 22)
-        (:subject)
-        (:flags)))
+        '((:human-date . 12)
+          (:from-or-to . 22)
+          (:subject)
+          (:flags)))
 
   (setq mu4e-use-fancy-chars t)
   (setq mu4e-headers-attach-mark    '("a" . "📎")
@@ -103,5 +92,17 @@ x         (mu4e-thread-mode . mu4e-thread-fold-all))
 
   (setq mu4e-change-filenames-when-moving t)
   (add-hook 'dired-mode-hook #'turn-on-gnus-dired-mode))
+
+(use-package jinx
+  :hook ((org-mode . jinx-mode)
+         (text-mode . jinx-mode)
+         (markdown-mode . jinx-mode)
+         (log-edit-mode . jinx-mode))
+  :bind (("M-$" . jinx-correct)
+         ("C-M-$" . jinx-languages))
+  :ensure t
+  :config
+  (setq jinx-languages "en_CA fr_CA"))
+
 
 (provide 'chbm-writing)
