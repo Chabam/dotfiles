@@ -26,7 +26,9 @@
                                             "--completion-style=detailed"
                                             "--clang-tidy=false"
                                             "--log=error"
-                                            "--background-index"))))
+                                            "--background-index")))
+  (add-to-list 'eglot-server-programs
+               '((vala-mode) . ("vala-language-server"))))
 
 (use-package eglot-inactive-regions
   :after eglot
