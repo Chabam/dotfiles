@@ -35,6 +35,15 @@
   :config
   (setq rainbow-x-colors nil))
 
+(defun chbm/modus-face-overrides ()
+  (modus-themes-with-colors
+    (custom-set-faces
+     `(read-multiple-choice-face ((,c :inherit bold
+                                      :background
+                                      ,fg-mark-select
+                                      :foreground
+                                      ,bg-mark-select))))))
+
 (use-package modus-themes
   :ensure t
   :init
@@ -155,7 +164,9 @@
 (use-package auto-dark
   :ensure t
   :defer t
-  :hook ((after-init . auto-dark-mode))
+  :hook ((after-init . auto-dark-mode)
+         (auto-dark-dark-mode . chbm/modus-face-overrides)
+         (auto-dark-light-mode . chbm/modus-face-overrides))
   :custom
   (auto-dark-themes '((modus-vivendi) (modus-operandi))))
 
