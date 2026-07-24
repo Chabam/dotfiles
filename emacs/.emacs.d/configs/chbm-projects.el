@@ -1,6 +1,10 @@
 (setq delete-by-moving-to-trash t)
 (setq vc-follow-symlinks t)
 
+(add-hook 'log-edit-mode-hook (lambda ()
+                                (display-line-numbers-mode -1)
+                                (flyspell-mode 1)))
+
 (setq project-switch-commands
       '((project-find-file "Find file")
         (project-find-regexp "Find regexp")
