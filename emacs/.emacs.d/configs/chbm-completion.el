@@ -14,21 +14,22 @@
 
 
 (defun chbm/capf-prog-mode ()
-  (add-hook 'completion-at-point-functions
-            (cape-capf-super #'cape-dabbrev
-                             #'cape-file
-                             #'cape-keyword)
-            'append
-            'local))
+  (dolist (fn '(cape-keyword
+                cape-file
+                cape-dabbrev))
+    (add-hook 'completion-at-point-functions
+              fn
+              'append
+              'local)))
 
 (defun chbm/capf-text-mode ()
-  (add-hook 'completion-at-point-functions
-            (cape-capf-super #'cape-dabbrev
-                             #'cape-line
-                             #'cape-dict
-                             #'cape-file)
-            'append
-            'local))
+  (dolist (fn '(cape-file
+                cape-line
+                cape-dabbrev))
+    (add-hook 'completion-at-point-functions
+              fn
+              'append
+              'local)))
 
 (use-package cape
   :ensure t
@@ -45,9 +46,6 @@
   (setq corfu-cycle t)
   (setq corfu-popupinfo-delay 0.5)
   (setq tab-always-indent 'complete))
-
-;; Completion stuff
-(setq text-mode-ispell-word-completion nil)
 
 (defun chbm/completion-preview-only-local-mode ()
   (if (file-remote-p default-directory)
@@ -70,11 +68,10 @@
                                           t)))
 
 (defun chbm/setup-tempel-capf (&rest _)
-  ;; Removing tempel-expand if it was already there first
   (setq-local corfu-auto-trigger "/")
   (add-hook 'completion-at-point-functions
             (cape-capf-trigger #'tempel-complete ?/)
-            nil
+            'append
             'local))
 
 (use-package tempel
