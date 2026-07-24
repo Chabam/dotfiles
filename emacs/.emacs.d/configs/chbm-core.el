@@ -51,6 +51,9 @@
   (when chbm/emacs-containerized
     (define-key dired-mode-map (kbd "E") #'chbm/dired-do-open-containerized)))
 
+(use-package compat
+  :ensure t)
+
 (use-package browse-url
   :if chbm/emacs-containerized
   :config
