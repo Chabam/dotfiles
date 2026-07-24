@@ -8,20 +8,23 @@
   (setq orderless-matching-styles '(orderless-literal orderless-regexp))
   (setq completion-category-defaults nil)
   (setq completion-category-overrides '((file (styles . (basic partial-completion orderless)))
-                                        (buffer (styles . (substring orderless)))))
+                                        (buffer (styles . (substring orderless)))
+                                        (project-file (styles . (substring orderless)))))
   (setq completions-sort 'history))
 
 
 (defun chbm/capf-prog-mode ()
   (add-hook 'completion-at-point-functions
-            (cape-capf-super #'cape-file
+            (cape-capf-super #'cape-dabbrev
+                             #'cape-file
                              #'cape-keyword)
             'append
             'local))
 
 (defun chbm/capf-text-mode ()
   (add-hook 'completion-at-point-functions
-            (cape-capf-super #'cape-line
+            (cape-capf-super #'cape-dabbrev
+                             #'cape-line
                              #'cape-dict
                              #'cape-file)
             'append
