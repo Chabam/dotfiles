@@ -55,14 +55,19 @@
     (completion-preview-mode 1)))
 
 (use-package completion-preview
-  :hook ((prog-mode . completion-preview-mode)
-         (text-mode . completion-preview-mode)
-         (comint-mode . completion-preview-mode)
+  :hook ((after-init . global-completion-preview-mode)
          (eshell-mode . chbm/completion-preview-only-local-mode)
          (eshell-directory-change . chbm/completion-preview-only-local-mode))
   :bind (:map completion-preview-active-mode-map
               ("M-n" . completion-preview-next-candidate)
-              ("M-p" . completion-preview-previous-candidate)))
+              ("M-p" . completion-preview-previous-candidate))
+  :config
+  (setq completion-preview-ignore-case t)
+  (setq completion-preview-sort-function #'identity)
+  (setq global-completion-preview-modes '((not archive-mode calc-mode compilation-mode diff-mode dired-mode
+                                               image-mode minibuffer-inactive-mode
+                                               org-agenda-mode special-mode wdired-mode)
+                                          t)))
 
 (defun chbm/setup-tempel-capf (&rest _)
   ;; Removing tempel-expand if it was already there first
