@@ -150,6 +150,7 @@
 
 (use-package ob
   :ensure nil
+  :after org
   :config
   (setq org-babel-results-keyword "results")
   (org-babel-do-load-languages
