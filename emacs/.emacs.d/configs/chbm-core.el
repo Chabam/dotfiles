@@ -83,4 +83,7 @@
 (with-eval-after-load 'compile
   (remove-hook 'compilation-mode-hook #'tramp-compile-disable-ssh-controlmaster-options))
 
+(when chbm/emacs-containerized
+  (setq tramp-podman-program "podman-remote"))
+
 (provide 'chbm-core)
