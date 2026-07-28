@@ -4,7 +4,7 @@
   (setq completion-ignore-case t)
   (setq read-file-name-completion-ignore-case t)
   (setq read-buffer-completion-ignore-case t)
-  (setq completion-styles '(basic orderless))
+  (setq completion-styles '(basic substring orderless))
   (setq orderless-matching-styles '(orderless-literal orderless-regexp))
   (setq completion-category-defaults nil)
   (setq completion-category-overrides '((file (styles . (basic partial-completion orderless)))
@@ -48,7 +48,9 @@
   (setq tab-always-indent 'complete))
 
 (defun chbm/completion-preview-only-local-mode ()
-  (if (file-remote-p default-directory)
+  (if (and (file-remote-p default-directory)
+           (not (string= "podman"
+                (cadr (tramp-dissect-file-name default-directory)))))
       (completion-preview-mode -1)
     (completion-preview-mode 1)))
 

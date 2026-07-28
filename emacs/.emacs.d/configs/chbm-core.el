@@ -61,6 +61,22 @@
         (lambda (url &optional _)
           (start-process "browse-url-browser" nil "flatpak-xdg-open" url))))
 
+;; Must be before the docker package!!
+(when chbm/emacs-containerized
+  (setq tramp-podman-program "podman-remote"))
+
+(use-package docker
+  :ensure t
+  :commands (docker docker-compose)
+  :bind (("C-c p" . docker)) ;; `p' because podman :)
+  :config
+  (setq docker-command (if chbm/emacs-containerized
+                           "podman-remote"
+                         "podman"))
+  (setq docker-compose-command (if chbm/emacs-containerized
+                                   "podman-remote compose"
+                                 "podman compose")))
+
 ;; https://coredumped.dev/2025/06/18/making-tramp-go-brrrr./
 (setq remote-file-name-inhibit-locks t)
 (setq tramp-use-scp-direct-remote-copying t)
@@ -83,7 +99,5 @@
 (with-eval-after-load 'compile
   (remove-hook 'compilation-mode-hook #'tramp-compile-disable-ssh-controlmaster-options))
 
-(when chbm/emacs-containerized
-  (setq tramp-podman-program "podman-remote"))
 
 (provide 'chbm-core)
