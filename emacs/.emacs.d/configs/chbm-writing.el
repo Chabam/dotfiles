@@ -1,12 +1,17 @@
 (add-hook 'text-mode-hook #'auto-fill-mode)
 
+(defun chbm/start-pizauth ()
+  (when (string-empty-p (shell-command-to-string "pgrep pizauth"))
+    (shell-command "pizauth server")))
+
 (use-package mu4e
   :ensure nil
   :commands (mu4e)
   :hook ((mu4e-compose-mode . (lambda ()
                                 (display-line-numbers-mode)
                                 (set-fill-column 72)))
-         (mu4e-thread-mode . mu4e-thread-fold-all))
+         (mu4e-thread-mode . mu4e-thread-fold-all)
+         (mu4e-update-pre . chbm/start-pizauth))
   :bind (("C-c m" . mu4e-transient-menu))
   :config
   (setq mu4e-contexts
