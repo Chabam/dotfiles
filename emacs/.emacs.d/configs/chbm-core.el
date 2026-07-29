@@ -88,6 +88,36 @@
 (setq tramp-verbose 1)
 
 (with-eval-after-load 'tramp
+  ;; Inspired by: https://samsai.eu/post/toolbox-based-emacs-flatpak-workflow/
+  (add-to-list 'tramp-methods
+	           (cons
+		        "toolbox"
+		        '((tramp-login-program "toolbox")
+		          (tramp-login-args (("enter" "-c") ("%h")))
+		          (tramp-remote-shell "/bin/sh")
+		          (tramp-remote-shell-args ("-c")))))
+
+  (defun chbm/tramp-toolbox-completion-function (&rest _)
+    "Returns a list of available Toolbox containers"
+    (tramp-skeleton-completion-function "toolbox"
+      (when-let* ((raw-list
+		           (shell-command-to-string
+		            (concat "toolbox" " list -c")))
+		          (lines (split-string raw-list "\n" 'omit))
+		          (names
+		           (tramp-compat-seq-keep
+		            (lambda (line)
+		              (when (string-match
+			                 "^[a-z0-9]+[[:blank:]]*\\(.*?\\)[[:blank:]]"
+			                 line)
+		                (or (match-string 2 line) (match-string 1 line))))
+		            (cdr lines))))
+        (mapcar (lambda (name) (list nil name)) names))))
+
+  (tramp-set-completion-function
+   "toolbox"
+   '((chbm/tramp-toolbox-completion-function "")))
+
   (connection-local-set-profile-variables
    'remote-direct-async-process
    '((tramp-direct-async-process . t)))
