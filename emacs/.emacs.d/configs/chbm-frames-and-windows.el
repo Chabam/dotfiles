@@ -48,9 +48,7 @@
   ;; (windmove-swap-states-default-keybindings '(ctrl shift))
   (windmove-delete-default-keybindings))
 
-(use-package undelete-frame-mode
-  :ensure nil
-  :hook (after-init . undelete-frame-mode))
+(add-hook 'after-init-hook #'undelete-frame-mode)
 
 (setq frame-resize-pixelwise t)
 
