@@ -16,6 +16,9 @@
 
 (use-package marginalia
   :ensure t
-  :hook (after-init . marginalia-mode))
+  :hook (after-init . marginalia-mode)
+  :config
+  ;; TODO: add more if necessary.
+  (setq marginalia-remote-file-regexps '("\\(ssh:[^/|:]+\\):")))
 
 (provide 'chbm-minibuffer)
