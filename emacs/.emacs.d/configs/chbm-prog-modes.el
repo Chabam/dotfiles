@@ -1,17 +1,5 @@
 ;; -*- lexical-binding: t -*-
 
-(use-package auctex
-  :ensure t
-  :hook (LaTeX-mode . turn-on-reftex)
-  :config
-  (setq TeX-auto-save t)
-  (setq TeX-parse-self t)
-  (setq-default Tex-master nil)
-  (setq reftex-plug-into-AUCTeX t)
-  (when chbm/emacs-containerized
-    (setq TeX-view-program-list '(("xdg-open" "flatpak-spawn --host xdg-open %o"))))
-  (setq TeX-view-program-selection '((output-pdf "xdg-open"))))
-
 (use-package haskell-mode
   :ensure t
   :mode "\\.hs'")
