@@ -88,6 +88,7 @@
   (setq message-send-mail-function 'message-send-mail-with-sendmail)
   (setq sendmail-program (executable-find "msmtp"))
   (setq message-sendmail-f-is-evil t)
+  (setq message-confirm-send t)
   (setq message-sendmail-extra-arguments '("--read-envelope-from"))
   (setq message-sendmail-envelope-from 'header)
   (setq message-signature "Félix Chabot")
