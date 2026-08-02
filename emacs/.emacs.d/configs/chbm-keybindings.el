@@ -39,6 +39,7 @@
 ;; rebinds
 (global-set-key (kbd "C-x M-g") 'grep)
 (global-set-key (kbd "C-x M-e") 'eshell)
+(global-set-key (kbd "C-x M-s") 'shell)
 (global-set-key (kbd "C-x C-c C-c") 'save-buffers-kill-emacs)
 (global-set-key (kbd "C-x C-b") 'ibuffer)
 
