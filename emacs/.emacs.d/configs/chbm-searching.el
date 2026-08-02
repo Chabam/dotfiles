@@ -1,3 +1,5 @@
+;; -*- lexical-binding: t; -*-
+
 (use-package savehist
   :ensure nil
   :hook (after-init . savehist-mode)

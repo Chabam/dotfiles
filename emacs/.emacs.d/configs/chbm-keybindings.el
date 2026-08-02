@@ -1,3 +1,5 @@
+;; -*- lexical-binding: t; -*-
+
 (use-package which-key
   :ensure nil
   :hook (after-init . which-key-mode)

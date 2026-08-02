@@ -1,3 +1,5 @@
+;; -*- lexical-binding: t; -*-
+
 (defcustom chbm/emacs-containerized
   nil
   "Sets some stuff so that this Emacs works under a container (most likely

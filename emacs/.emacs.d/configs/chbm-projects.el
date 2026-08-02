@@ -1,3 +1,5 @@
+;; -*- lexical-binding: t; -*-
+
 (setq delete-by-moving-to-trash t)
 (setq vc-follow-symlinks t)
 

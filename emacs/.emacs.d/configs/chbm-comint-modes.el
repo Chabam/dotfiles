@@ -1,3 +1,5 @@
+;; -*- lexical-binding: t; -*-
+
 (use-package comint
   :ensure nil
   :hook

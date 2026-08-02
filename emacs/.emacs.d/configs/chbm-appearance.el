@@ -1,3 +1,5 @@
+;; -*- lexical-binding: t; -*-
+
 ;; Removing GUI features
 (setq default-frame-alist '((fullscreen . maximized)
 			    (menu-bar-lines . 0)

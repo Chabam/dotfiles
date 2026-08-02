@@ -1,3 +1,5 @@
+;; -*- lexical-binding: t; -*-
+
 ;; Default indentation
 (setq-default standard-indent 4
               tab-width 4

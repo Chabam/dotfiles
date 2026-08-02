@@ -1,3 +1,5 @@
+;; -*- lexical-binding: t; -*-
+
 (let ((load-path (append load-path
 			 (list (expand-file-name "configs" user-emacs-directory)))))
 

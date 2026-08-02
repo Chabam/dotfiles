@@ -1,4 +1,6 @@
+;; -*- lexical-binding: t; -*-
 ;; Needed for some reason for fixing server mode on Windows
+
 (setq server-auth-dir (file-name-concat user-emacs-directory "server"))
 (unless (file-exists-p server-auth-dir)
   (make-directory server-auth-dir t))

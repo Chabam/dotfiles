@@ -1,4 +1,6 @@
+;; -*- lexical-binding: t; -*-
 ;; no startup screen
+
 (setq inhibit-startup-screen t)
 
 (setq initial-scratch-message nil)

@@ -1,3 +1,5 @@
+;; -*- lexical-binding: t; -*-
+
 (defvar-local chbm/associated-container nil
   "Defines the name of the associated container that should run various
 commands")

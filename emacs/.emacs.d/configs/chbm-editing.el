@@ -1,3 +1,5 @@
+;; -*- lexical-binding: t; -*-
+
 ;; Increase undo values, I make a lot of mistakes
 (setq undo-limit (* 13 160000)
       undo-strong-limit (* 13 240000)

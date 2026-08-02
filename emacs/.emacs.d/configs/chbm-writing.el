@@ -1,3 +1,5 @@
+;; -*- lexical-binding: t; -*-
+
 (add-hook 'text-mode-hook #'auto-fill-mode)
 
 (defun chbm/start-pizauth ()

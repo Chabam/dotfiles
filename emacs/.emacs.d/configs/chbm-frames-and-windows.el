@@ -1,3 +1,5 @@
+;; -*- lexical-binding: t; -*-
+
 (defun chbm/move-window-in-direction (dir)
   (condition-case error
       (windmove-swap-states-in-direction dir)

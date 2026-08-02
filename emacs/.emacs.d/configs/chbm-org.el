@@ -1,3 +1,5 @@
+;; -*- lexical-binding: t; -*-
+
 (defconst chabam-ca-headers
   (apply 'concat
          `(;; Styling with simplecss

@@ -1,3 +1,5 @@
+;; -*- lexical-binding: t; -*-
+
 (setq enable-recursive-minibuffers t)
 (setq read-minibuffer-restore-windows nil)
 
