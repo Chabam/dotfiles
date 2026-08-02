@@ -12,7 +12,6 @@
                                         (project-file (styles . (substring orderless)))))
   (setq completions-sort 'history))
 
-
 (defun chbm/capf-prog-mode ()
   (dolist (fn '(cape-keyword
                 cape-file
@@ -59,8 +58,8 @@
          (eshell-mode . chbm/completion-preview-only-local-mode)
          (eshell-directory-change . chbm/completion-preview-only-local-mode))
   :bind (:map completion-preview-active-mode-map
-              ("M-n" . completion-preview-next-candidate)
-              ("M-p" . completion-preview-previous-candidate))
+              ("C-," . completion-preview-next-candidate)
+              ("C-." . completion-preview-prev-candidate))
   :config
   (setq completion-preview-ignore-case t)
   (setq completion-preview-sort-function #'identity)
@@ -70,10 +69,10 @@
                                           t)))
 
 (defun chbm/setup-tempel-capf (&rest _)
-  (setq-local corfu-auto-trigger "/")
+  (setq-local corfu-auto-trigger "~")
   (add-hook 'completion-at-point-functions
-            (cape-capf-trigger #'tempel-complete ?/)
-            'append
+            (cape-capf-trigger #'tempel-complete ?~)
+            nil
             'local))
 
 (use-package tempel
