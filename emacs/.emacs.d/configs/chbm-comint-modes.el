@@ -12,6 +12,13 @@
   (setq-default comint-scroll-to-bottom-on-output nil)
   (setq-default comint-input-autoexpand 'input))
 
+(use-package shell
+  :ensure nil
+  :commands (shell)
+  :config
+  ;; I exclusively use bash
+  (setq explicit-shell-file-name "/bin/bash"))
+
 (use-package eshell
   :ensure nil
   :commands (eshell)
