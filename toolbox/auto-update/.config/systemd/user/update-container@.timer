@@ -1,9 +1,0 @@
-[Unit]
-Description=Update user Toolbox daily (%i)
-
-[Timer]
-OnCalendar=daily
-Persistent=true
-
-[Install]
-WantedBy=timers.target
