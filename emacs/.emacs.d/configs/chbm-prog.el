@@ -52,15 +52,9 @@
   :config
   (setq flymake-no-changes-timeout 1.0))
 
-(use-package treesit-auto
-  :ensure t
-  :demand t
-  :hook (after-init . global-treesit-auto-mode)
-  :config
-  (setq treesit-auto-install 'prompt)
-  (setq treesit-auto-add-to-auto-mode-alist 'all)
-  (delete 'glsl treesit-auto-langs)
-  (setq-default treesit-font-lock-level 4))
+(setopt treesit-enabled-modes t)
+(setq treesit-auto-install-grammar 'ask)
+(setq-default treesit-font-lock-level 4)
 
 (use-package find-file
   :ensure nil
