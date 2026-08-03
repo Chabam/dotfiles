@@ -59,7 +59,7 @@
     ((parent-is "binary_expression") prev-sibling c-ts-mode-indent-offset)
     ((parent-is "argument_list") prev-sibling 0)
     ((parent-is "parameter_list") prev-sibling 0)
-    ,@(alist-get 'bsd (c-ts-mode--indent-styles 'cpp))))
+    ,@(c-ts-mode--simple-indent-rules 'cpp 'bsd)))
 
 (defun chbm/set-c-style-indent ()
   "Sets up indentation with my treesit indent style"
