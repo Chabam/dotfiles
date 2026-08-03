@@ -33,11 +33,6 @@
   (interactive)
   (chbm/move-window-in-direction 'below))
 
-(use-package transpose-frame
-  :ensure t
-  :commands (transpose-frame)
-  :bind (("C-x 5 t" . transpose-frame)))
-
 (use-package windmove
   :ensure nil
   :hook (after-init . windmove-mode)
