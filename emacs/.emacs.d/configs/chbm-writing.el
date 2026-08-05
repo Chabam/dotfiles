@@ -158,7 +158,7 @@ container instead"
       (setq TeX-view-program-list '(("xdg-open" "flatpak-spawn --host xdg-open %o")))
       ;; Causes an error when checking if TeX is installed...
       (setq TeX-check-TeX nil)
-      (advice-add 'TeX-run-command-hack :around #'chbm/TeX-run-command))
+      (advice-add 'TeX-run-command :around #'chbm/TeX-run-command-hack))
     (setq TeX-view-program-selection '((output-pdf "xdg-open")))))
 
 (provide 'chbm-writing)
