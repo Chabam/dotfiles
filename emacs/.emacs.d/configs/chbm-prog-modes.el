@@ -170,10 +170,6 @@ account c++14 digit separator"
   :mode (("\\.container\\'" . systemd-mode)
          ("\\.pod\\'" . systemd-mode)))
 
-(use-package markdown-mode
-  :ensure t
-  :mode "\\.md\\'")
-
 (use-package make-mode
   :ensure t
   :hook (makefile-gmake-mode . whitespace-mode))
