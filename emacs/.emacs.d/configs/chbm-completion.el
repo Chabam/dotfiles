@@ -49,9 +49,7 @@
   (setq tab-always-indent 'complete))
 
 (defun chbm/completion-preview-only-local-mode ()
-  (if (and (file-remote-p default-directory)
-           (not (member (tramp-file-name-method (tramp-dissect-file-name default-directory))
-                '("podman" "docker" "toolbox"))))
+  (if (file-remote-p default-directory)
       (completion-preview-mode -1)
     (completion-preview-mode 1)))
 
