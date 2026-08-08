@@ -20,8 +20,11 @@
         eglot-send-changes-idle-time 0.6
         eglot-sync-connect nil
         eglot-events-buffer-config '(:size 0 :format full))
+  ;; Trying this out
   (add-to-list 'eglot-server-programs
-               '((org-mode markdown-mode message-mode (LaTeX-mode :language-id "latex")) . ("ltex-ls-plus")))
+               '((mu4e-compose-mode message-mode) . ("toolbox" "run" "-c" "latex" "ltex-ls-plus")))
+  (add-to-list 'eglot-server-programs
+               '((org-mode markdown-mode (LaTeX-mode :language-id "latex")) . ("ltex-ls-plus")))
   (add-to-list 'eglot-server-programs
                '((c-ts-mode c++-ts-mode) . ("clangd"
                                             "--header-insertion=never"
