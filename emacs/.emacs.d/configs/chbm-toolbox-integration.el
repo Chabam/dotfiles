@@ -44,8 +44,8 @@ For the best experience, use toolbox/distrobox!
              lsp-val)
     (setf (cdr lsp-val)
           (append (chbm/toolbox-integration--generate-cmd-prefix t)
-                  (cdr lsp-val)))
-    lsp-val))
+                  (cdr lsp-val))))
+    lsp-val)
 
 (defun chbm/toolbox-integration--eglot-xref-adjust-location (xref-match)
   (when-let* ((_ (chbm/toolbox-integration--should-forward-p))
@@ -137,7 +137,8 @@ container, maybe more supported in the future."
            eshell-directory-change-hook
            eshell-mode-hook
            shell-mode-hook
-           dired-mode-hook)))
+           dired-mode-hook
+           shell-command-mode-hook)))
     (if chbm/toolbox-integration-mode
         (progn
           (advice-add 'eglot--lookup-mode :filter-return #'chbm/toolbox-integration--set-to-container-lsp)
