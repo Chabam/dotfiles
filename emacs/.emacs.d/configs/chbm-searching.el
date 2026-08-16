@@ -6,8 +6,8 @@
   :config
   (setq savehist-additional-variables
         '(register-alist kill-ring
-                         mark-ring global-mark-ring
-                         search-ring regexp-search-ring)))
+          mark-ring global-mark-ring
+          search-ring regexp-search-ring)))
 
 (use-package recentf
   :ensure nil
@@ -26,12 +26,13 @@
 (setq bookmark-fringe-mark nil)
 (setq bookmark-save-flag 1)
 
+(defun chbm/consult-configure-minibuffer ()
+  (advice-add #'register-preview :override #'consult-register-window)
+  (setq register-preview-delay 0.5))
+
 (use-package consult
   :ensure t
-  :hook ((after-init . (lambda ()
-			 (advice-add #'register-preview :override #'consult-register-window)
-			 (setq register-preview-delay 0.5)))
-	 (completion-list-mode . consult-preview-at-point-mode))
+  :hook ((after-init . chbm/consult-configure-minibuffer))
   :bind (("C-x M-:" . consult-complex-command)
 	 ("M-y" . consult-yank-pop)
 	 ;; M-g bindings in `goto-map'
@@ -61,7 +62,11 @@
 	 ("M-s L" . consult-line-multi)
 	 :map minibuffer-local-map
 	 ("M-s" . consult-history)
-	 ("M-r" . consult-history)))
+	 ("M-r" . consult-history))
+  :config
+  (with-eval-after-load 'em-hist
+    (keymap-set eshell-hist-mode-map "M-r" 'consult-history)
+    (keymap-set eshell-hist-mode-map "M-s" 'consult-history)))
 
 (use-package wgrep
   :after grep

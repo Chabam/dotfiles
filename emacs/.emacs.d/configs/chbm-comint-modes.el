@@ -39,10 +39,4 @@
                     (if (= (file-user-uid) 0) "# " "$ ")))))
   (add-hook 'eshell-preoutput-filter-functions  #'ansi-color-apply))
 
-(use-package em-hist
-  :ensure nil
-  :bind (:map eshell-hist-mode-map
-              ("M-r" . consult-history)
-              ("M-s" . consult-history)))
-
 (provide 'chbm-comint-modes)
