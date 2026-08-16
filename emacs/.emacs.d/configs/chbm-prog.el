@@ -5,6 +5,14 @@
               tab-width 4
               indent-tabs-mode nil)
 
+(defun chbm/local-eglot-workspace-configuration (orig-func server &optional path)
+  "Small hack to allow buffer-local `eglot-workspace-configuration' (useful
+for non-file buffers)"
+  (or (apply orig-func server (and path (list path)))
+      (when-let* ((_ path)
+                  (buffer (get-file-buffer path)))
+        (buffer-local-value 'eglot-workspace-configuration buffer))))
+
 (use-package eglot
   :ensure nil
   :bind (("C-c e a" . eglot-code-actions)
@@ -20,9 +28,11 @@
         eglot-send-changes-idle-time 0.6
         eglot-sync-connect nil
         eglot-events-buffer-config '(:size 0 :format full))
+
+  (advice-add 'eglot--workspace-configuration-plist
+              :around
+              #'chbm/local-eglot-workspace-configuration)
   ;; Trying this out
-  (add-to-list 'eglot-server-programs
-               '((mu4e-compose-mode message-mode) . ("toolbox" "run" "-c" "latex" "ltex-ls-plus")))
   (add-to-list 'eglot-server-programs
                '((org-mode markdown-mode (LaTeX-mode :language-id "latex")) . ("ltex-ls-plus")))
   (add-to-list 'eglot-server-programs

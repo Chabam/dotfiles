@@ -98,8 +98,24 @@
     (add-to-list 'mm-discouraged-alternatives "text/richtext")
     (add-to-list 'mm-discouraged-alternatives "multipart/related"))
 
+  (with-eval-after-load 'eglot
+    ;; TODO: think of a cleaner of doing this? Though it will probably never happen 🤷
+    (add-to-list 'eglot-server-programs
+                 '(message-mode . ("toolbox" "run" "-c" "latex" "ltex-ls-plus"))))
+
   (setq mu4e-change-filenames-when-moving t)
   (add-hook 'dired-mode-hook #'turn-on-gnus-dired-mode))
+
+(defun chbm/local-ltex-ls-plus-lang ()
+  "Sets the language for ltex-ls-plus in the current buffer"
+  (interactive)
+  (let ((lang (completing-read "Language: " '("fr" "en"))))
+    (setq-local eglot-workspace-configuration
+                `(:ltex (:language ,lang
+                         :ignoreOptionalArguments t
+                         :completionEnabled nil
+                         :diagnosticSeverity "information"
+                         :disabledRules (:fr ["FRENCH_WHITESPACE", "TIRET"]))))))
 
 (use-package jinx
   :hook ((org-mode . jinx-mode)
