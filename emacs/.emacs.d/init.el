@@ -12,7 +12,6 @@
   (require 'chbm-core)
   (require 'chbm-frames-and-windows)
 
-  (require 'chbm-minibuffer)
   (require 'chbm-searching)
   (require 'chbm-completion)
 
