@@ -32,7 +32,7 @@
    '(read-only t intangible t cursor-intangible t face minibuffer-prompt))
   (setq minibuffer-depth-indicate-mode t)
   (setq minibuffer-electric-default-mode t)
-  (setq completion-styles '(basic substring))
+  (setq completion-styles '(basic substring partial-completion))
   (setq completion-category-defaults nil)
   (setq completion-category-overrides '((file (styles . (basic partial-completion)))
                                         (buffer (styles . (substring)))
@@ -76,23 +76,22 @@
   :hook ((prog-mode . chbm/capf-prog-mode)
          (text-mode . chbm/capf-text-mode)))
 
-;; Experiment: retirin' the modern Emacs completion stack in favor of the default
-;; (use-package vertico
-;;   :ensure t
-;;   :hook (after-init . vertico-mode)
-;;   :config
-;;   (setq vertico-count 10))
-;;
-;; (use-package corfu
-;;   :ensure t
-;;   :bind (:map corfu-map
-;;           ("RET" . nil))
-;;   :hook ((after-init . global-corfu-mode)
-;; 	     (after-init . corfu-popupinfo-mode))
-;;   :config
-;;   (setq corfu-cycle t)
-;;   (setq corfu-popupinfo-delay 0.5)
-;;   (setq tab-always-indent 'complete))
+(use-package vertico
+  :ensure t
+  :hook (after-init . vertico-mode)
+  :config
+  (setq vertico-count 10))
+
+(use-package corfu
+  :ensure t
+  :bind (:map corfu-map
+          ("RET" . nil))
+  :hook ((after-init . global-corfu-mode)
+	     (after-init . corfu-popupinfo-mode))
+  :config
+  (setq corfu-cycle t)
+  (setq corfu-popupinfo-delay 0.5)
+  (setq tab-always-indent 'complete))
 
 (defun chbm/completion-preview-only-local-mode ()
   (if (file-remote-p default-directory)

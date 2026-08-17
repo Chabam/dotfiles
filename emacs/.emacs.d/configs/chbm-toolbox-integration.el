@@ -163,7 +163,7 @@ container, maybe more supported in the future."
   "&" #'chbm/toolbox-integration-async-shell-command
   "e" #'chbm/toolbox-integration-eshell
   "s" #'chbm/toolbox-integration-shell
-  "o" #'chbm/toolbox-integration-run-command
+  "o" #'chbm/toolbox-integration-run-interactive-command
   "r" #'chbm/toolbox-integration-register-container-for-integration)
 
 (keymap-global-set "C-c t" chbm/toolbox-integration-prefix)
