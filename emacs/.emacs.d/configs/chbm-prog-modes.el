@@ -41,8 +41,7 @@
 
 (defun chbm/bsd-style-indent ()
   "Override the built-in BSD indentation style with some additional rules"
-  `(
-    ((n-p-gp nil "declaration_list" "namespace_definition") parent-bol 0)
+  `(((n-p-gp nil "declaration_list" "namespace_definition") parent-bol 0)
     ((match "compound_statement" "for_range_loop") standalone-parent 0)
     ((match "compound_statement" "try_statement") standalone-parent 0)
     ((match "compound_statement" "catch_clause") standalone-parent 0)
@@ -59,12 +58,11 @@
     ((parent-is "binary_expression") prev-sibling c-ts-mode-indent-offset)
     ((parent-is "argument_list") prev-sibling 0)
     ((parent-is "parameter_list") prev-sibling 0)
-    ,@(c-ts-mode--simple-indent-rules 'cpp 'bsd)))
+    ,@(alist-get 'cpp (c-ts-mode--simple-indent-rules 'cpp 'bsd))))
 
 (defun chbm/set-c-style-indent ()
   "Sets up indentation with my treesit indent style"
-  (setq-local c-ts-mode-indent-offset 4)
-  (c-ts-mode-set-style 'chbm/bsd-style-indent))
+)
 
 (defun chbm/ff-find-other-file ()
   (interactive)
@@ -97,6 +95,15 @@
                     "/usr/local/include/*")
                    (mapcar (lambda (dir) (file-name-concat dir "*")) sub-dirs))))))
 
+(defun chbm/c++-config ()
+  (setq-local c-ts-mode-indent-offset 4)
+  (c-ts-mode-set-style 'chbm/bsd-style-indent)
+  (add-hook 'ff-pre-find-hook #'chbm/set-cc-search-dirs-project nil t))
+
+(defun chbm/c-config ()
+  (setq-local c-ts-mode-indent-offset 4)
+  (c-ts-mode-set-style 'bsd))
+
 (defun chbm/fix-number-literal-syntax (beg end)
   "Fixes over the original c-ts-mode--syntax-propertize to take into
 account c++14 digit separator"
@@ -110,19 +117,12 @@ account c++14 digit separator"
                          'syntax-table
                          (string-to-syntax ".")))))
 
-(use-package c-ts-mode
+(use-package c-ts-common
   :ensure nil
-  :hook ((c++-ts-mode . chbm/set-c-style-indent)
-         (ff-pre-find . chbm/set-cc-search-dirs-project))
+  :hook ((c++-ts-mode . chbm/c++-config)
+         (c-ts-mode . chbm/c-config))
   :config
   (advice-add 'c-ts-mode--syntax-propertize :after-until #'chbm/fix-number-literal-syntax))
-
-(use-package c-ts-mode
-  :ensure nil
-  :hook ((c-ts-mode . (lambda ()
-                        (setq c-ts-mode-indent-offset 4)
-                        (c-ts-mode-set-style 'bsd)))
-         (ff-pre-find . chbm/set-cc-search-dirs-project)))
 
 (use-package sgml-mode
   :ensure nil
