@@ -36,7 +36,7 @@
   (setq completion-category-defaults nil)
   (setq completion-category-overrides '((file (styles . (basic partial-completion)))
                                         (buffer (styles . (substring)))
-                                        (project-file (styles . (basic substring))))))
+                                        (project-file (styles . (substring partial-completion))))))
 
 (use-package marginalia
   :ensure t
@@ -108,7 +108,8 @@
               ("C-," . completion-preview-next-candidate)
               ("C-." . completion-preview-prev-candidate))
   :config
-  (setq completion-preview-ignore-case t))
+  (setq completion-preview-ignore-case t)
+  (setq completion-preview-idle-delay 0.2))
 
 (defun chbm/setup-tempel-capf (&rest _)
   (setq-local corfu-auto-trigger "~")
