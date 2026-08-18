@@ -4,7 +4,6 @@
 (require 'chbm-packages)
 (require 'chbm-containerized)
 
-(require 'chbm-toolbox-integration)
 (require 'chbm-appearance)
 (require 'chbm-core)
 (require 'chbm-frames-and-windows)
