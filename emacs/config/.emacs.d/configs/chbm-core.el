@@ -64,22 +64,6 @@
         (lambda (url &optional _)
           (start-process "browse-url-browser" nil "flatpak-xdg-open" url))))
 
-;; Must be before the docker package!!
-(when chbm/emacs-containerized
-  (setq tramp-podman-program "podman-remote"))
-
-(use-package docker
-  :ensure t
-  :commands (docker docker-compose)
-  :bind (("C-c p" . docker)) ;; `p' because podman :)
-  :config
-  (setq docker-command (if chbm/emacs-containerized
-                           "podman-remote"
-                         "podman"))
-  (setq docker-compose-command (if chbm/emacs-containerized
-                                   "podman-remote compose"
-                                 "podman compose")))
-
 (use-package chbm-toolbox-integration
   :hook (after-init . chbm/toolbox-integration-mode))
 

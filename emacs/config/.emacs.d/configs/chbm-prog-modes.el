@@ -182,10 +182,7 @@ account c++14 digit separator"
 
 (use-package racket-mode
   :ensure t
-  :mode "\\.rkt\\'"
-  :config
-  (when chbm/emacs-containerized
-    (setq racket-program '("toolbox" "run" "-c" "racket" "racket"))))
+  :mode "\\.rkt\\'")
 
 (use-package glsl-mode
   :ensure t

@@ -128,38 +128,6 @@
   :config
   (setq jinx-languages "en_CA fr_CA"))
 
-(defun chbm/TeX-run-command-hack (orig name command file)
-  "Changes how AucTeX calls the tex process to be inside a toolbox
-container instead"
-  (let ((orig-start-process (symbol-function 'start-process))
-        (orig-call-process (symbol-function 'call-process)))
-    (cl-letf ((;; This is the call we're overriding
-               ;; (start-process name buffer TeX-shell
-               ;;                TeX-shell-command-option command)
-               (symbol-function 'start-process)
-               (lambda (proc-name buffer program &rest args)
-                 (apply orig-start-process
-                        proc-name
-                        buffer
-                        "toolbox" "run" "-c"
-                        "latex"
-                        program
-                        args)))
-              ;; This is the call we're overriding
-              ;; (call-process TeX-shell nil buffer nil
-              ;;               TeX-shell-command-option command)
-              ((symbol-function 'call-process)
-               (lambda (program &optional infile destination display &rest args)
-                 (apply orig-call-process
-                        "toolbox"
-                        infile
-                        destination
-                        display
-                        "run" "-c" "latex"
-                        program
-                        args))))
-      (funcall orig name command file))))
-
 (use-package auctex
   :ensure t
   :hook (LaTeX-mode . turn-on-reftex)
@@ -171,10 +139,7 @@ container instead"
   (setq reftex-plug-into-AUCTeX t)
   (when chbm/emacs-containerized
     (with-eval-after-load 'tex
-      (setq TeX-view-program-list '(("xdg-open" "flatpak-spawn --host xdg-open %o")))
-      ;; Causes an error when checking if TeX is installed...
-      (setq TeX-check-TeX nil)
-      (advice-add 'TeX-run-command :around #'chbm/TeX-run-command-hack))
+      (setq TeX-view-program-list '(("xdg-open" "flatpak-spawn --host xdg-open %o"))))
     (setq TeX-view-program-selection '((output-pdf "xdg-open")))))
 
 (provide 'chbm-writing)

@@ -1,9 +1,15 @@
 ;; -*- lexical-binding: t; -*-
 
+(defcustom chbm/modern-completion t
+  "Whether or not to use the \"modern\" Emacs completion stack (`vertico',
+`corfu', etc)"
+  :type 'boolean)
+
 (defun chbm/silent-truncate-lines ()
   (setq truncate-lines t))
 
 (use-package minibuffer
+  :unless chbm/modern-completion
   :ensure nil
   :bind (:map minibuffer-visible-completions-up-down-map
 		  ("C-n" . minibuffer-next-completion)
@@ -15,7 +21,7 @@
   (setq completions-detailed t)
   (setq tab-always-indent 'complete)
   (setq completion-auto-help t)
-  (setq completion-auto-select nil)
+  (setq completion-auto-select 'second-tab)
   (setq completion-eager-update t)
   (setq completion-eager-display t)
   (setq minibuffer-visible-completions 'up-down)
@@ -77,12 +83,14 @@
          (text-mode . chbm/capf-text-mode)))
 
 (use-package vertico
+  :if chbm/modern-completion
   :ensure t
   :hook (after-init . vertico-mode)
   :config
   (setq vertico-count 10))
 
 (use-package corfu
+  :if chbm/modern-completion
   :ensure t
   :bind (:map corfu-map
           ("RET" . nil))

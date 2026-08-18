@@ -1,0 +1,196 @@
+FROM registry.fedoraproject.org/fedora-toolbox:44 AS emacs_build_deps
+
+RUN dnf -y upgrade && \
+    dnf -y install \
+        gcc \
+        make \
+        curl \
+        git \
+        tar \
+        xz \
+        gtk3-devel \
+        gnutls-devel \
+        ncurses-devel \
+        libtree-sitter-devel \
+        sqlite-devel \
+        libgccjit-devel \
+        libjpeg-turbo-devel \
+        librsvg2-devel \
+        libwebp-devel \
+        libtiff-devel \
+        giflib-devel && \
+    dnf clean all
+
+FROM emacs_build_deps AS emacs_build
+
+WORKDIR /usr/src
+
+ENV EMACS_VERSION=31.1
+ENV CFLAGS="-O3 -march=native -mtune=native -flto"
+ENV LDFLAGS="-flto"
+
+RUN curl -LO https://alpha.gnu.org/gnu/emacs/pretest/emacs-${EMACS_VERSION}-rc1.tar.xz && \
+    tar -xf emacs-${EMACS_VERSION}-rc1.tar.xz && \
+    cd emacs-${EMACS_VERSION} && \
+    ./configure \
+        --prefix=/usr \
+        --with-pgtk \
+        --with-native-compilation=aot \
+        --with-tree-sitter \
+        --with-modules \
+        --with-sound=no \
+        --enable-link-time-optimization && \
+    make -j"$(nproc)" && \
+    make DESTDIR=/tmp/installroot install && \
+    make distclean && \
+    mkdir -p /tmp/installroot/usr/src && \
+    cp -r /usr/src/emacs-${EMACS_VERSION} /tmp/installroot/usr/src
+
+FROM registry.fedoraproject.org/fedora-toolbox:44 AS runtime
+
+RUN dnf -y upgrade && \
+    dnf -y install \
+        gtk3 \
+        gnutls \
+        ncurses-libs \
+        libtree-sitter \
+        sqlite-libs \
+        libgccjit \
+        libjpeg-turbo \
+        librsvg2 \
+        libwebp \
+        libtiff \
+        giflib && \
+    dnf clean all
+
+COPY --from=emacs_build /tmp/installroot/ /
+
+
+FROM runtime AS emacs_mail
+
+RUN dnf -y install \
+        mu \
+        isync \
+        msmtp && \
+    dnf clean all
+
+
+# Build cyrus-sasl-xoauth2
+FROM emacs_build_deps AS sasl_build
+
+WORKDIR /tmp
+
+RUN dnf -y install automake libtool cyrus-sasl-devel && \
+    git clone https://github.com/moriyoshi/cyrus-sasl-xoauth2 && \
+    cd cyrus-sasl-xoauth2 && \
+    ./autogen.sh && \
+    ./configure --prefix=/usr && \
+    make -j"$(nproc)" && \
+    make DESTDIR=/tmp/installroot install
+
+
+FROM emacs_mail AS emacs_mail_sasl
+
+COPY --from=sasl_build /tmp/installroot/ /
+
+RUN if [ -d /usr/lib/sasl2 ]; then \
+        mkdir -p /usr/lib64/sasl2 && \
+        mv /usr/lib/sasl2/* /usr/lib64/sasl2/ && \
+        rmdir /usr/lib/sasl2; \
+    fi
+
+
+# Build pizauth
+FROM registry.fedoraproject.org/fedora-toolbox:44 AS pizauth_build
+
+RUN dnf -y install \
+        rust \
+        cargo \
+        git \
+        make && \
+    dnf clean all
+
+WORKDIR /tmp
+
+RUN git clone https://github.com/ltratt/pizauth && \
+    cd pizauth && \
+    make PREFIX=/usr DESTDIR=/tmp/installroot install
+
+
+FROM emacs_mail_sasl AS emacs
+
+COPY --from=pizauth_build /tmp/installroot/ /
+
+RUN dnf -y install \
+        flatpak-xdg-open \
+        adw-gtk3-theme \
+        google-noto-color-emoji-fonts \
+        gdk-pixbuf2-modules-extra \
+        jetbrains-mono-fonts-all \
+        wl-clipboard \
+        direnv \
+        hunspell-en \
+        hunspell-fr \
+        enchant2-devel \
+        locate \
+        pandoc \
+        stow \
+        podman-remote && \
+    dnf clean all && \
+    ln -sf /usr/bin/podman-remote /usr/bin/podman
+
+FROM emacs as lang_toolchains
+
+# LaTeX
+RUN dnf -y install \
+    texlive-scheme-medium \
+    texlive-collection-latex \
+    texlive-collection-latexrecommended \
+    texlive-collection-latexextra \
+    texlive-collection-fontsrecommended \
+    texlive-pgf \
+    texlive-e-french \
+    texlive-collection-langenglish \
+    texlive-collection-langfrench \
+    texlive-collection-xetex \
+    texlive-collection-luatex \
+    && dnf clean all
+
+WORKDIR /tmp
+ARG LTEX_LS_PLUS_VERSION="18.7.0"
+ARG LTEX_LS_PLUS_URL="https://github.com/ltex-plus/ltex-ls-plus/releases/download/${LTEX_LS_PLUS_VERSION}/ltex-ls-plus-${LTEX_LS_PLUS_VERSION}-linux-x64.tar.gz"
+# ltex-ls-plus for grammar checking
+RUN curl -o ltex-ls-plus.tar.gz -L ${LTEX_LS_PLUS_URL} \
+    && tar -xvf ltex-ls-plus.tar.gz  -C /usr/local --no-same-owner --no-overwrite-dir \
+    && ln -s /usr/local/ltex-ls-plus-*/bin/ltex-ls-plus /usr/local/bin/ltex-ls-plus \
+    && rm ltex-ls-plus.tar.gz
+
+# Python
+RUN dnf -y install python-pip \
+    && dnf clean all \
+    && pip install --no-cache-dir pyright
+
+# Racket
+RUN dnf -y install \
+    racket \
+    && dnf clean all
+
+RUN yes a | raco pkg install -i racket-langserver
+
+# R
+RUN dnf -y install \
+    R
+
+# C/CPP
+RUN dnf -y install \
+    clang-tools-extra \
+    cmake \
+    make \
+    g++ \
+    gdb \
+    bear \
+    perf \
+    && dnf clean all
+
+FROM lang_toolchains AS additional_tooling
+RUN mandb && updatedb
