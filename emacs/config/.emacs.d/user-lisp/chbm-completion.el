@@ -21,7 +21,7 @@
   (setq completions-detailed t)
   (setq tab-always-indent 'complete)
   (setq completion-auto-help t)
-  (setq completion-auto-select 'second-tab)
+  (setq completion-auto-select t)
   (setq completion-eager-update t)
   (setq completion-eager-display t)
   (setq minibuffer-visible-completions 'up-down)
