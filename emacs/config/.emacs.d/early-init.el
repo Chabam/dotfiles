@@ -19,3 +19,5 @@
    (lambda ()
      (setq gc-cons-threshold default-gc-thresh)
      (setq gc-cons-percentage default-gc-percent))))
+
+(setq user-lisp-auto-scrape nil)
