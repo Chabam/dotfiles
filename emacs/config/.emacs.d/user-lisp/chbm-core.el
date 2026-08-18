@@ -64,9 +64,6 @@
         (lambda (url &optional _)
           (start-process "browse-url-browser" nil "flatpak-xdg-open" url))))
 
-(use-package chbm-toolbox-integration
-  :hook (after-init . chbm/toolbox-integration-mode))
-
 ;; https://coredumped.dev/2025/06/18/making-tramp-go-brrrr./
 (setq remote-file-name-inhibit-locks t)
 (setq tramp-use-scp-direct-remote-copying t)
@@ -78,8 +75,8 @@
 (setq tramp-verbose 1)
 
 (with-eval-after-load 'tramp
-
-  (tramp-enable-toolbox-method)
+  (with-eval-after-load 'tramp-container
+    (tramp-enable-toolbox-method))
 
   (connection-local-set-profile-variables
    'remote-direct-async-process
@@ -89,8 +86,9 @@
    '(:application tramp :protocol "scp")
    'remote-direct-async-process))
 
-(with-eval-after-load 'compile
-  (remove-hook 'compilation-mode-hook #'tramp-compile-disable-ssh-controlmaster-options))
+(with-eval-after-load 'tramp-integration
+  (with-eval-after-load 'compile
+    (remove-hook 'compilation-mode-hook #'tramp-compile-disable-ssh-controlmaster-options)))
 
 
 (provide 'chbm-core)
