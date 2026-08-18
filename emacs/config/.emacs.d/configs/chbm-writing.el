@@ -99,12 +99,18 @@
     (add-to-list 'mm-discouraged-alternatives "multipart/related"))
 
   (with-eval-after-load 'eglot
-    ;; TODO: think of a cleaner of doing this? Though it will probably never happen 🤷
     (add-to-list 'eglot-server-programs
-                 '(message-mode . ("toolbox" "run" "-c" "latex" "ltex-ls-plus"))))
+                 '(message-mode . ("ltex-ls-plus"))))
 
   (setq mu4e-change-filenames-when-moving t)
   (add-hook 'dired-mode-hook #'turn-on-gnus-dired-mode))
+
+(use-package markdown-ts-mode
+  :ensure nil
+  :config
+  (with-eval-after-load 'eglot
+    (add-to-list 'eglot-server-programs
+                 '(markdown-ts-mode . ("ltex-ls-plus")))))
 
 (defun chbm/local-ltex-ls-plus-lang ()
   "Sets the language for ltex-ls-plus in the current buffer"
@@ -137,6 +143,9 @@
   (setq TeX-parse-self t)
   (setq-default Tex-master nil)
   (setq reftex-plug-into-AUCTeX t)
+  (with-eval-after-load 'eglot
+    (add-to-list 'eglot-server-programs
+                 '((LaTeX-mode :language-id "latex") . ("ltex-ls-plus"))))
   (when chbm/emacs-containerized
     (with-eval-after-load 'tex
       (setq TeX-view-program-list '(("xdg-open" "flatpak-spawn --host xdg-open %o"))))

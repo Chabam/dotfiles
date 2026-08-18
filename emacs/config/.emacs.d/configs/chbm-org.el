@@ -142,13 +142,16 @@
   (setq org-outline-path-complete-in-steps nil)
   (setq org-refile-targets `((,(remove "inbox.org" org-agenda-files) :maxlevel . 3)))
 
-
   (when chbm/emacs-containerized
     (setq org-file-apps '((auto-mode . emacs)
                           (directory . emacs)
                           ("\\.mm\\'" . chbm/xdg-open-host)
                           ("\\.x?html?\\'" . chbm/xdg-open-host)
-                          ("\\.pdf\\'" . chbm/xdg-open-host)))))
+                          ("\\.pdf\\'" . chbm/xdg-open-host))))
+
+  (with-eval-after-load 'eglot
+    (add-to-list 'eglot-server-programs
+                 '(org-mode . ("ltex-ls-plus")))))
 
 (use-package ob
   :ensure nil

@@ -31,19 +31,7 @@ for non-file buffers)"
 
   (advice-add 'eglot--workspace-configuration-plist
               :around
-              #'chbm/local-eglot-workspace-configuration)
-  ;; Trying this out
-  (add-to-list 'eglot-server-programs
-               '((org-mode markdown-mode (LaTeX-mode :language-id "latex")) . ("ltex-ls-plus")))
-  (add-to-list 'eglot-server-programs
-               '((c-ts-mode c++-ts-mode) . ("clangd"
-                                            "--header-insertion=never"
-                                            "--completion-style=detailed"
-                                            "--clang-tidy=false"
-                                            "--log=error"
-                                            "--background-index")))
-  (add-to-list 'eglot-server-programs
-               '((vala-mode) . ("vala-language-server"))))
+              #'chbm/local-eglot-workspace-configuration))
 
 (use-package eglot-inactive-regions
   :after eglot

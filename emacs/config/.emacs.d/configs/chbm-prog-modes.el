@@ -122,7 +122,20 @@ account c++14 digit separator"
   :hook ((c++-ts-mode . chbm/c++-config)
          (c-ts-mode . chbm/c-config))
   :config
-  (advice-add 'c-ts-mode--syntax-propertize :after-until #'chbm/fix-number-literal-syntax))
+  (advice-add 'c-ts-mode--syntax-propertize :after-until #'chbm/fix-number-literal-syntax)
+  (with-eval-after-load 'eglot
+    (add-to-list 'eglot-server-programs
+                 '((c-ts-mode c++-ts-mode) . ("clangd"
+                                              "--header-insertion=never"
+                                              "--completion-style=detailed"
+                                              "--clang-tidy=false"
+                                              "--log=error"
+                                              "--background-index")))))
+(use-package vala-mode
+  :config
+  (with-eval-after-load 'eglot
+    (add-to-list 'eglot-server-programs
+                 '((vala-mode) . ("vala-language-server")))))
 
 (use-package sgml-mode
   :ensure nil
@@ -151,8 +164,7 @@ account c++14 digit separator"
 
 (use-package cmake-mode
   :ensure t
-  :mode ("\\.cmake\\'" "CMakeLists.txt\\'")
-  )
+  :mode ("\\.cmake\\'" "CMakeLists.txt\\'"))
 
 (use-package clang-format
   :ensure t)
