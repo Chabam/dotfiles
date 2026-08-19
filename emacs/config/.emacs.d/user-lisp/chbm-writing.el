@@ -107,6 +107,7 @@
 
 (use-package markdown-ts-mode
   :ensure nil
+  :mode ("\\.md\\'")
   :config
   (with-eval-after-load 'eglot
     (add-to-list 'eglot-server-programs
@@ -126,7 +127,7 @@
 (use-package jinx
   :hook ((org-mode . jinx-mode)
          (text-mode . jinx-mode)
-         (markdown-mode . jinx-mode)
+         (markdown-ts-mode . jinx-mode)
          (log-edit-mode . jinx-mode))
   :bind (("M-$" . jinx-correct)
          ("C-M-$" . jinx-languages))
