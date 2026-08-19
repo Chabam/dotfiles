@@ -42,6 +42,7 @@
   (setq completion-category-defaults nil)
   (setq completion-category-overrides '((file (styles . (basic partial-completion)))
                                         (buffer (styles . (substring)))
+                                        (unicode (styles . (basic substring)))
                                         (project-file (styles . (substring partial-completion))))))
 
 (use-package marginalia
@@ -52,11 +53,14 @@
   :ensure t
   :config
   (add-to-list 'completion-styles 'orderless)
+
+  (let ((excluded-cat '(unicode)))
   (mapc (lambda (cat)
-          (let ((completions (assq 'styles (cdr cat))))
-            (unless (member 'orderless (cdr completions))
-              (setcdr completions (append (cdr completions) '(orderless))))))
-        completion-category-overrides)
+          (let ((completions-cat (assq 'styles (cdr cat))))
+            (unless (or (member (car cat) excluded-cat)
+                         (member 'orderless (cdr completions-cat)))
+              (setcdr completions-cat (append (cdr completions-cat) '(orderless))))))
+        completion-category-overrides))
   (setq orderless-matching-styles '(orderless-literal orderless-regexp)))
 
 (defun chbm/capf-prog-mode ()
