@@ -53,6 +53,19 @@
   :ensure nil
   :hook (after-init . winner-mode))
 
+(defun chbm/fix-speedbar-window-click (&rest _)
+  (setq dframe-help-echo-function #'speedbar-item-info
+	    dframe-mouse-click-function #'speedbar-click
+	    dframe-mouse-position-function #'speedbar-position-cursor-on-line))
+
+(use-package speedbar
+  :ensure nil
+  :commands (speedbar)
+  :hook (speedbar-reconfigure-keymaps . chbm/fix-speedbar-window-click)
+  :config
+  (setq speedbar-use-images nil)
+  (setq speedbar-prefer-window t))
+
 (global-set-key (kbd "M-o") 'other-window)
 
 (provide 'chbm-frames-and-windows)
