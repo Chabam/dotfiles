@@ -183,8 +183,7 @@ account c++14 digit separator"
          ("\\.pod\\'" . systemd-mode)))
 
 (use-package make-mode
-  :ensure t
-  :hook (makefile-gmake-mode . whitespace-mode))
+  :ensure t)
 
 (use-package zig-mode
   :ensure t
