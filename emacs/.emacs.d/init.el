@@ -19,7 +19,7 @@
 (require 'chbm-projects)
 (require 'chbm-prog)
 (require 'chbm-prog-modes)
-(require 'chbm-comint-modes)
+(require 'chbm-interactive-modes)
 
 (require 'chbm-writing)
 (require 'chbm-org)

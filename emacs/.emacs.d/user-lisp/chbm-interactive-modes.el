@@ -45,4 +45,4 @@
   (setq vterm-always-compile-module t)
   (setq vterm-clear-scrollback-when-clearing t))
 
-(provide 'chbm-comint-modes)
+(provide 'chbm-interactive-modes)
