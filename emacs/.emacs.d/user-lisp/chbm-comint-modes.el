@@ -39,4 +39,10 @@
                     (if (= (file-user-uid) 0) "# " "$ ")))))
   (add-hook 'eshell-preoutput-filter-functions  #'ansi-color-apply))
 
+(use-package vterm
+  :commands (vterm)
+  :config
+  (setq vterm-always-compile-module t)
+  (setq vterm-clear-scrollback-when-clearing t))
+
 (provide 'chbm-comint-modes)

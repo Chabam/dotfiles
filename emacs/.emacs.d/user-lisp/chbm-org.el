@@ -142,6 +142,7 @@
   (setq org-outline-path-complete-in-steps nil)
   (setq org-refile-targets `((,(remove "inbox.org" org-agenda-files) :maxlevel . 3)))
   (setq org-imenu-depth 10)
+  (setq org-bookmark-names-plist nil)
 
   (when chbm/emacs-containerized
     (setq org-file-apps '((auto-mode . emacs)
