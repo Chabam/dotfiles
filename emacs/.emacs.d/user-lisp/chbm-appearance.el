@@ -15,13 +15,17 @@
 
 (setq diff-font-lock-prettify t)
 
+
+;; Removing these because I don't think I've ever had issues
+
 ;; Enables faster scrolling. This may result in brief periods of inaccurate
 ;; syntax highlighting, which should quickly self-correct.
-(setq fast-but-imprecise-scrolling t)
+;; (setq fast-but-imprecise-scrolling nil)
 
 ;; Disable fontification during user input to reduce lag in large buffers.
 ;; Also helps marginally with scrolling performance.
-(setq redisplay-skip-fontification-on-input t)
+;;
+;; (setq redisplay-skip-fontification-on-input t)
 
 (setq-default display-line-numbers-width 3)
 (setq-default display-line-numbers-widen t)
