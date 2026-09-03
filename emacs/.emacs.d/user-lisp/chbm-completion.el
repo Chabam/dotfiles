@@ -13,7 +13,11 @@
   :ensure nil
   :bind (:map minibuffer-visible-completions-up-down-map
 		  ("C-n" . minibuffer-next-completion)
-		  ("C-p" . minibuffer-previous-completion))
+		  ("C-p" . minibuffer-previous-completion)
+          :map completion-in-region-mode
+          ("M-i" . minibuffer-choose-completion)
+          ("M-n" . minibuffer-next-completion)
+          ("M-p" . minibuffer-previous-completion))
   :hook ((minibuffer-setup . cursor-intangible-mode)
          (completion-list-mode . chbm/silent-truncate-lines)
 		 (minibuffer-setup . chbm/silent-truncate-lines))
@@ -117,8 +121,11 @@
          (eshell-mode . chbm/completion-preview-only-local-mode)
          (eshell-directory-change . chbm/completion-preview-only-local-mode))
   :bind (:map completion-preview-active-mode-map
-              ("C-," . completion-preview-next-candidate)
-              ("C-." . completion-preview-prev-candidate))
+              ("M-i" . completion-preview-insert-word)
+              ("M-n" . completion-preview-next-candidate)
+              ("M-p" . completion-preview-prev-candidate)
+              ("M-<return>" . completion-preview-insert)
+              ("<tab>" . completion-preview-complete))
   :config
   (setq completion-preview-ignore-case t)
   (setq completion-preview-idle-delay 0.2))
