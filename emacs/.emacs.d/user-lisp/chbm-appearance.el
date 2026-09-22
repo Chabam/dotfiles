@@ -165,6 +165,18 @@
   :custom
   (auto-dark-themes '((modus-vivendi) (modus-operandi))))
 
+;; Thanks Prot!
+(defun prot-spell-ispell-display-buffer (buffer)
+  "Function to override `ispell-display-buffer' for BUFFER.
+Use this as `advice-add' to override the aforementioned Ispell
+function.  Then you can control the buffer's specifics via
+`display-buffer-alist' (how it ought to be!)."
+  (pop-to-buffer buffer)
+  (set-window-point (get-buffer-window buffer) (point-min)))
+
+(advice-add #'ispell-display-buffer :override #'prot-spell-ispell-display-buffer)
+
+
 (setq window-combination-resize t)
 (setq even-window-sizes 'height-only)
 (setq window-sides-vertical nil)
@@ -180,6 +192,10 @@
          (side . bottom)
          (slot . 0)
          (window-parameters . ((mode-line-format . none))))
+        ;; ispell-word at bottom
+        ("\\*Choices\\*"
+         (display-buffer-below-selected)
+         (window-height . fit-window-to-buffer))
         ("\\*vc-log\\*"
          (display-buffer-in-direction)
          (dedicated . t))))

@@ -124,16 +124,17 @@
                          :diagnosticSeverity "information"
                          :disabledRules (:fr ["FRENCH_WHITESPACE", "TIRET"]))))))
 
-(use-package jinx
-  :hook ((org-mode . jinx-mode)
-         (text-mode . jinx-mode)
-         (markdown-ts-mode . jinx-mode)
-         (log-edit-mode . jinx-mode))
-  :bind (("M-$" . jinx-correct)
-         ("C-M-$" . jinx-languages))
-  :ensure t
-  :config
-  (setq jinx-languages "en_CA fr_CA"))
+;; Disabling in favor of the defaults
+;; (use-package jinx
+;;   :hook ((org-mode . jinx-mode)
+;;          (text-mode . jinx-mode)
+;;          (markdown-ts-mode . jinx-mode)
+;;          (log-edit-mode . jinx-mode))
+;;   :bind (("M-$" . jinx-correct)
+;;          ("C-M-$" . jinx-languages))
+;;   :ensure t
+;;   :config
+;;   (setq jinx-languages "en_CA fr_CA"))
 
 (use-package auctex
   :ensure t
