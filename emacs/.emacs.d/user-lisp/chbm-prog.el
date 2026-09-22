@@ -36,11 +36,8 @@ for non-file buffers)"
 (use-package eglot-inactive-regions
   :after eglot
   :ensure t
-  :hook (eglot-connect . (lambda (&rest _)
-			   (when (member major-mode '(c++-ts-mode c-ts-mode))
-			     (require 'eglot-inactive-regions)
-			     (eglot-inactive-regions-mode))))
   :config
+  (eglot-inactive-regions-mode 1)
   (setq eglot-inactive-regions-style 'darken-foreground)
   (setq eglot-inactive-regions-opacity 0.4))
 
