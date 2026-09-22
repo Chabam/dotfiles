@@ -64,8 +64,9 @@
         (lambda (url &optional _)
           (start-process "browse-url-browser" nil "flatpak-xdg-open" url))))
 
-(use-package chbm-toolbox-integration
-  :hook (after-init . chbm/toolbox-integration-mode))
+;; Disabling for now
+;; (use-package chbm-toolbox-integration
+;;   :hook (after-init . chbm/toolbox-integration-mode))
 
 ;; https://coredumped.dev/2025/06/18/making-tramp-go-brrrr./
 (setq remote-file-name-inhibit-locks t)
