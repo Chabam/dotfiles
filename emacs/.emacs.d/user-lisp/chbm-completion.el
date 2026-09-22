@@ -76,19 +76,9 @@
               'append
               'local)))
 
-(defun chbm/capf-text-mode ()
-  (dolist (fn '(cape-file
-                cape-line
-                cape-dabbrev))
-    (add-hook 'completion-at-point-functions
-              fn
-              'append
-              'local)))
-
 (use-package cape
   :ensure t
-  :hook ((prog-mode . chbm/capf-prog-mode)
-         (text-mode . chbm/capf-text-mode)))
+  :hook ((prog-mode . chbm/capf-prog-mode)))
 
 (use-package vertico
   :if chbm/modern-completion
@@ -115,7 +105,7 @@
     (completion-preview-mode 1)))
 
 (use-package completion-preview
-  :hook ((after-init . global-completion-preview-mode)
+  :hook ((after-init . prog-mode)
          (minibuffer-mode . chbm/completion-preview-only-local-mode)
          (minibuffer-inactive-mode . chbm/completion-preview-only-local-mode)
          (eshell-mode . chbm/completion-preview-only-local-mode)
@@ -124,8 +114,7 @@
               ("M-i" . completion-preview-insert-word)
               ("M-n" . completion-preview-next-candidate)
               ("M-p" . completion-preview-prev-candidate)
-              ("M-<return>" . completion-preview-insert)
-              ("<tab>" . completion-preview-complete))
+              ("M-<return>" . completion-preview-insert))
   :config
   (setq completion-preview-ignore-case t)
   (setq completion-preview-idle-delay 0.2))
