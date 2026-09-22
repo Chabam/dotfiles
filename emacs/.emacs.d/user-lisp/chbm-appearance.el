@@ -179,7 +179,10 @@
          (display-buffer-in-side-window)
          (side . bottom)
          (slot . 0)
-         (window-parameters . ((mode-line-format . none))))))
+         (window-parameters . ((mode-line-format . none))))
+        ("\\*vc-log\\*"
+         (display-buffer-in-direction)
+         (dedicated . t))))
 
 ;; Whitespace
 (setq whitespace-style '(face indentation tabs tab-mark spaces space-mark
