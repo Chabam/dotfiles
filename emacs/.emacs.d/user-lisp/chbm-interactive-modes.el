@@ -39,10 +39,13 @@
                     (if (= (file-user-uid) 0) "# " "$ ")))))
   (add-hook 'eshell-preoutput-filter-functions  #'ansi-color-apply))
 
-(use-package vterm
-  :commands (vterm)
-  :config
-  (setq vterm-always-compile-module t)
-  (setq vterm-clear-scrollback-when-clearing t))
+;; I ended up not using this at all, if I need a terminal, I'll use
+;; one. Otherwise, `shell' is just fine.
+;;
+;; (use-package vterm
+;;   :commands (vterm)
+;;   :config
+;;   (setq vterm-always-compile-module t)
+;;   (setq vterm-clear-scrollback-when-clearing t))
 
 (provide 'chbm-interactive-modes)
