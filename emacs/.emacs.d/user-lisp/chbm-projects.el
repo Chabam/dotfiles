@@ -25,6 +25,10 @@
 (setq ediff-merge-revisions-with-ancestor t)
 (setq ediff-show-clashes-only t)
 
+(setq trusted-contents
+      '("~/Projects/"
+        "~/Documents/Ecole/"))
+
 (use-package magit
   :ensure t
   :commands (magit magit-status)
