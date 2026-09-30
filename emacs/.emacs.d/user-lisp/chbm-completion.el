@@ -105,11 +105,7 @@
     (completion-preview-mode 1)))
 
 (use-package completion-preview
-  :hook ((after-init . prog-mode)
-         (minibuffer-mode . chbm/completion-preview-only-local-mode)
-         (minibuffer-inactive-mode . chbm/completion-preview-only-local-mode)
-         (eshell-mode . chbm/completion-preview-only-local-mode)
-         (eshell-directory-change . chbm/completion-preview-only-local-mode))
+  :hook ((prog-mode . completion-preview-mode))
   :bind (:map completion-preview-active-mode-map
               ("M-i" . completion-preview-insert-word)
               ("M-n" . completion-preview-next-candidate)
