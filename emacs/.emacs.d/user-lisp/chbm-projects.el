@@ -25,7 +25,7 @@
 (setq ediff-merge-revisions-with-ancestor t)
 (setq ediff-show-clashes-only t)
 
-(setq trusted-contents
+(setq trusted-content
       '("~/Projects/"
         "~/Documents/Ecole/"))
 
