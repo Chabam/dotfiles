@@ -35,6 +35,8 @@
 (global-set-key (kbd "C-h h") nil)
 ;; Closing emacs 🙂 (actually gets rebound later)
 (global-set-key (kbd "C-x C-c") nil)
+;; Mark page, I keep hitting it by mistake
+(global-set-key (kbd "C-x C-p") nil)
 
 ;; rebinds
 (global-set-key (kbd "C-x M-g") 'grep)
