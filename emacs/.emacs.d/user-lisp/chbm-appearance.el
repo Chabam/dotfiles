@@ -21,6 +21,11 @@
 (setq tab-bar-new-button-show nil)
 (setq tab-bar-show 1)
 
+(when (version< emacs-version "32")
+  (setq underline-line-scaling-flag t)
+  (setq overline-line-scaling-flag t)
+  (setq strike-through-line-scaling-flag t))
+
 (use-package rainbow-mode
   :ensure nil
   :commands (rainbow-mode)
