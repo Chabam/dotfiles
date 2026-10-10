@@ -110,7 +110,8 @@
               ("M-i" . completion-preview-insert-word)
               ("M-n" . completion-preview-next-candidate)
               ("M-p" . completion-preview-prev-candidate)
-              ("M-<return>" . completion-preview-insert))
+              ("M-<return>" . completion-preview-complete)
+              ("<tab>" . completion-preview-complete))
   :config
   (setq completion-preview-ignore-case t)
   (setq completion-preview-idle-delay 0.2))
