@@ -101,4 +101,12 @@ for non-file buffers)"
   :config
   (setq gdb-debuginfod-enable-setting nil))
 
+(use-package dape
+  :hook ((prog-mode . dape-breakpoint-global-mode)
+         (prog-mode . dape-breakpoint-load)
+         (kill-emacs . dape-breakpoint-save))
+  :config
+  (setq dape-buffer-window-arrangement 'right)
+  (setq window-sides-vertical t))
+
 (provide 'chbm-prog)
