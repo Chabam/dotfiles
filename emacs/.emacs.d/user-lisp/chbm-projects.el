@@ -2,7 +2,6 @@
 
 (setq delete-by-moving-to-trash t)
 (setq vc-follow-symlinks t)
-(setq vc-dir-show-key-binding-hints nil)
 
 (add-hook 'log-edit-mode-hook (lambda ()
                                 (display-line-numbers-mode -1)))
