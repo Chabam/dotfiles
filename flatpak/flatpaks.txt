@@ -1,6 +1,5 @@
 be.alexandervanhee.gradia/x86_64/stable	system
 ca.desrt.dconf-editor/x86_64/stable	user
-com.bitwarden.desktop/x86_64/stable	user
 com.discordapp.Discord/x86_64/stable	user
 com.github.finefindus.eyedropper/x86_64/stable	user
 com.github.neithern.g4music/x86_64/stable	user
@@ -36,7 +35,6 @@ org.gnome.Weather/x86_64/stable	system
 org.gnome.World.PikaBackup/x86_64/stable	user
 org.gnome.baobab/x86_64/stable	system
 org.gnome.clocks/x86_64/stable	system
-org.gnome.dspy/x86_64/stable	user
 org.gnome.font-viewer/x86_64/stable	system
 org.kde.kdenlive/x86_64/stable	user
 org.libreoffice.LibreOffice/x86_64/stable	system
